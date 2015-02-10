@@ -1,0 +1,1 @@
+sudo lessc ugyfelkezelo.less ../../../../modul/user/ugyfelkezelo.css

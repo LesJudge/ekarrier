@@ -1,0 +1,103 @@
+/* Reset */
+.shpt-form label {
+    margin: 0px;
+    padding: 0px;
+}
+/* End Reset */
+.shpt-form {
+    background: #f5f5f5;
+    border: 1px solid #999;
+    margin-bottom: 15px;
+    width: 500px;
+}
+.shpt-form.shpt-form-has-error .shpt-form-heading {
+    background: #C43434;
+}
+.shpt-form.shpt-form-has-error .shpt-form-body {
+    background: pink;
+}
+.shpt-form.shpt-form-has-success .shpt-form-heading {
+    background: #008200;
+}
+.shpt-form.shpt-form-has-success .shpt-form-body {
+    background: #82DB82;
+}
+.shpt-form .shpt-form-heading {
+    background: #DBDBDB;
+    border-bottom: 1px solid #999;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+    padding: 5px 10px;
+}
+.shpt-form .shpt-form-body {
+    padding: 10px;
+}
+.shpt-form .shpt-form-body .shpt-form-row {
+    display: block;
+    margin-bottom: 10px;
+}
+.shpt-form .shpt-form-body .shpt-form-row label,
+.shpt-form .shpt-form-body .shpt-form-row input {
+    display: block;
+    float: none;
+}
+.shpt-form .shpt-form-body .shpt-form-row label {
+    padding: 3px 3px 3px 10px;
+}
+.shpt-form .shpt-form-body .shpt-form-row input {
+    width: 458px;
+}
+.shpt-form .shpt-form-body .shpt-form-row div.selector {
+    width: 472px;
+}
+.shpt-form-error {
+    background: pink;
+    border: 1px solid #990000;
+    color: #990000;
+    display: none;
+    margin-top: 32px;
+    padding: 5px 10px;
+    text-shadow: none;
+}
+.shpt-form-error ul {
+    list-style-position: inside;
+}
+.shpt-form .shpt-form-body .shpt-form-row div.selector select {
+    width: 470px;
+}
+.shpt-form .shpt-form-body .shpt-form-row .ui-datepicker-trigger {
+    top: -24px;
+    float: right;
+    left: -10px;
+}
+.shpt-form-no-template {
+    background: pink;
+    border: 1px solid rgb(189, 0, 0);
+    color: rgb(189, 0, 0);
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    text-shadow: none;
+    width: 500px;
+}
+.shpt-form-controls .shpt-form-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.shpt-form-controls .shpt-form-button:first-child {
+    margin-left: 0px;
+}
+.shpt-form-button {
+    background: #F5F5F5 !important;
+    border: 1px solid #CCC !important;
+    height: 25px;
+    width: 25px;
+}
+.shpt-form-control-add {
+    min-width: 130px !important;
+}
+.shpt-form-remove-current {
+    float: right;
+}

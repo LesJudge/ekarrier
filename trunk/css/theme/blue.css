@@ -1,0 +1,20 @@
+
+
+body { background-color:#405258; }
+
+#header, #footer, .box_top, ul#navigation li ul.subnav, .box_top .sorting ul li a.active,
+.box_top .sorting ul li a:hover, .ui-dialog-titlebar { 
+	background-color:#2f3e42; 
+}
+
+#breadcrumb, #userpanel ul, #userpanel ul li ul.subnav, form.loginform input[type=submit] { 
+	background-color:#315862; 
+}
+
+#header, #breadcrumb, #footer, .box_top, #userpanel ul, #userpanel ul li ul.subnav, 
+ul#navigation li ul.subnav, .ui-dialog-titlebar { 
+	border-color:#2F3D43; 
+}
+
+	a, .dataTables_wrapper .paginate_button { color: #267DA6; } 
+a:focus, a:hover, a.big_button:hover 	{ color: #2193C8; } 

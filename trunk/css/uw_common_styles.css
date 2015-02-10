@@ -1,0 +1,25 @@
+/* Navigációs lista */
+ul.uw-nav-list
+{
+    margin:0px;
+    padding:0px;
+}
+/* Navigációs lista block li tag-ekkel */
+ul.uw-nav-list.uw-nav-list-block li
+{
+    display:block;
+}
+/* Navigációs lista inline-block li tag-ekkel */
+ul.uw-nav-list.uw-nav-list-inline-block li
+{
+    display:inline-block;
+}
+
+/* Infobox */
+div.uw-infobox
+{
+    background:#00CC00;
+    color:#FFF;
+    margin:5px 0px;
+    padding:5px;
+}

@@ -1,0 +1,17 @@
+BODY {   margin:0px; padding:0px;} 
+TD {  font-size:12px; font-family:Arial, Helvetica, sans-serif; line-height:20px; text-align:center; vertical-align:top; }
+
+.contentTable { border-collapse: collapse; width:100%; margin:0px 0px 0px 0px; }
+.contentTable TD { vertical-align:middle; text-align:left; border-collapse: collapse;  padding:0px 5px; border:1px solid #222;   }
+.contentTable TD A { color:#FFF; text-decoration:none;  }
+.contentTable TR TD.contentTable-header  { font-weight:400; color:#fff; text-shadow:1px 2px 1px rgba(0, 0, 0, 0.4);  font-family: 'Oswald', sans-serif; font-size:1.2em; line-height:1.4em; text-align:center; text-transform:uppercase; 
+	background:#ff8e4d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff8e4d), to(#ff6004));
+	background: -moz-linear-gradient(top, #ff8e4d,  #ff6004);
+	background: -o-linear-gradient(#ff8e4d, #ff6004 );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff8e4d", endColorstr="#ff6004");
+	zoom:1;	
+}
+
+
+

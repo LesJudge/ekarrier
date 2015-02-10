@@ -1,0 +1,33 @@
+#browser-wrapper { height: 420px; overflow: auto; }
+#browser-wrapper #view-tree,#browser-wrapper #view-files { float: left; height: 410px; overflow: auto; padding: 4px 6px; }
+#browser-wrapper #view-tree { width: 25%; margin-right: 3px; }
+#browser-wrapper #view-files { width: 65%; }
+ul.dirlist { padding: 0; margin: 0; list-style: none; }
+ul.dirlist li a { text-decoration: none; line-height: 14px; }
+ul.dirlist li a:hover{ color: #369; }
+ul.dirlist li { background: url('../images/icons/folder.png') no-repeat 0 0; padding: 1px 2px 1px 16px; margin: 0; position: relative; }
+ul.dirlist li.open{ font-weight: bold; background: url('../images/icons/folder_open_min.png') no-repeat 0 0; padding: 1px 2px 1px 16px; margin: 0; position: relative; }
+#view-files a.file { padding: 0 0 0 18px; height: 16px; display: block; }
+#view-files a.jpg, #view-files a.gif, #view-files a.image { background: url('../images/icons/file_img.png') no-repeat 0 50%; }
+#view-files a.swf { background: url('../images/icons/file_flash.png') no-repeat 0 50%; }
+#view-files a.txt {	background: url('../images/icons/page_text.gif') no-repeat 0 50%; }
+#view-files a.htm, #view-files a.html {	background: url('../images/icons/page_html.gif') no-repeat 0 50%; }
+#view-files a.pdf {	background: url('../images/icons/file_pdf.png') no-repeat 0 50%; }
+#view-files a.doc, #view-files a.docx { background: url('../images/icons/file_word.png') no-repeat 0 50%; }
+#view-files a.xls, #view-files a.xlsx { background: url('../images/icons/file_excel.png') no-repeat 0 50%; }
+#view-files a.ttf { background: url('../images/icons/file_font_truetype.gif') no-repeat 0 50%; }
+#view-files a.zip, #view-files a.gz,
+#view-files a.deb, #view-files a.rpm,
+#view-files a.rar, #view-files a.cab, #view-files a.tar { background: url('../images/icons/page_package.gif') no-repeat 0 50%; }
+#view-files a.exe {	background: url('../images/icons/action_save.gif') no-repeat 0 50%; }
+#view-files a.mp3, #view-files a.ogg, #view-files a.mid { background: url('../images/icons/page_sound.gif') no-repeat 0 50%; }
+#view-files a.avi, #view-files a.mpg,
+#view-files a.flv {	background: url('../images/icons/file_flash.png') no-repeat 0 50%; } 
+#view-files a.mpeg {	background: url('../images/icons/page_video.gif') no-repeat 0 50%; }
+#view-files a.php {	background: url('../images/icons/page_php.gif') no-repeat 0 50%; }
+form#load-file { margin: 0 0 4px 0; }
+.thumbnail{ position: relative; z-index: 0; }
+.thumbnail:hover{ background-color: transparent; z-index: 50; }
+.thumbnail span{ position: absolute; background-color: #f3f3f3; padding: 1px; left: -1000px; border: 1px solid #e0e0e0; visibility: hidden; color: black; text-decoration: none; }
+.thumbnail span img { border-width: 0; padding: 2px; }
+.thumbnail:hover span { visibility: visible; top: 0; left: 80px; }

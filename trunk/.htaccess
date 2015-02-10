@@ -1,0 +1,126 @@
+RewriteEngine On
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^js_min/([^/.]*).js$  Minify/index.php?g=$1_js&%{QUERY_STRING} [L]
+RewriteRule ^css_min/([^/.]*).css$  Minify/index.php?g=$1_css&%{QUERY_STRING} [L]
+
+#--Timtumb
+RewriteRule ^pic/([^/]*)/([^/]*)_([0-9]*)x([0-9]*)_([0-9]*)$  timthumb.php?m=$1&src=$2&w=$3&h=$4&zc=$5&%{QUERY_STRING} [L]
+RewriteRule ^pic/([^/]*)/([^/]*)_([0-9]*)x([0-9]*)$  timthumb.php?m=$1&src=$2&w=$3&h=$4&zc=0&%{QUERY_STRING} [L]
+RewriteRule ^pic/([^/]*)/([^/]*)$  timthumb.php?m=$1&src=$2&%{QUERY_STRING} [L]         
+RewriteRule ^pic/([^/]*)/([^/.]*)/([^/_]*)_([0-9]*)x([0-9]*)_([0-9]*)$  timthumb.php?m=$1&d=$2/&src=$3&w=$4&h=$5&zc=$6&%{QUERY_STRING} [L]
+RewriteRule ^pic/([^/]*)/([^/.]*)/([^/_]*)_([0-9]*)x([0-9]*)$  timthumb.php?m=$1&d=$2/&src=$3&w=$4&h=$5&zc=0&%{QUERY_STRING} [L]
+RewriteRule ^pic/([^/]*)/([^/.]*)/([^/]*)$  timthumb.php?m=$1&d=$2/&src=$3&%{QUERY_STRING} [L]
+#--
+#--Hírek
+RewriteRule ^hirek/$  index.php?m=hir&al=showList&link=hirek&%{QUERY_STRING} [L]
+RewriteRule ^hirek/(.*)/$  index.php?m=hir&al=showList&link=hirek/$1&%{QUERY_STRING} [L]
+RewriteRule ^hirek/(.*)$  index.php?m=hir&al=showHir&link=$1&%{QUERY_STRING} [L]
+#--
+#--Hírlevélküldő
+RewriteRule ^hirlevel/leiratkozas/([^/]*)$  index.php?m=hirlevel&al=leiratkozas&user_id=$1&%{QUERY_STRING} [L]
+RewriteRule ^hirlevel/feliratkozas$  index.php?m=hirlevel&al=feliratkozas&%{QUERY_STRING} [L]
+RewriteRule ^hirlevel/megnyitas/([0-9]*)/([^/]*)$  ajax.php?m=hirlevel&al=megnyitas&hirlevel_id=$1&user_id=$2&%{QUERY_STRING} [L]
+#--
+#--Statikus oldalak
+RewriteRule ^([^/.]*)$  index.php?m=tartalom&link=$1&%{QUERY_STRING} [L]
+RewriteRule ^index.php$  index.php?m=tartalom&link=$1&%{QUERY_STRING} [L]
+#--
+#--Keresés
+RewriteRule ^kereses/$  index.php?m=kereso&al=showList&%{QUERY_STRING} [L]
+RewriteRule ^kereses/([^/]*)$  index.php?m=kereso&al=showList&szo=$1&%{QUERY_STRING} [L]
+#--
+#--Regisztráció
+RewriteRule ^megerosites/([^/]*)$  index.php?m=user&al=megerosites&user_id=$1&%{QUERY_STRING} [L]
+RewriteRule ^jelszoemlekezteto/$  index.php?m=user&al=emlekezteto&%{QUERY_STRING} [L]
+#--
+#--Fórum
+RewriteRule ^forum/$  index.php?m=forum&al=showList&%{QUERY_STRING} [L]
+RewriteRule ^forum/bekuldes/$  index.php?m=forum&al=bekuldes&%{QUERY_STRING} [L]
+RewriteRule ^forum/([0-9]*)/$  index.php?m=forum&al=showHozzaszolasList&kapcs_id=$1&%{QUERY_STRING} [L]
+RewriteRule ^forum/([0-9]*)/bekuldes/$  index.php?m=forum&al=hozzaszolasBekuldes&kapcs_id=$1&%{QUERY_STRING} [L]
+#--
+#--Munkavállaló
+RewriteRule ^munkavallalo/regisztracio/$  index.php?m=user&al=reg&%{QUERY_STRING} [L]
+#--RewriteRule ^en/(.*)$ index.php?m=tartalom&link=hamarosan&%{QUERY_STRING} [L]
+#--RewriteRule ^en/$ index.php?m=munkavallalo&al=en%{QUERY_STRING} [L]
+RewriteRule ^en/vegzettsegeim/$ index.php?m=munkavallalo&al=vegzettsegList&%{QUERY_STRING} [L]
+RewriteRule ^en/vegzettsegeim/szerkesztes/([0-9]*)$ index.php?m=munkavallalo&al=vegzettsegEdit&id=$1&%{QUERY_STRING} [L]
+#--
+#--Belépett felhasználói felületek
+RewriteRule ^adatmodositas/$  index.php?m=user&al=reg&%{QUERY_STRING} [L]
+RewriteRule ^cimek/$  index.php?m=user_cim&al=list&%{QUERY_STRING} [L]
+RewriteRule ^cimek/edit$  index.php?m=user_cim&al=edit&%{QUERY_STRING} [L]
+RewriteRule ^cimek/edit/([0-9]*)$  index.php?m=user_cim&al=edit&id=$1&%{QUERY_STRING} [L]
+#--
+#--Álláskeresés
+RewriteRule ^allaskereses/$ index.php?m=allashirdetes&al=list&%{QUERY_STRING} [L]
+RewriteRule ^allaskereses/archivum/$ index.php?m=allashirdetes&al=archivum&%{QUERY_STRING} [L]
+RewriteRule ^allashirdetes/([a-zA-Z0-9\-]+)/([0-9]+)/$ index.php?m=allashirdetes&al=show&allashirdetes_link=$1&allashirdetes_id=$2&%{QUERY_STRING} [L]
+RewriteRule ^allashirdetes/ajax/$ index.php?m=allashirdetes&al=ajax&%{QUERY_STRING} [L]
+RewriteRule ^allashirdetes/ajax/expectationsandtasks/$ index.php?m=allashirdetes&al=ajax&action=findexpsandtasks&%{QUERY_STRING} [L]
+RewriteRule ^allashirdetes/ajax/job-preview/([0-9]+)/$ index.php?m=allashirdetes&al=ajax&action=jobpreview&jobId=$1&%{QUERY_STRING} [L]
+#--
+#--Cég
+RewriteRule ^ceg/(regisztracio|profil)/$ index.php?m=ceg&al=edit&%{QUERY_STRING} [L]
+RewriteRule ^ceg/allashirdetes/$ index.php?m=ceg&al=allashirdetesList&%{QUERY_STRING} [L]
+RewriteRule ^ceg/allashirdetes/szerkesztes/([0-9]*)$ index.php?m=ceg&al=allashirdetesEdit&id=$1&%{QUERY_STRING} [L]
+#RewriteRule ^ceg/allashirdetes/szerkesztes/([0-9]*)$ index.php?m=allashirdetes&al=siteEdit&id=$1&%{QUERY_STRING} [L]
+#RewriteRule ^ceg/allashirdetes/szerkesztes/([0-9]*)$ index.php?m=allashirdetes&al=edit&id=$1&%{QUERY_STRING} [L]
+RewriteRule ^ceg/telephely/$ index.php?m=ceg&al=telephelyList&%{QUERY_STRING} [L]
+RewriteRule ^ceg/telephely/szerkesztes/([0-9]*)$ index.php?m=ceg&al=telephelyEdit&id=$1&%{QUERY_STRING} [L]
+#--
+#--Munkáltató
+#RewriteRule ^munkaltato(.*)$ index.php?m=tartalom&link=hamarosan&%{QUERY_STRING} [L]
+RewriteRule ^munkaltato/$ index.php?m=ceg&al=list&%{QUERY_STRING} [L]
+RewriteRule ^munkaltato/([^/.]*)$ index.php?m=ceg&al=show&link=$1&%{QUERY_STRING} [L]
+#--
+#--Munkakör
+RewriteRule ^munkakor/ajax/filterbymain/all/$ index.php?m=munkakor&al=ajax&method=all&%{QUERY_STRING} [L]
+RewriteRule ^munkakor/ajax/filterbymain/([0-9]*)/$ index.php?m=munkakor&al=ajax&method=filterbymain&mainId=$1&%{QUERY_STRING} [L]
+RewriteRule ^munkakor/ajax/filterbysub/([0-9]*)/$ index.php?m=munkakor&al=ajax&method=filterbysub&subId=$1&%{QUERY_STRING} [L]
+RewriteRule ^munkakor/ajax/([^/]*)/ index.php?m=munkakor&al=ajax&method=$1&%{QUERY_STRING} [L]
+RewriteRule ^munkakorok/$ index.php?m=munkakor&al=start&%{QUERY_STRING} [L]
+RewriteRule ^munkakorok/([^/.]*)/kiegeszit/([^/.]*)$ index.php?m=munkakor&al=kiegeszit&munkakor=$1&type=$2&%{QUERY_STRING} [L]
+RewriteRule ^munkakorok/([^/.]*)$ index.php?m=munkakor&al=showMunkakor&link=$1&%{QUERY_STRING} [L]
+#RewriteRule ^munkakor-kereso/$ index.php?m=munkakor&al=kereso&%{QUERY_STRING} [L]
+#RewriteRule ^munkakor-kereso/([^/.]*)(/)?$ index.php?m=munkakor&al=list&caturl=$1&%{QUERY_STRING} [L]
+#RewriteRule ^munkakor-kereso/$ index.php?m=munkakor&al=kereso&%{QUERY_STRING} [L]
+RewriteRule ^munkakor-kereso/$ index.php?m=munkakor&al=list&caturl=
+RewriteRule ^munkakor-kereso/([^/.]*)(/)?$ index.php?m=munkakor&al=list&caturl=$1&%{QUERY_STRING} [L]
+#--
+#--Profil
+RewriteRule ^profil/$ index.php?m=profil&al=index&%{QUERY_STRING} [L]
+RewriteRule ^profil/vegzettsegeim/$ index.php?m=user&al=vegzettsegList&%{QUERY_STRING} [L]
+RewriteRule ^profil/vegzettsegeim/szerkesztes/([0-9]*)$ index.php?m=user&al=vegzettsegEdit&id=$1&%{QUERY_STRING} [L]
+RewriteRule ^profil/megjelolt-allashirdetesek/$ index.php?m=user&al=allashirdetes&%{QUERY_STRING} [L]
+#RewriteRule ^profil/nyelvtudas/$ index.php?m=user&al=nyelvtudas&%{QUERY_STRING} [L]
+#RewriteRule ^profil/szamitogepes-ismeret/$ index.php?m=user&al=szamitogepes-ismeret&%{QUERY_STRING} [L]
+#--
+#--Linktár
+#RewriteRule ^linktar/$  index.php?m=linktar&al=showList&link=linktar&%{QUERY_STRING} [L]
+#--
+#--Irányítószám kereső
+RewriteRule ^iranyitoszam-kereso/$ index.php?m=user_cim&al=irszamkeresoAjax&%{QUERY_STRING} [L]
+RewriteRule ^cim-kereso/iranyitoszam/([0-9]*)/$ index.php?m=user_cim&al=ajaxSearch&method=iranyitoszam&param=$1&%{QUERY_STRING} [L]
+RewriteRule ^cim-kereso/megye/([^/.]*)/$ index.php?m=user_cim&al=ajaxSearch&method=megye&param=$1&%{QUERY_STRING} [L]
+RewriteRule ^cim-kereso/varos/([^/.]*)/$ index.php?m=user_cim&al=ajaxSearch&method=varos&param=$1&%{QUERY_STRING} [L]
+#---
+#--Kompetenciák
+RewriteRule ^kompetenciak/$ index.php?m=kompetencia&al=list&%{QUERY_STRING} [L]
+RewriteRule ^kompetenciak/([^/.]*)$ index.php?m=kompetencia&al=show&link=$1&%{QUERY_STRING} [L]
+RewriteRule ^kompetenciak/kompetenciarajz/$ index.php?m=kompetencia&al=edit&%{QUERY_STRING} [L]
+#--
+#--Szektorteszt
+RewriteRule ^szektorteszt/$  index.php?m=szektorteszt&%{QUERY_STRING} [L]
+RewriteRule ^szektorteszt/([^/.]*)$ index.php?m=szektorteszt&link=$1&%{QUERY_STRING} [L]
+
+#--En
+RewriteRule ^en/$  index.php?m=en&%{QUERY_STRING} [L]
+RewriteRule ^en/([^/.]*)$ index.php?m=en&link=$1&%{QUERY_STRING} [L]
+#--
+#--ErrorDocuments
+ErrorDocument 404 /index.php?m=tartalom&link=404

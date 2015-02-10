@@ -1,0 +1,12 @@
+/* ie.css */
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+/* End hide from IE Mac */
+.copy_center {margin-left:35px !important;}
+.main_menu #navigation LI A 		{ padding:5px 6px !important;}
+html { font-size:70% !important; }
+.column-3 .randomproduct .list-item .read-more .left {font-size: 11px !important;}
+.box .title {font-size: 9px !important;}
+.accordion A{font-size: 11px !important; padding-right: 3px;}
+.ui-widget {font-size: 1.3em !important;}

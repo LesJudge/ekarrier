@@ -1,0 +1,17 @@
+// Bootstrap 3.0 clearfix mixin.
+.clearfix() {
+    &:before,
+    &:after {
+    content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+.item-pull-left-mixin() {
+    float: left !important;
+}
+.item-pull-right-mixin() {
+    float: right !important;
+}

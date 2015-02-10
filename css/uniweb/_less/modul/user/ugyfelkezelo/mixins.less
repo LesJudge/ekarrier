@@ -1,0 +1,33 @@
+.uw-ugyfelkezelo-table-btn(@border-color: #999, @width: 32px, @height:32px) {
+    border: 1px solid;
+    border-color: @border-color;
+    height: @height;
+    width: @width;
+}
+.min-width-mixin(@max-width: 100%, @min-width: 150px) {
+    max-width: @max-width !important;
+    min-width: @min-width !important;
+    width: auto !important;
+}
+.make-sheep-it-container(@width: 98%) {
+    .clearfix();
+    margin: 0 auto;
+    width: @width;
+}
+.make-sheep-it-controls(@padding-top: 14px;) {
+    clear: both;
+    padding-top: @padding-top;
+    text-align: center;
+}
+.make-sheep-it-devide(@width, @margin-horizontal: 12px, @margin-vertical: 16px) {
+    float: left;
+    margin: @margin-horizontal @margin-vertical;
+    width: @width;
+}
+.sheep-it-selector-width-mixin(@width: 97%) {
+    width: @width;
+}
+.sheep-it-input-mixin(@width: 94%) {
+    margin: 0 auto;
+    width: @width;
+}

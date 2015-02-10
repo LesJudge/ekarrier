@@ -1,0 +1,136 @@
+.uw-df-filters {
+  padding: 10px;
+}
+.uw-df-filters-btns {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.uw-df-filters-btns button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.uw-df-filters-btns button:first-child {
+  margin-left: 0px;
+}
+.uw-df-filters-btns button:last-child {
+  margin-right: 0px;
+}
+.uw-df-filters-container {
+  display: block;
+}
+.uw-df-filters.uw-df-filters-btn-dialog-open {
+  border: 1px solid #BBB !important;
+}
+.uw-df-filters .uw-df-filter {
+  position: relative;
+  width: 30%;
+  *zoom: 1;
+}
+.uw-df-filters .uw-df-filter:after,
+.uw-df-filters .uw-df-filter:before {
+  content: " ";
+  display: table;
+}
+.uw-df-filters .uw-df-filter:after {
+  clear: both;
+}
+.uw-df-filters .uw-df-filter .uw-df-li-btn-remove {
+  border: 1px solid #BBB !important;
+  height: 26px;
+  width: 26px;
+  position: absolute;
+  right: 10%;
+}
+.uw-df-filters .uw-df-filter-checkbox .uw-df-li-btn-remove,
+.uw-df-filters .uw-df-filter-radio .uw-df-li-btn-remove {
+  top: 24px;
+}
+.uw-df-filters .uw-df-filter-select .uw-df-li-btn-remove,
+.uw-df-filters .uw-df-filter-text .uw-df-li-btn-remove {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.uw-df-filters .uw-df-filter-select select {
+  position: relative;
+  top: 6px;
+}
+.uw-df-filters .uw-df-filter-text-like input[type="text"],
+.uw-df-filters .uw-df-filter-text-date input[type="text"] {
+  margin-right: 16px;
+  width: 260px !important;
+}
+.uw-df-filters .uw-df-filter-text-like select,
+.uw-df-filters .uw-df-filter-text-date select {
+  margin-top: 6px;
+  width: 120px !important;
+}
+.uw-df-filters .uw-df-filter-text-date .uw-df-li-btn-remove {
+  top: 40px;
+}
+.uw-df-filters .uw-df-filter-text-date-to {
+  display: none;
+  margin-top: 10px;
+}
+.uw-df-filters .uw-df-filter-int input[type="text"] {
+  margin-right: 16px;
+  width: 230px !important;
+}
+.uw-df-filters .uw-df-filter-int select {
+  margin-top: 6px;
+  width: 150px !important;
+}
+.uw-df-dialog .uw-df-list {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+.uw-df-dialog .uw-df-list .uw-df-li {
+  display: inline-block;
+  height: 34px;
+  overflow: hidden;
+  position: relative;
+  width: 33.33%;
+}
+.uw-df-dialog .uw-df-list .uw-df-li div {
+  display: inline-block;
+  line-height: 38px;
+  width: 80%;
+}
+.uw-df-dialog .uw-df-list .uw-df-li-btn-add {
+  border: 1px solid #BBB !important;
+  height: 26px;
+  width: 26px;
+  position: absolute;
+  right: 30px;
+  top: 7px;
+}
+.uw-df-dialog .uw-df-list .uw-df-li-separator {
+  display: block;
+  height: 24px;
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 6px;
+  margin-top: 12px;
+}
+.uw-df-dialog .uw-df-list-none {
+  background: #ffc0cb;
+  border: 1px solid #af0000;
+  color: #af0000;
+  padding: 5px 10px;
+  text-shadow: none;
+}
+.uw-df-btn {
+  border: 1px solid #BBB !important;
+}
+.uw-df-btn-add,
+.uw-df-btn-remove {
+  border: 1px solid #BBB !important;
+  height: 26px;
+  width: 26px;
+}
+.uw-df-cknowledge-filter {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+}

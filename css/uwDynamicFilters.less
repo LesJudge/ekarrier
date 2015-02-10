@@ -1,0 +1,162 @@
+@uw-dynamic-filters-padding              : 10px;
+@uw-df-btns-padding         : 10px;
+@uw-df-btns-btn-margin      : 5px;
+@uw-df-btn-small-height     : 26px;
+@uw-df-btn-small-width      : 26px;
+@uw-dynamic-filters-filter-none-bg       : pink;
+@uw-dynamic-filters-filter-none-border   : 1px solid rgb(175, 0, 0);
+@uw-dynamic-filters-filter-none-color    : rgb(175, 0, 0);
+@uw-dynamic-filters-list-item-line-height: 38px;
+@uw-dynamic-filters-list-item-btn-height : 26px;
+@uw-dynamic-filters-list-item-btn-width  : 26px;
+
+.uw-df-filters {
+    padding: @uw-dynamic-filters-padding;
+    &-btns {
+        padding-bottom: @uw-df-btns-padding;
+        padding-top: @uw-df-btns-padding;
+        button {
+            &:first-child {
+                margin-left: 0px;
+            }
+            &:last-child {
+                margin-right: 0px;
+            }
+            margin-left: @uw-df-btns-btn-margin;
+            margin-right: @uw-df-btns-btn-margin;
+        }
+    }
+    &-container {
+        display: block;
+    }    
+    &.uw-df-filters-btn-dialog-open {
+        .uw-df-btn();
+    }
+    .uw-df-filter {
+        position: relative;
+        width: 30%;
+        *zoom: 1;
+        &:after,
+        &:before {
+            content: " ";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+        .uw-df-li-btn-remove {
+            .uw-df-btn-remove();
+            position: absolute;
+            right: 10%;
+        }
+        &-checkbox,
+        &-radio {
+            .uw-df-li-btn-remove {
+                top: 24px;
+            };
+        }
+        &-select,
+        &-text {
+            .uw-df-li-btn-remove {
+                margin-left: 5px;
+                margin-top: 3px;
+            }
+        };
+        &-select {
+            select {
+                position: relative;
+                top: 6px;
+            }
+        }
+        &-text {
+            &-like,
+            &-date {
+                input[type="text"] {
+                    margin-right: 16px;
+                    width: 260px !important;
+                }
+                select {
+                    margin-top: 6px;
+                    width: 120px !important;
+                }
+            }
+            &-date {
+                .uw-df-li-btn-remove {
+                    top: 40px;
+                }
+                &-to {
+                    display: none;
+                    margin-top: 10px;
+                }
+                &-use-dp {
+                    
+                }
+            }
+        }
+        &-int {
+            input[type="text"] {
+                margin-right: 16px;
+                width: 230px !important;
+            }
+            select {
+                margin-top: 6px;
+                width: 150px !important;
+            }
+        }
+    }
+}
+.uw-df-dialog {
+    .uw-df-list {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+        .uw-df-li {
+            display: inline-block;
+            height: 34px;
+            overflow: hidden;
+            position: relative;
+            width: 33.33%;
+            div {
+                display: inline-block;
+                line-height: @uw-dynamic-filters-list-item-line-height;
+                width: 80%;
+            }
+            &-btn-add {
+                .uw-df-btn-add();
+                position: absolute;
+                right: 30px;
+                top: 7px;
+            }
+            &-separator {
+                display: block;
+                height: 24px;
+                font-size: 1.2em;
+                font-weight: bold;
+                width: 100%;
+                margin-bottom: 6px;
+                margin-top: 12px;
+            };
+        }
+    }
+    .uw-df-list-none {
+        background: @uw-dynamic-filters-filter-none-bg;
+        border: @uw-dynamic-filters-filter-none-border;
+        color: @uw-dynamic-filters-filter-none-color;
+        padding: 5px 10px;
+        text-shadow: none;
+    }
+}
+.uw-df-btn {
+    border: 1px solid #BBB !important;
+}
+.uw-df-btn-add,
+.uw-df-btn-remove {
+    .uw-df-btn();
+    height: @uw-df-btn-small-height;
+    width: @uw-df-btn-small-width;
+}
+.uw-df-cknowledge-filter {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    position: relative;
+}

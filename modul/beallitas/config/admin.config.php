@@ -1,0 +1,32 @@
+<?php
+return array(
+    'APP_PATH' => 'beallitas',
+    'APP_LINK' => array(
+        '' => 'beallitas',
+        //'edit'=>'beallitas',
+        'vegzettseg' => 'beallitas/vegzettseg',
+        'vegzettsegedit' => 'beallitas/vegzettseg',
+        'szektor' => 'beallitas/szektor',
+        'szektoredit' => 'beallitas/szektor',
+        'iparag' => 'beallitas/iparag',
+        'iparagedit' => 'beallitas/iparag',
+        'alkalmazottiviszony' => 'beallitas/alkalmazottiviszony',
+        'alkalmazottiviszonyedit' => 'beallitas/alkalmazottiviszony',
+        'elony' => 'beallitas/elony',
+        'elonyedit' => 'beallitas/elony',
+        'tevekenyseg' => 'beallitas/tevekenyseg',
+        'tevekenysegedit' => 'beallitas/tevekenyseg',
+        'munkarend' => 'beallitas/munkarend',
+        'munkarendedit' => 'beallitas/munkarend',
+        'programinformacio' => 'beallitas/programinformacio',
+        'programinformacioedit' => 'beallitas/programinformacio',
+        'hovaerkezett' => 'beallitas/hovaerkezett',
+        'hovaerkezettedit' => 'beallitas/hovaerkezett',
+        'ugyfelallapot' => 'beallitas/ugyfelallapot',
+        'ugyfelallapotedit' => 'beallitas/ugyfelallapot',
+        'ugyfelstatusz' => 'beallitas/ugyfelstatusz',
+        'ugyfelstatuszedit' => 'beallitas/ugyfelstatusz',
+        'esetnaplotipus' => 'beallitas/esetnaplotipus',
+        'esetnaplotipusedit' => 'beallitas/esetnaplotipus'
+    ),
+);

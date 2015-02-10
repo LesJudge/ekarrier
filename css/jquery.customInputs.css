@@ -1,0 +1,249 @@
+/*****************************************************************************/
+/*	CUSTOM SELECT START */
+/*****************************************************************************/
+.select-cont { position:relative; } 
+.select-cont SELECT { behavior:none !important; -webkit-border-radius: 0px !important; -moz-border-radius:0px !important; border-radius:0px  !important; -webkit-box-shadow:none !important; -moz-box-shadow: none !important;box-shadow:none !important;
+ position: relative; width:70px; opacity: 0; filter: alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; z-index: 5;} 
+.disabled { opacity: 0.5; filter: alpha(opacity=50); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";}
+
+.styled, .styled-arrow, .select-cont SELECT, .select-cont { margin:0px 0px 0px 0px; color:#525252 !important;}
+.styled, .styled-arrow { display:block !important; width:100% !important;  font-family:Arial, Helvetica, sans-serif; text-indent:10px; 
+	text-align:left !important;
+	position: absolute !important; 	
+	top:0px !important;
+	z-index:4 !important;	
+	display:block  !important;		
+	padding: 0 0 0 0 !important;	
+	font-size:80%;	
+	overflow: hidden  !important;
+	background-image: url(customInputs/select_bg.png) !important; 
+}
+.styled {
+	left:0px !important; 	
+	background-position:left top !important;
+}
+.styled-arrow {	
+	right:-4px !important;	
+	background-position:right top !important;padding: 0 0px 0 0px !important;	
+}
+.select-cont SELECT { padding:0px 0px;  margin:0px; width:100% !important;  }
+.select-cont SELECT.select { width:100% !important;}
+.select-cont { position:relative; float:none; display:inline-block; width:99%; overflow:vivible; margin:0.5em 0em; }
+
+
+/*	Select Méretek DEFAULT TYPE	**********************************************************/
+.styled, .styled-arrow, .select-cont SELECT, .select-cont { line-height:37px !important; height:37px !important; }
+.styled-arrow {	width:41px !important; }
+
+.select-cont.select-size-0 { width:100% !important; }
+.select-cont.select-size-0 SPAN.styled { width:100% !important;}
+
+.select-cont.select-size-1 { width:60px !important; }
+.select-cont.select-size-1 SPAN.styled { width:30px !important;}
+
+.select-cont.select-size-2 { width:80px !important; }
+.select-cont.select-size-2 SPAN.styled { width:50px !important;}
+
+.select-cont.select-size-3 { width:100px !important; }
+.select-cont.select-size-3 SPAN.styled { width:70px !important;}
+
+.select-cont.select-size-4 { width:120px !important; }
+.select-cont.select-size-4 SPAN.styled { width:90px !important;}
+
+.select-cont.select-size-5 { width:160px !important; }
+.select-cont.select-size-5 SPAN.styled { width:130px !important;}
+
+.select-cont.select-size-6 { width:200px !important; }
+.select-cont.select-size-6 SPAN.styled { width:170px !important;}
+
+.select-cont.select-size-7 { width:250px !important; }
+.select-cont.select-size-7 SPAN.styled { width:220px !important;}
+
+.select-cont.select-size-8 { width:400px !important; }
+.select-cont.select-size-8 SPAN.styled { width:370px !important;}
+
+
+/*	Select Méretek TYPE-1	**********************************************************/
+.select-cont.select-type-1 .styled, .select-cont.select-type-1 .styled-arrow { background-image: url(customInputs/select_bg_2.png) !important; color:#fff !important; }
+.select-cont.select-type-1 .styled, .select-cont.select-type-1 .styled-arrow, .select-cont.select-type-1 SELECT, .select-cont.select-type-1 { line-height:18px !important; height:18px !important; }
+.select-cont.select-type-1 .styled-arrow {	width:15px !important; }
+
+.select-cont.select-type-1.select-size-1 { width:60px !important; }
+.select-cont.select-type-1.select-size-1 SPAN.styled { width:45px !important;}
+
+.select-cont.select-type-1.select-size-2 { width:80px !important; }
+.select-cont.select-type-1.select-size-2 SPAN.styled { width:65px !important;}
+
+.select-cont.select-type-1.select-size-3 { width:100px !important; }
+.select-cont.select-type-1.select-size-3 SPAN.styled { width:85px !important;}
+
+.select-cont.select-type-1.select-size-4 { width:120px !important; }
+.select-cont.select-type-1.select-size-4 SPAN.styled { width:105px !important;}
+
+.select-cont.select-type-1.select-size-5 { width:160px !important; }
+.select-cont.select-type-1.select-size-5 SPAN.styled { width:145px !important;}
+
+.select-cont.select-type-1.select-size-6 { width:200px !important; }
+.select-cont.select-type-1.select-size-6 SPAN.styled { width:185px !important;}
+
+.select-cont.select-type-1.select-size-7 { width:250px !important; }
+.select-cont.select-type-1.select-size-7 SPAN.styled { width:235px !important;}
+
+.select-cont.select-type-1.select-size-8 { width:400px !important; }
+.select-cont.select-type-1.select-size-8 SPAN.styled { width:385px !important;}
+/*****************************************************************************/
+/*	CUSTOM SELECT END */
+/*****************************************************************************/
+
+
+
+/*****************************************************************************/
+/*	CUSTOM CHECKBOX START */
+/*****************************************************************************/
+.checkbox-cont { display:block; margin:5px 0px 0px 0px; float:left;overflow:hidden; cursor:pointer; }
+.checkbox-cont .checkbox, .checkbox-cont INPUT[type='checkbox']{  position: absolute; left:-9999px; top:-9999px; z-index: 5; margin:0px !important; cursor:pointer; 
+opacity: 0; filter: alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";   }
+.checkbox-cont.checkedBox { background-position:left top;}
+.checkbox-cont { position:relative; z-index:5; border:1px solid #B1B1B1; 
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;	
+	
+	background:#ffffff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e8e8e8));
+	background: -moz-linear-gradient(top, #ffffff,  #e8e8e8);
+	background: -o-linear-gradient(#ffffff, #e8e8e8 );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#e8e8e8");
+	zoom:1;		
+}
+.checkbox-cont .checkbox-switch { display:block; position:absolute; z-index:4; left:auto; margin:0px; padding:0px; 
+text-transform:uppercase; text-align:center; font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:1.4em; color:#fff;  
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;	
+	background:#999999; 
+	/* behavior: url(../css/behavior/PIE.htc); */	
+}
+.checkbox-cont.checkedBox .checkbox-switch { right:0px;	
+	background:#ff9456;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff9456), to(#ff6208));
+	background: -moz-linear-gradient(top, #ff9456,  #ff6208);
+	background: -o-linear-gradient(#ff9456, #ff6208 );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff9456", endColorstr="#ff6208");
+	zoom:1;
+}
+
+/*	Checkbox Méretek *********************************************************/
+.checkbox-cont, .checkbox-cont .checkbox, .checkbox-cont .checkbox-switch  {  width:80px !important; height:20px !important; line-height:20px; }
+.checkbox-cont .checkbox-switch { width:50% !important;}
+
+.checkbox-cont.checkbox-size-1, .checkbox-cont.checkbox-size-1 .checkbox, .checkbox-cont.checkbox-size-1 INPUT[type='checkbox'], .checkbox-cont.checkbox-size-1 .checkbox-switch   {  width:70px !important; height:20px !important; line-height:20px; }
+.checkbox-cont.checkbox-size-1 .checkbox-switch { width:50% !important; font-size:80%;}
+
+.checkbox-cont.checkbox-size-2, .checkbox-cont.checkbox-size-2 .checkbox, .checkbox-cont.checkbox-size-2 INPUT[type='checkbox'], .checkbox-cont.checkbox-size-2 .checkbox-switch   {  width:100px !important; height:30px !important; line-height:30px; }
+.checkbox-cont.checkbox-size-2 .checkbox-switch { width:50% !important; font-size:80%;}
+
+INPUT.noStyle[type='checkbox'] { position:relative; left:0px; top:0px; z-index: 5; margin:0px !important; cursor:pointer; 
+opacity: 1; filter: alpha(opacity=1); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";   }
+.regularCheckboxCont.checkbox-cont, .checkbox-cont.regularCheckboxCont .checkbox, .checkbox-cont.regularCheckboxCont .checkbox-switch { width:20px !important; height:20px; }
+.checkbox-cont.regularCheckboxCont .checkbox-switch { width:12px !important; height:12px !important; left:4px !important; right:auto !important; top:4px !important; text-indent:-99999px; }
+
+
+/*****************************************************************************/
+/*	CUSTOM CHECKBOX END */
+/*****************************************************************************/
+
+
+
+
+
+/*****************************************************************************/
+/*	CUSTOM RADIOBOX START */
+/*****************************************************************************/
+.radiobox-cont { display:block; margin:2px 10px 0px 0px; float:left;overflow:hidden; cursor:pointer; }
+.radiobox-cont .radiobox,  .radiobox-cont INPUT[type='radio']{  position: absolute; left:0px; top:0px; z-index: 5; margin:0px !important; cursor:pointer; 
+opacity: 0; filter: alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";   }
+.radiobox-cont.checkedBox { background-position:left top;}
+.radiobox-cont { position:relative; z-index:5; border:1px solid #B1B1B1; text-align:center; vertical-align:middle; 
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;	
+	background:#ffffff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e8e8e8));
+	background: -moz-linear-gradient(top, #ffffff,  #e8e8e8);
+	background: -o-linear-gradient(#ffffff, #e8e8e8 );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#e8e8e8");
+	zoom:1;	
+}
+.radiobox-cont .radiobox-switch { display:block; position:relative; z-index:4; padding:0px;  width:12px; height:12px;  margin:3px 1px 1px 3px; 
+	text-transform:uppercase; text-align:center; font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:0em; color:#fff; text-indent:-999999px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%; 	
+	background:#999999;	
+}
+.radiobox-cont.checkedBox .radiobox-switch {		
+	background:#ff9456;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff9456), to(#ff6208));
+	background: -moz-linear-gradient(top, #ff9456,  #ff6208);
+	background: -o-linear-gradient(#ff9456, #ff6208 );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff9456", endColorstr="#ff6208");
+	zoom:1;	
+}
+
+/*	Radiobox Méretek *********************************************************/
+.radiobox-cont, .radiobox-cont .radiobox {  width:20px !important; height:20px !important; }
+
+.radiobox-cont.radiobox-size-1, .radiobox-cont.radiobox-size-1 .radiobox, .radiobox-cont.radiobox-size-1 INPUT[type='radio'] { width:15px !important; height:15px !important;  }
+.radiobox-cont.radiobox-size-1 .radiobox-switch  { margin:2px 1px 1px 2px; !important;  width:11px !important; height:11px !important;}
+
+.radiobox-cont.radiobox-size-2, .radiobox-cont.radiobox-size-2 .radiobox, .radiobox-cont.radiobox-size-2 INPUT[type='radio'] { width:20px !important; height:20px !important;  }
+.radiobox-cont.radiobox-size-2 .radiobox-switch  { margin:3px 1px 1px 3px !important; width:14px !important; height:14px !important;}
+
+.radiobox-cont.radiobox-size-3, .radiobox-cont.radiobox-size-3 .radiobox, .radiobox-cont.radiobox-size-3 INPUT[type='radio'] { width:30px !important; height:30px !important;  }
+.radiobox-cont.radiobox-size-3 .radiobox-switch  { margin:4px 1px 1px 4px !important;   width:23px !important; height:23px !important;}
+
+/*****************************************************************************/
+/*	CUSTOM RADIOBOX END */
+/*****************************************************************************/
+
+
+
+
+/*****************************************************************************/
+/*	CUSTOM FILEBOX START */
+/*****************************************************************************/
+.filebox-cont {  position:relative; display: block;overflow: hidden; cursor: pointer; float:left; width: 225px;height:28px;  margin:8px 0px 0px 0px;}
+.filebox-btn { position:absolute; top:0px; right:0px; z-index:2; z-index:5; width:110px; 
+text-transform:uppercase; text-align:center; font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:70%; color:#000; border:1px solid #B1B1B1; 
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;		
+	background: #ffffff;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#e8e8e8));
+	background: -webkit-linear-gradient(#ffffff, #e8e8e8);
+	background: -moz-linear-gradient(#ffffff, #e8e8e8);
+	background: -ms-linear-gradient(#ffffff, #e8e8e8);
+	background: -o-linear-gradient(#ffffff, #e8e8e8);
+	background: linear-gradient(#ffffff, #e8e8e8);
+	-pie-background: linear-gradient(#ffffff, #e8e8e8);
+	/* behavior: url(../css/behavior/PIE.htc); */	
+}
+.filebox-cont INPUT[type='file'], .filebox-cont INPUT.file { position: relative; top:5px; left:0px; z-index:11; background:#FFF; width:250px;  border:0px;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0.05)"; filter: alpha(opacity=0.05); opacity:0.005; cursor:pointer; }
+.filebox-field { width:115px !important;  position:absolute; top:0px; left:0px; z-index:2; padding:0px; margin:0px; background:#fff;  border:1px solid #B1B1B1; 
+	-webkit-border-radius: 3px 0px 0px 3px;
+	-moz-border-radius:3px 0px 0px 3px;
+	border-radius:3px 0px 0px 3px;}
+.filebox-btn, .filebox-field {  height:26px; line-height:26px;}
+
+
+/*
+.file-info { display:inline-block; margin:18px 0px 0px 10px; text-align:left; font-style:italic; }
+*/
+/*****************************************************************************/
+/*	CUSTOM FILEBOX END */
+/*****************************************************************************/
+
+
+

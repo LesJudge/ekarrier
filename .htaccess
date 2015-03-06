@@ -91,6 +91,21 @@ RewriteRule ^munkakorok/([^/.]*)$ index.php?m=munkakor&al=showMunkakor&link=$1&%
 #RewriteRule ^munkakor-kereso/$ index.php?m=munkakor&al=kereso&%{QUERY_STRING} [L]
 RewriteRule ^munkakor-kereso/$ index.php?m=munkakor&al=list&caturl=
 RewriteRule ^munkakor-kereso/([^/.]*)(/)?$ index.php?m=munkakor&al=list&caturl=$1&%{QUERY_STRING} [L]
+
+
+#-- Tevekenysegi kor
+RewriteRule ^tevekenysegikor-kereso/([^/.]*)(/)?$ index.php?m=tevekenysegikor&al=list&caturl=$1&%{QUERY_STRING} [L]
+RewriteRule ^tevekenysegikor/(.*)$ index.php?m=tevekenysegikor&al=show&link=$1&%{QUERY_STRING} [L]
+
+#-- Szektor
+RewriteRule ^szektor/(.*)$ index.php?m=szektor&al=show&sid=$1&%{QUERY_STRING} [L]
+
+#-- Fooldal
+RewriteRule ^fooldal/$ index.php?m=tevekenysegikor&al=start&%{QUERY_STRING} [L]
+
+#-- Ugyfeluzenetek
+RewriteRule ^uzeneteim/$ index.php?m=ugyfeluzenetek&al=show&%{QUERY_STRING} [L]
+
 #--
 #--Profil
 RewriteRule ^profil/$ index.php?m=profil&al=index&%{QUERY_STRING} [L]
@@ -113,10 +128,15 @@ RewriteRule ^cim-kereso/varos/([^/.]*)/$ index.php?m=user_cim&al=ajaxSearch&meth
 RewriteRule ^kompetenciak/$ index.php?m=kompetencia&al=list&%{QUERY_STRING} [L]
 RewriteRule ^kompetenciak/([^/.]*)$ index.php?m=kompetencia&al=show&link=$1&%{QUERY_STRING} [L]
 RewriteRule ^kompetenciak/kompetenciarajz/$ index.php?m=kompetencia&al=edit&%{QUERY_STRING} [L]
+RewriteRule ^kompetenciak/kompetenciarajz-keszites/([0-9]*)/$ index.php?m=kompetencia&al=rajzedit&krid=$1&%{QUERY_STRING} [L]
+RewriteRule ^kompetenciak/kompetenciarajz-keszites/$ index.php?m=kompetencia&al=rajzedit&%{QUERY_STRING} [L]
+RewriteRule ^kompetenciak/kompetenciarajz-nezet/([0-9]*)/$ index.php?m=kompetencia&al=rajzshow&krid=$1&%{QUERY_STRING} [L]
 #--
 #--Szektorteszt
 RewriteRule ^szektorteszt/$  index.php?m=szektorteszt&%{QUERY_STRING} [L]
-RewriteRule ^szektorteszt/([^/.]*)$ index.php?m=szektorteszt&link=$1&%{QUERY_STRING} [L]
+
+#--Pozícioteszt
+RewriteRule ^pozicioteszt/$  index.php?m=pozicioteszt&%{QUERY_STRING} [L]
 
 #--En
 RewriteRule ^en/$  index.php?m=en&%{QUERY_STRING} [L]

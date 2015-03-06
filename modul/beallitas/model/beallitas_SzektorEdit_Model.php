@@ -5,6 +5,7 @@ class Beallitas_SzektorEdit_Model extends Admin_Edit_Model
         public $_tableName='szektor';
         public $_bindArray=array(
                 'szektor_nev'=>'TxtNev',
+                'szektor_leiras'=>'TxtLeiras',
                 'szektor_aktiv'=>'ChkAktiv',
         );
 
@@ -13,6 +14,7 @@ class Beallitas_SzektorEdit_Model extends Admin_Edit_Model
                 parent::__addForm();
                 // Név
                 $this->addItem('TxtNev')->_verify['string']=true;
+                $this->addItem('TxtLeiras')->_verify['string']=true;
         }
 
         public function __editData()

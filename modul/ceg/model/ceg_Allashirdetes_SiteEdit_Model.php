@@ -99,6 +99,15 @@ class Ceg_Allashirdetes_SiteEdit_Model extends AllashirdetesBaseEditModel
         }
     }
     
+    protected function saveKompetencia($jobId, $kompetenciaId)
+    {
+        if ((int)$kompetenciaId > 0) {
+            parent::saveKompetencia($jobId, $kompetenciaId);
+        } else {
+            throw new \InvalidArgumentException('Nem megfelelő kompetencia! Kérem, próbálja újra!');
+        }
+    }
+    
     protected function saveElvaras($jobId, $elvaras)
     {
         if ($this->isValidString($elvaras)) {
@@ -134,5 +143,24 @@ class Ceg_Allashirdetes_SiteEdit_Model extends AllashirdetesBaseEditModel
     public function getUserId()
     {
         return (int)UserLoginOut_Site_Controller::$_id;
+    }
+    
+    public function findAllCompetence()
+    {
+        try {
+            $query = "SELECT
+                     kompetencia_id AS kompetencia_id,
+                     kompetencia_nev AS Nev
+                     FROM kompetencia
+                     WHERE kompetencia_aktiv = 1 AND kompetencia_torolt = 0
+                        ";
+            
+            return $this->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            
+        }
+        catch(Exception_MYSQL $e){
+            
+        }
     }
 }

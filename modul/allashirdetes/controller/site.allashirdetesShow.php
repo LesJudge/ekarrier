@@ -29,6 +29,9 @@ class AllashirdetesShow_Site_Controller extends RimoController
         $this->__addParams($this->_model->_params);
         $this->__addEvent('BtnMark', 'Mark');
         $this->__addEvent('BtnUnmark', 'Unmark');
+        $this->__addEvent('BtnFavourite', 'Favourite');
+        $this->__addEvent('BtnUnfavourite', 'Unfavourite');
+        
         $this->__run();
     }
     /**
@@ -43,19 +46,34 @@ class AllashirdetesShow_Site_Controller extends RimoController
             $aem = new Allashirdetes_Edit_Model;
             $this->_view->assign('elvarasok', $aem->findElvarasByJobId($pjId));
             $this->_view->assign('feladatok', $aem->findFeladatByJobId($pjId));
+            $this->_view->assign('kompetenciak', $aem->findKompetenciaByJobId($pjId));
             $this->_view->assign('amitKinalunk', $aem->findAmitKinalunkByJobId($pjId));
             $this->_view->assign('pj', $pj);
             
             // Ha be van jelentkezve a felhasználó, akkor megvizsgálja, hogy megjelölte-e már az álláshirdetést.
             if ($this->isLoggedIn() && !$this->isCompanyUser()) {
+                
+                //Megjelölve-e
                 $isMarked = $this->_model->isMarkedByUser(Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), $pjId);
+                
+                //Kedvenc-e
+                $isFavourited = $this->_model->isFavouritedByUser(Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), $pjId);
+                
                 $this->_view->assign('isMarked', $isMarked);
                 $this->_view->assign('markItText', $isMarked ? 'Jelölés törlése' : 'Álláshirdetés megjelölése');
+                
+                $this->_view->assign('isFavourited', $isFavourited);
+                $this->_view->assign('favouriteItText', $isFavourited ? 'Eltávolítás a kedvencek közül' : 'Mentés a kedvencek közé');
+                
                 $this->_view->assign('pjId', $pjId);
                 $this->_view->assign('formUrl', Rimo::$_config->DOMAIN . ltrim($_SERVER['REQUEST_URI'], '/'));
+                $this->_view->assign('kompetenciaRajzok', $this->_model->findKompetenciaRajzokByUgyfelID(Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id)));
+                
+                $favouritable = true;
                 $markable = true;
             } else {
                 $markable = false;
+                $favouritable = false;
             }
             
             $this->_view->assign('markable', $markable);
@@ -80,11 +98,14 @@ class AllashirdetesShow_Site_Controller extends RimoController
      */
     public function onClick_Mark()
     {
+        
         $this->validateMarkRequest();
         try {
             $this->_model->markPostingJob(
                 Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), 
-                $_POST['postingJobId']
+                $_POST['postingJobId'],
+                $_POST['kRajzok']
+                    
             );
             throw new Exception_Form_Message('Sikeresen megjelölte az álláshirdetést!');
         } catch (Exception_MYSQL $em) {
@@ -96,7 +117,7 @@ class AllashirdetesShow_Site_Controller extends RimoController
      */
     public function onClick_Unmark()
     {
-        $this->validateMarkRequest();
+        $this->validateMarkRequest("unmark");
         try {
             $this->_model->unmarkPostingJob(Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), 
                 $_POST['postingJobId']
@@ -106,25 +127,77 @@ class AllashirdetesShow_Site_Controller extends RimoController
             throw new Exception_Form_Message('Végzetes hiba történt! Kérem, próbálja újra!');
         }
     }
+    
+     public function onClick_Favourite()
+    {
+        
+        $this->validateMarkRequest("fav");
+        try {
+            $this->_model->favouritePostingJob(
+                Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), 
+                $_POST['postingJobId']
+            );
+            throw new Exception_Form_Message('Sikeres hozzáadás a kedvencekhez!');
+        } catch (Exception_MYSQL $em) {
+            throw new Exception_Form_Message('Végzetes hiba történt! Kérem, próbálja újra!');
+        }
+    }
+   
+    
+    public function onClick_Unfavourite()
+    {
+        $this->validateMarkRequest("fav");
+        try {
+            $this->_model->unfavouritePostingJob(Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), 
+                $_POST['postingJobId']
+            );
+            throw new Exception_Form_Message('Sikeresen törölte az álláshirdetést a kedvencek közül!');
+        } catch (Exception_MYSQL $em) {
+            throw new Exception_Form_Message('Végzetes hiba történt! Kérem, próbálja újra!');
+        }
+    }
     /**
      * Megvizsgálja, hogy a jelölés kérése megfelelő-e.
      * @return boolean
      */
-    protected function validateMarkRequest()
+    protected function validateMarkRequest($mod = "default")
     {
-        if(
-            $this->isLoggedIn()
-            && 
-            !$this->isCompanyUser()
-            &&
-            isset($_POST['postingJobId'])
-            &&
-            (int)$_POST['postingJobId'] > 0
-        ) {
-            return true;
+        if ($mod == "default")
+        {
+            if((int)$_POST['kRajzok'] < 1)
+            {
+                throw new Exception_Action_error('Nem választott kompetenciarajzot!');
+            }
+            
+            if(
+                $this->isLoggedIn()
+                && 
+                !$this->isCompanyUser()
+                &&
+                isset($_POST['postingJobId'])
+                &&
+                (int)$_POST['postingJobId'] > 0
+            ) {
+                return true;
+            } else {
+                throw new Exception_Action_error('Nem várt hiba lépett fel a művelet során!');
+            }
         } else {
-            throw new Exception_Action_error('Nem várt hiba lépett fel a művelet során!');
+            if(
+                $this->isLoggedIn()
+                && 
+                !$this->isCompanyUser()
+                &&
+                isset($_POST['postingJobId'])
+                &&
+                (int)$_POST['postingJobId'] > 0
+            ) {
+                return true;
+            } else {
+                throw new Exception_Action_error('Nem várt hiba lépett fel a művelet során!');
+            }
         }
+        
     }
     /**
      * Megvizsgálja, hogy a felhasználó céghez tartozik-e.

@@ -8,16 +8,13 @@
       <div class="alert-box"> {$pointsZero.infobox_tartalom} </div> 
 </div>
 <div id='orderFailAlert'class="infobox" style='display: none'>
-      <div class="alert-box"> {$pointsZero.infobox_tartalom} </div> 
+      <div class="alert-box"> {$orderFail.infobox_tartalom} </div> 
 </div>
 {foreach from=$MainResKat key=key item=val}
     <label for="res{$key}" style='display:none;'>{$MainResKat[$key]['szektor_nev']}</label>
     <input type="hidden" id="res{$key}" class="res" value="0" />
 {/foreach}
-<!--
-<input type="button" onClick="test();" value="test">
-<input type="button" onClick="calcSecondScores();" value="test2">
-<input type="checkbox" id="validation" value="Val" checked>-->
+
 
 <form id="finalScoreForm" method="post" action="">
     <input type="hidden" id="finalResults" name="finalResults" />
@@ -48,9 +45,9 @@
 
 
 <div class="clear"></div>
-<div class="jobFindList-cont">
+<div class="jobFindList-cont noselect">
 	<div class="jobFindList-top"><i class='icomoon icomoon-tab'>&nbsp;</i></div>	
-	<div class="jobFindList-title textAlign-center">Jellemző kompetenciák</div>	
+	<div class="jobFindList-title textAlign-center">Negatív tulajdonságot rangsoroló teszt</div>	
 	<div class="jobFindList-data">
 	
 		<div class="connectedSortable-cont">  			
@@ -78,6 +75,17 @@
 
 </div>
 
+<style>
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+</style>
+
 <script type=text/javascript>
 $(function() {  
 	var renderBoxHeightTimer = setTimeout(function(){
@@ -91,6 +99,13 @@ $(function() {
   
     $( "#sortable2" ).on( "sortover", function( event, ui ) {
         $('#'+ui.item[0].id).addClass("ordered");
+        var list = $(this);
+          if (list.children().length > 5) {
+            $(ui.sender).sortable('cancel');
+            $('#'+ui.item[0].id).removeClass("ordered");
+        }
+        
+        
     });
   
     $( "#sortable1" ).on( "sortout", function( event, ui ) {
@@ -140,6 +155,7 @@ function calcPoints(){
     
     if(result==100){
         $('#pointsZeroAlert').show();
+        setTimeout(function() { $("#pointsZeroAlert").fadeOut("slow"); }, 3000);
     }else{
         $('#pointsZeroAlert').hide();
     }
@@ -185,16 +201,20 @@ function eval(){
     
     if($('#firstWordsResultRemaining').val()!=0){
         $('#pointsZeroAlert').show();
+        setTimeout(function() { $("#pointsZeroAlert").fadeOut("slow"); }, 3000);
+        window.scrollTo(0,0);
         //return false;
     }
     
-    if($('#sortable1 li').length!=0){
+    if($('#sortable2 li').length!=5){
         $('#orderFailAlert').show();
+        setTimeout(function() { $("#orderFailAlert").fadeOut("slow"); }, 3000);
+        window.scrollTo(0, 0);
         //return false;
     }
     
     //if(($('#firstWordsResultRemaining').val()==0 && $('#sortable1 li').length==0) || !$('#validation').is(':checked')){
-    if(($('#firstWordsResultRemaining').val()==0 && $('#sortable1 li').length==0)){
+    if(($('#firstWordsResultRemaining').val()==0 && $('#sortable2 li').length==5)){
         for(i=0;i<$(".res").length;i++){
             finalResults+=i+"="+$("#res"+i).val()+"_";
         }
@@ -249,21 +269,6 @@ function calcOrder(){
     calcSecondScores();
 
 }
-
-function test(){                                    
-    var score=0;
-    
-    $('.firstWordsValues').each(function(index){
-        score=score+parseInt(10);
-        $(this).val(score);
-        if(score==90){
-            score=0;
-        }
-    });
-calcPoints();
-calcScore();
-}
-
 
 calcPoints(); 
 

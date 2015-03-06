@@ -1,3 +1,5 @@
+<script type="text/javascript" src="../js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="../js/admin/add_tinymce.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
 $(function() { {$FormScript}
@@ -21,7 +23,11 @@ $(function() { {$FormScript}
                                         <input type="text" id="{$TxtNev.name}" name="{$TxtNev.name}" value="{$TxtNev.activ}"/>
                                         {if isset($TxtNev.error)}<p class="error small">{$TxtNev.error}</p>{/if}
                                 </div><div class="clear"></div>
-                                
+                                <div class="form_row">
+                                        <label for="{$TxtLeiras.name}">Leírás <span class="require">*</span></label>
+                                        <textarea id="{$TxtLeiras.name}" class="tinymce" name="{$TxtLeiras.name}">{$TxtLeiras.activ}</textarea>
+                                        {if isset($TxtLeiras.error)}<p class="error small">{$TxtLeiras.error}</p>{/if}
+                                </div><div class="clear"></div>
                                 <div class="form_row">
                                         <label>Publikus <span class="require">*</span></label>
                                         {html_radios name=$ChkAktiv.name options=$ChkAktiv.values selected=$ChkAktiv.activ}

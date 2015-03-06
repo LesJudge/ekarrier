@@ -42,6 +42,7 @@ $(document).ready(function(){
 							<div class="siteTab" siteTab-bredcrumb="Tevékenységi körök">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_tevekenysegi_kor.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Elvárások">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_elvarasok.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Feladatok">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_feladatok.tpl"}</div>
+                                                        <div class="siteTab" siteTab-bredcrumb="Kompetenciák">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_kompetenciak.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Amit kínálunk">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_amit_kinalunk.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Ismertető">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_ismerteto.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Jelentkezés módja">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_jelentkezes_modja.tpl"}</div>
@@ -171,7 +172,32 @@ $(function() {
             });
         },
         data: {if $amitKinalunk}{$amitKinalunk}{else}[]{/if}
+    }),
+    
+    kompetenciaForm = $("#kompetenciaForm").sheepIt({
+        separator: "",
+        allowRemoveLast: false,
+        allowRemoveCurrent: true,
+        allowRemoveAll: false,
+        allowAdd: true,
+        allowAddN: false,
+        maxFormsCount: 0,
+        minFormsCount: 0,
+        iniFormsCount: 0,
+       /* afterAdd: function ( source, newForm ) {
+            newForm.find("input").autocomplete({
+                source: kompetenciaOptions
+            });
+        },*/
+        data: {if $kompetenciak}{$kompetenciak}{else}[]{/if}
     });
+    /*
+    for(i = 0; i<{$kompetenciak}.length; i++)
+    {
+        $("#kompetenciaForm_"+i+"_kompetencia_id option[value='"+{$kompetenciak}[i]["kompetenciaForm_#index#_kompetencia_id"]+"']").attr("selected",true);
+    }
+    */
+    
     
     {if $isNewRecord eq false}
     $(".job-select").jobSelect();

@@ -60,7 +60,7 @@ return array(
 					$domain.'/js/jquery-multiselect2/ui.multiselect.js', 
 					$domain.'/js/raphael.js',	
 					$domain.'/js/raphael.svg.font.js',
-					$domain.'/js/jquery.customInputs.js',					
+					//$domain.'/js/jquery.customInputs.js',					
                     //$domain.'/js/uwLocationFinder.js',
 					$domain.'/js/site.js'),
 			'site_css' => array(								

@@ -33,6 +33,8 @@ try {
        
     }
     
+    //echo $_REQUEST['m'];
+    
     if($_REQUEST['m']) {
         Rimo::__loadModul($_REQUEST['m']);
     }

@@ -1,12 +1,18 @@
 <?php
-class Kompetencia_Show_Model extends Model
+class Kompetencia_Show_Model extends Page_Edit_Model
 {
         
         public function __construct()
         {
                 $this->addDB('MYSQL_DB');
+                $this->__addForm();
         }
         
+        public function __addForm() {
+        parent::__addForm();
+        $this->addItem('BtnAddComment');
+        
+        }
         /**
          * Lekérdezi a kompetenciát URL alapján.
          * @param string $url => Kompetencia URL.
@@ -47,5 +53,42 @@ class Kompetencia_Show_Model extends Model
                                LIMIT 1";
                 $this->_DB->prepare($query)->query_execute();
         }
+        
+        
+        public function addComment($uID, $kID, $comment){
+        
+            $query = "INSERT INTO kompetencia_hozzaszolas
+                      SET ugyfel_id = ".(int)$uID.", kompetencia_id = ".(int)$kID.", hozzaszolas = '".mysql_real_escape_string($comment)."', bekuldes_date = NOW(),
+                          kompetencia_hozzaszolas_aktiv = 0, kompetencia_hozzaszolas_torolt = 0
+                     "
+                        ;
+        
+        
+            return $this->_DB->prepare($query)->query_insert();
+        
+    }
+    
+    public function findCommentsByCompetenceID($id)
+    {
+        try{
+            $query = "
+                    SELECT kh.hozzaszolas AS text,
+                           kh.bekuldes_date AS bekuldve,  
+                            CONCAT(u.vezeteknev, ' ', u.keresztnev) AS nev
+                    FROM kompetencia_hozzaszolas kh
+                    INNER JOIN ugyfel u ON u.ugyfel_id = kh.ugyfel_id
+                    WHERE kh.kompetencia_id = ".(int)$id."
+                          AND kh.kompetencia_hozzaszolas_aktiv = 1
+                          AND kh.kompetencia_hozzaszolas_torolt = 0
+                          AND u.ugyfel_aktiv = 1
+                          AND u.ugyfel_torolt = 0
+                            "
+                    ;
+            return $this->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();
+        }    
+    }
+        
         
 }

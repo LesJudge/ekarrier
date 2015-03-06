@@ -76,6 +76,11 @@ class CegAllashirdetesEdit_Site_Controller extends Page_Edit
         $ma = new \Munkakor_Ajax_Model;
         $this->_view->assign('isNewRecord', $isNewRecord);
         $this->_view->assign('munkakorMain', $ma->findAllMainCategory());
+        
+        $kompetenciakSel = $this->_model->findAllCompetence();
+        
+        $this->_view->assign('kompetenciakSel', $kompetenciakSel);
+        $this->_view->assign('piKompetenciak', Ceg_Allashirdetes_SiteEdit_Model::PI_KOMPETENCIAK);
         $this->_view->assign('piAmitKinalunk', Ceg_Allashirdetes_SiteEdit_Model::PI_AMIT_KINALUNK);
         $this->_view->assign('piElvarasok', Ceg_Allashirdetes_SiteEdit_Model::PI_ELVARASOK);
         $this->_view->assign('piFeladatok', Ceg_Allashirdetes_SiteEdit_Model::PI_FELADATOK);

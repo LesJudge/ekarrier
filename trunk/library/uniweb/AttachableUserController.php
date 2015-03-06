@@ -42,8 +42,8 @@ abstract class AttachableUserController extends Page_Edit
                 }
             } catch (Exception_MYSQL $e) {
                 $this->_model->_DB->prepare('ROLLBACK')->query_execute();
-                //throw new Exception_Form_Error($this->getInsertFailMessage());
-                throw new Exception_Form_Error($e->getMessage());
+                throw new Exception_Form_Error($this->getInsertFailMessage());
+                //throw new Exception_Form_Error($e->getMessage());
             } catch (phpmailerException $pme) {
                 $this->_model->_DB->prepare('ROLLBACK')->query_execute();
                 throw new Exception_Form_Error($this->getUpdateSuccessMessage());

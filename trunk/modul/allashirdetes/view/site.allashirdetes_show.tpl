@@ -12,7 +12,7 @@
 {/if}
 <table id="allashirdetes-table">
     <tr>
-        <td>Munkakör:</td>
+        <td>Megnevezés:</td>
         <td>{$pj.megnevezes}</td>
     </tr>
     <tr>
@@ -48,6 +48,14 @@
             {/foreach}
         </ul>
         {/if}
+        {if not empty($kompetenciak)}
+        <p class="allashirdetes-label">Kompetenciák:</p>
+        <ul class="allashirdetes-ul">
+            {foreach from=$kompetenciak item=kompetencia}
+            <li>{$kompetencia.kompetencia_id}</li>
+            {/foreach}
+        </ul>
+        {/if}
         {if not empty($amitKinalunk)}
         <p class="allashirdetes-label">Amit kínálunk:</p>
         <ul class="allashirdetes-ul">
@@ -72,8 +80,17 @@
 
 {if $markable}
 <form name="{$FormName}" action="{$formUrl}" method="post" enctype="multipart/form-data">
+    {if !$isMarked}
+    <select name="kRajzok">
+                 <option value="">--Válasszon kompetenciarajzai közül!--</option>
+                 {foreach from=$kompetenciaRajzok item=kr}
+                 <option value="{$kr.ID}">{$kr.nev}</option>
+                 {/foreach}
+    </select>
+    {/if}
     <input id="postingJobId" name="postingJobId" type="hidden" value="{$pjId}" />
     <button name="{if $isMarked}{$BtnUnmark}{else}{$BtnMark}{/if}" class="submit btn" type="submit" value="1">{$markItText}</button>
+    <button name="{if $isFavourited}{$BtnUnfavourite}{else}{$BtnFavourite}{/if}" class="submit btn" type="submit" value="1">{$favouriteItText}</button>
 </form>
 {/if}
 <style type="text/css">

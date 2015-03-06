@@ -95,7 +95,7 @@ abstract class UserLoginOut_Controller extends RimoController
             if (Rimo::$_config->SITE_TIPUS == 2) {
                 if($_SESSION['type'] == "mv")
                 {
-                    header('Location: ' . Rimo::$_config->DOMAIN . 'munkakorok/');
+                    header('Location: ' . Rimo::$_config->DOMAIN . 'fooldal/');
                 }
                 if($_SESSION['type'] == "ma")
                 {

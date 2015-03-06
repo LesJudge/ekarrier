@@ -5,6 +5,7 @@
  */
 require 'modul/seo/model/seo_Site_Model.php';
 require 'modul/infobox/model/infobox_Site_Model.php';
+require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
 
 class KompetenciaEdit_Site_Controller extends Page_Edit
 {
@@ -18,12 +19,13 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                 
                 $this->__loadModel('_SiteEdit');
                 $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-                $this->_model->setUserId(UserLoginOut_Site_Controller::$_id);
+                $this->_model->setClientId($clientId);
                 parent::__construct();
                 $this->__addParams($this->_model->_params);
                 $this->__addEvent('BtnDeleteComp','DeleteComp');
-                $this->__addEvent('BtnEditComp','EditComp');
                 $this->__addEvent('BtnAddComp','AddComp');
+                $this->__addEvent('BtnAddLink', 'addLink');
+                $this->__addEvent('BtnDeleteLink', 'deleteLink');
                 $this->__run();
         }
         
@@ -34,7 +36,7 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                        
                         $lId=Rimo::$_config->SITE_NYELV_ID;
                         try{
-                            $this->_view->assign('userCompetences',$this->_model->findCompetencesByUserId($_SESSION['user_data']['user_id'],$lId));
+                            $this->_view->assign('userCompetences',$this->_model->findCompetencesByClientId($lId));
                         }
                         catch(Exception_MYSQL_Null_Rows $e){
                         }
@@ -43,8 +45,15 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                         }catch(Exception_MYSQL_Null_Rows $e){
                         }
                         
-                        $question=infobox_Site_Model::model()->findInfoboxItemByKey('competenceDrawQuestionInfobox',$lId);
+                        $question = infobox_Site_Model::model()->findInfoboxItemByKey('competenceEditInfobox',$lId);
                         $this->_view->assign('question',$question);
+                        
+                        
+                        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+                        $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
+                        $this->_view->assign("linkMode","on");
+                        $this->_view->assign("addLinkOption","on");
+                        $this->_view->assign("links",$links);
                         
                         
                         $seo=seo_Site_Model::model()->getSeoItemByKey('competenceEdit',$lId);
@@ -72,15 +81,24 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
         }
         
         public function onClick_DeleteComp() {
-            $this->_model->deleteComp($_REQUEST['deleteCompId']);
+            $this->_model->deleteComp(mysql_real_escape_string($_REQUEST['deleteCompId']));
         }
         
         public function onClick_AddComp() {
-            $this->_model->addComp($_REQUEST['newCompId'],$_REQUEST['newCompValasz']);
+            $this->_model->addComp(mysql_real_escape_string($_REQUEST['newCompId']));
         }
         
-        public function onClick_EditComp() {
-            $this->_model->editComp($_REQUEST['compId'],$_REQUEST['valasz']);
+       public function onClick_addLink() {
+        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."kompetenciak/kompetenciarajz/");
+        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."kompetenciak/kompetenciarajz/");
         }
+    
+        public function onClick_deleteLink() {
+            $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+            ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
+            ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
+        }
+
 
 }

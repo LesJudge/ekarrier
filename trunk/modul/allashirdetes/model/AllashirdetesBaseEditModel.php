@@ -8,18 +8,22 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     const TABLE_ATTR_ELVARAS = 'allashirdetes_attr_elvaras';
     const TABLE_ATTR_FELADAT = 'allashirdetes_attr_feladat';
     const TABLE_ATTR_TKOR = 'allashirdetes_attr_munkakor';
+    const TABLE_ATTR_KOMP = 'allashirdetes_attr_kompetencia';
     const FIELD_ATTR_AMIT_KINALUNK = 'amit_kinalunk';
     const FIELD_ATTR_ELVARAS = 'elvaras';
     const FIELD_ATTR_FELADAT = 'feladat';
     const FIELD_ATTR_TKOR = 'munkakor_id';
+    const FIELD_ATTR_KOMPETENCIA = 'kompetencia_id';
     const PI_AMIT_KINALUNK = 'ak';
     const PI_ELVARASOK = 'elvarasok';
     const PI_FELADATOK = 'feladatok';
     const PI_TKOR = 'tkor';
+    const PI_KOMPETENCIAK = 'kompetenciak';
     const SHPT_PREFIX_AMIT_KINALUNK = 'amitKinalunkForm_#index#_';
     const SHPT_PREFIX_ELVARAS = 'elvarasForm_#index#_';
     const SHPT_PREFIX_FELADAT = 'feladatForm_#index#_';
     const SHPT_PREFIX_TKOR = 'tkorForm_#index#_';
+    const SHPT_PREFIX_KOMPETENCIA = 'kompetenciaForm_#index#_';
     const NOTIFICATION_DIALY = 1;
     const NOTIFICATION_WEEKLY = 2;
     const NOTIFICATION_EXPIRE = 3;
@@ -185,9 +189,27 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
                 );
             }
         }
+        
+        $json2 = array();
+        $kompetencia = $this->findKompetenciaByJobId($jobId);
+        if (!empty($kompetencia)) {
+            foreach ($kompetencia as $k) {
+                $json2[] = array(
+                    self::SHPT_PREFIX_KOMPETENCIA . 'kompetencia_id' => $k['kompetencia_id']
+                );
+            }
+        }
+        //print_r($json2);
+        
         return array(
             //'tkorok' => array(),
             'tkorok' => json_encode($json),
+            //'kompetenciak' => json_encode($json2),
+            'kompetenciak' => $this->data2SheepItJson(
+                $this->findKompetenciaByJobId($jobId),
+                self::FIELD_ATTR_KOMPETENCIA,
+                self::SHPT_PREFIX_KOMPETENCIA
+            ),
             'elvarasok' => $this->data2SheepItJson(
                 $this->findElvarasByJobId($jobId),
                 self::FIELD_ATTR_ELVARAS,
@@ -230,6 +252,7 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         $this->saveAllAmitKinalunk($jobId, true);
         $this->saveAllElvaras($jobId, true);
         $this->saveAllFeladat($jobId, true);
+        $this->saveAllKompetencia($jobId, true);
         parent::__update(
             ',modositas_timestamp=now() ,modositas_szama=modositas_szama+1 ,modosito=' . $this->getUserId()
         );
@@ -372,6 +395,7 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     {
         $query = "INSERT INTO " . $table . " (allashirdetes_id, " . $field . ") VALUES 
             (" . $jobId . ", '" . mysql_real_escape_string($value) . "')";
+        //echo $query."<br>";
         $this->_DB->prepare($query)->query_insert();
     }
     /**
@@ -449,6 +473,12 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     {
         return $this->findSheepItDataByJobId($jobId, self::TABLE_ATTR_ELVARAS, 'elvaras');
     }
+    
+    public function findKompetenciaByJobId($jobId)
+    {
+        return $this->findSheepItDataByJobId($jobId, self::TABLE_ATTR_KOMP, 'kompetencia_id');
+    }
+    
     /**
      * Lekérdezi az álláshirdetéshez tartozó összes "Feladat" opciót.
      * @param int $jobId Álláshirdetés azonosító
@@ -484,6 +514,25 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
             return array();
         }
     }
+    /*
+    public function findKompetenciaByJobId($jobId)
+    {
+        try {
+            $query = "SELECT k.kompetencia_id FROM kompetencia k 
+                INNER JOIN allashirdetes_attr_kompetencia aak ON k.kompetencia_id = aak.kompetencia_id
+                WHERE aak.allashirdetes_id = " . (int)$jobId;
+            $queryResult = $this->_DB->prepare($query)->query_select();
+            $result = array();
+            while ($data = $queryResult->query_fetch_array()) {
+                $result[] = array(
+                    'kompetencia_id' => $data['kompetencia_id']
+                );
+            }
+            return $result;
+        } catch (Exception_MYSQL_Null_Rows $emnr) {
+            return array();
+        }
+    }*/
     /**
      * Menti az álláshirdetéshez a "Munkakör" opciót.
      * @param int $jobId Álláshirdetés azonosító.
@@ -492,6 +541,11 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     protected function saveMunkakor($jobId, $munkakorId)
     {
         $this->saveSheepItData($jobId, self::TABLE_ATTR_TKOR, self::FIELD_ATTR_TKOR, $munkakorId);
+    }
+    
+    protected function saveKompetencia($jobId, $kompetenciaId)
+    {
+        $this->saveSheepItData($jobId, self::TABLE_ATTR_KOMP, self::FIELD_ATTR_KOMPETENCIA, $kompetenciaId);
     }
     /**
      * Menti az álláshirdetéshez az "Amit kínálunk" opciót.
@@ -552,6 +606,19 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
             $this->saveMunkakor($jobId, $tk['munkakor_id']);
         }
     }
+    
+    protected function saveAllKompetencia($jobId, $deleteBefore = false)
+    {
+        if ($deleteBefore === true) {
+            $this->deleteAllKompetenciaByJobId($jobId);
+        }
+        //print_r($_POST);
+        $kompetenciak = $_POST[self::PI_KOMPETENCIAK];
+        foreach ($kompetenciak as $kompetencia) {
+            $this->saveKompetencia($jobId, $kompetencia['kompetencia_id']);
+        }
+    }
+    
     /**
      * Menti az álláshirdetéshez a sheepItForm-ban felvett amit kínálunk opciókat.
      * @param int $jobId Álláshirdetés azonosító.
@@ -604,6 +671,11 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     protected function deleteAllMunkakorByJobId($jobId)
     {
         $this->deleteSheepItData($jobId, self::TABLE_ATTR_TKOR);
+    }
+    
+    protected function deleteAllKompetenciaByJobId($jobId)
+    {
+        $this->deleteSheepItData($jobId, self::TABLE_ATTR_KOMP);
     }
     /**
      * Törli az álláshirdetéshez tartozó összes "Amit kínálunk" opciót.

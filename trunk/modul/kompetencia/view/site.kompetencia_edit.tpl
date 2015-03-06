@@ -1,22 +1,24 @@
 <script type="text/javascript" src="{$DOAMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script>
-
-
-<div id="myCompEditDialog" title="Kompetencia szerkesztése">
-	<br />
-    <h5 class="infobox">{$question.infobox_nev} - {$question.infobox_tartalom} </h5>    
-    <form id="editCompForm" action="" method="post">
-	<div class="dialog-form">	
-        <input type="text" id="editCompId" name="compId" hidden="hidden" />
-        <textarea id="editComp_valasz" name="valasz" class="tinymce"></textarea>
-		<br />
-		<div class="btn-nav-row">
-        <button name="{$BtnEditComp}" type="submit" class="btn btn-sm btn-primary">Mentés</button>
-		</div>
-	</div>	
-    </form>
+{if $FormError}
+ <div class="info info-error">
+    <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
+</div> 
+<div class="clear"></div>
+{/if}
+{if $FormMessage}
+<div id="form_info" class="info info-success">
+    <p>{$FormMessage}</p>
 </div>
+<div class="clear"></div>
+{/if}
 
+<div class="jobFindList-cont">
+	<div class="jobFindList-top"><i class='icomoon icomoon-info2'>&nbsp;</i></div>
+	<div class="jobFindList-title">{$question.infobox_nev}</div>	
+	<div class="jobFindList-data">{$question.infobox_tartalom}</div>	
+	<div class="clear"></div>
+</div>
 
 <form id="newCompForm" action="" method="post" hidden='hidden'>
 <div class="dialog-form">
@@ -33,27 +35,26 @@
 	<div class="jobFindList-top"><i class='icomoon icomoon-tab'>&nbsp;</i></div>	
 	<div class="jobFindList-title textAlign-center">Összes</div>	
 	<div class="jobFindList-data">	
-		<div id="newCompDialog" title="Kompetencia hozzáadása">			
+				
 			<form id="newCompForm" action="" method="post">
 				<ul id="allCompSelect" class='sortable1 sortedUL sortedUL-graggable'>
 					{foreach from=$allCompetences item=val}
 					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
 						<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-						{$val['kompetencia_nev']}
+						<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
 					</li>
 					{/foreach}
 				</ul>
 			</form>			
-		</div>
+		
 		<div class="jobFindList-title textAlign-center">Kompetenciáim</div>	
-		<ul id="myComps" class='sortable2 sortedUL'>
+		<ul id="myComps" class='sortable2 sortedUL' style="height: 50px;">
 			{foreach from=$userCompetences item=val}
 			<li class='fixed'>
 				<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-				<div id='myComp_{$val['kompetencia_id']}' class='myComp {if $val['user_attr_kompetencia_tesztbol']=="1"}fromTest{/if}'>{$val['kompetencia_nev']}</div>
-				{if $val['user_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'></div>{/if}	
+				<div id='myComp_{$val['kompetencia_id']}' class='myComp {if $val['ugyfel_attr_kompetencia_tesztbol']=="1"}fromTest{/if}'><a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a></div>
+				{if $val['ugyfel_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'><font color="red">Tesztből</font></div>{/if}	
 				<div id='myComp_{$val['kompetencia_id']}_operations' class="sortedUL-right">						
-					<a id="editComp_{$val['kompetencia_id']}" class="myCompEditDialogOpener iconCont" title="Szerkesztés"><i class="icomoon icomoon-pencil">&nbsp;</i></a>
 					<a id='delButt_{$val['kompetencia_id']}' class="delButt iconCont" title="Töröl"><i class="icomoon icomoon-remove2">&nbsp;</i></a>
 				</div>
 				<div class="clear"></div>
@@ -80,7 +81,7 @@
 	</form>
 </div>
 
- 
+<a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/">Irány a következő lépéshez</a>
 
 <script type='text/javascript'>
 $(document).ready(function(){
@@ -90,9 +91,9 @@ $(document).ready(function(){
         $('#allComp_'+a[1]).remove();
     });
 
-    $("#myCompEditDialog").dialog({ autoOpen: false, width: 600, modal:true });
+   
     
-        $( ".sortable1" ).sortable({
+    $( ".sortable1" ).sortable({
         connectWith: ".sortedUL",
         cursor: "move"
     });
@@ -107,38 +108,16 @@ $(document).ready(function(){
         cancel: ".fixed",
         cursor: "move"
     });
-    /*
-    $(".myComp").click(function(){
-        $('#'+$(this).attr('id')+'_operations').toggle();
-    });
-    */
-    $(".myCompEditDialogOpener").click(function(){
-        var a=$(this).attr('id').split("_");
-        $("#editComp_valasz").text($("#myComp_"+a[1]+"_valasz").text());
-        $("#editCompId").attr('value',a[1]);
-        $("#myCompEditDialog").dialog('option', 'title', $("#myComp_"+a[1]).text()+' szerkesztése');
-        $("#myCompEditDialog").dialog( "open" );
-    });
+    
+    
     
     $(".delButt").click(function(){
         var a=$(this).attr('id').split("_");
         $("#deleteCompId").val(a[1]);
         $("#deleteCompSbmt").trigger("click");
     });
-/*
-    var json_data={$testCompetences};
-    var result = [];
 
-    for(var i in json_data)
-        result.push([i, json_data [i]]);
-
-    for(var i=0; i<result.length; i++ ){
-        if($('#myComp_'+result[i][0]).length){
-            $('#myComp_'+result[i][0]).addClass('fromTest');
-        }
-        if($('#allComp_'+result[i][0]).length){
-            $('#allComp_'+result[i][0]).addClass('fromTest');
-        }
-    }*/
 });
 </script>
+
+{include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}

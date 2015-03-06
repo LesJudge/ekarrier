@@ -9,6 +9,7 @@
  * @property Smarty $_view Site frame.
  * @author Petró Balázs Máté <balazs@uniweb.hu>
  */
+require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
 abstract class AllashirdetesBaseListController extends Admin_List
 {
     /**
@@ -35,6 +36,8 @@ abstract class AllashirdetesBaseListController extends Admin_List
         parent::__construct(Rimo::$_config->SITE_NYELV_ID);
         $this->setModelWhereConditions();
         $this->__addParams($this->_model->_params);
+        $this->__addEvent('BtnAddLink', 'addLink');
+        $this->__addEvent('BtnDeleteLink', 'deleteLink');
         $this->__run();
     }
     /**
@@ -60,6 +63,20 @@ abstract class AllashirdetesBaseListController extends Admin_List
                 'nev' => $seo['seo_nev'],
             )
         ));
+        
+        try
+        {
+            $clientId = Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
+        }catch(Exception_MYSQL_Null_Rows $e){
+        }
+        
+        if($clientId){
+            $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
+            $this->_view->assign("linkMode","on");
+            $this->_view->assign("addLinkOption","on");
+            $this->_view->assign("links",$links);
+        }
+        
         Rimo::$_site_frame->assign('PageName', $seo['seo_nev']);
         Rimo::$_site_frame->assign('site_title', $seo['seo_nev']);
         Rimo::$_site_frame->assign('site_description', $seo['seo_leiras']);
@@ -75,10 +92,14 @@ abstract class AllashirdetesBaseListController extends Admin_List
      */
     public function onClick_Filter()
     {
+        
+        
         $this->setSelectFilterValue('FilterSector', 'allashirdetes.szektor_id');
         $this->setSelectFilterValue('FilterPosition', 'allashirdetes.pozicio_id');
         //$this->setSelectFilterValue('FilterJob', 'allashirdetes.munkakor_id');
-        $this->setSelectFilterValue('FilterJob', 'allashirdetes_attr_munkakor.munkakor_id');
+        //$this->setSelectFilterValue('FilterJob', 'allashirdetes_attr_munkakor.munkakor_id');
+        
+        
         $this->setSelectFilterValue('FilterCounty', 'allashirdetes.cim_megye_id');
         $city = $this->getItemValue('FilterCity');
         if (!empty($city)) {
@@ -92,6 +113,33 @@ abstract class AllashirdetesBaseListController extends Admin_List
         } else {
             unset($_SESSION[$this->_name]['FilterEllenorzott']);
         }
+        
+        $filterTevKor = $this->getItemValue('FilterTevKor');
+        if (!empty($filterTevKor)) {
+            $this->setWhereInput("mk2.munkakor_kategoria_id = " . (int)$filterTevKor, 'FilterTevKor');
+        } else {
+            unset($_SESSION[$this->_name]['FilterTevKor']);
+        }
+        
+        $filterTevCsoport = $this->getItemValue('FilterTevCsoport');
+        if (!empty($filterTevCsoport)) {
+            $this->setWhereInput("(
+                      SELECT munkakor_kategoria_id
+                      FROM munkakor_kategoria mkin
+                      WHERE mkin.baloldal < mk2.baloldal AND mkin.jobboldal > mk2.jobboldal AND mkin.szint = 1
+                      LIMIT 1
+                        ) = " . (int)$filterTevCsoport, 'FilterTevCsoport');
+        } else {
+            unset($_SESSION[$this->_name]['FilterTevCsoport']);
+        }
+        
+        $letter = $this->getItemValue('FilterLetter');
+        if (!empty($letter)) {
+            $this->setWhereInput(" mk2.kategoria_cim LIKE '" . mysql_real_escape_string($letter) . "%'", 'FilterLetter');
+        } else {
+            unset($_SESSION[$this->_name]['FilterLetter']);
+        }
+        
     }
     /**
      * Beállítja a select filter értékét.
@@ -107,7 +155,7 @@ abstract class AllashirdetesBaseListController extends Admin_List
             unset($_SESSION[$this->_name][$filter]);
         }
     }
-    
+    /*
     protected function getList()
     {
         try {
@@ -119,8 +167,23 @@ abstract class AllashirdetesBaseListController extends Admin_List
             $this->_view->assign('No_SelTetel', true);
             $this->_view->assign('FormInfo', 'Nincs megjeleníthető álláshirdetés!');
         } catch (Exception $e) {
+            echo $e->getMessage();
             $this->_view->assign('No_SelTetel', true);
             $this->_view->assign('FormError', 'Végzetes hiba lépett fel a művelet során!');
         }
     }
+    */
+    
+    public function onClick_addLink() {
+        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."allaskereses/");
+        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."allaskereses/");
+    }
+    
+    public function onClick_deleteLink() {
+        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+        ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
+        ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
+    }
+    
 }

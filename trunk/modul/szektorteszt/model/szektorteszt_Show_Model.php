@@ -2,8 +2,8 @@
 class Szektorteszt_Show_Model extends Model {
    
     private $mainResKat;
-    private $contents=array();
-    private $kompetenciak=array();
+    private $contents = array();
+    private $kompetenciak = array();
     private $wordsFirstKat = array('szabadság',
                                     'önállóság',
                                     'önmenedzselés',
@@ -63,7 +63,7 @@ class Szektorteszt_Show_Model extends Model {
     
     
     
-    private $rules=array("0"=>array("0"=>"0",
+    private $rules = array("0"=>array("0"=>"0",
                                    "3"=>"2"),
                          "1"=>array("0"=>"0",
                                    "3"=>"1",
@@ -171,7 +171,7 @@ class Szektorteszt_Show_Model extends Model {
         
         );
     
-    private $rules2=array("0"=>array("0"=>"0",
+    private $rules2 = array("0"=>array("0"=>"0",
                                    "2"=>"1",
                                    "1"=>"1",
                                    "4"=>"2",
@@ -222,7 +222,7 @@ class Szektorteszt_Show_Model extends Model {
     
     
     
-    private $multipliers=array(1,0.7,0.5,0.3,0.2);
+    private $multipliers = array(1,0.7,0.5,0.3,0.2);
     
     
     public function __construct(){
@@ -263,13 +263,15 @@ class Szektorteszt_Show_Model extends Model {
     }
 
     public function getMainResKatFromDB(){
+       
         $query = "
-            SELECT szektor_id, szektor_nev, szektor_leiras
-            FROM szektor 
-            WHERE szektor_torolt = '0' AND szektor_aktiv = '1'
-        ";
+                SELECT szektor_id, szektor_nev, szektor_leiras
+                FROM szektor 
+                WHERE szektor_torolt = '0' AND szektor_aktiv = '1'
+         ";
         
         $result=$this->_DB->prepare($query)->query_select()->query_result_array();
+        
         foreach ($result as $key => $value) {
             $this->setMainResKat($key, "szektor_nev", $result[$key]['szektor_nev']);
             $this->setMainResKat($key, "szektor_id", $result[$key]['szektor_id']);
@@ -281,20 +283,29 @@ class Szektorteszt_Show_Model extends Model {
    }
     
     public function getResultTartalom($id,$score){
-        //return $this->getContents($id)." - ".$score." pont";
         return $this->getContents($id);
     }
 
     public function getKompetenciakFromDB(){
-       $query = "
-            SELECT kompetencia.kompetencia_nev, kompetencia.kompetencia_tartalom, szektor.szektor_id, kompetencia.kompetencia_id
-            FROM kompetencia
-            INNER JOIN szektor_kompetencia ON kompetencia.kompetencia_id = szektor_kompetencia.kompetencia_id
-            INNER JOIN szektor ON szektor.szektor_id = szektor_kompetencia.szektor_id
-            WHERE kompetencia_torolt =  '0' AND szektor_torolt =  '0'
-            ORDER BY szektor_id
-        "; 
-       $result=$this->_DB->prepare($query)->query_select()->query_result_array();
+       try
+        {
+            $query = "
+                SELECT kompetencia.kompetencia_nev, kompetencia.kompetencia_tartalom, szektor.szektor_id, kompetencia.kompetencia_id
+                FROM kompetencia
+                INNER JOIN szektor_kompetencia ON kompetencia.kompetencia_id = szektor_kompetencia.kompetencia_id
+                INNER JOIN szektor ON szektor.szektor_id = szektor_kompetencia.szektor_id
+                WHERE kompetencia_torolt =  '0' AND szektor_torolt =  '0'
+                ORDER BY szektor_id
+            "; 
+            $result = $this->_DB->prepare($query)->query_select()->query_result_array();
+       
+            
+        }catch(Exception_MYSQL_Null_Rows $e)
+        {
+            return array();
+        }
+        
+        
        
        foreach ($result as $key => $value) {
            $this->setKompetenciak($key,"szektorid", $result[$key]['szektor_id']);
@@ -305,6 +316,8 @@ class Szektorteszt_Show_Model extends Model {
        return $this->kompetenciak;
    }
     
+   
+   
     public function getFinal($arr){
       
         $score=rtrim($arr,'_');
@@ -317,7 +330,7 @@ class Szektorteszt_Show_Model extends Model {
             $scoreArr[$a[0]]=$a[1];
         }
         arsort($scoreArr);
-       
+                
         $finalResArr=array();
         $MainResKat=$this->getMainResKat();
         
@@ -333,6 +346,7 @@ class Szektorteszt_Show_Model extends Model {
                             ;
                  }
             }
+            $finalResArr[$i]["szektor_id"]=$MainResKat[$key]['szektor_id'];
             $finalResArr[$i]["eredmeny"]=$this->getResultTartalom($key, $value);
             $finalResArr[$i]["leiras"]=$this->mainResKat[$key]['szektor_leiras'];
             $finalResArr[$i]["kompetencia"]=$kompArr;

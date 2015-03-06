@@ -4,5 +4,7 @@ return array(
         'APP_LINK'=>array(
                 ''=>'kompetencia',
                 'edit'=>'kompetencia',
+                'commentlist'=>'kompetencia',
+                'commentedit'=>'kompetencia',
         ),
 );

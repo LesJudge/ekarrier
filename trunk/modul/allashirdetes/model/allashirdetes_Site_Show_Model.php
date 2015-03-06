@@ -52,10 +52,10 @@ class Allashirdetes_Site_Show_Model extends Model
      * @return int
      * @throws Exception_MYSQL_Null_Affected_Rows
      */
-    public function markPostingJob($userId, $jobId)
+    public function markPostingJob($userId, $jobId, $krajz)
     {
-        $query = 'INSERT INTO ugyfel_attr_allashirdetes_megjelolt (ugyfel_id, allashirdetes_id) VALUES 
-                 (' . (int)$userId . ', ' . (int)$jobId . ')';
+        $query = 'INSERT INTO ugyfel_attr_allashirdetes_megjelolt (ugyfel_id, allashirdetes_id, kompetenciarajz_id, jeloles_date) VALUES 
+                 (' . (int)$userId . ', ' . (int)$jobId . ', '.(int)$krajz.', NOW())';
         return $this->_DB->prepare($query)->query_insert();
     }
     /**
@@ -66,6 +66,20 @@ class Allashirdetes_Site_Show_Model extends Model
     public function unmarkPostingJob($userId, $jobId)
     {
         $query = 'DELETE FROM ugyfel_attr_allashirdetes_megjelolt WHERE ugyfel_id = ' . (int)$userId . 
+                 ' AND allashirdetes_id = ' . (int)$jobId . ' LIMIT 1';
+        $this->_DB->prepare($query)->query_execute();
+    }
+    
+    public function favouritePostingJob($userId, $jobId)
+    {
+        $query = 'INSERT INTO ugyfel_attr_allashirdetes_kedvenc (ugyfel_id, allashirdetes_id, jeloles_date) VALUES 
+                 (' . (int)$userId . ', ' . (int)$jobId . ', NOW())';
+        return $this->_DB->prepare($query)->query_insert();
+    }
+    
+    public function unfavouritePostingJob($userId, $jobId)
+    {
+        $query = 'DELETE FROM ugyfel_attr_allashirdetes_kedvenc WHERE ugyfel_id = ' . (int)$userId . 
                  ' AND allashirdetes_id = ' . (int)$jobId . ' LIMIT 1';
         $this->_DB->prepare($query)->query_execute();
     }
@@ -82,5 +96,28 @@ class Allashirdetes_Site_Show_Model extends Model
         $queryObj = $this->_DB->prepare($query);
         $queryObj->query_execute();
         return (boolean)$queryObj->query_fetch_array('ugyfel_id');
+    }
+    
+    public function isFavouritedByUser($userId, $jobId)
+    {
+        $query = 'SELECT ugyfel_id FROM ugyfel_attr_allashirdetes_kedvenc WHERE ugyfel_id = ' . (int)$userId . 
+                 ' AND allashirdetes_id = ' . (int)$jobId . ' LIMIT 1';
+        $queryObj = $this->_DB->prepare($query);
+        $queryObj->query_execute();
+        return (boolean)$queryObj->query_fetch_array('ugyfel_id');
+    }
+    
+    public function findKompetenciaRajzokByUgyfelID($id)
+    {
+        try{
+            $query = "
+                    SELECT kompetenciarajz_id AS ID, kompetenciarajz_nev AS nev
+                    FROM kompetenciarajz
+                    WHERE ugyfel_id = ".(int)$id    
+                    ;
+            return $this->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();
+        }    
     }
 }

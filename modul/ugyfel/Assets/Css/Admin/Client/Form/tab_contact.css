@@ -1,0 +1,16 @@
+#client-contact-table tr td:first-child {
+    width: 25%;
+}
+#client-contact-error,
+#client-contact-success,
+#client-contact-fatal-error {
+    display: none;
+    /*
+    background: pink;
+    border: 1px solid red;
+    width: 90%;
+    margin: 0 auto;
+    min-height: 100px;
+    line-height: 100px;
+    */
+}

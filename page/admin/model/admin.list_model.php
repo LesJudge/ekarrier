@@ -1,6 +1,4 @@
 <?php
-include_once "page/all/model/page.list_model.php";
-
 /**
  * Adminban a listához alap filter, rendezés, sorkiválasztás, elem/oldal itemek.
  * 
@@ -62,4 +60,3 @@ abstract class Admin_List_Model extends Page_List_Model {
         $this->_DB->prepare($query)->query_update();
     }
 }
-?>

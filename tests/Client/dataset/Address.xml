@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_attr_cim">
+        <column>ugyfel_attr_cim_id</column>
+        <column>ugyfel_id</column>
+        <column>ugyfel_cim_tipus_id</column>
+        <column>cim_orszag_id</column>
+        <column>cim_megye_id</column>
+        <column>cim_varos_id</column>
+        <column>cim_iranyitoszam_id</column>
+        <column>utca</column>
+        <column>hazszam</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>modositas_szama</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>ugyfel_attr_cim_aktiv</column>
+        <column>ugyfel_attr_cim_torolt</column>
+    </table>
+</dataset>

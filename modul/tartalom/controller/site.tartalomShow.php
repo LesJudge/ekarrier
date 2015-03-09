@@ -16,8 +16,19 @@ class TartalomShow_Site_Controller extends RimoController
                 parent::__show();
                 try
                 {        
-                        
-                        if(($_SESSION['type']=='ma' && empty($_REQUEST["link"])) OR $_REQUEST["link"]=='nyito-oldal'){
+                        /**
+                         * @todo Gergő - Kérlek, ellenőrizd, hogy így is megfelelően működik-e.
+                         */
+                        //if(($_SESSION['type']=='ma' && empty($_REQUEST["link"])) OR $_REQUEST["link"]=='nyito-oldal'){
+                        if (
+                            array_key_exists('type', $_SESSION) 
+                            && 
+                            $_SESSION['type'] == 'ma' 
+                            && 
+                            array_key_exists('link', $_REQUEST) 
+                            && 
+                            ((empty($_REQUEST['link']) || $_REQUEST['link'] == 'nyito-oldal'))
+                        ) {
                             
                             $_REQUEST["link"]='nyito-oldal';
                             $banner=Rimo::__loadPublic('model', 'banner_ShowBox_List', 'banner');

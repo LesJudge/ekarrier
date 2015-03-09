@@ -11,8 +11,8 @@ class Szolgaltatas_Edit_Model extends Admin_Edit_Model
      * @var array
      */
     public $_bindArray=array(
-        'szolgaltatas_nev' => 'TxtNev',
-        'szolgaltatas_leiras' => 'TxtLeiras',
+        'nev' => 'TxtNev',
+        'leiras' => 'TxtLeiras',
         'szolgaltatas_aktiv' => 'ChkAktiv',
     );
     /**
@@ -36,7 +36,7 @@ class Szolgaltatas_Edit_Model extends Admin_Edit_Model
         $name->_verify['string']=true;
         $name->_verify['unique']=array(
             'table' => 'szolgaltatas',
-            'field' => 'szolgaltatas_nev',
+            'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
         );

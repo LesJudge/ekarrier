@@ -1,5 +1,4 @@
 <?php
-include_once "page/all/controller/page.edit.php";
 /**
  * Adminban elem szerkesztése, új felvitele
  * 
@@ -83,4 +82,3 @@ abstract class Admin_Edit extends Page_Edit {
         }
     }
 }
-?>

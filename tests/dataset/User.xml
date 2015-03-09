@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="user">
+        <column>user_id</column>
+        <column>nyelv_id</column>
+        <column>user_fnev</column>
+        <column>user_jelszo</column>
+        <column>user_email</column>
+        <column>user_vnev</column>
+        <column>user_knev</column>
+        <column>user_kep_nev</column>
+        <column>user_hirlevel</column>
+        <column>user_reg_date</column>
+        <column>user_megerositve</column>
+        <column>user_megerositve_date</column>
+        <column>user_last_login</column>
+        <column>user_szum_login</column>
+        <column>user_aktiv</column>
+        <column>user_torolt</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>uniweb_admin_1</value>
+            <value>6301bb858f92dd554afc1d54b3d715e93603e88b7172</value>
+            <value>uniwebadmin1@uniweb.hu</value>
+            <value>Uniweb</value>
+            <value>Admin1</value>
+            <value></value>
+            <value>1</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:05:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>uniweb_admin_2</value>
+            <value>6301bb858f92dd554afc1d54b3d715e93603e88b7172</value>
+            <value>uniwebadmin2@uniweb.hu</value>
+            <value>Uniweb</value>
+            <value>Admin2</value>
+            <value></value>
+            <value>1</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:05:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>1</value>
+            <value>uniweb_admin_3</value>
+            <value>6301bb858f92dd554afc1d54b3d715e93603e88b7172</value>
+            <value>uniwebadmin3@uniweb.hu</value>
+            <value>Uniweb</value>
+            <value>Admin3</value>
+            <value></value>
+            <value>1</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:00:00</value>
+            <value>2014-12-01 00:05:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+    </table>
+</dataset>

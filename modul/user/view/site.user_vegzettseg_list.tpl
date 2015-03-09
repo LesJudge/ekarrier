@@ -24,7 +24,7 @@
             {foreach from=$Lista key=for_id item=education}
                 <tr class="DTable-tr">
                     <td class="textHighlighting-1">{$education.iskola}</td>
-                    <td class="textAlign-center">{$education.vegzettseg_nev}</td>
+                    <td class="textAlign-center">{$education.nev}</td>
                     <td class="textAlign-center">{$education.kezdet}</td>
                     <td class="textAlign-center">{$education.veg}</td>
                     <td class="textAlign-center">{$education.szak}</td>

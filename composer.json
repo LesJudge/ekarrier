@@ -1,0 +1,79 @@
+{
+    "name": "balazs/balazs",
+    "require": {
+        "phpmailer/phpmailer": "5.2.6",
+        "mpdf/mpdf": "5.7.4",
+        "php-activerecord/php-activerecord": "1.1.2",
+        "pimple/pimple": "3.0.0",
+        "slim/slim": "2.5.0",
+        "gregwar/cache": "1.0.10",
+        "pagerfanta/pagerfanta": "1.0.3",
+        "phpoffice/phpexcel": "1.8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3",
+        "phpunit/dbunit": "1.3.1",
+        "robmorgan/phinx": "0.4.1",
+        "codeception/codeception": "2.0.10.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Uniweb\\Library\\": "library/uniweb/",
+            "Uniweb\\Module\\Beallitas\\Model\\": "modul/beallitas/model",
+            "Uniweb\\Module\\Cim\\": "modul/cim",
+            "Uniweb\\Module\\Cim\\Model\\": "modul/cim/model",
+            "Uniweb\\Module\\User\\Model\\": "modul/user/model",
+            "Uniweb\\Module\\Projekt\\Model\\": "modul/projekt/model",
+            "Uniweb\\Module\\Nyelvtudas\\Model\\": "modul/nyelvtudas/model",
+            "Uniweb\\Module\\Szolgaltatas\\Model\\": "modul/szolgaltatas/model",
+            "Uniweb\\Module\\Ugyfel\\": "modul/ugyfel",
+            "Uniweb\\Module\\Ugyfel\\Controller\\": "modul/ugyfel/controller",
+            "Uniweb\\Module\\Ugyfel\\Model\\": "modul/ugyfel/model",
+            "Tests\\Uniweb\\": "tests/"
+        },
+        "files": [
+            "library/lib.controller.php",
+            "library/lib.event.php",
+            "library/lib.item_verify.php",
+            "library/lib.static.php",
+            "library/lib.model.php",
+            "library/lib.item.php",
+            "library/lib.mysql_db.php",
+            "library/lib.mysql_query.php",
+            "library/lib.exception.php",
+            "library/lib.paging.php",
+            "library/lib.phpmailer.php",
+            "library/lib.session.php",
+            "page/all/model/page.model.php",
+            "page/all/model/page.list_model.php",
+            "page/all/model/page.edit_model.php",
+            "page/all/controller/page.list.php",
+            "page/all/controller/page.edit.php",
+            "page/admin/controller/admin.list.php",
+            "page/admin/controller/admin.edit.php",
+            "page/admin/model/admin.list_model.php",
+            "page/admin/model/admin.edit_model.php",
+            "RimoConfig.php",
+            "Rimo.php",
+            "library/smarty/Smarty.class.php",
+            "modul/user/controller/master_user_loginout.php",
+            "library/uniweb/DbInjectInterface.php",
+            "library/uniweb/DbInjectAbstract.php",
+            "library/uniweb/webuser/SpecifiedWebUserInterface.php",
+            "library/uniweb/webuser/SpecifiedWebUserAbstract.php",
+            "library/uniweb/webuser/ClientWebUser.php",
+            "library/uniweb/webuser/CompanyWebUser.php",
+            "library/uniweb/functions.php",
+            "library/uniweb/Utilities/ActiveRecord/Smarty/function.ar_error.php",
+            "library/uniweb/DynamicFilter/Smarty/function.filter_text.php",
+            "library/uniweb/DynamicFilter/Smarty/function.filter_true_or_false.php",
+            "library/uniweb/DynamicFilter/Smarty/function.filter_date.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Balázs Máté Petró",
+            "email": "balazs@uniweb.hu"
+        }
+    ]
+}

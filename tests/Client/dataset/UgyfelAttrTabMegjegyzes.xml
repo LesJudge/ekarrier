@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_attr_tab_megjegyzes">
+        <column>ugyfel_id</column>
+        <column>ugyfel_tab_id</column>
+        <column>megjegyzes</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <row>
+            <value>1</value><!--ugyfel_id-->
+            <value>1</value><!--ugyfel_tab_id-->
+            <value>Ügyfél 1</value><!--megjegyzes-->
+            <value>1</value><!--letrehozo_id-->
+            <value>1</value><!--modosito_id-->
+            <value>2014-12-18 08:00:00</value><!--letrehozas_timestamp-->
+            <value>0000-00-00 00:00:00</value><!--modositas_timestamp-->
+            <value>0</value><!--modositas_szama-->
+        </row>
+        <row>
+            <value>1</value><!--ugyfel_id-->
+            <value>2</value><!--ugyfel_tab_id-->
+            <value>Ügyfél 1</value><!--megjegyzes-->
+            <value>1</value><!--letrehozo_id-->
+            <value>1</value><!--modosito_id-->
+            <value>2014-12-18 08:00:00</value><!--letrehozas_timestamp-->
+            <value>0000-00-00 00:00:00</value><!--modositas_timestamp-->
+            <value>0</value><!--modositas_szama-->
+        </row>
+        <row>
+            <value>3</value><!--ugyfel_id-->
+            <value>Teszt</value><!--vezeteknev-->
+            <value>Ügyfél 3</value><!--keresztnev-->
+            <null /><!--orszag_id-->
+            <value>100</value><!--varos_id-->
+            <value>2014-12-18</value><!--szuletesi_ido-->
+            <value>100</value><!--letrehozo_id-->
+            <value>100</value><!--modosito_id-->
+            <value>2014-12-18 08:00:00</value><!--letrehozas_timestamp-->
+            <value>0000-00-00 00:00:00</value><!--modositas_timestamp-->
+            <value>0</value><!--modositas_szama-->
+        </row>
+    </table>
+</dataset>

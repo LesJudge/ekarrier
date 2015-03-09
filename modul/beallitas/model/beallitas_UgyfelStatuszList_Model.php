@@ -5,17 +5,17 @@ class Beallitas_UgyfelStatuszList_Model extends Admin_List_Model
      * Tábla neve.
      * @var string
      */
-    public $_tableName = 'user_statusz';
+    public $_tableName = 'ugyfel_statusz';
     /**
      * Kiválasztott mezők.
      * @var string
      */
-    public $_fields = 'user_statusz.user_statusz_id AS ID,
+    public $_fields = 'ugyfel_statusz.ugyfel_statusz_id AS ID,
                        nev AS elso,
                        letrehozas_timestamp,
                        modositas_timestamp,
                        modositas_szama,
-                       user_statusz_aktiv AS Aktiv,
+                       ugyfel_statusz_aktiv AS Aktiv,
                        CONCAT(u1.user_vnev, \' \', u1.user_knev) AS letrehozo_nev,
                        CONCAT(u2.user_vnev, \' \', u2.user_knev) AS modosito_nev';
     /**
@@ -37,7 +37,7 @@ class Beallitas_UgyfelStatuszList_Model extends Admin_List_Model
             'u2.user_vnev' => array('label' => 'Módosító'),
             'modositas_timestamp' => array('label' => 'Módosítás ideje'),
             'modositas_szama' => array('label' => 'Módosítás száma'),
-            'user_statusz_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
+            'ugyfel_statusz_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
         );
         $this->_params['TxtSort']->_value='nev__ASC';
         $this->addItem('FilterStatus')->_select_value=Rimo::$_config->CMSAllapot[Rimo::$_config->ADMIN_NYELV_ID];

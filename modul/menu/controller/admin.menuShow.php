@@ -21,10 +21,14 @@ class MenuShow_Admin_Controller extends RimoController{
     private function getAlmenu($szint){
         try{
             $server_link = strtok($_SERVER["REQUEST_URI"],"?");
-            if($_REQUEST["al"])
-                $link = $_REQUEST["m"]."/".$_REQUEST["al"];
-            else    
-                $link = $_REQUEST["m"];
+            /**
+             * Módosítva: 2015-02-10
+             */
+            if (array_key_exists('al', $_REQUEST) && $_REQUEST['al']) {
+                $link = $_REQUEST['m'] . '/' . $_REQUEST['al'];
+            } else {
+                $link = $_REQUEST['m'];
+            }
             $obj = $this->_model->loadChildTree($link, Rimo::$_config->RIGHTSWHERE, 2);
             while($menu = $obj->query_fetch_array()){
                  if (strstr($server_link, $menu["menu_link"]) == $menu["menu_link"])

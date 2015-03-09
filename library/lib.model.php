@@ -1,6 +1,4 @@
 <?php
-include_once "lib.item.php";
-include_once "library/lib.mysql_db.php";
 /**
  * Model
  * 
@@ -99,4 +97,3 @@ class Model {
         return $this->_params[$item_name]->_value;
     }
 }
-?>

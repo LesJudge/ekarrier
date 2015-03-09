@@ -26,8 +26,15 @@ abstract class Page_Edit extends RimoController {
      */
     public function __construct() {
         $this->_action_type = $_REQUEST;
-        $this->_model->__setModifyID($_REQUEST["id"]);
-        $this->_model->__setNyelvID($_REQUEST["nyelv"]);
+        /**
+         * Undefined index.
+         * Módosítva: 2015-01-30
+         */
+        $id = function($index) {
+            return array_key_exists($index, $_REQUEST) && is_int($_REQUEST[$index]) > 0 ? $_REQUEST[$index] : 0;
+        };
+        $this->_model->__setModifyID($id('id'));
+        $this->_model->__setNyelvID($id('nyelv'));
         if ($this->_model->modifyID) {
             $this->BtnSave = $this->__addEvent("BtnSave", "Modify");
             $this->edit_mode = LANG_PageEdit_modositas;

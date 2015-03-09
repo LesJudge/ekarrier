@@ -105,11 +105,16 @@
         /**
          * Végzetes hiba esetén a megjeleníti a "hibaképernyőt", valamint megsemmisíti a plugint.
          */
-        _fatalError: function() {
+        _fatalError: function(message) {
             this.element.hide();
             this._hideAllFeedbacks();
-            $(this._getSelector("fatalError")).show();
+            var $fatalError = $(this._getSelector("fatalError"));
+            $fatalError.html(this._createFatalErrorMessage(message));
+            $fatalError.show();
             this.destroy();
+        },
+        _createFatalErrorMessage: function(message) {
+            return '<div class="notice error"><p>' + message + '</p></div>';
         },
         /**
          * Megsemmisíti a plugint.

@@ -13,11 +13,11 @@ class User_Vegzettseg_SiteList_Model extends Page_List_Model
     public $_fields = 'ugyfel_attr_vegzettseg.ugyfel_attr_vegzettseg_id AS pk,
                        ugyfel_attr_vegzettseg.ugyfel_id,
                        ugyfel_attr_vegzettseg.vegzettseg_id,
-                       ugyfel_attr_vegzettseg.ugyfel_attr_vegzettseg_iskola AS iskola,
-                       ugyfel_attr_vegzettseg.ugyfel_attr_vegzettseg_kezdet AS kezdet,
-                       ugyfel_attr_vegzettseg.ugyfel_attr_vegzettseg_veg AS veg,
-                       ugyfel_attr_vegzettseg.ugyfel_attr_vegzettseg_szak AS szak,
-                       v.vegzettseg_nev AS vegzettseg_nev';
+                       ugyfel_attr_vegzettseg.iskola AS iskola,
+                       ugyfel_attr_vegzettseg.kezdet AS kezdet,
+                       ugyfel_attr_vegzettseg.veg AS veg,
+                       ugyfel_attr_vegzettseg.szak AS szak,
+                       v.nev AS nev';
     /**
      * JOIN
      * @var string

@@ -1,6 +1,4 @@
 <?php
-require 'page/admin/controller/admin.edit.php';
-require 'page/admin/model/admin.edit_model.php';
 /**
  * @property Beallitas_UgyfelAllapotEdit_Model $_model Model.
  * @property Smarty $_view View.

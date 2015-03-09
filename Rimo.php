@@ -1,17 +1,4 @@
 <?php
-include_once "library/lib.exception.php";
-include_once "library/lib.session.php";
-include_once "library/lib.controller.php";
-include_once "library/smarty/Smarty.class.php";
-require 'library/php-active-record/ActiveRecord.php';
-require 'library/gregwar-cache/Cache.php';
-require 'library/gregwar-cache/GarbageCollect.php';
-require 'library/uniweb/DbInjectInterface.php';
-require 'library/uniweb/DbInjectAbstract.php';
-require 'library/uniweb/webuser/SpecifiedWebUserInterface.php';
-require 'library/uniweb/webuser/SpecifiedWebUserAbstract.php';
-require 'library/uniweb/webuser/ClientWebUser.php';
-require 'library/uniweb/webuser/CompanyWebUser.php';
 /**
  * Rimo
  * 
@@ -28,7 +15,6 @@ class Rimo
      * @var RimoConfig
      */
     public static $_config;
-
     /**
      * Az oldal kerete
      * @var Smarty
@@ -59,20 +45,28 @@ class Rimo
      */
     protected static $companyWebUser;
     /**
+     * Pimple DI.
+     * @var \Pimple\Container
+     */
+    public static $pimple;
+    /**
      * Alkalmazás inicializálása.
      */
     public static function init()
     {
         static::__addConfig();
         static::__addSession();
-        static::initSiteFrame();
+        //static::initSiteFrame();
         static::initAr();
         static::$cache = new Gregwar\Cache\Cache();
+        static::$cache->setPrefixSize(0);
         static::$cache->setCacheDirectory('cache/data');
         $db = static::__getSingletonDatabase('MYSQL_DB');
         $verifyException = 'Exception_404';
         static::$clientWebUser = new \ClientWebUser($db, $verifyException);
         static::$companyWebUser = new \CompanyWebUser($db, $verifyException);
+        static::$pimple = new \Pimple\Container;
+        //static::initSiteFrame();
     }
     /**
      * Visszatér a cache objektummal.
@@ -119,15 +113,18 @@ class Rimo
      */
     public static function __addSession()
     {
-        $session = new Session(static::$_config->getItem('SESSION_NAME'), static::$_config->getItem('SESSION_DIR'));
+        $session = new Session(static::$_config->getItem('SESSION_NAME'), null);
+        //$session = new Session(static::$_config->getItem('SESSION_NAME'), static::$_config->getItem('SESSION_DIR'));
         $session->verify();
     }
     /**
      * Inicializálja az "oldal keretét".
      */
-    protected static function initSiteFrame()
+    public static function initSiteFrame()
     {
-        static::$_site_frame = new Smarty;
+        //static::$_site_frame = new Smarty;
+        //static::$_site_frame->compile_dir = 'cache/smarty';
+        static::$_site_frame = static::$pimple['smarty'];
         static::$_site_frame->assign('DOMAIN_ADMIN', static::$_config->getItem('DOMAIN_ADMIN'));
         static::$_site_frame->assign('DOMAIN', static::$_config->getItem('DOMAIN'));
         static::$_site_frame->assign('PAGE_CHARSET', static::$_config->getItem('PAGE_CHARSET'));
@@ -309,5 +306,18 @@ class Rimo
     public static function getController()
     {
         return self::$_controller;
+    }
+    
+    public static function setCache(\Uniweb\Library\Cache\CacheInterface $cache)
+    {
+        static::$cache = $cache;
+    }
+    
+    public static function pimple(\Pimple\Container $pimple = null)
+    {
+        if ($pimple != null) {
+            static::$pimple = $pimple;
+        }
+        return static::$pimple;
     }
 }

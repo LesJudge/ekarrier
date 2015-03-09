@@ -66,12 +66,12 @@ class SiteUserEditDataFinder extends \DbInjectAbstract implements \AttachedUserF
     {
         try {
             $query = "SELECT * FROM ugyfel_attr_cim WHERE ugyfel_id = " . (int)$userId . " AND 
-                beallitas_cim_tipus_id = " . (int)$typeId . " LIMIT 1";
+                ugyfel_cim_tipus_id = " . (int)$typeId . " LIMIT 1";
             return $this->db->prepare($query)->query_select()->query_fetch_array();
         } catch (\Exception_MYSQL_Null_Rows $emnr) {
             return array(
                 'ugyfel_id' => null,
-                'beallitas_cim_tipus_id' => (int)$typeId,
+                'ugyfel_cim_tipus_id' => (int)$typeId,
                 'cim_orszag_id' => null,
                 'cim_megye_id' => null,
                 'cim_varos_id' => null,

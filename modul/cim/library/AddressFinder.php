@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @deprecated
+ */
 class AddressFinder extends \DbInjectAbstract
 {
     const DEFAULT_COUNTRY_ID = 124;

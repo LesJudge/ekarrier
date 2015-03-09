@@ -4,8 +4,8 @@
             <div class="shpt-form shpt-form-job">
                 <div class="shpt-form-heading">
                     Munkakör #<span id="jobForm_label"></span>
-                    <button class="shpt-form-button shpt-form-remove-current" type="button"></button><!--/.shpt-form-remove-current-->
-                </div><!--/.shpt-form-heading-->
+                    <button class="shpt-form-button shpt-form-remove-current" type="button"></button>
+                </div>
                 <div class="shpt-form-body">
                     <div class="shpt-form-row">
                         <input id="jobForm_#index#_key" type="hidden" value="" />
@@ -32,13 +32,13 @@
                             <div class="clear"></div>
                         </div>
                     </div><!--/.shpt-form-row-->
-                </div><!--/.shpt-form-body-->
-            </div><!--/#jobForm_template-->
-            <div id="jobFormNoTemplate" class="shpt-form-no-template">Nincs megjeleníthető munkakör!</div><!--/#jobForm_noforms_template-->
+                </div>
+            </div>
+            <div id="jobFormNoTemplate" class="shpt-form-no-template">Nincs megjeleníthető munkakör!</div>
             <div id="jobFormControls" class="shpt-form-controls">
-                    <button id="jobFormAddBtn" class="shpt-form-button shpt-form-control-add" type="button">Új munkakör</button>
-            </div><!--/#jobForm_controls-->
-        </div><!-- /#jobForm -->
+                <button id="jobFormAddBtn" class="shpt-form-button shpt-form-control-add" type="button">Új munkakör</button>
+            </div>
+        </div>
     </div>
     <div class="clear"></div>
 </div>

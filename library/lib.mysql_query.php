@@ -1,5 +1,4 @@
 <?php
-include_once "lib.exception.php";
 /**
  * MYSQL lekérdezéseket kezelő osztály.
  * 
@@ -164,4 +163,3 @@ class MYSQL_Query {
     }
 
 }
-?>

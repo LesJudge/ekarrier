@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="cim_varos">
+        <column>cim_varos_id</column>
+        <column>cim_orszag_id</column>
+        <column>cim_megye_id</column>
+        <column>cim_varos_nev</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>cim_varos_aktiv</column>
+        <column>cim_varos_torolt</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>Nyíregyháza</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>2</value>
+            <value>Debrecen</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>1</value>
+            <value>1</value>
+            <value>Nyírszőlős</value>
+            <value>1</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>1</value>
+            <value>1</value>
+            <value>Törölt város</value>
+            <value>1</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

@@ -5,17 +5,17 @@ class Beallitas_EsetnaploTipusList_Model extends Admin_List_Model
      * Tábla neve.
      * @var string
      */
-    public $_tableName = 'esetnaplo_tipus';
+    public $_tableName = 'ugyfel_esetnaplo_tipus';
     /**
      * Kiválasztott mezők.
      * @var string
      */
-    public $_fields = 'esetnaplo_tipus.esetnaplo_tipus_id AS ID,
+    public $_fields = 'ugyfel_esetnaplo_tipus.ugyfel_esetnaplo_tipus_id AS ID,
                        nev AS elso,
                        letrehozas_timestamp,
                        modositas_timestamp,
                        modositas_szama,
-                       esetnaplo_tipus_aktiv AS Aktiv,
+                       ugyfel_esetnaplo_tipus_aktiv AS Aktiv,
                        CONCAT(u1.user_vnev, \' \', u1.user_knev) AS letrehozo_nev,
                        CONCAT(u2.user_vnev, \' \', u2.user_knev) AS modosito_nev';
     /**
@@ -37,7 +37,7 @@ class Beallitas_EsetnaploTipusList_Model extends Admin_List_Model
             'u2.user_vnev' => array('label' => 'Módosító'),
             'modositas_timestamp' => array('label' => 'Módosítás ideje'),
             'modositas_szama' => array('label' => 'Módosítás száma'),
-            'esetnaplo_tipus_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
+            'ugyfel_esetnaplo_tipus_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
         );
         $this->_params['TxtSort']->_value='nev__ASC';
         $this->addItem('FilterStatus')->_select_value=Rimo::$_config->CMSAllapot[Rimo::$_config->ADMIN_NYELV_ID];

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpunit 
+    bootstrap="./tests/bootstrap.php" 
+    colors="true" 
+    verbose="true" 
+    convertNoticesToExceptions="false"
+>
+    <php>
+        <!--
+        <var name="testDbDsn" value="mysql:dbname=%s;charset=%s;host=%s" />
+        <var name="testDbUsername" value="uwsql19W" />
+        <var name="testDbPassword" value="H56sJP:2" />
+        <var name="testDbDatabaseName" value="uniweb_ekarrier_teszt" />
+        <var name="testDbHost" value="192.168.0.203" />
+        <var name="testDbCharset" value="utf8" />
+        <var name="activeRecordDsn" value="mysql://%s:%s@%s/%s?charset=%s" />
+        -->
+        
+        <!--
+        <var name="testDbDsn" value="mysql:dbname=%s;charset=%s;host=%s;port=8888;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock" />
+        -->
+        <var name="testDbDsn" value="mysql:dbname=%s;charset=%s;host=%s;" />
+        <var name="testDbUsername" value="root" />
+        <var name="testDbPassword" value="root" />
+        <var name="testDbDatabaseName" value="ekarrier_test" />
+        <var name="testDbHost" value="localhost" />
+        <var name="testDbCharset" value="utf8" />
+        <!--
+        <var name="activeRecordDsn" value="mysql://%s:%s@%s/%s;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock?charset=%s" />
+        -->
+        <var name="activeRecordDsn" value="mysql://%s:%s@%s/%s;?charset=%s" />
+        
+    </php>
+    <testsuites>
+        <testsuite name="The project's test suite">
+            <directory>./tests</directory>
+        </testsuite>
+        <testsuite name="library">
+            <directory>./tests/Library</directory>
+        </testsuite>
+        <testsuite name="clientModuleActiveRecordModels">
+            <directory>./tests/Module/Ugyfel/Model/ActiveRecord/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

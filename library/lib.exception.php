@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Exception_Mysql
  * 
@@ -303,10 +302,12 @@ class Exception_Load extends Exception {
  * @copyright 2011
  * @version 1.0
  */
-class Exception_Load_error extends Exception {
+class Exception_Load_error extends Exception
+{
+    
 }
 
-class Exception_404 extends Exception {
+class Exception_404 extends Exception
+{
+    
 }
-
-?>

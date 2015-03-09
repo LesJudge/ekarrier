@@ -1,7 +1,4 @@
 <?php
-require 'page/admin/controller/admin.edit.php';
-require 'page/admin/model/admin.edit_model.php';
-
 class NyelvtudasNyelvedit_Admin_Controller extends Admin_Edit
 {
     /**

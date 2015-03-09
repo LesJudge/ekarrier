@@ -9,7 +9,6 @@
  * @version 1.0
  * @access public
  */
-include_once "library/phpmailer/class.phpmailer.php";
 class RimoMailer extends PHPMailer {
     public function __construct($exceptions = false){
         parent::__construct($exceptions);
@@ -30,4 +29,3 @@ class RimoMailer extends PHPMailer {
         }
     }
 }
-?>

@@ -11,7 +11,7 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
      * @var array
      */
     public $_bindArray=array(
-        'munkarend_nev' => 'TxtNev',
+        'nev' => 'TxtNev',
         'munkarend_aktiv' => 'ChkAktiv',
     );
     /**
@@ -35,7 +35,7 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
         $name->_verify['string']=true;
         $name->_verify['unique']=array(
             'table' => 'munkarend',
-            'field' => 'munkarend_nev',
+            'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
         );

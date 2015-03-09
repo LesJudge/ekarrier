@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="projekt">
+        <column>projekt_id</column>
+        <column>nev</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>projekt_aktiv</column>
+        <column>projekt_torolt</column>
+        <row>
+            <value>1</value><!-- projekt_id -->
+            <value>Teszt projekt 1</value><!-- nev -->
+            <value>1</value><!-- letrehozo_id -->
+            <value>1</value><!-- modosito_id -->
+            <value>2015-02-12 22:00:00</value><!-- letrehozas_timestamp -->
+            <value>0000-00-00 00:00:00</value><!-- modositas_timestamp -->
+            <value>0</value><!-- modositas_szama -->
+            <value>1</value><!-- projekt_aktiv -->
+            <value>0</value><!-- projekt_torolt -->
+        </row>
+        <row>
+            <value>2</value><!-- projekt_id -->
+            <value>Teszt projekt 2</value><!-- nev -->
+            <value>1</value><!-- letrehozo_id -->
+            <value>1</value><!-- modosito_id -->
+            <value>2015-02-12 22:10:00</value><!-- letrehozas_timestamp -->
+            <value>0000-00-00 00:00:00</value><!-- modositas_timestamp -->
+            <value>0</value><!-- modositas_szama -->
+            <value>1</value><!-- projekt_aktiv -->
+            <value>0</value><!-- projekt_torolt -->
+        </row>
+    </table>
+</dataset>

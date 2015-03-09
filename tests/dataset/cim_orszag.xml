@@ -1,0 +1,2727 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="cim_orszag">
+        <column>cim_orszag_id</column>
+        <column>kod</column>
+        <column>nev</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id></column>
+        <column>modositas_szama</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>cim_orszag_aktiv</column>
+        <column>cim_orszag_torolt</column>
+        <row>
+            <value>1</value>
+            <value>AT</value>
+            <value>Ausztria</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>UM</value>
+            <value>Az Amerikai Egyesült Államok Külső Szigetei</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>AZ</value>
+            <value>Azerbajdzsán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>BS</value>
+            <value>Bahama-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>BH</value>
+            <value>Bahrein</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>6</value>
+            <value>BD</value>
+            <value>Banglades</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>7</value>
+            <value>BB</value>
+            <value>Barbados</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>8</value>
+            <value>BY</value>
+            <value>Belarusz / Fehéroroszország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>9</value>
+            <value>BE</value>
+            <value>Belgium</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>10</value>
+            <value>BZ</value>
+            <value>Belize</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>11</value>
+            <value>BJ</value>
+            <value>Benin</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>12</value>
+            <value>BM</value>
+            <value>Bermuda </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>13</value>
+            <value>BT</value>
+            <value>Bhután</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>14</value>
+            <value>GW</value>
+            <value>Bissau-Guinea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>15</value>
+            <value>BO</value>
+            <value>Bolívia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>16</value>
+            <value>BA</value>
+            <value>Bosznia-Hercegovina</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>17</value>
+            <value>BW</value>
+            <value>Botswana</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>18</value>
+            <value>BV</value>
+            <value>Bouvet-sziget </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>19</value>
+            <value>BR</value>
+            <value>Brazília</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>20</value>
+            <value>IO</value>
+            <value>Brit Indiai-óceáni Terület</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>21</value>
+            <value>VG</value>
+            <value>Brit Virgin-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>22</value>
+            <value>BN</value>
+            <value>Brunei</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>23</value>
+            <value>BG</value>
+            <value>Bulgária</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>24</value>
+            <value>BF</value>
+            <value>Burkina Faso</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>25</value>
+            <value>BI</value>
+            <value>Burundi</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>26</value>
+            <value>CL</value>
+            <value>Chile</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>27</value>
+            <value>CY</value>
+            <value>Ciprus</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>28</value>
+            <value>CP</value>
+            <value>Clipperton </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>29</value>
+            <value>KM</value>
+            <value>Comore-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>30</value>
+            <value>CK</value>
+            <value>Cook-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>31</value>
+            <value>CR</value>
+            <value>Costa Rica</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>32</value>
+            <value>TD</value>
+            <value>Csád</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>33</value>
+            <value>CZ</value>
+            <value>Csehország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>34</value>
+            <value>DK</value>
+            <value>Dánia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>35</value>
+            <value>ZA</value>
+            <value>Dél-Afrika</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>36</value>
+            <value>GS</value>
+            <value>Dél-Georgia és Déli-Sandwich-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>37</value>
+            <value>KR</value>
+            <value>Dél-Korea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>38</value>
+            <value>DM</value>
+            <value>Dominika</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>39</value>
+            <value>DO</value>
+            <value>Dominikai Köztársaság</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>40</value>
+            <value>DJ</value>
+            <value>Dzsibuti</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>41</value>
+            <value>EC</value>
+            <value>Ecuador</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>42</value>
+            <value>GQ</value>
+            <value>Egyenlítői-Guinea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>43</value>
+            <value>US</value>
+            <value>Egyesült Államok</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>44</value>
+            <value>AE</value>
+            <value>Egyesült Arab Emírségek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>45</value>
+            <value>UK</value>
+            <value>Egyesült Királyság</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>46</value>
+            <value>EG</value>
+            <value>Egyiptom</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>47</value>
+            <value>CI</value>
+            <value>Elefántcsontpart</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>48</value>
+            <value>ER</value>
+            <value>Eritrea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>49</value>
+            <value>MP</value>
+            <value>Északi-Mariana-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>50</value>
+            <value>KP</value>
+            <value>Észak-Korea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>51</value>
+            <value>EE</value>
+            <value>Észtország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>52</value>
+            <value>ET</value>
+            <value>Etiópia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>53</value>
+            <value>FK</value>
+            <value>Falkland-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>54</value>
+            <value>FO</value>
+            <value>Feröer szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>55</value>
+            <value>FJ</value>
+            <value>Fidzsi-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>56</value>
+            <value>FI</value>
+            <value>Finnország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>57</value>
+            <value>TF</value>
+            <value>Francia Déli Területek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>58</value>
+            <value>GF</value>
+            <value>Francia Guyana </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>59</value>
+            <value>PF</value>
+            <value>Francia Polinézia </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>60</value>
+            <value>FR</value>
+            <value>Franciaország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>61</value>
+            <value>PH</value>
+            <value>Fülöp-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>62</value>
+            <value>GA</value>
+            <value>Gabon</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>63</value>
+            <value>GM</value>
+            <value>Gambia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>64</value>
+            <value>GH</value>
+            <value>Ghána</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>65</value>
+            <value>GI</value>
+            <value>Gibraltár </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>66</value>
+            <value>EL</value>
+            <value>Görögország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>67</value>
+            <value>GD</value>
+            <value>Grenada</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>68</value>
+            <value>GL</value>
+            <value>Grönland </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>69</value>
+            <value>GE</value>
+            <value>Grúzia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>70</value>
+            <value>GP</value>
+            <value>Guadeloupe </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>71</value>
+            <value>GU</value>
+            <value>Guam </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>72</value>
+            <value>GT</value>
+            <value>Guatemala</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>73</value>
+            <value>GN</value>
+            <value>Guinea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>74</value>
+            <value>GY</value>
+            <value>Guyana</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>75</value>
+            <value>HT</value>
+            <value>Haiti</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>76</value>
+            <value>HM</value>
+            <value>Heard-sziget és McDonald-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>77</value>
+            <value>AN</value>
+            <value>Holland Antillák </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>78</value>
+            <value>NL</value>
+            <value>Hollandia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>79</value>
+            <value>HN</value>
+            <value>Honduras</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>80</value>
+            <value>HK</value>
+            <value>Hongkong </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>81</value>
+            <value>HR</value>
+            <value>Horvátország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>82</value>
+            <value>IN</value>
+            <value>India</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>83</value>
+            <value>ID</value>
+            <value>Indonézia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>84</value>
+            <value>IQ</value>
+            <value>Irak</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>85</value>
+            <value>IR</value>
+            <value>Irán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>86</value>
+            <value>IE</value>
+            <value>Írország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>87</value>
+            <value>IS</value>
+            <value>Izland</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>88</value>
+            <value>IL</value>
+            <value>Izrael</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>89</value>
+            <value>JM</value>
+            <value>Jamaica</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>90</value>
+            <value>JP</value>
+            <value>Japán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>91</value>
+            <value>YE</value>
+            <value>Jemen</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>92</value>
+            <value>JO</value>
+            <value>Jordánia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>93</value>
+            <value>KY</value>
+            <value>Kajmán-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>94</value>
+            <value>KH</value>
+            <value>Kambodzsa</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>95</value>
+            <value>CM</value>
+            <value>Kamerun</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>96</value>
+            <value>CA</value>
+            <value>Kanada</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>97</value>
+            <value>CX</value>
+            <value>Karácsony-sziget </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>98</value>
+            <value>QA</value>
+            <value>Katar</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>99</value>
+            <value>KZ</value>
+            <value>Kazahsztán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>100</value>
+            <value>TL</value>
+            <value>Kelet-Timor</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>101</value>
+            <value>KE</value>
+            <value>Kenya</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>102</value>
+            <value>CN</value>
+            <value>Kína</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>103</value>
+            <value>KG</value>
+            <value>Kirgizisztán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>104</value>
+            <value>KI</value>
+            <value>Kiribati</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>105</value>
+            <value>CC</value>
+            <value>Kókusz-szigetek/Keeling-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>106</value>
+            <value>CO</value>
+            <value>Kolumbia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>107</value>
+            <value>CG</value>
+            <value>Kongó</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>108</value>
+            <value>CD</value>
+            <value>Kongói Demokratikus Köztársaság</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>109</value>
+            <value>CF</value>
+            <value>Közép-afrikai Köztársaság</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>110</value>
+            <value>CU</value>
+            <value>Kuba</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>111</value>
+            <value>KW</value>
+            <value>Kuvait</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>112</value>
+            <value>LA</value>
+            <value>Laosz</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>113</value>
+            <value>PL</value>
+            <value>Lengyelország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>114</value>
+            <value>LS</value>
+            <value>Lesotho</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>115</value>
+            <value>LV</value>
+            <value>Lettország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>116</value>
+            <value>LB</value>
+            <value>Libanon</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>117</value>
+            <value>LR</value>
+            <value>Libéria</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>118</value>
+            <value>LY</value>
+            <value>Líbia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>119</value>
+            <value>LI</value>
+            <value>Liechtenstein</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>120</value>
+            <value>LT</value>
+            <value>Litvánia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>121</value>
+            <value>LU</value>
+            <value>Luxemburg</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>122</value>
+            <value>MK</value>
+            <value>Macedónia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>123</value>
+            <value>MG</value>
+            <value>Madagaszkár</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>124</value>
+            <value>HU</value>
+            <value>Magyarország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>125</value>
+            <value>MO</value>
+            <value>Makaó </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>126</value>
+            <value>MY</value>
+            <value>Malajzia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>127</value>
+            <value>MW</value>
+            <value>Malawi</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>128</value>
+            <value>MV</value>
+            <value>Maldív-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>129</value>
+            <value>ML</value>
+            <value>Mali</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>130</value>
+            <value>MT</value>
+            <value>Málta</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>131</value>
+            <value>MA</value>
+            <value>Marokkó</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>132</value>
+            <value>MH</value>
+            <value>Marshall-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>133</value>
+            <value>MQ</value>
+            <value>Martinique </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>134</value>
+            <value>MR</value>
+            <value>Mauritánia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>135</value>
+            <value>MU</value>
+            <value>Mauritius</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>136</value>
+            <value>YT</value>
+            <value>Mayotte </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>137</value>
+            <value>MX</value>
+            <value>Mexikó</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>138</value>
+            <value>MM</value>
+            <value>Mianmar </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>139</value>
+            <value>FM</value>
+            <value>Mikronézia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>140</value>
+            <value>MD</value>
+            <value>Moldova</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>141</value>
+            <value>MC</value>
+            <value>Monaco</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>142</value>
+            <value>MN</value>
+            <value>Mongólia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>143</value>
+            <value>ME</value>
+            <value>Montenegró</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>144</value>
+            <value>MS</value>
+            <value>Montserrat </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>145</value>
+            <value>MZ</value>
+            <value>Mozambik</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>146</value>
+            <value>NA</value>
+            <value>Namíbia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>147</value>
+            <value>NR</value>
+            <value>Nauru</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>148</value>
+            <value>DE</value>
+            <value>Németország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>149</value>
+            <value>NP</value>
+            <value>Nepál</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>150</value>
+            <value>NI</value>
+            <value>Nicaragua</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>151</value>
+            <value>NE</value>
+            <value>Niger</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>152</value>
+            <value>NG</value>
+            <value>Nigéria</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>153</value>
+            <value>NU</value>
+            <value>Niue </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>154</value>
+            <value>NF</value>
+            <value>Norfolk-sziget </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>155</value>
+            <value>NO</value>
+            <value>Norvégia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>156</value>
+            <value>EH</value>
+            <value>Nyugat-Szahara </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>157</value>
+            <value>IT</value>
+            <value>Olaszország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>158</value>
+            <value>OM</value>
+            <value>Omán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>159</value>
+            <value>RU</value>
+            <value>Oroszország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>160</value>
+            <value>AM</value>
+            <value>Örményország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>161</value>
+            <value>PK</value>
+            <value>Pakisztán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>162</value>
+            <value>PW</value>
+            <value>Palau</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>163</value>
+            <value>PA</value>
+            <value>Panama</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>164</value>
+            <value>PG</value>
+            <value>Pápua Új-Guinea</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>165</value>
+            <value>PY</value>
+            <value>Paraguay</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>166</value>
+            <value>PE</value>
+            <value>Peru</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>167</value>
+            <value>PN</value>
+            <value>Pitcairn-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>168</value>
+            <value>PT</value>
+            <value>Portugália</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>169</value>
+            <value>PR</value>
+            <value>Puerto Rico </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>170</value>
+            <value>RE</value>
+            <value>Réunion </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>172</value>
+            <value>RO</value>
+            <value>Románia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>173</value>
+            <value>RW</value>
+            <value>Ruanda</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>174</value>
+            <value>KN</value>
+            <value>Saint Kitts és Nevis</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>175</value>
+            <value>LC</value>
+            <value>Saint Lucia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>176</value>
+            <value>PM</value>
+            <value>Saint-Pierre és Miquelon</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>177</value>
+            <value>VC</value>
+            <value>Saint Vincent és Grenadine-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>178</value>
+            <value>SB</value>
+            <value>Salamon-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>179</value>
+            <value>SV</value>
+            <value>Salvador</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>180</value>
+            <value>SM</value>
+            <value>San Marino</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>181</value>
+            <value>ST</value>
+            <value>São Tomé és Príncipe</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>182</value>
+            <value>SC</value>
+            <value>Seychelle-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>183</value>
+            <value>SL</value>
+            <value>Sierra Leone</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>184</value>
+            <value>ES</value>
+            <value>Spanyolország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>185</value>
+            <value>LK</value>
+            <value>Srí Lanka</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>186</value>
+            <value>SR</value>
+            <value>Suriname</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>187</value>
+            <value>CH</value>
+            <value>Svájc</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>188</value>
+            <value>SJ</value>
+            <value>Svalbard- és Jan Mayen-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>189</value>
+            <value>SE</value>
+            <value>Svédország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>190</value>
+            <value>WS</value>
+            <value>Szamoa</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>191</value>
+            <value>SA</value>
+            <value>Szaúd-Arábia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>192</value>
+            <value>SN</value>
+            <value>Szenegál</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>193</value>
+            <value>SH</value>
+            <value>Szent Ilona </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>194</value>
+            <value>RS</value>
+            <value>Szerbia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>195</value>
+            <value>SG</value>
+            <value>Szingapúr</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>196</value>
+            <value>SY</value>
+            <value>Szíria</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>197</value>
+            <value>SK</value>
+            <value>Szlovákia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>198</value>
+            <value>SI</value>
+            <value>Szlovénia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>199</value>
+            <value>SO</value>
+            <value>Szomália</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>200</value>
+            <value>SD</value>
+            <value>Szudán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>201</value>
+            <value>SZ</value>
+            <value>Szváziföld</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>202</value>
+            <value>TJ</value>
+            <value>Tádzsikisztán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>203</value>
+            <value>TW</value>
+            <value>Tajvan </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>204</value>
+            <value>TZ</value>
+            <value>Tanzánia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>205</value>
+            <value>TH</value>
+            <value>Thaiföld</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>206</value>
+            <value>TG</value>
+            <value>Togo</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>207</value>
+            <value>TK</value>
+            <value>Tokelau-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>208</value>
+            <value>TO</value>
+            <value>Tonga</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>209</value>
+            <value>TR</value>
+            <value>Törökország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>210</value>
+            <value>TT</value>
+            <value>Trinidad és Tobago</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>211</value>
+            <value>TN</value>
+            <value>Tunézia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>212</value>
+            <value>TC</value>
+            <value>Turks- és Caicos-szigetek </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>213</value>
+            <value>TV</value>
+            <value>Tuvalu</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>214</value>
+            <value>TM</value>
+            <value>Türkmenisztán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>215</value>
+            <value>UG</value>
+            <value>Uganda</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>216</value>
+            <value>NC</value>
+            <value>Új-Kaledónia </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>217</value>
+            <value>NZ</value>
+            <value>Új-Zéland</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>218</value>
+            <value>UA</value>
+            <value>Ukrajna</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>219</value>
+            <value>UY</value>
+            <value>Uruguay</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>220</value>
+            <value>UZ</value>
+            <value>Üzbegisztán</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>221</value>
+            <value>VU</value>
+            <value>Vanuatu</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>222</value>
+            <value>VE</value>
+            <value>Venezuela</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>223</value>
+            <value>VN</value>
+            <value>Vietnam</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>224</value>
+            <value>WF</value>
+            <value>Wallis és Futuna </value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>225</value>
+            <value>ZM</value>
+            <value>Zambia</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>226</value>
+            <value>ZW</value>
+            <value>Zimbabwe</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>227</value>
+            <value>CV</value>
+            <value>Zöld-foki-szigetek</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+    </table>
+</dataset>

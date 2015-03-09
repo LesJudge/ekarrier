@@ -6,14 +6,14 @@ class Beallitas_EsetnaploTipusEdit_Model extends Admin_Edit_Model
      * Tábla neve.
      * @var string
      */
-    public $_tableName = 'esetnaplo_tipus';
+    public $_tableName = 'ugyfel_esetnaplo_tipus';
     /**
      * Értékek, melyeket az itemekhez rendel.
      * @var array
      */
     public $_bindArray=array(
         'nev' => 'TxtNev',
-        'esetnaplo_tipus_aktiv' => 'ChkAktiv',
+        'ugyfel_esetnaplo_tipus_aktiv' => 'ChkAktiv',
     );
     /**
      * Nyelv ellenőrzés felülírása, kikerülése. Erre azért van szükség, mert a táblában nincs nyelv_id mező.
@@ -35,7 +35,7 @@ class Beallitas_EsetnaploTipusEdit_Model extends Admin_Edit_Model
         $name->_verify['string']=true;
         $name->_verify['string']=true;
         $name->_verify['unique']=array(
-            'table' => 'esetnaplo_tipus',
+            'table' => 'ugyfel_esetnaplo_tipus',
             'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
@@ -51,7 +51,7 @@ class Beallitas_EsetnaploTipusEdit_Model extends Admin_Edit_Model
         $query = "SELECT modositas_szama, 
                          letrehozas_timestamp, 
                          modositas_timestamp, 
-                         esetnaplo_tipus_aktiv AS active,
+                         ugyfel_esetnaplo_tipus_aktiv AS active,
                          u1.user_id AS letrehozo_id,
                          CONCAT(u1.user_vnev, ' ', u1.user_knev) AS letrehozo_nev,
                          u1.user_fnev AS letrehozo_username, 
@@ -61,7 +61,7 @@ class Beallitas_EsetnaploTipusEdit_Model extends Admin_Edit_Model
                   FROM {$this->_tableName}
                   LEFT JOIN user AS u1 ON letrehozo_id = u1.user_id
                   LEFT JOIN user AS u2 ON modosito_id = u2.user_id
-                  WHERE esetnaplo_tipus_id = " . (int)$this->modifyID . " LIMIT 1";
+                  WHERE ugyfel_esetnaplo_tipus_id = " . (int)$this->modifyID . " LIMIT 1";
         $data = $this->_DB->prepare($query)->query_select()->query_fetch_array();
         return $data;
     }

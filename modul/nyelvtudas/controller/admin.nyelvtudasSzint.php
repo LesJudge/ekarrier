@@ -1,5 +1,4 @@
 <?php
-require "page/admin/controller/admin.list.php";
 
 class NyelvtudasSzint_Admin_Controller extends Admin_List
 {
@@ -33,7 +32,7 @@ class NyelvtudasSzint_Admin_Controller extends Admin_List
     
     public function onClick_Filter()
     {
-        $this->setWhereInput("nyelvtudas_szint_nev LIKE '%:item%'", 'FilterSzuro');
+        $this->setWhereInput("nev LIKE '%:item%'", 'FilterSzuro');
         // Státusz filter
         $filterStatus = $this->getItemValue('FilterStatus');
         switch($filterStatus)

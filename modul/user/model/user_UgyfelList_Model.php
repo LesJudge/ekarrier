@@ -60,7 +60,7 @@ class User_UgyfelList_Model extends DynamicFiltersModel
             false
         );
         // Végzettség szűrők
-        $eduTypes = ArHelper::result2Options(Education::findAllActiveNotDeleted(), 'vegzettseg_id', 'vegzettseg_nev');
+        $eduTypes = ArHelper::result2Options(Education::findAllActiveNotDeleted(), 'vegzettseg_id', 'nev');
         // Iskola
         $this->addDynamicFilter('VegzettsegIskola');
         // Kezdés
@@ -81,29 +81,29 @@ class User_UgyfelList_Model extends DynamicFiltersModel
         // Nyelvtudás nyelv
         $klang = $this->addDynamicFilter('NyelvtudasNyelv');
         $klang->_select_value = ArHelper::result2Options(
-            KnowledgeLanguage::findAllActiveNotDeleted(), 'nyelvtudas_nyelv_id', 'nyelvtudas_nyelv_nev'
+            KnowledgeLanguage::findAllActiveNotDeleted(), 'nyelvtudas_nyelv_id', 'nev'
         );
         // Nyelvtudás szint
         $klevel = $this->addDynamicFilter('NyelvtudasSzint');
         $klevel->_select_value = ArHelper::result2Options(
-            KnowledgeLevel::findAllActiveNotDeleted(), 'nyelvtudas_szint_id', 'nyelvtudas_szint_nev'
+            KnowledgeLevel::findAllActiveNotDeleted(), 'nyelvtudas_szint_id', 'nev'
         );
         // Nyelvtudás - összes szükséges.
         $this->addDynamicFilter('NyelvtudasMind');
         // Program információ
         $pi = $this->addDynamicFilter('ProgramInformacio');
         $pi->_select_value = ArHelper::result2Options(
-            ProgramInformation::findAllActiveNotDeleted(), 'program_informacio_id', 'program_informacio_nev'
+            ProgramInformation::findAllActiveNotDeleted(), 'program_informacio_id', 'nev'
         );
         // Munkarend
         $ws = $this->addDynamicFilter('Munkarend');
         $ws->_select_value = ArHelper::result2Options(
-            WorkSchedule::findAllActiveNotDeleted(), 'munkarend_id', 'munkarend_nev'
+            WorkSchedule::findAllActiveNotDeleted(), 'munkarend_id', 'nev'
         );
         // Hova érkezett
         $ct = $this->addDynamicFilter('HovaErkezett');
         $ct->_select_value = ArHelper::result2Options(
-            CameTo::findAllActiveNotDeleted(), 'hova_erkezett_id', 'hova_erkezett_nev'
+            CameTo::findAllActiveNotDeleted(), 'karrierpont_id', 'nev'
         );
         $db = $this->_DB;
         $getResult = function($table, $id, $name) use ($db) {

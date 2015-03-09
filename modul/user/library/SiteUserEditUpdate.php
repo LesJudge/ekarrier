@@ -88,7 +88,7 @@ class SiteUserEditUpdate extends \AttachedUserUpdate
             modosito_id = " . $userId . ", 
             modositas_szama = modositas_szama + 1, 
             modositas_timestamp = '" . date('Y-m-d H:i:s') . "' 
-            WHERE ugyfel_id = " . (int)$clientId . " AND beallitas_cim_tipus_id = " . (int)$typeId . " LIMIT 1";
+            WHERE ugyfel_id = " . (int)$clientId . " AND ugyfel_cim_tipus_id = " . (int)$typeId . " LIMIT 1";
         $this->db->prepare($query)->query_execute();
     }
     /**

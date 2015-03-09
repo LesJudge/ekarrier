@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_attr_vegzettseg">
+        <column>ugyfel_attr_vegzettseg_id</column>
+        <column>ugyfel_id</column>
+        <column>vegzettseg_id</column>
+        <column>iskola</column>
+        <column>kezdet</column>
+        <column>veg</column>
+        <column>szak</column>
+        <column>megnevezes</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>ugyfel_attr_vegzettseg_aktiv</column>
+        <column>ugyfel_attr_vegzettseg_torolt</column>
+        <row>
+            <value>1</value><!-- ugyfel_attr_vegzettseg_id -->
+            <value>1</value><!-- ugyfel_id -->
+            <value>1</value><!-- vegzettseg_id -->
+            <value>Iskola neve</value><!-- iskola -->
+            <value>1990</value><!-- kezdet -->
+            <value>1998</value><!-- veg -->
+            <value>Szak teljes neve</value><!-- szak -->
+            <value>Megnevezés</value><!-- megnevezes -->
+            <value>1</value><!-- letrehozo_id -->
+            <value>1</value><!-- modosito_id -->
+            <value>2015-02-12 22:00:00</value><!-- letrehozas_timestamp -->
+            <value>0000-00-00 00:00:00</value><!-- modositas_timestamp -->
+            <value>0</value><!-- modositas_szama -->
+            <value>1</value><!-- ugyfel_attr_vegzettseg_aktiv -->
+            <value>0</value><!-- ugyfel_attr_vegzettseg_torolt -->
+        </row>
+        <row>
+            <value>2</value><!-- ugyfel_attr_vegzettseg_id -->
+            <value>1</value><!-- ugyfel_id -->
+            <value>1</value><!-- vegzettseg_id -->
+            <value>Szakközépiskola</value><!-- iskola -->
+            <value>1998</value><!-- kezdet -->
+            <value>2002</value><!-- veg -->
+            <value>Vonatkerékpumpáló</value><!-- szak -->
+            <value>Megnevezés</value><!-- megnevezes -->
+            <value>1</value><!-- letrehozo_id -->
+            <value>1</value><!-- modosito_id -->
+            <value>2015-02-12 22:10:00</value><!-- letrehozas_timestamp -->
+            <value>0000-00-00 00:00:00</value><!-- modositas_timestamp -->
+            <value>0</value><!-- modositas_szama -->
+            <value>1</value><!-- ugyfel_attr_vegzettseg_aktiv -->
+            <value>0</value><!-- ugyfel_attr_vegzettseg_torolt -->
+        </row>
+    </table>
+</dataset>

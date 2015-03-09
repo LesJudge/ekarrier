@@ -365,4 +365,3 @@ class Verify {
         return $this->verify_object->_error;
     }
 }
-?>

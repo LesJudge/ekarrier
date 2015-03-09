@@ -12,10 +12,10 @@ class Nyelvtudas_SzintList_Model extends Admin_List_Model
      * @var string
      */
     public $_fields = 'nyelvtudas_szint.nyelvtudas_szint_id AS ID,
-                       nyelvtudas_szint_nev AS elso,
-                       nyelvtudas_szint_letrehozas_datum,
-                       nyelvtudas_szint_modositas_datum,
-                       nyelvtudas_szint_modositas_szama,
+                       nev AS elso,
+                       letrehozas_timestamp,
+                       modositas_timestamp,
+                       modositas_szama,
                        nyelvtudas_szint_aktiv AS Aktiv,
                        CONCAT(u1.user_vnev, \' \', u1.user_knev) AS letrehozo_nev,
                        CONCAT(u2.user_vnev, \' \', u2.user_knev) AS modosito_nev';
@@ -23,8 +23,8 @@ class Nyelvtudas_SzintList_Model extends Admin_List_Model
      * MySQL JOIN.
      * @var string
      */
-    public $_join = 'LEFT JOIN user u1 ON nyelvtudas_szint_letrehozo = u1.user_id
-                     LEFT JOIN user u2 ON nyelvtudas_szint_modosito = u2.user_id';
+    public $_join = 'LEFT JOIN user u1 ON letrehozo_id = u1.user_id
+                     LEFT JOIN user u2 ON modosito_id = u2.user_id';
     /**
      * Elemek hozzáadása a formhoz.
      */
@@ -32,15 +32,15 @@ class Nyelvtudas_SzintList_Model extends Admin_List_Model
     {
         parent::__addForm();
         $this->tableHeader=array(
-            'nyelvtudas_szint_nev' => array('label' => 'Név'),
+            'nev' => array('label' => 'Név'),
             'u1.user_vnev' => array('label' => 'Létrehozó'),
-            'nyelvtudas_szint_letrehozas_datum' => array('label' => 'Létrehozás ideje'),
+            'letrehozas_timestamp' => array('label' => 'Létrehozás ideje'),
             'u2.user_vnev' => array('label' => 'Módosító'),
-            'nyelvtudas_szint_modositas_datum' => array('label' => 'Módosítás ideje'),
-            'nyelvtudas_szint_modositas_szama' => array('label' => 'Módosítás száma'),
+            'modositas_timestamp' => array('label' => 'Módosítás ideje'),
+            'modositas_szama' => array('label' => 'Módosítás száma'),
             'nyelvtudas_szint_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
         );
-        $this->_params['TxtSort']->_value='nyelvtudas_szint_nev__ASC';
+        $this->_params['TxtSort']->_value='nev__ASC';
         $this->addItem('FilterStatus')->_select_value=Rimo::$_config->CMSAllapot[Rimo::$_config->ADMIN_NYELV_ID];
     }
 }

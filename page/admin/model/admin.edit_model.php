@@ -1,6 +1,4 @@
 <?php
-include_once "page/all/model/page.edit_model.php";
-
 /**
  * Elem szerkesztése, új felvitele
  * 
@@ -25,4 +23,3 @@ abstract class Admin_Edit_Model extends Page_Edit_Model {
         $this->_params["ChkAktiv"]->_value = 1;
     }
 }
-?>

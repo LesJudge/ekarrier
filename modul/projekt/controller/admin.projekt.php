@@ -1,5 +1,5 @@
 <?php
-require 'page/admin/controller/admin.list.php';
+
 
 class Projekt_Admin_Controller extends Admin_List
 {

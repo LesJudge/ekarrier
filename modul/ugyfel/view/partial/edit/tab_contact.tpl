@@ -1,14 +1,8 @@
 <div class="uw-ugyfelkezelo-form">
     <div id="client-contact" class="uw-ugyfelkezelo-client-contact">
-        <div id="client-contact-error" class="notice error">
-            <p></p>
-        </div><!--/#client-contact-error-->
-        <div id="client-contact-success" class="notice success">
-            <p>Message</p>
-        </div><!--/#client-contact-success-->
-        <div id="client-contact-fatal-error">
-            Sajnáljuk, de végzetes hiba történt!
-        </div><!--/#client-contact-fatal-error-->
+        <div id="client-contact-error" class="notice error"><p></p></div>
+        <div id="client-contact-success" class="notice success"><p>Message</p></div>
+        <div id="client-contact-fatal-error">Sajnáljuk, de végzetes hiba történt!</div>
         <table id="client-contact-table" class="uw-ugyfelkezelo-client-contact-table">
             <thead>
                 <tr>
@@ -22,13 +16,9 @@
             </thead>
             <tbody></tbody>
             <tfoot>
-                <tr>
-                    <td colspan="6">
-                        <button id="client-contact-add-btn" type="button">Új elem</button>
-                    </td>
-                </tr>
+                <tr><td colspan="6"><button id="client-contact-add-btn" type="button">Új elem</button></td></tr>
             </tfoot>
-        </table><!--/#client-contact-table-->
+        </table>
         <div id="client-contact-dialog-create" title="Új esetnapló bejegyzés">
             <ul id="contact-dialog-dialog-create-error" class="ui-state-error" style="display: none;">
                 <li>dummy-message</li>
@@ -40,7 +30,7 @@
                 </span>
                 <div>
                     <label>Típus</label>
-                    <select id="cc-create-esetnaplo-tipus-id" name="ClientContact[esetnaplo_tipus_id]">
+                    <select id="cc-create-esetnaplo-tipus-id" name="ClientContact[ugyfel_esetnaplo_tipus_id]">
                         {foreach from=$contactTypeOptions key=id item=name}
                         <option value="{$id}">{$name}</option>
                         {/foreach}
@@ -59,7 +49,7 @@
             </form>
         </div>
         <div id="client-contact-dialog-delete" data-contact-id="0" title="Esetnapló elem törlése">Biztos törli a bejegyzést ?</div>
-    </div><!--/#client-contact-->
+    </div>
 </div>
 <style type="text/css">
 #client-contact-table tr td:first-child {

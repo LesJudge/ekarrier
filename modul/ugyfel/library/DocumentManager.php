@@ -1,14 +1,19 @@
 <?php
+namespace Uniweb\Module\Ugyfel\Library;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Document;
+use SplFileInfo;
+use Exception;
+
 class DocumentManager
 {
     /**
      * ClientDocument objektum.
-     * @var \ClientDocument
+     * @var Document
      */
     protected $file;
     /**
      * SplFileInfo objektum.
-     * @var \SplFileInfo
+     * @var SplFileInfo
      */
     protected $path;
     /**
@@ -22,22 +27,22 @@ class DocumentManager
     public function __construct($file)
     {
         $this->file = $file;
-        $path = new \SplFileInfo($this->directory);
+        $path = new SplFileInfo($this->directory);
         if (file_exists($this->directory) && $path->isDir() && $path->isReadable()) {
             $this->path = $path;
         } else {
-            throw new \Exception('Nem megfelelő vagy nem olvasható útvonal!');
+            throw new Exception('Hiba lépett fel a dokumentumkezelő inicializálása során!');
         }
     }
     /**
      * Beállítja a könyvtár jogosultságát.
      * @param int $rights Jogosultsági érték.
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setRights($rights)
     {
         if (!chmod($this->directory, $rights)) {
-            throw new \Exception;
+            throw new Exception;
         }
     }
     /**
@@ -46,7 +51,7 @@ class DocumentManager
      */
     public function isInstance()
     {
-        return is_object($this->file) && $this->file instanceof \ClientDocument;
+        return is_object($this->file) && $this->file instanceof Document;
     }
     /**
      * Feltölti a fájlt a szerverre, valamint létrehozza a rekordot az adatbázisban.
@@ -65,7 +70,7 @@ class DocumentManager
                 $this->setRights($this->getDefaultRights()); // Csak olvashatóvá teszi a könyvtárat.
                 $conn->commit(); // Commit.
                 return true;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // Ha hiba lépne fel, akkor is olvashatóvá teszi a könyvtárat.
                 $this->setRights($this->getDefaultRights());
                 $conn->rollback(); // Majd rollbackel.
@@ -78,34 +83,29 @@ class DocumentManager
      * Feltölti a fájlt a szerverre.
      * @param array $file
      * @return boolean
-     * @throws \Exception
+     * @throws Exception
      */
     protected function uploadFile(array $file)
     {
-        if ($this->file->save() && move_uploaded_file($file['tmp_name'], $this->directory . $this->file->nev)) {
+        if (
+            $this->file->save() && move_uploaded_file($file['tmp_name'], $this->directory . $this->file->dokumentum_nev
+        )) {
             return true;
         }
-        throw new \Exception('A feltöltés sikertelen!');
+        throw new Exception('A feltöltés sikertelen!');
     }
     /**
      * Fájl letöltése.
-     * @throws \Exception
+     * @return string Fájlnév
+     * @throws Exception
      */
     public function download()
     {
-        $filename = $this->directory . $this->file->nev;
+        $filename = $this->directory . $this->file->dokumentum_nev;
         if ($this->path->isReadable() && file_exists($filename)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename=' . basename($this->file->dokumentum_nev));
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($filename));
-            readfile($filename);
-            exit;
+            return $filename;
         } else {
-            throw new \Exception('A letöltés sikertelen!');
+            throw new Exception('A letöltés sikertelen!');
         }
     }
     /**
@@ -119,14 +119,16 @@ class DocumentManager
             $conn = $this->file->connection();
             try {
                 $conn->transaction();
-                $this->setRights(0744);
-                $filename = $this->directory . $this->file->nev;
-                $this->deleteFile($filename);
+                //$this->setRights(0744);
+                //$filename = $this->directory . $this->file->dokumentum_nev;
+                //$this->deleteFile($filename);
+                $this->file->ugyfel_attr_dokumentum_torolt = 1;
+                $this->file->save();
                 $conn->commit();
-                $this->setRights($this->getDefaultRights());
+                //$this->setRights($this->getDefaultRights());
                 return true;
-            } catch (\Exception $e) {
-                $this->setRights($this->getDefaultRights());
+            } catch (Exception $e) {
+                //$this->setRights($this->getDefaultRights());
                 $conn->rollback();
                 return false;
             }
@@ -136,16 +138,17 @@ class DocumentManager
     /**
      * Törli a paraméterül adott fájlt a szerverről.
      * @param string $filename Fájl neve.
-     * @throws \Exception
+     * @throws Exception
      */
     protected function deleteFile($filename)
     {
-        $delete = $this->file->delete();
+        $this->file->torolt = 1;
+        $delete = $this->file->save();
         $result = file_exists($filename) ? $delete && unlink($filename) : $delete;
         if ($result) {
             return true;
         }
-        throw new \Exception('A törlés sikertelen!');
+        throw new Exception('A törlés sikertelen!');
     }
     /**
      * Visszatér az alapértelmezett könyvtár jogokkal.

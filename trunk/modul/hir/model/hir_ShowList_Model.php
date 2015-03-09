@@ -1,5 +1,5 @@
 <?php
-include_once "page/all/model/page.list_model.php";
+
 class Hir_ShowList_Model extends Page_List_Model {
     public $_tableName = "hir";
     public $_fields = "hir_cim, hir_link, hir_leiras, DATE_FORMAT(hir_megjelenes,'%Y-%m-%d %H:%i') AS megjelenes,

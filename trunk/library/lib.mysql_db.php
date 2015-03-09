@@ -1,6 +1,4 @@
 <?php
-include_once "lib.mysql_query.php";
-
 /**
  * MYSQL adtbáziskapcsolat kialakításáért felelős osztály.
  * 
@@ -65,4 +63,3 @@ class MYSQL_DB {
         $this->db_close();
     }
 }
-?>

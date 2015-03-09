@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="cim_iranyitoszam">
+        <column>cim_iranyitoszam_id</column>
+        <column>cim_varos_id</column>
+        <column>iranyitoszam</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>cim_iranyitoszam_aktiv</column>
+        <column>cim_iranyitoszam_torolt</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>4400</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>2</value>
+            <value>4030</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>3</value>
+            <value>1234</value>
+            <value>1</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+    </table>
+</dataset>

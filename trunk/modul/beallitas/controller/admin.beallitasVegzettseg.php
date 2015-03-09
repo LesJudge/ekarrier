@@ -22,7 +22,7 @@ class BeallitasVegzettseg_Admin_Controller extends Admin_List
 
         public function onClick_Filter()
         {
-                $nameFilter="vegzettseg_nev LIKE '%:item%'";
+                $nameFilter="nev LIKE '%:item%'";
                 $this->setWhereInput($nameFilter,'FilterSzuro');
                 // Státusz filter
                 $filterStatus=$this->getItemValue('FilterStatus');

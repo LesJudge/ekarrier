@@ -1,6 +1,5 @@
 <?php
-include_once "Rimo.php";
-include_once "site.config.php";
+require 'vendor/autoload.php';
 Rimo::__addConfig();
 Rimo::__addSession();
 

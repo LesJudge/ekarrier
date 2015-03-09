@@ -16,11 +16,11 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
      */
     public $_bindArray = array(
         'vegzettseg_id' => 'SelVegzettseg',
-        'ugyfel_attr_vegzettseg_iskola' => 'TxtIskola',
-        'ugyfel_attr_vegzettseg_kezdet' => 'YearKezdet',
-        'ugyfel_attr_vegzettseg_veg' => 'YearVeg',
-        'ugyfel_attr_vegzettseg_szak' => 'TxtSzak',
-        'ugyfel_attr_vegzettseg_megnevezes' => 'TxtMegnevezes'
+        'iskola' => 'TxtIskola',
+        'kezdet' => 'YearKezdet',
+        'veg' => 'YearVeg',
+        'szak' => 'TxtSzak',
+        'megnevezes' => 'TxtMegnevezes'
     );
 
     public function __addForm()
@@ -36,9 +36,9 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
         $vegzettseg->_verify['select'] = true;
         $vegzettseg->_select_value = $this->getSelectValues(
             'vegzettseg',
-            'vegzettseg_nev',
+            'nev',
             ' AND vegzettseg_aktiv=1 AND vegzettseg_torolt=0',
-            ' ORDER BY vegzettseg_nev ASC',
+            ' ORDER BY nev ASC',
             true,
             array('' => '--Kérem, válasszon!--')
         );
@@ -81,24 +81,24 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
     /**
      * Új rekord felvitele.
      */
-    public function __insert()
+    public function __insert($sets = '')
     {
         $userId = (int)UserLoginOut_Site_Controller::$_id;
         parent::__insert(
             ',ugyfel_id=' . $this->clientId . '     
-            ,ugyfel_attr_vegzettseg_letrehozo = ' . $userId . '
-            ,ugyfel_attr_vegzettseg_modosito = ' . $userId
+            ,ugyfel_attr_letrehozo_id = ' . $userId . '
+            ,ugyfel_attr_modosito_id = ' . $userId
         );
     }
     /**
      * Rekord módosítása.
      */
-    public function __update()
+    public function __update($sets = '')
     {
         parent::__update(
-            ',ugyfel_attr_vegzettseg_modosito = ' . (int)UserLoginOut_Site_Controller::$_id . '
-            ,ugyfel_attr_vegzettseg_modositas_datum = NOW()
-            ,ugyfel_attr_vegzettseg_modositas_szama = ugyfel_attr_vegzettseg_modositas_szama + 1'
+            ',ugyfel_attr_modosito_id = ' . (int)UserLoginOut_Site_Controller::$_id . '
+            ,ugyfel_attr_modositas_timestamp = NOW()
+            ,modositas_szama = modositas_szama + 1'
         );
     }
     /**

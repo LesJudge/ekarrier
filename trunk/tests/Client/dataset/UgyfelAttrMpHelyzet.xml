@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_attr_munkaeropiaci_helyzet">
+        <column>ugyfel_id</column>
+        <column>palyakezdo</column>
+        <column>regisztralt_munkanelkuli</column>
+        <column>mikor_regisztralt</column>
+        <column>gyes_gyed_visszatero</column>
+        <column>gyes_gyed_lejarati_datum</column>
+        <column>megvaltozott_munkakepessegu</column>
+        <column>kovetkezo_felulvizsgalat_ideje</column>
+        <column>munkavegzest_korlatozo_egyeb_okok</column>
+        <column>dolgozik</column>
+        <column>dolgozik_nev</column>
+        <column>dolgozik_cim</column>
+        <column>dolgozik_munkakor</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <row>
+            <value>1</value>
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <value></value>
+            <value></value>
+            <value></value>
+            <value>1</value>
+            <value>2</value>
+            <value>2014-12-15 08:00:00</value>
+            <value>2014-12-15 09:00:00</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <value></value>
+            <value></value>
+            <value></value>
+            <value>1</value>
+            <value>100</value>
+            <value>2014-12-15 08:00:00</value>
+            <value>2014-12-15 09:00:00</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

@@ -1,5 +1,5 @@
 <?php
-require 'page/admin/controller/admin.list.php';
+
 /**
  * @property Munkakor_Site_List_Model $_model Munkakör Site List model.
  * @property Smarty $_view Smarty

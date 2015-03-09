@@ -47,7 +47,8 @@ $min_enableBuilder = true;
  * will have to load extra code to guess. Some examples below:
  */
 //$min_cachePath = 'c:\\aaaaa';
-$min_cachePath = '../css_js_cache/';
+//$min_cachePath = '../css_js_cache/';
+$min_cachePath = '../cache/assets/';
 //$min_cachePath = preg_replace('/^\\d+;/', '', session_save_path());
 
 

@@ -5,17 +5,17 @@ class Beallitas_HovaErkezettList_Model extends Admin_List_Model
      * Tábla neve.
      * @var string
      */
-    public $_tableName = 'hova_erkezett';
+    public $_tableName = 'karrierpont';
     /**
      * Kiválasztott mezők.
      * @var string
      */
-    public $_fields = 'hova_erkezett.hova_erkezett_id AS ID,
-                       hova_erkezett_nev AS elso,
+    public $_fields = 'karrierpont.karrierpont_id AS ID,
+                       nev AS elso,
                        letrehozas_timestamp,
                        modositas_timestamp,
                        modositas_szama,
-                       hova_erkezett_aktiv AS Aktiv,
+                       karrierpont_aktiv AS Aktiv,
                        CONCAT(u1.user_vnev, \' \', u1.user_knev) AS letrehozo_nev,
                        CONCAT(u2.user_vnev, \' \', u2.user_knev) AS modosito_nev';
     /**
@@ -31,15 +31,15 @@ class Beallitas_HovaErkezettList_Model extends Admin_List_Model
     {
         parent::__addForm();
         $this->tableHeader=array(
-            'hova_erkezett_nev' => array('label' => 'Név'),
+            'nev' => array('label' => 'Név'),
             'u1.user_vnev' => array('label' => 'Létrehozó'),
             'letrehozas_timestamp' => array('label' => 'Létrehozás ideje'),
             'u2.user_vnev' => array('label' => 'Módosító'),
             'modositas_timestamp' => array('label' => 'Módosítás ideje'),
             'modositas_szama' => array('label' => 'Módosítás száma'),
-            'hova_erkezett_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
+            'karrierpont_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
         );
-        $this->_params['TxtSort']->_value='hova_erkezett_nev__ASC';
+        $this->_params['TxtSort']->_value='nev__ASC';
         $this->addItem('FilterStatus')->_select_value=Rimo::$_config->CMSAllapot[Rimo::$_config->ADMIN_NYELV_ID];
     }
 }

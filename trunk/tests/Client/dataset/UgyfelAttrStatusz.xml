@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_attr_statusz">
+        <column>ugyfel_id</column>
+        <column>aktualis_statusz</column>
+        <column>kovetkezo_statusz</column>
+        <column>idotartam</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <null />
+            <null />
+            <null />
+            <value>2</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>2</value>
+            <null />
+            <value>2</value>
+            <value>10</value>
+            <value>10</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

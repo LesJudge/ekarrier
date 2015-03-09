@@ -39,7 +39,7 @@ class SiteUserEditInsert extends \AttachedUserInsert
             $params['DateSzulIdo']->_value
         );
         // Menti a munkaerőpiaci helyzet rekordot.
-        $this->insertRequiredRecord('ugyfel_attr_mp_helyzet', $clientId, $userId);
+        $this->insertRequiredRecord('ugyfel_attr_munkaeropiaci_helyzet', $clientId, $userId);
         // Menti a projekt információ rekordot.
         $this->insertRequiredRecord('ugyfel_attr_projekt_informacio', $clientId, $userId);
         // Státusz mentése.
@@ -234,7 +234,7 @@ class SiteUserEditInsert extends \AttachedUserInsert
         $this->db->prepare("INSERT INTO ugyfel_attr_tab_megjegyzes 
             (
                 ugyfel_id, 
-                beallitas_ugyfelkezelo_tab_id,
+                ugyfel_tab_id,
                 megjegyzes,
                 letrehozo_id,
                 modosito_id,
@@ -276,7 +276,7 @@ class SiteUserEditInsert extends \AttachedUserInsert
         $this->db->prepare("INSERT INTO ugyfel_attr_cim 
             (
                 ugyfel_id, 
-                beallitas_cim_tipus_id, 
+                ugyfel_cim_tipus_id, 
                 cim_orszag_id, 
                 cim_megye_id, 
                 cim_varos_id, 

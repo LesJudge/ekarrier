@@ -30,22 +30,22 @@ class BeallitasHovaerkezett_Admin_Controller extends Admin_List
         parent::__show();
         Rimo::$_site_frame->assign(
             'Form',
-            $this->__generateForm('modul/beallitas/view/admin.beallitas_hova_erkezett_list.tpl')
+            $this->__generateForm('modul/beallitas/view/admin.beallitas_karrierpont_list.tpl')
         );
     }
     
     public function onClick_Filter()
     {
-        $this->setWhereInput("hova_erkezett_nev LIKE '%:item%'", 'FilterSzuro');
+        $this->setWhereInput("nev LIKE '%:item%'", 'FilterSzuro');
         // Státusz filter
         $filterStatus = $this->getItemValue('FilterStatus');
         switch($filterStatus)
         {
             case 1:
-                $this->setWhereInput('hova_erkezett_aktiv = 1','FilterStatus');
+                $this->setWhereInput('karrierpont_aktiv = 1','FilterStatus');
                 break;
             case 2:
-                $this->setWhereInput('hova_erkezett_aktiv = 0','FilterStatus');
+                $this->setWhereInput('karrierpont_aktiv = 0','FilterStatus');
                 break;
             default:
                 unset($_SESSION[$this->_name]['FilterStatus']);

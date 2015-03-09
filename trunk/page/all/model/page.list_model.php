@@ -59,11 +59,15 @@ abstract class Page_List_Model extends Page_Model {
      * @return result_array
      */
     public function __loadList() {
+        /**
+         * Undefined variable.
+         * Módosítva: 2015-01-30
+         */
+        $order = null;
         if(!empty($this->sortBY)){
             $order = " ORDER BY {$this->sortBY}";
         } 
         $query =  "SELECT {$this->_fields} FROM `{$this->_tableName}` {$this->_join} {$this->listWhere} GROUP BY `{$this->_tableName}`.{$this->_tableName}_id {$order} {$this->limit}";
-        
         return $this->_DB->prepare($query)->query_select()->query_result_array();
     }
     

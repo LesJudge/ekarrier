@@ -30,7 +30,7 @@ class BeallitasEsetnaplotipus_Admin_Controller extends Admin_List
         parent::__show();
         Rimo::$_site_frame->assign(
             'Form',
-            $this->__generateForm('modul/beallitas/view/admin.beallitas_esetnaplo_tipus_list.tpl')
+            $this->__generateForm('modul/beallitas/view/admin.beallitas_ugyfel_esetnaplo_tipus_list.tpl')
         );
     }
     
@@ -42,10 +42,10 @@ class BeallitasEsetnaplotipus_Admin_Controller extends Admin_List
         switch($filterStatus)
         {
             case 1:
-                $this->setWhereInput('esetnaplo_tipus_aktiv = 1','FilterStatus');
+                $this->setWhereInput('ugyfel_esetnaplo_tipus_aktiv = 1','FilterStatus');
                 break;
             case 2:
-                $this->setWhereInput('esetnaplo_tipus_aktiv = 0','FilterStatus');
+                $this->setWhereInput('ugyfel_esetnaplo_tipus_aktiv = 0','FilterStatus');
                 break;
             default:
                 unset($_SESSION[$this->_name]['FilterStatus']);

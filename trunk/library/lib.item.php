@@ -68,4 +68,3 @@ class Item {
             "activ" => $this->_value, "error" => $this->_error, "title" => $this->_title);
     }
 }
-?>

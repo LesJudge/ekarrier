@@ -11,7 +11,7 @@ class Beallitas_PrograminformacioList_Model extends Admin_List_Model
      * @var string
      */
     public $_fields = 'program_informacio.program_informacio_id AS ID,
-                       program_informacio_nev AS elso,
+                       nev AS elso,
                        letrehozas_timestamp,
                        modositas_timestamp,
                        modositas_szama,
@@ -31,7 +31,7 @@ class Beallitas_PrograminformacioList_Model extends Admin_List_Model
     {
         parent::__addForm();
         $this->tableHeader=array(
-            'program_informacio_nev' => array('label' => 'Név'),
+            'nev' => array('label' => 'Név'),
             'u1.user_vnev' => array('label' => 'Létrehozó'),
             'letrehozas_timestamp' => array('label' => 'Létrehozás ideje'),
             'u2.user_vnev' => array('label' => 'Módosító'),
@@ -39,7 +39,7 @@ class Beallitas_PrograminformacioList_Model extends Admin_List_Model
             'modositas_szama' => array('label' => 'Módosítás száma'),
             'program_informacio_aktiv' => array('label' => 'Közzétéve', 'width' => 8)
         );
-        $this->_params['TxtSort']->_value='program_informacio_nev__ASC';
+        $this->_params['TxtSort']->_value='nev__ASC';
         $this->addItem('FilterStatus')->_select_value=Rimo::$_config->CMSAllapot[Rimo::$_config->ADMIN_NYELV_ID];
     }
 }

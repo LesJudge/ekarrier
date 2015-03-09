@@ -25,7 +25,7 @@ class Szolgaltatas_Admin_Controller extends Admin_List
     
     public function onClick_Filter()
     {
-        $this->setWhereInput("szolgaltatas_nev LIKE '%:item%' OR szolgaltatas_leiras LIKE '%:item%'", 'FilterSzuro');
+        $this->setWhereInput("nev LIKE '%:item%' OR leiras LIKE '%:item%'", 'FilterSzuro');
         // Státusz filter
         $filterStatus = $this->getItemValue('FilterStatus');
         switch($filterStatus)

@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_attr_projekt_informacio">
+        <column>ugyfel_id</column>
+        <column>eu_prog_elm_ket_ev</column>
+        <column>hazai_prog_elm_ket_ev</column>
+        <column>kozvetitio_adatbazisba_kivan_kerulni</column>
+        <column>hozzajarul_a_munkakozvetiteshez</column>
+        <column>mobilitast_vallal</column>
+        <column>mobilitast_vallal_megjegyzes</column>
+        <column>kk_trening_resztvett</column>
+        <column>graf_elemz_resztvett</column>
+        <column>jogi_tadas_resztvett</column>
+        <column>kepz_tanad_resztvett</column>
+        <column>munka_tanad_resztvett</column>
+        <column>pszich_tanad_resztvett</column>
+        <column>egy_megall_ktttnk_prog</column>
+        <column>egy_megall_ktttnk_kepz</column>
+        <column>kepzes_bekerult</column>
+        <column>munkarend_id</column>
+        <column>karrierpont_id</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <row>
+            <value>1</value>
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 10:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>            
+        </row>
+        <row>
+            <value>2</value>
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <value>100</value>
+            <value>100</value>
+            <value>2014-12-18 10:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>            
+        </row>
+        <row>
+            <value>3</value>
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <value>2</value>
+            <value>100</value>
+            <value>1</value>
+            <value>2014-12-18 10:00:00</value>
+            <value>2014-12-18 11:00:00</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>4</value>
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <null />
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 10:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>            
+        </row>
+    </table>
+</dataset>

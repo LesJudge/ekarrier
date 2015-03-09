@@ -1,6 +1,4 @@
 <?php
-require 'page/admin/controller/admin.edit.php';
-require 'page/admin/model/admin.edit_model.php';
 /**
  * @property Beallitas_EsetnaploTipusEdit_Model $_model Model.
  * @property Smarty $_view View.
@@ -32,7 +30,7 @@ class BeallitasEsetnaplotipusedit_Admin_Controller extends Admin_Edit
         $this->_view->assign('recordStatus', $this->_model->modifyID > 0);
         Rimo::$_site_frame->assign(
             'Form',
-            $this->__generateForm('modul/beallitas/view/admin.beallitas_esetnaplo_tipus_edit.tpl')
+            $this->__generateForm('modul/beallitas/view/admin.beallitas_ugyfel_esetnaplo_tipus_edit.tpl')
         );
     }
 }

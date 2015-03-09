@@ -28,7 +28,7 @@ class BeallitasPrograminformacio_Admin_Controller extends Admin_List
     
     public function onClick_Filter()
     {
-        $this->setWhereInput("program_informacio_nev LIKE '%:item%'", 'FilterSzuro');
+        $this->setWhereInput("nev LIKE '%:item%'", 'FilterSzuro');
         // Státusz filter
         $filterStatus = $this->getItemValue('FilterStatus');
         switch($filterStatus)

@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="cim_orszag">
+        <column>cim_orszag_id</column>
+        <column>kod</column>
+        <column>nev</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>cim_orszag_aktiv</column>
+        <column>cim_orszag_torolt</column>
+        <row>
+            <value>1</value>
+            <value>HU</value>
+            <value>Magyarország</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>AU</value>
+            <value>Ausztria</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>RO</value>
+            <value>Románia</value>
+            <value>1</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>        
+    </table>
+</dataset>

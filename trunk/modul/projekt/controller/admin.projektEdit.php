@@ -1,7 +1,7 @@
 <?php
-require 'page/admin/controller/admin.edit.php';
-require 'page/admin/model/admin.edit_model.php';
-require 'modul/ugyfel/library/startup/admin.ugyfelkezeloStartup.php';
+//use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client;
+//use Uniweb\Module\Ugyfel\Model\ActiveRecord\LaborMarket;
+//use Uniweb\Module\Ugyfel\Model\ActiveRecord\ProjectInformation;
 
 class ProjektEdit_Admin_Controller extends Admin_Edit
 {
@@ -29,7 +29,7 @@ class ProjektEdit_Admin_Controller extends Admin_Edit
     {
         parent::__show();
         $this->_view->assign('recordStatus', $this->_model->modifyID > 0);
-        $this->_view->assign('client', new Client);
+        $this->_view->assign('client', new \Uniweb\Module\Ugyfel\Model\ActiveRecord\Client);
         $this->_view->assign('laborMarket', new LaborMarket);
         $this->_view->assign('projectInformation', new ProjectInformation);
         Rimo::$_site_frame->assign(

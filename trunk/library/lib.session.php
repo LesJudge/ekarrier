@@ -10,19 +10,22 @@
  * @version 1.0
  * @access public
  */
-class Session {
+class Session
+{
+
     /**
      * @var int A session élettartama. 
-     */ 
+     */
     protected $session_life_time;
-    
+
     /**
      * Session mentési helyének és nevének beállítása, majd session indítása
      * 
      * @param mixed $session_name
      * @param mixed $session_save_path
      */
-    final public function __construct($session_name, $session_save_path) {
+    final public function __construct($session_name, $session_save_path)
+    {
         session_save_path($session_save_path);
         session_name($session_name);
         session_start();
@@ -35,9 +38,10 @@ class Session {
      * 
      * @uses Session::life()
      */
-    public function verify($session_life_time = "86400") {
+    public function verify($session_life_time = "86400")
+    {
         $this->session_life_time = $session_life_time;
-        $this->life();   
+        $this->life();
     }
 
     /**
@@ -46,7 +50,9 @@ class Session {
      * 
      * @return void
      */
-    private function life() {
+    private function life()
+    {
+        /*
         $time = time() - $_SESSION["last_used"];
         if ($time > $this->session_life_time AND $_SESSION["last_used"]) {
             session_destroy();
@@ -56,44 +62,59 @@ class Session {
         } else {
             $_SESSION["last_used"] = time();
         }
-    }
-}
-
-class SessionDB  extends Session {
-	
-	public $db;
-    
-    private function life() {
-    	
+        */
+        /**
+         * Módosítva: 2015-01-30
+         */
+        if (!array_key_exists('last_used', $_SESSION)) {
+            $_SESSION['last_used'] = time();
+        }
         $time = time() - $_SESSION["last_used"];
         if ($time > $this->session_life_time AND $_SESSION["last_used"]) {
-        	$this->db->prepare("DELETE FROM session WHERE session_sid='".session_id()."' LIMIT 1")->query_execute();
+            session_destroy();
+            unset($_SESSION);
+            header("Location: {$_SERVER['REQUEST_URI']}");
+            exit;
+        }
+    }
+
+}
+
+class SessionDB extends Session
+{
+
+    public $db;
+
+    private function life()
+    {
+
+        $time = time() - $_SESSION["last_used"];
+        if ($time > $this->session_life_time AND $_SESSION["last_used"]) {
+            $this->db->prepare("DELETE FROM session WHERE session_sid='" . session_id() . "' LIMIT 1")->query_execute();
             session_destroy();
             unset($_SESSION);
             header("Location: {$_SERVER['REQUEST_URI']}");
             exit;
         } else {
-        	$_SESSION["last_used"] = time();
-			try{
-				$query = "
+            $_SESSION["last_used"] = time();
+            try {
+                $query = "
 	        		UPDATE session 
 					SET 
-						session_last_used=".$_SESSION["last_used"]."
-					WHERE session_id='".session_id()."' LIMIT 1
+						session_last_used=" . $_SESSION["last_used"] . "
+					WHERE session_id='" . session_id() . "' LIMIT 1
 				";
-	        	$this->db->prepare($query)->query_update();
-   			}
-   			catch(Exception_MYSQL_Null_Affected_Rows $e){
-   				$query = "
+                $this->db->prepare($query)->query_update();
+            } catch (Exception_MYSQL_Null_Affected_Rows $e) {
+                $query = "
 	        		INSERT session 
 					SET 
-						session_last_used=".$_SESSION["last_used"].",
-						session_sid='".session_id()."'
+						session_last_used=" . $_SESSION["last_used"] . ",
+						session_sid='" . session_id() . "'
 				";
-	        	$this->db->prepare($query)->query_update();
-   			}
-            
+                $this->db->prepare($query)->query_update();
+            }
         }
     }
+
 }
-?>

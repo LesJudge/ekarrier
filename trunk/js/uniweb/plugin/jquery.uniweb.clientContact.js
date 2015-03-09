@@ -53,7 +53,7 @@
          */
         _addContactRow: function(contact) {
             var $row = $("<tr></tr>"), // Új <tr> TAG létrehozása.
-                contactDate = new Date(contact.felvetel_ideje), // Kapcsolatfelvétel ideje Date objektum.
+                contactDate = new Date(contact.datum), // Kapcsolatfelvétel ideje Date objektum.
                 createDate = new Date(contact.letrehozas_timestamp), // Létrehozás ideje Date objektum.
                 coStr = contactDate, // Kapcsolatfelvétel ideje (ezt jeleníti majd meg.)
                 crStr = createDate; // Létrehozás ideje (ezt jeleníti majd meg).
@@ -163,28 +163,21 @@
                 // Törli a táblázat <tbody> TAG-jének tartalmát.
                 $(self._getSelector("table")).find("tbody").html(null);
                 $.ajax($.extend({}, self._getBaseAjax(), {
-                    data: {
-                        clientId: self.getClientId(), 
-                        method: "refresh"
-                    },
                     method: "GET",
+                    url: self.getAjaxUrl() + self.getClientId() + "/all",
                     success: function(data) {
-                        //data.result = false;
-                        // Ha sikeres az AJAX kérés.
-                        if (data.result === true) {
-                            // Ha van esetnapló bejegyzés, akkor megjeleníti azokat.
-                            if (data.contacts.length > 0) {
-                                $.each(data.contacts, function(index, contact) {
-                                    self._addContactRow(contact);
-                                });
-                            } else {
-                                // Ha nincs, egy "üres" sort szúr be.
-                                self._addEmptyRow("Nincs megjeleníthető kapcsolat!");
-                            }
+                        // Ha van esetnapló bejegyzés, akkor megjeleníti azokat.
+                        if (data.length > 0) {
+                            $.each(data, function(index, contact) {
+                                self._addContactRow(contact);
+                            });
                         } else {
-                            // Ha valamilyen végzetes hiba lépne fel, akkor elrejti, majd megsemmisíti a plugint.
-                            self._fatalError();
+                            // Ha nincs, egy "üres" sort szúr be.
+                            self._addEmptyRow("Nincs megjeleníthető kapcsolat!");
                         }
+                    },
+                    error: function(xhr) {
+                        self._fatalError();
                     }
                 }));
             });
@@ -200,7 +193,7 @@
                         ClientContact: {
                             felvetel_ideje: $(self._getSelector("inputContactDate")).val(),
                             megjegyzes: comment,
-                            esetnaplo_tipus_id: $(self._getSelector("inputTypeId")).val(),
+                            ugyfel_esetnaplo_tipus_id: $(self._getSelector("inputTypeId")).val(),
                             ugyfel_id: self.getClientId()
                         },
                         method: "create"

@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel_statusz">
+        <column>ugyfel_statusz_id</column>
+        <column>nev</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>ugyfel_statusz_aktiv</column>
+        <column>ugyfel_statusz_torolt</column>
+        <row>
+            <value>1</value>
+            <value>Státusz 1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Státusz 2</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>Státusz 3</value>
+            <value>1</value>
+            <value>2</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>Státusz 4</value>
+            <value>100</value>
+            <value>100</value>
+            <value>2014-12-18 08:00:00</value>
+            <value>2014-12-18 08:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+    </table>
+</dataset>

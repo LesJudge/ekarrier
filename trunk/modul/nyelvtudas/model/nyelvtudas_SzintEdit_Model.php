@@ -12,7 +12,7 @@ class Nyelvtudas_SzintEdit_Model extends Admin_Edit_Model
      * @var array
      */
     public $_bindArray=array(
-        'nyelvtudas_szint_nev' => 'TxtNev',
+        'nev' => 'TxtNev',
         'nyelvtudas_szint_aktiv' => 'ChkAktiv',
     );
     /**
@@ -36,7 +36,7 @@ class Nyelvtudas_SzintEdit_Model extends Admin_Edit_Model
         $name->_verify['string']=true;
         $name->_verify['unique']=array(
             'table' => 'nyelvtudas_szint',
-            'field' => 'nyelvtudas_szint_nev',
+            'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
         );
@@ -48,19 +48,19 @@ class Nyelvtudas_SzintEdit_Model extends Admin_Edit_Model
     public function __editData()
     {
         parent::__editData();
-        $query = "SELECT nyelvtudas_szint_modositas_szama, 
-                         nyelvtudas_szint_letrehozas_datum, 
-                         nyelvtudas_szint_modositas_datum, 
+        $query = "SELECT modositas_szama, 
+                         letrehozas_timestamp, 
+                         modositas_timestamp, 
                          nyelvtudas_szint_aktiv AS active,
-                         u1.user_id AS nyelvtudas_szint_letrehozo,
+                         u1.user_id AS letrehozo_id,
                          CONCAT(u1.user_vnev, ' ', u1.user_knev) AS letrehozo_nev,
                          u1.user_fnev AS letrehozo_username, 
-                         u2.user_id AS nyelvtudas_szint_modosito,
+                         u2.user_id AS modosito_id,
                          CONCAT(u2.user_vnev, ' ', u2.user_knev) AS modosito_nev,
                          u2.user_fnev AS modosito_username
                   FROM {$this->_tableName}
-                  LEFT JOIN user AS u1 ON nyelvtudas_szint_letrehozo = u1.user_id
-                  LEFT JOIN user AS u2 ON nyelvtudas_szint_modosito = u2.user_id
+                  LEFT JOIN user AS u1 ON letrehozo_id = u1.user_id
+                  LEFT JOIN user AS u2 ON modosito_id = u2.user_id
                   WHERE nyelvtudas_szint_id = " . (int)$this->modifyID . " LIMIT 1";
         $data = $this->_DB->prepare($query)->query_select()->query_fetch_array();
         return $data;
@@ -70,9 +70,9 @@ class Nyelvtudas_SzintEdit_Model extends Admin_Edit_Model
      */
     public function __update()
     {
-        parent::__update(',nyelvtudas_szint_modositas_datum = NOW()
-                          ,nyelvtudas_szint_modositas_szama = nyelvtudas_szint_modositas_szama + 1
-                          ,nyelvtudas_szint_modosito = ' . UserLoginOut_Controller::$_id);
+        parent::__update(',modositas_timestamp = NOW()
+                          ,modositas_szama = modositas_szama + 1
+                          ,modosito_id = ' . UserLoginOut_Controller::$_id);
     }
     /**
      * Rekord létrehozása.
@@ -80,6 +80,6 @@ class Nyelvtudas_SzintEdit_Model extends Admin_Edit_Model
     public function __insert()
     {
         $userId = UserLoginOut_Controller::$_id;
-        parent::__insert(',nyelvtudas_szint_letrehozo = ' . $userId . ', nyelvtudas_szint_modosito = ' . $userId);
+        parent::__insert(',letrehozo_id = ' . $userId . ', modosito_id = ' . $userId);
     }
 }

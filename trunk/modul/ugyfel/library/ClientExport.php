@@ -170,7 +170,7 @@ class ClientExport implements ClientIOExportElementInterface
     
     public function getIOAttributeMegvmunka()
     {
-        return $this->bitValueToString($this->client->labormarket->megvaltozott_mkepessegu);
+        return $this->bitValueToString($this->client->labormarket->megvaltozott_munkakepessegu);
     }
     
     public function getIOAttributeGyesgyed()
@@ -193,7 +193,7 @@ class ClientExport implements ClientIOExportElementInterface
      */
     public function getIOAttributeProgramInformation($programInformation)
     {
-        return $programInformation->program_informacio_nev;
+        return $programInformation->nev;
     }
     
     public function getIOSourceProgramInformation()
@@ -276,7 +276,7 @@ class ClientExport implements ClientIOExportElementInterface
      */
     public function getIOAttributeSzolgaltatas($service)
     {
-        return $service->szolgaltatas_nev;
+        return $service->nev;
     }
     /**
      * Visszatér az ügyfelet érdeklő szolgáltatásokkal.
@@ -314,7 +314,7 @@ class ClientExport implements ClientIOExportElementInterface
      */
     public function getIOAttributeLanguage($knowledge)
     {
-        return $knowledge->language->nyelvtudas_nyelv_nev;
+        return $knowledge->language->nev;
     }
     /**
      * Visszatér az ügyfélhez tartozó nyelvtudásokkal.
@@ -331,7 +331,7 @@ class ClientExport implements ClientIOExportElementInterface
      */
     public function getIOAttributeNyelvvizsgatipus($knowledge)
     {
-        return $knowledge->level->nyelvtudas_szint_nev;
+        return $knowledge->level->nev;
     }
     
     public function getIOAttributeKategoria($kategoria)
@@ -360,7 +360,7 @@ class ClientExport implements ClientIOExportElementInterface
     
     public function getIOAttributeHozzajarul()
     {
-        return $this->bitValueToString($this->client->projectinformation->hozjarul_munkakozv);
+        return $this->bitValueToString($this->client->projectinformation->hozzajarul_a_munkakozvetiteshez);
     }
     
     public function getIOAttributeMobilitas()
@@ -374,7 +374,7 @@ class ClientExport implements ClientIOExportElementInterface
      */
     public function getIOAttributeMunkarend($workSchedule)
     {
-        return $workSchedule->munkarend_nev;
+        return $workSchedule->nev;
     }
     
     public function getIOSourceMunkarend()

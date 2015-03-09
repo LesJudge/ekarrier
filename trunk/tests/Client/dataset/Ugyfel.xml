@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="ugyfel">
+        <column>ugyfel_id</column>
+        <column>munkakor_kategoria</column>
+        <column>munkaba_allas_allapot</column>
+        <column>vegzettseg_id</column>
+        <column>email</column>
+        <column>vezeteknev</column>
+        <column>keresztnev</column>
+        <column>anyja_neve</column>
+        <column>nem</column>
+        <column>telefonszam_vezetekes</column>
+        <column>telefonszam_mobil1</column>
+        <column>telefonszam_mobil2</column>
+        <column>user_hirlevel</column>
+        <column>kapcsolatfelvetel_ideje</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>ugyfel_aktiv</column>
+        <column>ugyfel_torolt</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>tesztugyfel1@ekarrier.hu</value>
+            <value>Teszt</value>
+            <value>Ügyfél 1</value>
+            <value>Teszt Mária</value>
+            <value>male</value>
+            <value>3601123456</value>
+            <value>36011234567</value>
+            <value>36011234568</value>
+            <value>0</value>
+            <null />
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-15 08:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>tesztugyfel2@ekarrier.hu</value>
+            <value>Teszt</value>
+            <value>Ügyfél 2</value>
+            <value>Teszt Aranka</value>
+            <value>female</value>
+            <value>3602123456</value>
+            <value>36021234567</value>
+            <value>36021234568</value>
+            <value>0</value>
+            <null />
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-15 09:00:00</value>
+            <value>0000-00-00 00:00:00</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>tesztugyfel3@ekarrier.hu</value>
+            <value>Teszt</value>
+            <value>Ügyfél 3 (Nem látható)</value>
+            <value>Teszt Erzsébet</value>
+            <value>male</value>
+            <value>3603123456</value>
+            <value>36031234567</value>
+            <value>36031234568</value>
+            <value>0</value>
+            <null />
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-15 10:00:00</value>
+            <value>2014-12-15 11:00:00</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>tesztugyfel4@ekarrier.hu</value>
+            <value>Teszt</value>
+            <value>Ügyfél 4 (Törölt)</value>
+            <value>Teszt Gerda</value>
+            <value>female</value>
+            <value>3604123456</value>
+            <value>36041234567</value>
+            <value>36041234568</value>
+            <value>0</value>
+            <null />
+            <value>1</value>
+            <value>1</value>
+            <value>2014-12-15 11:00:00</value>
+            <value>2014-12-15 11:10:00</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

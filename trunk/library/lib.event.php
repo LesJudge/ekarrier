@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Event
  * 
@@ -41,5 +40,3 @@ class Event {
         return array("name" => $added_name . $this->_name, "value" => $this->_value);
     }
 }
-
-?>

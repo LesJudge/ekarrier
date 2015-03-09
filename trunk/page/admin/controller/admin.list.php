@@ -1,6 +1,4 @@
 <?php
-include_once "page/all/controller/page.list.php";
-include_once "page/admin/model/admin.list_model.php";
 /**
  * Admin lista
  * 
@@ -208,4 +206,3 @@ abstract class Admin_List extends Page_List {
         $this->onClick_Rendez();
     }
 }
-?>

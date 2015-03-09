@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="nyelvtudas_szint">
+        <column>nyelvtudas_szint_id</column>
+        <column>nev</column>
+        <column>letrehozo_id</column>
+        <column>modosito_id</column>
+        <column>letrehozas_timestamp</column>
+        <column>modositas_timestamp</column>
+        <column>modositas_szama</column>
+        <column>nyelvtudas_szint_aktiv</column>
+        <column>nyelvtudas_szint_torolt</column>
+        <row>
+            <value>1</value><!-- nyelvtudas_szint_id -->
+            <value>Alapfokú</value><!-- nev -->
+            <value>1</value><!-- letrehozo_id -->
+            <value>1</value><!-- modosito_id -->
+            <value>2015-02-12 22:00:00</value><!-- letrehozas_timestamp -->
+            <value>0000-00-00 00:00:00</value><!-- modositas_timestamp -->
+            <value>0</value><!-- modositas_szama -->
+            <value>1</value><!-- nyelvtudas_szint_aktiv -->
+            <value>0</value><!-- nyelvtudas_szint_torolt -->
+        </row>
+        <row>
+            <value>2</value><!-- nyelvtudas_szint_id -->
+            <value>Középfokú</value><!-- nev -->
+            <value>1</value><!-- letrehozo_id -->
+            <value>1</value><!-- modosito_id -->
+            <value>2015-02-12 22:10:00</value><!-- letrehozas_timestamp -->
+            <value>0000-00-00 00:00:00</value><!-- modositas_timestamp -->
+            <value>0</value><!-- modositas_szama -->
+            <value>1</value><!-- nyelvtudas_szint_aktiv -->
+            <value>0</value><!-- nyelvtudas_szint_torolt -->
+        </row>
+    </table>
+</dataset>

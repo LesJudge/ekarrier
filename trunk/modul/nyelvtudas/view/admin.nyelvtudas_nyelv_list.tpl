@@ -29,22 +29,22 @@ $(function() { {$FormScript}
                 <th class="checkers"><input type="checkbox" class="select_row" name="{$SelRow.name}[{$lista.ID}]" value="{$lista.ID}"/></th>
                 <td class="align_left"><a href="{$APP_LINK}/edit/{$lista.ID}{$LANG_PARAM}" title="Módosítás">{$lista.elso}</a></td>
                 <td class="align_left center">{$lista.letrehozo_nev}</td>
-                <td class="align_left center">{$lista.nyelvtudas_nyelv_letrehozas_datum}</td>
+                <td class="align_left center">{$lista.letrehozas_timestamp}</td>
                 <td class="align_left center">
-                    {if $lista.nyelvtudas_nyelv_modositas_szama gt 0}
+                    {if $lista.modositas_szama gt 0}
                     {$lista.modosito_nev}
                     {else}
                     Nem lett módosítva!
                     {/if}
                 </td>
                 <td class="align_left center">
-                    {if $lista.nyelvtudas_nyelv_modositas_szama gt 0}
-                    {$lista.nyelvtudas_nyelv_modositas_datum}    
+                    {if $lista.modositas_szama gt 0}
+                    {$lista.modositas_timestamp}    
                     {else}
                     Nem lett módosítva!
                     {/if}
                 </td>
-                <td class="align_left center">{$lista.nyelvtudas_nyelv_modositas_szama}</td>
+                <td class="align_left center">{$lista.modositas_szama}</td>
                 <td class="align_left center">
                 {if $lista.Aktiv}
                 <button id="statusz_{$for_id}" title="Visszavonás" class="statusz" onclick="return confirmBox('statusz_{$for_id}', 'Biztosan visszavonja az elemet', 'Visszavonja a(z) <strong>{$lista.elso}</strong> tételt?');" name="{$BtnUnpublish}" value="{$lista.ID}"><span class="ui-icon ui-icon-locked">Visszavonás</span></button>

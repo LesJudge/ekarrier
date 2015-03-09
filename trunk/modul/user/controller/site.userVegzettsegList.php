@@ -1,5 +1,4 @@
 <?php
-require 'page/all/controller/page.list.php';
 require 'modul/seo/model/seo_Site_Model.php';
 /**
  * @property User_Vegzettseg_SiteList_Model $_model
@@ -25,6 +24,8 @@ class UserVegzettsegList_Site_Controller extends Page_List
 
     public function __construct()
     {
+        //var_dump($_REQUEST);
+        //exit;
         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         $this->__loadModel('_Vegzettseg_SiteList');
         $this->_model->listWhere['ugyfel_id'] = 'ugyfel_attr_vegzettseg.ugyfel_id = ' . $clientId;

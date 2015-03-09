@@ -56,7 +56,11 @@ class nyelv_Translate_Model extends Model {
     }
     
     public function translateFormMessage(){
-    	$obj = $this->getSzavak("9998");
+        /**
+         * Módosítva: 2015-02-19
+         */
+    	//$obj = $this->getSzavak("9998");
+    	$obj = $this->getSzavak(0);
         while($szo = $obj->query_fetch_array()){
         	Rimo::$_config->FORM_ERROR[$szo["nyelv_szotar_azon"]] = $szo["nyelv_szotar_szo"];
         }

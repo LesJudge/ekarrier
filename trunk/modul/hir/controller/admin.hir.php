@@ -1,6 +1,4 @@
 <?php
-include_once "page/admin/controller/admin.list.php";
-
 class Hir_Admin_Controller extends Admin_List {
     public $_name = "HirList";
     

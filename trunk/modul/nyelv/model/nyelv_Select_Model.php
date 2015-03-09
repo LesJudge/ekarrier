@@ -37,7 +37,15 @@ class nyelv_Select_Model extends Model {
     
     public function modifyDefaultLang(){
         $var = Rimo::$_config->NYELV_VAR;
-        if($_REQUEST["default_nyelv"]>0 AND array_key_exists($_REQUEST["default_nyelv"],$this->nyelvek)){
+        /**
+         * Módosítva: 2015-02-10
+         */
+        //if($_REQUEST["default_nyelv"]>0 AND array_key_exists($_REQUEST["default_nyelv"],$this->nyelvek)){
+        if(
+            (array_key_exists('default_nyelv', $_REQUEST) && $_REQUEST['default_nyelv'] > 0) 
+            && 
+            array_key_exists($_REQUEST['default_nyelv'], $this->nyelvek)
+        ) {
             $_SESSION["NYELV_ID"] = $_REQUEST["default_nyelv"];
         }
         elseif(!isset($_SESSION["NYELV_ID"])){

@@ -11,7 +11,7 @@ class Beallitas_PrograminformacioEdit_Model extends Admin_Edit_Model
      * @var array
      */
     public $_bindArray=array(
-        'program_informacio_nev' => 'TxtNev',
+        'nev' => 'TxtNev',
         'has_field' => 'ChkField',
         'program_informacio_aktiv' => 'ChkAktiv',
     );
@@ -36,7 +36,7 @@ class Beallitas_PrograminformacioEdit_Model extends Admin_Edit_Model
         $name->_verify['string']=true;
         $name->_verify['unique']=array(
             'table' => 'program_informacio',
-            'field' => 'program_informacio_nev',
+            'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
         );

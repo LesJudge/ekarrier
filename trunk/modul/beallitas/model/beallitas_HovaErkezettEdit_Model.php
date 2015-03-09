@@ -5,14 +5,14 @@ class Beallitas_HovaErkezettEdit_Model extends Admin_Edit_Model
      * Tábla neve.
      * @var string
      */
-    public $_tableName = 'hova_erkezett';
+    public $_tableName = 'karrierpont';
     /**
      * Értékek, melyeket az itemekhez rendel.
      * @var array
      */
     public $_bindArray=array(
-        'hova_erkezett_nev' => 'TxtNev',
-        'hova_erkezett_aktiv' => 'ChkAktiv',
+        'nev' => 'TxtNev',
+        'karrierpont_aktiv' => 'ChkAktiv',
     );
     /**
      * Nyelv ellenőrzés felülírása, kikerülése. Erre azért van szükség, mert a táblában nincs nyelv_id mező.
@@ -34,8 +34,8 @@ class Beallitas_HovaErkezettEdit_Model extends Admin_Edit_Model
         $name->_verify['string']=true;
         $name->_verify['string']=true;
         $name->_verify['unique']=array(
-            'table' => 'hova_erkezett',
-            'field' => 'hova_erkezett_nev',
+            'table' => 'karrierpont',
+            'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
         );
@@ -50,7 +50,7 @@ class Beallitas_HovaErkezettEdit_Model extends Admin_Edit_Model
         $query = "SELECT modositas_szama, 
                          letrehozas_timestamp, 
                          modositas_timestamp, 
-                         hova_erkezett_aktiv AS active,
+                         karrierpont_aktiv AS active,
                          u1.user_id AS letrehozo_id,
                          CONCAT(u1.user_vnev, ' ', u1.user_knev) AS letrehozo_nev,
                          u1.user_fnev AS letrehozo_username, 
@@ -60,7 +60,7 @@ class Beallitas_HovaErkezettEdit_Model extends Admin_Edit_Model
                   FROM {$this->_tableName}
                   LEFT JOIN user AS u1 ON letrehozo_id = u1.user_id
                   LEFT JOIN user AS u2 ON modosito_id = u2.user_id
-                  WHERE hova_erkezett_id = " . (int)$this->modifyID . " LIMIT 1";
+                  WHERE karrierpont_id = " . (int)$this->modifyID . " LIMIT 1";
         $data = $this->_DB->prepare($query)->query_select()->query_fetch_array();
         return $data;
     }

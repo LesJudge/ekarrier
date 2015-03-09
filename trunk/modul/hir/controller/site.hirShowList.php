@@ -1,5 +1,5 @@
 <?php
-include_once "page/all/controller/page.list.php";
+
 class HirShowList_Site_Controller extends Page_List {
     public $_name = "HirShowList";
     

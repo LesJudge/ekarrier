@@ -32,9 +32,7 @@
 }
 </style>
 
-<!-- sheepIt Form -->
 <div id="sheepItForm">
-        <!-- Form template-->
         <div id="sheepItForm_template">
                 <div class="sheepit-item tevekenyseg-sheepit-item">
                         <div class="sheepit-item-head">
@@ -70,15 +68,10 @@
                         <div class="clear"></div>
                 </div><div class="clear"></div>
         </div>
-        <!-- /Form template-->
-
-        <!-- No forms template -->
         <div id="sheepItForm_noforms_template">
                 <div class="ui-state-error ui-corner-all" style="padding:5px 10px;">Ehhez a munkakörhöz jelenleg nem tartozik egy tevékenység sem!</div>
         </div>
-        <!-- /No forms template-->
 
-        <!-- Controls -->
         <div id="sheepItForm_controls">
                 <div id="sheepItForm_add">
                         <a>
@@ -87,6 +80,4 @@
                         </a>
                 </div>
         </div>
-        <!-- /Controls -->
 </div>
-<!-- /sheepIt Form -->

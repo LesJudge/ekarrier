@@ -1,13 +1,18 @@
 <?php
-error_reporting(E_ERROR);
+ob_start();
+require 'vendor/autoload.php';
+error_reporting(E_ALL ^ E_DEPRECATED);
+//error_reporting(E_ALL);
 ini_set("display_errors",1);
 require_once 'RimoConfig.php';
 require_once 'Rimo.php';
-$siteConfig = require 'site.config.php';
 Rimo::init();
-Rimo::getConfig()->set($siteConfig);
+Rimo::$pimple->register(new \Uniweb\Library\DependencyInjection\Smarty\SmartyProvider);
+Rimo::initSiteFrame();
+Rimo::getConfig()->set(require 'site.config.php');
 //define('', 'Nincs megjelenítendő elem!');
 //include_once 'page/admin/lang/'.Rimo::$_config->ADMIN_NYELV_VAR.'.php';
+include_once 'page/admin/lang/hu.php';
 
 
 try {
@@ -15,14 +20,22 @@ try {
     Rimo::$translate=$translate;
     $translate->translateFormMessage();
 
-    Rimo::__loadSiteElement('user', 'loginout');
-    Rimo::__loadSiteElement('menu', 'show');
-    Rimo::__loadSiteElement('hirlevel', 'feliratkozas');
+    //try {
+        Rimo::__loadSiteElement('user', 'loginout');
+        Rimo::__loadSiteElement('menu', 'show');
+        Rimo::__loadSiteElement('hirlevel', 'feliratkozas');
+    //} catch (Exception $e) {
+    //    echo '<pre>', print_r($e->getTrace(), true), '</pre>';
+    //    echo $e->getMessage();
+    //}
 
     $menu=Rimo::__loadPublic('model','menu','menu');
     $footerMenu=$menu->loadTree(3, UserLoginOut_Site_Controller::$_rights['jogcsoport_where']);
     Rimo::$_site_frame->assign('footerMenu',$footerMenu);
-    
+    /**
+     * @todo Gergő - Kérlek, ellenőrizd, hogy így is jó-e!
+     */
+    /*
     if(!$_SESSION['type']){
         if($_REQUEST['type']){
             $_SESSION['type']=$_REQUEST['type'];
@@ -32,8 +45,14 @@ try {
         Rimo::$_config->MASTER_TPL = 'page/all/view/page.ma.index.tpl';
        
     }
-    
-    //echo $_REQUEST['m'];
+    */
+    if (!array_key_exists('type', $_SESSION) && array_key_exists('type', $_REQUEST)) {
+        $_SESSION['type'] = $_REQUEST['type'];
+    }
+    if ((isset($_SESSION['type']) && $_SESSION['type']=='ma')) {
+        Rimo::$_config->MASTER_TPL = 'page/all/view/page.ma.index.tpl';
+       
+    }
     
     if($_REQUEST['m']) {
         Rimo::__loadModul($_REQUEST['m']);
@@ -67,16 +86,30 @@ if (Rimo::$_config->MASTER_TPL === 'page/all/view/page.index.tpl') {
 }
 
 
-if(!$_SESSION['type'] || $_REQUEST['type']=='cl'){
+/**
+ * @todo Gergő - Kérlek, nézd meg, hogy így is megfelelően működik-e!
+ */
+//if(!$_SESSION['type'] || $_REQUEST['type']=='cl'){
+if (
+    (!array_key_exists('type', $_SESSION) || !$_SESSION['type']) 
+    || 
+    (array_key_exists('type', $_REQUEST) && $_REQUEST['type']=='cl')
+) {
+    /*
     require 'modul/infobox/model/infobox_Site_Model.php';
-    $lId=Rimo::$_config->SITE_NYELV_ID;
-    $munkavallaloInfo=infobox_Site_Model::model()->findInfoboxItemByKey('siteTypeSelectMunkavallInfobox',$lId);
+    $lId = Rimo::$_config->SITE_NYELV_ID;
+    $munkavallaloInfo = infobox_Site_Model::model()->findInfoboxItemByKey('siteTypeSelectMunkavallInfobox', $lId);
     Rimo::$_site_frame->assign('munkavallaloInfo',$munkavallaloInfo);
-    $munkaltatoInfo=infobox_Site_Model::model()->findInfoboxItemByKey('siteTypeSelectMunkaltatoInfobox',$lId);
-    Rimo::$_site_frame->assign('munkaltatoInfo',$munkaltatoInfo);
+    $munkaltatoInfo = infobox_Site_Model::model()->findInfoboxItemByKey('siteTypeSelectMunkaltatoInfobox', $lId);
+    Rimo::$_site_frame->assign('munkaltatoInfo', $munkaltatoInfo);
     Rimo::$_config->MASTER_TPL="page/all/view/page.select.tpl";
+     * 
+     */
     
-    if($_REQUEST['type']=='cl'){
+    /**
+     * @todo Gergő - Kérlek, nézd meg, hogy így is megfelelően működik-e!
+     */
+    if (array_key_exists('type', $_REQUEST) && $_REQUEST['type'] == 'cl' && array_key_exists('type', $_SESSION)) {
         unset($_SESSION['type']);
     }
 }
@@ -98,8 +131,10 @@ if(UserLoginOut_Site_Controller::$_id > 0){
 */
 
 
-
 // Változók átadása a site frame-nek, site renderelése.
-Rimo::$_site_frame->assignByRef('lang', $translate->translate(9999));
+// Strict standars error.
+//Rimo::$_site_frame->assignByRef('lang', $translate->translate(9999));
+Rimo::$_site_frame->assign('lang', $translate->translate(9999));
 Rimo::$_site_frame->assign('FBLike',Rimo::$_config->FB_LIKEBOX);
 Rimo::$_site_frame->display(Rimo::$_config->MASTER_TPL);
+ob_flush();

@@ -1,0 +1,6 @@
+#client-projects-table tr td {
+    width: 50%;
+}
+#client-projects-table tr td input[type="text"] {
+    width: 96%;
+}

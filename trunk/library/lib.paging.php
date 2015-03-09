@@ -108,11 +108,22 @@ class Paging {
      * @return $actual_page|1
      */
     private function get_activ_page() {
-        $paging_var = $this->_action_type[$this->paging_url_var];
-        $actual_page = (isset($paging_var) && $paging_var > 0) ? $paging_var : 1;
+        /**
+         * Notice...
+         * Módosítva: 2015-01-30
+         */
+        //$paging_var = $this->_action_type[$this->paging_url_var];
+        //$actual_page = (isset($paging_var) && $paging_var > 0) ? $paging_var : 1;
+        $paging_var = array_key_exists($this->paging_url_var, $this->_action_type) ? (int)$this->_action_type[$this->paging_url_var] : 0;
+        $actual_page = $paging_var > 0 ? $paging_var : 1;
         $max_page = $this->get_number_of_page();
-        if ($actual_page > $max_page and $max_page > 0)
+        /**
+         * CSFix, mert bántotta a szemem.
+         * Módosítva: 2015-01-30
+         */
+        if ($actual_page > $max_page and $max_page > 0) {
             $actual_page = $max_page;
+        }
         return $actual_page;
     }
 
@@ -161,7 +172,12 @@ class Paging {
 
         $limit = $this->paging_number_neg + $this->paging_number_poz;
         $_paginate["page"][$aktual_page] = $this->add_element($aktual_page);
-
+        
+        /**
+         * Legalább definiálva legyen már, hogy ne dobjon rá notice-t...
+         * Módosítva: 2015-01-30
+         */
+        $muvelet = null;
         while ($muvelet < $this->paging_number_neg) {
             if ($page_neg > 1) {
                 $page_neg--;
@@ -197,8 +213,12 @@ class Paging {
     private function add_element($page_id) {
         $element["value"] = $page_id;
         $element["item_start"] = (($page_id - 1) * $this->_limit_per_page) + 1;
-        $element["item_end"] = (($page_id * $this->_limit_per_page) <= $this->szum_items) ? ($page_id * $this->
-            limit_step) : $this->szum_items;
+        /*
+         * Módosítva: 2015-01-30
+         */
+        //$element["item_end"] = (($page_id * $this->_limit_per_page) <= $this->szum_items) ? ($page_id * $this->
+        //    limit_step) : $this->szum_items;
+        $element["item_end"] = (($page_id * $this->_limit_per_page) <= $this->szum_items) ? 0 : $this->szum_items;
         $element["activ"] = ($page_id == $this->get_activ_page());
         return $element;
     }

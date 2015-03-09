@@ -1,11 +1,8 @@
 <?php
-include_once "library/lib.event.php";
-include_once "library/lib.model.php";
-include_once "library/lib.item_verify.php";
-include_once 'library/lib.static.php';
-
 /**
  * RimoController
+ * 
+ * @property Smarty $_view Nézet.
  * 
  * @package FrameWork
  * @subpackage Library
@@ -397,13 +394,30 @@ abstract class RimoController {
      * @catch Exception_Item_error Elhelyezi a view-ba (FormError)
      */
     public function __run() {
-        $this->_view = new Smarty;
+        //$this->_view = new Smarty;
+        //$this->_view->compile_dir = 'cache/smarty';
+        
+        $this->_view = Rimo::$pimple['smarty'];
         $this->_view->assign("APP_PATH", Rimo::$_config->APP_PATH);
-        $this->_view->assign("APP_LINK", Rimo::$_config->APP_LINK[$_REQUEST["al"]]);
+        
+        //var_dump(Rimo::$_config->APP_PATH);
+        //var_dump($_REQUEST['al']);
+        //echo '<br />';
+        /**
+         * Undefined index.
+         * Módosítva: 2015-01-30
+         */
+        //$this->_view->assign("APP_LINK", Rimo::$_config->APP_LINK[$_REQUEST["al"]]);
+        $appLink = array();
+        if (isset(Rimo::$_config->APP_LINK) && isset($_REQUEST['al']) && isset(Rimo::$_config->APP_LINK[$_REQUEST['al']])) {
+            $appLink = Rimo::$_config->APP_LINK[$_REQUEST['al']];
+        }
+        $this->_view->assign("APP_LINK", $appLink);
         $this->_view->assign("DOMAIN_ADMIN", Rimo::$_config->DOMAIN_ADMIN);
         $this->_view->assign("DOMAIN", Rimo::$_config->DOMAIN);
         $this->_translate = Rimo::getTranslate();
-        $this->_view->assignByRef("lang", $this->_translate->translate(get_class($this)));
+        //$this->_view->assignByRef("lang", $this->_translate->translate(get_class($this)));
+        $this->_view->assign("lang", $this->_translate->translate(get_class($this)));
         try {
             $this->__runParams();
             $this->__runEvents();
@@ -432,5 +446,3 @@ abstract class RimoController {
     public function __show(){
     }
 }
-
-?>

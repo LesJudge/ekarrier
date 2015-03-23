@@ -290,7 +290,7 @@ class Szektorteszt_Show_Model extends Model {
        try
         {
             $query = "
-                SELECT kompetencia.kompetencia_nev, kompetencia.kompetencia_tartalom, szektor.szektor_id, kompetencia.kompetencia_id
+                SELECT kompetencia.kompetencia_nev, kompetencia.kompetencia_tartalom, szektor.szektor_id, kompetencia.kompetencia_id, kompetencia_link
                 FROM kompetencia
                 INNER JOIN szektor_kompetencia ON kompetencia.kompetencia_id = szektor_kompetencia.kompetencia_id
                 INNER JOIN szektor ON szektor.szektor_id = szektor_kompetencia.szektor_id
@@ -310,6 +310,7 @@ class Szektorteszt_Show_Model extends Model {
        foreach ($result as $key => $value) {
            $this->setKompetenciak($key,"szektorid", $result[$key]['szektor_id']);
            $this->setKompetenciak($key,"nev", $result[$key]['kompetencia_nev']);
+           $this->setKompetenciak($key,"link", $result[$key]['kompetencia_link']);
            $this->setKompetenciak($key,"tartalom", $result[$key]['kompetencia_tartalom']);
            $this->setKompetenciak($key,"kompetenciaid", $result[$key]['kompetencia_id']);
        }
@@ -340,9 +341,10 @@ class Szektorteszt_Show_Model extends Model {
             foreach ($kompetenciak as $key1 => $value1){
                 if($kompetenciak[$key1]['szektorid']==$MainResKat[$key]['szektor_id']){
                     $kompArr[$kompetenciak[$key1]['kompetenciaid']]="
-                                <div id='opener".$key1."' class='opener'>".$kompetenciak[$key1]["nev"]."</div><input type='hidden' name='".$kompetenciak[$key1]['kompetenciaid']."' value='".$kompetenciak[$key1]['kompetenciaid']."'>
+                                    <a href='".Rimo::$_config->DOMAIN."kompetenciak/".$kompetenciak[$key1]["link"]."'>".$kompetenciak[$key1]["nev"]."</a>
+                                <!--div id='opener".$key1."' class='opener'>".$kompetenciak[$key1]["nev"]."</div><input type='hidden' name='".$kompetenciak[$key1]['kompetenciaid']."' value='".$kompetenciak[$key1]['kompetenciaid']."'>
                                 <div id='opener".$key1."_nev' class='hidden'>".$kompetenciak[$key1]["nev"]."</div>
-                                <div id='opener".$key1."_tartalom' class='hidden'>".$kompetenciak[$key1]["tartalom"]."</div>"
+                                <div id='opener".$key1."_tartalom' class='hidden'>".$kompetenciak[$key1]["tartalom"]."</div-->"
                             ;
                  }
             }

@@ -28,7 +28,8 @@
 	<div class="head_content site_center"> 		
 		<span class="headSlogen"></span>
 		<a href="{$DOMAIN}"><img src="images/site/site_logo.png" alt="" class="site_logo" /></a>				
-		<div class="main_menu"> {$Menu_23} </div>							
+		<div class="main_menu"> {$Menu_23} </div>
+                <div class="main_menu" style="margin-top: 30px !important"> {$Menu_46}</div>
 		<div class="box-login-itmes">			
 			<div class="page-nav-cont">
 				<!--<a href="{$DOMAIN}?type=mv" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkavállaló</a>
@@ -93,81 +94,23 @@
 		</div> 			
 	</div>
 </div>
-	
-<div class="site_slider_container">
-	<div class="site_center"> 	
-		<div class="banner-top">		
-			{if $felsoBannerList}			
-			<ul class="bxslider">
-			{foreach from=$felsoBannerList key=banner_for_id item=banner_lista}
-				{if $banner_lista.banner_kep_nev}
-				<li>
-					<a href="{$banner_lista.banner_link}">
-						<img src="{$DOMAIN}pic/banner/{$banner_lista.banner_kep_nev}_946x325_1" alt=" " />
-					</a>
-				</li>
-				{/if}
-			{/foreach}						 		  
-			</ul>
-			{/if}
-			<div class="banner-bottom"><span class="stat-item"> Összes - <span>{$countAllClients[0]['db']}</span></span> <span class="stat-item"> Dolgozik - <span>{$countWorkingClients[0]['db']}</span></span>	</div>	
-			<div class="clear"></div> 		
-		</div>		
-	</div>
-</div>			        
+			        
         
 <div class="site_body_container">	
 	<div class="site_content site_center">                 
-		<div class="column-1">
+		
 			{$ErrorMessage}
 			<div class="mainContent">
 				<h1>{$PageName}</h1>
-				{$Content}
+                                <br/><br/><br/>
+				<a class="btn btn-sm btn-primary" href="{$DOMAIN}{$compRajzID}/">Álláshirdetés feltöltése</a><br/>
+                                <a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciarajz-kereso/">Kompetenciarajz böngésző</a><br/>
+                                <a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/regisztracio/">Regisztrálok saját oldal kialakításáért</a><br/>
+                                <a class="btn btn-sm btn-primary" href="{$DOMAIN}szolgaltatasok/">Szolgáltatásaink</a>
+
 				<div class="clear"></div>
 			</div>
 			
-			<div class="boxType boxType-2">
-				<h2>{$hirek}Legutóbbi hírek</h2>
-				{foreach from=$newHirList key=hir_for_id item=hir_lista name=hir_lista}
-				<div class="newsList">						
-					<a href="hirek/{$hir_lista.hir_link}" class="newsList-frame"><img class="newsList-img" alt="{$hir_lista.hir_cim}" src="{if $hir_lista.hir_kep_nev}{$DOMAIN}pic/hir/{$hir_lista.hir_kep_nev}_104x68{else}images/site/no_image.jpg{/if}" /></a>
-					<div class="newsList-data">
-						<a href="hirek/{$hir_lista.hir_link}" class="newsList-title">{$hir_lista.hir_cim}</a>
-						<div class="newsList-lead">{$hir_lista.hir_leiras_min}</div>
-						<a href="hirek/{$hir_lista.hir_link}" class="newsList-next">Részletek</a>
-					</div>
-					<div class="clear"></div>
-				</div>                         
-				{/foreach}
-			</div>	
-			<div class="clear"></div>		
-		</div>
-        <div class="column-2">
-			
-			<div class="boxForm">					
-				<h3 class="boxForm-form-title">Keresés munkakör szerint</h3>
-                                							
-				<form action="" method="post" name="SearchForm" id="SearchForm" class="boxForm-form">	
-					<div class="form-row">        
-						<input type="text" name="searchWord" value="" class="text labelInField" />
-						<div class="clear"></div>
-                                                {foreach from=$munkakorResult key=key item=val}
-                                                <div>{$val['munkakor_nev']} ({$val['db']} találat)</div>
-                                                {/foreach}
-					</div>
-					<div class="form-row form-row-submit">
-						<button class="submit" id="BtnSearchMunkakor" name="BtnSearchMunkakor" type="submit" value="Keresés">Keresés</button>
-						<div class="clear"></div>   
-					</div>
-                                    
-					<div class="clear"></div>
-				
-                                </form> 
-                               
-			</div>	
-				
-		</div>
-                        
 		<div class="clear"></div>	
       </div>	
 </div>				

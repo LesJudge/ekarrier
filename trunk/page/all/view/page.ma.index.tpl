@@ -31,7 +31,8 @@ fjs.parentNode.insertBefore(js, fjs);
 	<div class="head_content site_center"> 		
 		<span class="headSlogen"></span>
 		<a href="{$DOMAIN}"><img src="images/site/site_logo.png" alt="" class="site_logo" /></a>				
-		<div class="main_menu"> {$Menu_23} </div>		
+		<div class="main_menu"> {$Menu_23} </div>
+                <div class="main_menu" style="margin-top: 30px !important"> {$Menu_46}</div>
 		<div class="box-login-itmes">	
 			<div class="page-nav-cont">
 				<!--<a href="{$DOMAIN}?type=mv" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkavállaló</a>
@@ -124,7 +125,7 @@ fjs.parentNode.insertBefore(js, fjs);
 					<h1>{$PageName}</h1>
 				{/if}
 				
-				{$kategoriaList}
+				{if $kategoriaList}{$kategoriaList}{/if}
 				
 				{$Content}
 				<div class="clear"></div>

@@ -113,8 +113,8 @@ class Rimo
      */
     public static function __addSession()
     {
-        $session = new Session(static::$_config->getItem('SESSION_NAME'), null);
-        //$session = new Session(static::$_config->getItem('SESSION_NAME'), static::$_config->getItem('SESSION_DIR'));
+        //$session = new Session(static::$_config->getItem('SESSION_NAME'), null);
+        $session = new Session(static::$_config->getItem('SESSION_NAME'), static::$_config->getItem('SESSION_DIR'));
         $session->verify();
     }
     /**

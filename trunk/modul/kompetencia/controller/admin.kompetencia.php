@@ -43,6 +43,36 @@ class Kompetencia_Admin_Controller extends Admin_List
                                 unset($_SESSION[$this->_name]['FilterStatus']);
                                 break;
                 }
+                
+                $filterType=$this->getItemValue('FilterType');
+                switch($filterType)
+                {
+                        case 1:
+                                $this->setWhereInput('tipus != "ugyfel"','FilterType');
+                                break;
+                        case 2:
+                                $this->setWhereInput('tipus = "ugyfel"','FilterType');
+                                break;
+                        default:
+                                unset($_SESSION[$this->_name]['FilterType']);
+                                break;
+                }
+                
+                $filterChecked=$this->getItemValue('FilterChecked');
+                switch($filterChecked)
+                {
+                        case 1:
+                                $this->setWhereInput('checked = 0 AND tipus = "ugyfel"','FilterChecked');
+                                break;
+                        case 2:
+                                $this->setWhereInput('checked = 1 AND tipus = "ugyfel"','FilterChecked');
+                                break;
+                        default:
+                                unset($_SESSION[$this->_name]['FilterChecked']);
+                                break;
+                }
+                
+                
         }
 
 }

@@ -1,11 +1,11 @@
 <?php
 require 'modul/seo/model/seo_Site_Model.php';
-require 'page/admin/controller/admin.list.php';
-require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
+//require 'page/admin/controller/admin.list.php';
 /**
  * @property Munkakor_Site_List_Model $_model Munkakör Site List model.
  * @property Smarty $_view Smarty
  */
+       
 class TevekenysegikorList_Site_Controller extends Admin_List
 {
     public $_name = 'SiteTevekenysegikorList';
@@ -15,28 +15,26 @@ class TevekenysegikorList_Site_Controller extends Admin_List
     {   
         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         $this->__loadModel('_Site_List');
+        
         parent::__construct();
         $this->__addParams($this->_model->_params);
-        $this->__addEvent('BtnAddLink', 'addLink');
-        $this->__addEvent('BtnDeleteLink', 'deleteLink');
         $this->__run();
     }
     
     public function __show()
     {
-       
         parent::__show();
         
-        
-        //$this->_view->assign('tooltips', Rimo::$_config->tooltips);
         $lId = Rimo::$_config->SITE_NYELV_ID;
         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         
-        //Linkek
-        $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
-        $this->_view->assign("linkMode","on");
-        $this->_view->assign("addLinkOption","on");
-        $this->_view->assign("links",$links);
+        if( isset($_GET['oldal'])   || $this->getItemValue('FilterCsoport') > -1 
+                                    || $this->getItemValue('FilterKor') > -1
+                                    || $this->getItemValue('FilterSzektor') > 0
+                                    || $this->getItemValue('FilterPozicio') > 0)
+        {
+            $this->_view->assign("jumpToAnc","1");
+        }
         
         //SEO
         $seo = seo_Site_Model::model()->getSeoItemByKey('tevkorkereso',$lId);
@@ -52,11 +50,10 @@ class TevekenysegikorList_Site_Controller extends Admin_List
     
     public function onClick_Filter()
     {
-        
         //Főkat szűrő
         $filterCsoport = $this->getItemValue('FilterCsoport');
           
-             if(is_null($filterCsoport) || $filterCsoport == '')
+        if(is_null($filterCsoport) || $filterCsoport == '-1')
         {
             unset($_SESSION[$this->_name]['FilterCsoport']);
         }
@@ -68,11 +65,10 @@ class TevekenysegikorList_Site_Controller extends Admin_List
                                 WHERE mk3.baloldal < mk.baloldal AND mk3.jobboldal > mk.jobboldal AND mk3.munkakor_kategoria_aktiv = 1 AND mk3.munkakor_kategoria_torolt = 0 AND mk3.szint = 1) = '.(int)$filterCsoport, 'FilterCsoport');
         } 
         
-        
         //Alkat szűrő
         $filterKor = $this->getItemValue('FilterKor');
           
-             if(is_null($filterKor) || $filterKor == '')
+        if(is_null($filterKor) || $filterKor == '-1')
         {
             unset($_SESSION[$this->_name]['FilterKor']);
         }
@@ -81,12 +77,10 @@ class TevekenysegikorList_Site_Controller extends Admin_List
             $this->setWhereInput('mk.munkakor_kategoria_id = '.(int)$filterKor, 'FilterKor');
         }
         
-        
-        
         //Szektor szűrő
         $filterSzektor = $this->getItemValue('FilterSzektor');
           
-             if(is_null($filterSzektor) || $filterSzektor == '')
+        if(is_null($filterSzektor) || $filterSzektor == '')
         {
             unset($_SESSION[$this->_name]['FilterSzektor']);
         }
@@ -95,20 +89,17 @@ class TevekenysegikorList_Site_Controller extends Admin_List
             $this->setWhereInput('ah.szektor_id IN('.(int)$filterSzektor.')', 'FilterSzektor');
         }
         
-        
         //Poz szűrő
         $filterPozicio = $this->getItemValue('FilterPozicio');
           
-             if(is_null($filterPozicio) || $filterPozicio == '')
+        if(is_null($filterPozicio) || $filterPozicio == '')
         {
             unset($_SESSION[$this->_name]['FilterPozicio']);
         }
         else
         {
             $this->setWhereInput('ah.pozicio_id IN('.(int)$filterPozicio.')', 'FilterPozicio');
-        } 
-        
-        
+        }     
     }
     /*
     protected function getList()
@@ -131,15 +122,5 @@ class TevekenysegikorList_Site_Controller extends Admin_List
     }
     */
     
-    public function onClick_addLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."tevekenysegikor-kereso/");
-        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."tevekenysegikor-kereso/");
-    }
-    
-    public function onClick_deleteLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
-        ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
-    }
 }
+

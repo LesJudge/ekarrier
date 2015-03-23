@@ -53,10 +53,10 @@ class User_SiteEdit_Model extends \AttachableUserModelAbstract
         $hea->_verify['select'] = true;
         $hea->_select_value = $pleaseSelect + $this->getSelectValues(
             'vegzettseg',
-            'vegzettseg_nev',
+            'nev',
             ' AND vegzettseg_aktiv=1 AND vegzettseg_torolt=0',
-            ' ORDER BY vegzettseg_nev ASC',
-            true,
+            ' ORDER BY nev ASC',
+            false,
             $pleaseSelect
         );
         // Nem

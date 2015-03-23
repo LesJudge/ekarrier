@@ -1,5 +1,6 @@
 <script type="text/javascript" src="{$DOAMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script>
+{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
 {if $FormError}
  <div class="info info-error">
     <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
@@ -40,8 +41,12 @@
 				<ul id="allCompSelect" class='sortable1 sortedUL sortedUL-graggable'>
 					{foreach from=$allCompetences item=val}
 					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
-						<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
+						{if $val['tipus'] != 'ugyfel'}
+                                                <div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
 						<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
+                                                {else}
+                                                {$val['kompetencia_nev']}
+                                                {/if}
 					</li>
 					{/foreach}
 				</ul>
@@ -76,6 +81,17 @@
 		<input type="text" id='deleteCompId' name="deleteCompId" value="" hidden="hidden" />
 		<div class="btn-nav-row">
 		<button id='deleteCompSbmt' name="{$BtnDeleteComp}" type="submit" hidden='hidden' class="btn btn-sm btn-primary">Törlés</button>
+		</div>
+	</div>	
+	</form>
+</div>
+                
+<div>
+	<form id="{$FormName}" name="{$FormName}" method="post">
+	<div class="dialog-form">
+		<input type="text" id='addOwnComp' name="addOwnComp" value="" style="width: 200px; float:right"/>
+		<div class="btn-nav-row">
+		<button id='addOwnCompSbmt' name="{$BtnAddOwnComp}" type="submit" class="btn btn-sm btn-primary" style="float:right">Saját kompetencia hozzáadása</button>
 		</div>
 	</div>	
 	</form>

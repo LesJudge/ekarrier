@@ -4,9 +4,9 @@
  * @property Smarty $_view
  */
 require 'modul/seo/model/seo_Site_Model.php';
-require 'modul/infobox/model/infobox_Site_Model.php';
+//require 'modul/infobox/model/infobox_Site_Model.php';
 require "modul/email/site.email.php";
-require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
+
 
 class KompetenciaRajzEdit_Site_Controller extends Page_Edit
 {
@@ -15,12 +15,9 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
         
         public function __construct()
         {
-           
-                
-                $this->__loadModel('_SiteRajzEdit');
                 $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+                $this->__loadModel('_SiteRajzEdit');
                 $this->_model->setClientId($clientId);
-                
                 
                 parent::__construct();
                 $this->__addParams($this->_model->_params);
@@ -29,8 +26,6 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
                 $this->__addEvent('BtnUpdateCompRajz','UpdateCompRajz');
                 $this->__addEvent('BtnDeleteCompRajz','DeleteCompRajz');
                 $this->__addEvent('BtnRequestExpertOpinion','RequestExpertOpinion');
-                $this->__addEvent('BtnAddLink', 'addLink');
-                $this->__addEvent('BtnDeleteLink', 'deleteLink');
                 $this->__run();
         }
         
@@ -38,7 +33,6 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
         {
                 try
                 {
-                       
                         $lId=Rimo::$_config->SITE_NYELV_ID;
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                         
@@ -67,31 +61,16 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
                             $opinions = $this->_model->getOpinionsByCompRajzID($rajzID['kompetenciarajz_id']);
                             $this->_view->assign('opinions',$opinions);
                            
-                            
                         }else // -----  Új Kompetenciarajz
                         {
-                            
-                            
                             $this->_view->assign('compRajzCompetences',$this->_model->findCompetencesByClientId($clientId,$lId));
                             $this->_view->assign('mode','new');
-                            
-                            $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
-                            $this->_view->assign("linkMode","on");
-                            $this->_view->assign("addLinkOption","on");
-                            $this->_view->assign("links",$links);
+ 
                         }
-                        
                         
                             $compRajzok = $this->_model->getAllCompRajz();
                             $this->_view->assign('compRajzok',$compRajzok);
 
-                        
-                        //$question = infobox_Site_Model::model()->findInfoboxItemByKey('competenceDrawQuestionInfobox',$lId);
-                        //$this->_view->assign('question',$question);
-                        
-                        
-                        
-                        
                         $seo=seo_Site_Model::model()->getSeoItemByKey('competenceEdit',$lId);
                         Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
                         Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
@@ -114,7 +93,6 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
             parent::onClick_New();
         }
         
-
         public function onClick_SaveCompRajz()
         {   
             try
@@ -246,24 +224,13 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
 		//$mailer->BodyTPL->assign("email",$this->_params["TxtEmail"]->_value);
 		
 		$mailer->emailFromDB(4);
-		//$mailer->AddAddress($this->_params["TxtEmail"]->_value);
-                $mailer->AddAddress("gazdag.gergo@uniweb.hu");
+		$mailer->AddAddress("gazdag.gergo@uniweb.hu");
 		
 		$mailer->Send();
                 throw new Exception_Form_Message("Kérését elküldtük!");
 
 	}
         
-        public function onClick_addLink() {
-            $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-            ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."kompetenciak/kompetenciarajz-keszites/");
-            ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."kompetenciak/kompetenciarajz-keszites/");
-        }
-    
-        public function onClick_deleteLink() {
-            $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-            ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
-            ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
-        }
+       
 
 }

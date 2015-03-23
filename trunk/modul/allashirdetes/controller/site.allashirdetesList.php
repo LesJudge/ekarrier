@@ -1,5 +1,5 @@
 <?php
-require 'page/admin/controller/admin.list.php';
+//require 'page/admin/controller/admin.list.php';
 require 'modul/allashirdetes/controller/AllashirdetesBaseListController.php';
 require 'modul/seo/model/seo_Site_Model.php';
 /**

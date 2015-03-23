@@ -1,5 +1,5 @@
 <?php
-require 'page/all/controller/page.list.php';
+//require 'page/all/controller/page.list.php';
 /**
  * @property Ceg_AllashirdetesList_Model $_model
  * @property Smarty $_view

@@ -5,15 +5,16 @@ class Kompetencia_Comment_Edit_Model extends Admin_Edit_Model
         public $_tableName='kompetencia_hozzaszolas';
         public $_bindArray=array(
                 'hozzaszolas'=>'TxtTartalom',
-                'kompetencia_hozzaszolas_aktiv'=>'ChkAktiv'
+                'kompetencia_hozzaszolas_aktiv'=>'ChkAktiv',
+                'checked'=>'ChkChecked'
         );
 
         public function __addForm()
         {
                 parent::__addForm();
                 
-                // Tartalom
                 $this->addItem('TxtTartalom')->_verify['string']=true;
+                $this->addItem("ChkChecked")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
 
         }
 

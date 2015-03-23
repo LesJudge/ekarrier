@@ -4,7 +4,7 @@
  * @property Smarty $_view
  */
 require 'modul/seo/model/seo_Site_Model.php';
-require 'modul/infobox/model/infobox_Site_Model.php';
+//require 'modul/infobox/model/infobox_Site_Model.php';
 require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
 class SzektorShow_Site_Controller extends Page_Edit
 {
@@ -19,7 +19,6 @@ class SzektorShow_Site_Controller extends Page_Edit
                 $this->__addParams($this->_model->_params);
                 $this->__addEvent('BtnAddComment', 'addComment');
                 $this->__addEvent('BtnAddLink', 'addLink');
-                $this->__addEvent('BtnDeleteLink', 'deleteLink');
                 $this->__run();
         }
         
@@ -44,21 +43,9 @@ class SzektorShow_Site_Controller extends Page_Edit
                         // Render
                         Rimo::$_site_frame->assign('PageName',$szektor['szektor_nev']);
                         
-                        /*
-                        Rimo::$_site_frame->assign('Indikator',array(
-                                1=>array(
-                                        'nev'=>'Szektor',
-                                        'link'=>Rimo::$_config->DOMAIN.'kompetenciak/'
-                                ),
-                                2=>array(
-                                        'nev'=>$competence['kompetencia_nev'],
-                                )
-                        ));
-                        */
+                        //Linkek
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-                        
-                        
-                        $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
+                        $links = ugyfellinkek_Site_Model::model()->findLinks('szektor',$szektor['szektor_id']);
                         
                         $this->_view->assign("linkMode","on");
                         $this->_view->assign("addLinkOption","on");
@@ -69,16 +56,12 @@ class SzektorShow_Site_Controller extends Page_Edit
                         Rimo::$_site_frame->assign('site_keywords',$szektor['szektor_meta_kulcsszo']);
                                                 
                         Rimo::$_site_frame->assign('Content',$this->__generateForm('modul/szektor/view/site.szektor_show.tpl'));
-             
-                
-                        
                 }
                 catch(Exception_MYSQL_Null_Rows $e)
                 {
                         throw new Exception_404;
                 }
         }
-        
         
         public function onClick_addComment() {
               
@@ -106,14 +89,12 @@ class SzektorShow_Site_Controller extends Page_Edit
     
     public function onClick_addLink() {
         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."szektor/".$_GET['sid']);
-        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."szektor/".$_GET['sid']);
+        $lId=Rimo::$_config->SITE_NYELV_ID;
+        $szektor = $this->_model->findSzektorByID($_GET['sid'],$lId);
+        
+        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], $_REQUEST['linkUrl'], 'szektor', $szektor['szektor_id']);
+        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], $_REQUEST['linkUrl'], 'szektor', $szektor['szektor_id']);
 
     }
     
-    public function onClick_deleteLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
-        ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
-    }
 }

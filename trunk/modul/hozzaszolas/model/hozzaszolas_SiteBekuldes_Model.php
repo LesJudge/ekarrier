@@ -2,23 +2,26 @@
 class hozzaszolas_SiteBekuldes_Model extends Page_Edit_Model {
 
     public function __addForm(){
+        
     	$this->_bindArray = array("hozzaszolas_nyelv" => "Nyelv", 
-                               "hozzaszolas_bekuldo" => "TxtBekuldo", 
+                            "hozzaszolas_bekuldo" => "TxtBekuldo", 
                                "hozzaszolas_tartalom" => "TxtTartalom",
         );
         parent::__addForm();
         $this->addItem("Nyelv");                
         $this->addItem("TxtBekuldo")->_verify["string"] = true;
+        $this->addItem("TxtBekuldo")->_value = $_SESSION['user_data']['user_fnev'];
         $this->addItem("TxtTartalom")->_verify["string"] = true;
         $this->addItem("SessCaptcha");
         
-		$captcha = $this->addItem("TxtCaptcha");
-		$captcha->_verify["string"] = true;
+	$captcha = $this->addItem("TxtCaptcha");
+	$captcha->_verify["string"] = true;
         $captcha->_verify["equalToCaptcha"] = $this->_params["SessCaptcha"];
     }   
     
     public function __insert(){
-        $this->_params["TxtTartalom"]->_value = strip_tags($this->_params["TxtTartalom"]->_value);
+        //$this->_params["TxtTartalom"]->_value = strip_tags($this->_params["TxtTartalom"]->_value);
+        
     	$kapcsolodo_id = mysql_real_escape_string($_REQUEST["kapcs_id"]);
     	$parent_id = mysql_real_escape_string($_REQUEST["parent_id"]);
     	if($parent_id){
@@ -27,6 +30,7 @@ class hozzaszolas_SiteBekuldes_Model extends Page_Edit_Model {
 	    else{
 	        $this->insertRootNode($kapcsolodo_id, ",hozzaszolas_bekuldve_date=now(),kapcsolodo_id={$kapcsolodo_id}");
 	    }    
+            
     }
     
     /**

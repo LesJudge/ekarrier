@@ -79,7 +79,7 @@
 <div>{$pj.tevekenyseg}</div>
 
 {if $markable}
-<form name="{$FormName}" action="{$formUrl}" method="post" enctype="multipart/form-data">
+<form name="{$FormName}" action="" method="post" enctype="multipart/form-data">
     {if !$isMarked}
     <select name="kRajzok">
                  <option value="">--Válasszon kompetenciarajzai közül!--</option>
@@ -91,6 +91,9 @@
     <input id="postingJobId" name="postingJobId" type="hidden" value="{$pjId}" />
     <button name="{if $isMarked}{$BtnUnmark}{else}{$BtnMark}{/if}" class="submit btn" type="submit" value="1">{$markItText}</button>
     <button name="{if $isFavourited}{$BtnUnfavourite}{else}{$BtnFavourite}{/if}" class="submit btn" type="submit" value="1">{$favouriteItText}</button>
+    <a class="btn btn-sm btn-primary" href="{$DOMAIN}fooldal/">Irány a következő lépéshez</a>
+    <!--a class="btn btn-sm btn-primary" href="" onclick="history.go(-1);">Vissza</a-->
+    
 </form>
 {/if}
 <style type="text/css">

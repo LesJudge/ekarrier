@@ -116,7 +116,5 @@ $(document).ready(function() {
         
   });
   
-        
-  
 </script>   
 {/if}

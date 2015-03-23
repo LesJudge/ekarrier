@@ -36,25 +36,25 @@
         <input type="text" id="{$TxtKnev.name}" name="{$TxtKnev.name}" value="{$TxtKnev.activ}"/>
         {if isset($TxtKnev.error)}<div class="ui-state-error">{$TxtKnev.error}</div>{/if} 
 </div><div class="clear"></div>
+<div style="display: none">
+            <div class="form-row">
+                    <label for="{$SelNem.name}">Nem <span class="require">*</span></label>
+                    {html_options id=$SelNem.name name=$SelNem.name options=$SelNem.values selected=$SelNem.activ}
+                    {if isset($SelNem.error)}<div class="ui-state-error">{$SelNem.error}</div>{/if}
+            </div><div class="clear"></div>
 
-<!--div class="form-row">
-        <label for="{$SelNem.name}">Nem <span class="require">*</span></label>
-        {html_options id=$SelNem.name name=$SelNem.name options=$SelNem.values selected=$SelNem.activ}
-        {if isset($SelNem.error)}<div class="ui-state-error">{$SelNem.error}</div>{/if}
-</div><div class="clear"></div-->
+            <div class="form-row">
+                    <label for="{$TxtAnyjaNeve.name}">Anyja neve</label>
+                    <input type="text" id="{$TxtAnyjaNeve.name}" name="{$TxtAnyjaNeve.name}" value="{$TxtAnyjaNeve.activ}"/>
+                    {if isset($TxtAnyjaNeve.error)}<div class="ui-state-error">{$TxtAnyjaNeve.error}</div>{/if} 
+            </div><div class="clear"></div>
 
-<!--div class="form-row">
-        <label for="{$TxtAnyjaNeve.name}">Anyja neve</label>
-        <input type="text" id="{$TxtAnyjaNeve.name}" name="{$TxtAnyjaNeve.name}" value="{$TxtAnyjaNeve.activ}"/>
-        {if isset($TxtAnyjaNeve.error)}<div class="ui-state-error">{$TxtAnyjaNeve.error}</div>{/if} 
-</div><div class="clear"></div-->
-
-<!--div class="form-row">
-        <label for="{$TxtTelszamVezetekes.name}">Vezetékes telefonszám</label>
-        <input id="{$TxtTelszamVezetekes.name}" name="{$TxtTelszamVezetekes.name}" type="text" value="{$TxtTelszamVezetekes.activ}" />
-        {if isset($TxtTelszamVezetekes.error)}<div class="ui-state-error">{$TxtTelszamVezetekes.error}</div>{/if}
-</div><div class="clear"></div-->
-
+            <div class="form-row">
+                    <label for="{$TxtTelszamVezetekes.name}">Vezetékes telefonszám</label>
+                    <input id="{$TxtTelszamVezetekes.name}" name="{$TxtTelszamVezetekes.name}" type="text" value="{$TxtTelszamVezetekes.activ}" />
+                    {if isset($TxtTelszamVezetekes.error)}<div class="ui-state-error">{$TxtTelszamVezetekes.error}</div>{/if}
+            </div><div class="clear"></div>
+</div>
 <div class="form-row">
         <!--label for="{$TxtTelszamMobil1.name}">Elsődleges mobiltelefonszám <span class="require">*</span></label-->
         <label for="{$TxtTelszamMobil1.name}">Mobiltelefonszám <span class="require">*</span></label>
@@ -62,20 +62,23 @@
         {if isset($TxtTelszamMobil1.error)}<div class="ui-state-error">{$TxtTelszamMobil1.error}</div>{/if}
 </div><div class="clear"></div>
 
-<!--div class="form-row">
-        <label for="{$TxtTelszamMobil2.name}">Másodlagos mobiltelefonszám</label>
-        <input id="{$TxtTelszamMobil2.name}" name="{$TxtTelszamMobil2.name}" type="text" value="{$TxtTelszamMobil2.activ}" />
-        {if isset($TxtTelszamMobil2.error)}<div class="ui-state-error">{$TxtTelszamMobil2.error}</div>{/if}
-</div><div class="clear"></div-->
-
+<div style="display: none">
+        <div class="form-row">
+                <label for="{$TxtTelszamMobil2.name}">Másodlagos mobiltelefonszám</label>
+                <input id="{$TxtTelszamMobil2.name}" name="{$TxtTelszamMobil2.name}" type="text" value="{$TxtTelszamMobil2.activ}" />
+                {if isset($TxtTelszamMobil2.error)}<div class="ui-state-error">{$TxtTelszamMobil2.error}</div>{/if}
+        </div><div class="clear"></div>
+</div>
+        
+        
 <div class="form-row">
         <label for="{$SelVegzettseg.name}">Legmagasabb iskolai végzettség <span class="require">*</span></label>
         {html_options id=$SelVegzettseg.name name=$SelVegzettseg.name options=$SelVegzettseg.values selected=$SelVegzettseg.activ}
         {if isset($SelVegzettseg.error)}<div class="ui-state-error">{$SelVegzettseg.error}</div>{/if}
 </div><div class="clear"></div>
 
+<div style="display: none">
 
-<!--
 
 <h3>Születési adatok</h3>
 <div class="separator"></div>
@@ -226,7 +229,9 @@
         <input id="{$TxtIdeiglenesHazszam.name}" name="{$TxtIdeiglenesHazszam.name}" type="text" value="{$TxtIdeiglenesHazszam.activ}" />
         {if isset($TxtIdeiglenesHazszam.error)}<div class="ui-state-error">{$TxtIdeiglenesHazszam.error}</div>{/if}
 </div><div class="clear"></div>
--->
+
+
+</div>
 <div class="form-row">
         <label for="{$ChkHirlevel.name}">Álláshirdetésekre és hírlevélre feliratkozom</label>
         <input type="checkbox" id="{$ChkHirlevel.name}" name="{$ChkHirlevel.name}" value="1" style="height:auto;" {if $ChkHirlevel.activ}checked="checked"{/if}/>

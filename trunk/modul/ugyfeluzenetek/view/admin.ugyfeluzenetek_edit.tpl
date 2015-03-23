@@ -53,15 +53,13 @@ $(function() { {$FormScript}
                             <a href="{$DOMAIN_ADMIN}ugyfeluzenetek" id="{$FormName}_close"><img class="tip" title="{php}echo LANG_AdminEdit_megse;{/php}" src="../images/admin/icons/cancel.png"/></a>
                         
                         </div> 
-                        <div class="field">
-                            
-                            {if $mod!="1"}
+                                <div class="field" {if $mod=="1"}style="display:none"{/if}>
                                 <label for="{$SelUgyfel.name}">Ügyfél</label>
                                         {html_options name=$SelUgyfel.name options=$SelUgyfel.values selected=$SelUgyfel.activ} 
 					<span class="ui-icon ui-icon-info tip" title=""></span>
 					{if isset($SelUgyfel.error)}<p class="error small">{$SelUgyfel.error}</p>{/if}
 				</div><div class="clear"></div>
-                               {/if}
+                               
                                
                                  <div class="form_row">
                                     <label for="{$TxtTartalom.name}">Üzenet <span class="require">*</span></label>

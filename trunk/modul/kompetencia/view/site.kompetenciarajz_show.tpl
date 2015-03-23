@@ -1,9 +1,20 @@
-<script type="text/javascript" src="{$DOAMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script>
+<!--script type="text/javascript" src="{$DOAMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script-->
+{if $FormError}
+ <div class="info info-error">
+    <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
+</div> 
+<div class="clear"></div>
+{/if}
+{if $FormMessage}
+<div id="form_info" class="info info-success">
+    <p>{$FormMessage}</p>
+</div>
+<div class="clear"></div>
+{/if}
 <br />
-<h2>{$compRajzAuthor}</h2>
+<h2>{$compRajzAuthor}/{$compRajzTitle}</h2>
 
-<h2>{$compRajzTitle}</h2>
 
 <div class="jobFindList-cont">
 	<div class="jobFindList-data">	
@@ -24,7 +35,23 @@
 	<div class="clear"></div>
 </div> 
 
-
+<form id="compDraw" name="compDraw" action="" method="post">
+    {if $loggedInAs == 'company'}
+        <label for="folders">Mappa <span class="require">*</span></label>
+            <select id="folders" name="folders">
+                {foreach from=$folders item=folder key=key}
+                    <option value="{$key}">{$folder}</option>
+                {/foreach}
+            </select>
+        <button class="submit btn" name="{$BtnAddDraw}" type="submit">Hozzáadás</button>
+        <input type="text" name="folderName">
+        <button class="submit btn" name="{$BtnCreateFolder}" type="submit">Mappa létrehozása</button>
+        
+        <a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciarajz-kereso/">Vissza</a>
+    {/if}
+    
+    
+</form>
 
 
                 

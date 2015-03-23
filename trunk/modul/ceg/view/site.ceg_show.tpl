@@ -51,4 +51,4 @@
 {/if}
 <br />
 <!--a href="{$DOMAIN}munkaltato/" class="bigBtn-link">Vissza a munkáltatókhoz!</a-->
-{include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}
+<a class="btn btn-sm btn-primary" href="{$DOMAIN}allaskereses/">Vissza a keresőhöz</a>

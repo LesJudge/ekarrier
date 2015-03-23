@@ -1,14 +1,7 @@
 <?php
-/**
- * @property Kompetencia_Show_Model $_model
- * @property Smarty $_view
- */
-
-require 'modul/infobox/model/infobox_Site_Model.php';
-
+//require 'modul/infobox/model/infobox_Site_Model.php';
 class KompetenciaRajzShow_Site_Controller extends Page_Edit
 {
-        
         public $_name='KompetenciaRajzShow';
         private $visitType;
         
@@ -17,12 +10,14 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                 $this->init();             
                 $this->__loadModel('_SiteRajzShow');
 
-                if (!UserLoginOut_Site_Controller::$_id){
-                    throw new Exception_404;
-                }
-
                 parent::__construct();
                 $this->__addParams($this->_model->_params);
+                if($this->visitType == 'company')
+                {
+                    $this->__addEvent('BtnAddDraw', 'addDraw');
+                    $this->__addEvent('BtnCreateFolder', 'createFolder');
+                }
+
                 $this->__run();
         }
         
@@ -30,11 +25,9 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
         {
                 try
                 {
-                    
-                    
                         $lId=Rimo::$_config->SITE_NYELV_ID;
                         
-                        // -----  Létező Kompetenciarajz
+                        
                         $_REQUEST['krid'] = mysql_real_escape_string($_REQUEST['krid']);
                         
                         // -----  ha ügyfél van bejelentkezve
@@ -42,7 +35,6 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                         {
                             $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                             $this->_model->setClientId($clientId);
-                            
                             
                             $forceForeign = 0;
                             if($_GET['forceforeign'] == '1')
@@ -78,7 +70,6 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                             {
                             }
                         }
-                        
                         // ha cég van bejelntkezve
                         if($this->visitType === "company")
                         {
@@ -89,6 +80,34 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                                 $this->_model->addCompanyToViewed($rajzID['krID'],$companyID);
                                 $this->_view->assign('compRajzAuthor', $rajzID['uID']);
                                 $this->_view->assign('compRajzTitle', $rajzID['krID']);
+                                
+                                
+                                $folders = $this->_model->getFolders($companyID);
+                                $this->_view->assign("folders",$folders);
+                                $this->_view->assign("loggedInAs","company");
+                            }
+                            catch(Exception_MYSQL_Null_Rows $e)
+                            {
+                               throw new Exception_404;
+                            }
+                            try
+                            {
+                           //komprajz kompetenciái
+                                $this->_view->assign('compRajzCompetences',$this->_model->findCompetencesByCompRajzId($rajzID['krID']));
+                            }
+                            catch(Exception_MYSQL_Null_Rows $e)
+                            {
+                            }
+                        }
+                        
+                        if($this->visitType === "neutral")
+                        {
+                            try
+                            {
+                                $rajzID = $this->_model->getCompRajzById((int)$_REQUEST['krid'],"ceg");
+                                $this->_view->assign('compRajzAuthor', $rajzID['uID']);
+                                $this->_view->assign('compRajzTitle', $rajzID['krID']);
+                                
                             }
                             catch(Exception_MYSQL_Null_Rows $e)
                             {
@@ -154,8 +173,65 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                 return true;
             }
             
+        }else{
+            $this->visitType = "neutral";
         }
-        
     }
-
+    
+    public function onClick_addDraw() {
+        
+        $companyID = Rimo::getCompanyWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+        $rajzID = $this->_model->getCompRajzById((int)$_REQUEST['krid'],'ceg');
+        
+        try{
+            
+            if(!empty($_REQUEST['folders']) && (int)$_REQUEST['folders'] > 0)
+            {
+                if((int)$rajzID['krID'] > 0){
+                    $this->_model->addDrawToFolder($_REQUEST['folders'], $rajzID['krID']);
+                    throw new Exception_Form_Message('Sikeresen hozzáadva!');
+                }else
+                {
+                    throw new Exception_Form_Error("Válasszon legalább 1 kompetenciarajzot!");
+                }
+            }
+            else
+            {
+                throw new Exception_Form_Error("Válasszon mappát!");
+            }
+        }catch(Exception_MYSQL_Null_Rows $e){
+            throw new Exception_Form_Error("Hiba történt!");
+        }
+        catch(Exception_MYSQL $e){
+            throw new Exception_Form_Error("Hiba történt!");
+        }  
+    }
+    
+    public function onClick_createFolder() {
+        $companyID = Rimo::getCompanyWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+        
+        try{
+            if(!empty($_REQUEST['folderName']) && strlen($_REQUEST['folderName']) >= 5)
+            {
+                
+                if($this->_model->checkIfFolderExistsByName($companyID,$_REQUEST['folderName']) === false)
+                {
+                    $this->_model->createFolder((int)$companyID, $_REQUEST['folderName']);
+                    throw new Exception_Form_Message('Mappa létrehozva!');
+                }else
+                {
+                    throw new Exception_Form_Error("Már létezik ilyen nevű mappa!");
+                }
+            }
+            else
+            {
+                throw new Exception_Form_Error("Nem megfelelő név! (Min. 5 karakter)");
+            }
+        }catch(Exception_MYSQL_Null_Rows $e){
+            throw new Exception_Form_Error("Hiba történt!");
+        }
+        catch(Exception_MYSQL $e){
+            throw new Exception_Form_Error("Hiba történt!");
+        }  
+    }
 }

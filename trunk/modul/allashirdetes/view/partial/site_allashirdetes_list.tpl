@@ -23,11 +23,25 @@
     </div>
     <div class="clear"></div>
 </div>
+ 
+{/if}
 
 <div class="jobFindList-cont">
     <div class="jobFindList-top"><i class='icomoon icomoon-drawer3'>&nbsp;</i></div>
     <div class="jobFindList-title">Találati eredmények</div>
-    <div class="job-list-container">
+    {foreach from=$cegek item=ceg}
+        <div class="job-list-row">
+                <div class="job-list-col-name">
+                    <a href="{$DOMAIN}munkaltato/{$ceg.link}">{$ceg.cegnev}</a>
+                </div>
+
+
+            </div>
+    {/foreach}
+    
+    
+    
+    <!--div class="job-list-container">
         {$id = 0}
         {foreach from=$Lista item=job name=job}
             
@@ -42,13 +56,6 @@
             {$id = $job.cegID}
             {/if}  
         {/foreach}
-    </div>
+    </div-->
     <div class="clear"></div>
 </div>
-        
-    
-    
-    
-    
-        
-{/if}

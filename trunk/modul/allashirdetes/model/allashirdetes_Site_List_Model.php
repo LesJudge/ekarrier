@@ -123,7 +123,7 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
                         ' AND munkakor_kategoria_aktiv = 1 AND munkakor_kategoria_torolt = 0 AND szint = 1',
                         'ORDER BY munkakor_kategoria_id ASC',
                         false,
-                        array('' => '--Válasszon tevékenységi csoportot!--'));
+                        array('-1' => '--Válasszon tevékenységi csoportot!--'));
         
         //Tevkör azűrő
         $this->addItem('FilterTevKor')->_select_value = $this->getSelectValues('munkakor_kategoria',
@@ -131,7 +131,7 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
                         ' AND munkakor_kategoria_aktiv = 1 AND munkakor_kategoria_torolt = 0 AND szint = 2',
                         'ORDER BY munkakor_kategoria_id ASC',
                         false,
-                        array('' => '--Válasszon tevékenységi kört!--'));
+                        array('-1' => '--Válasszon tevékenységi kört!--'));
         
     }
     

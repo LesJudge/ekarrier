@@ -28,6 +28,10 @@ class TevekenysegikorCommentedit_Admin_Controller extends Admin_Edit
         public function __show()
         {
                 parent::__show();
+                
+                $relatedInfo = $this->_model->getRelatedInfo($this->_model->_params['TxtType']->_value,$this->_model->_params['TxtTevkorID']->_value);
+                $this->_view->assign('relatedInfo',$relatedInfo);
+                
                 $tevkorDesc = $this->_model->getTevkorDescription();
                 $this->_view->assign('tevkorDesc',$tevkorDesc);
                 Rimo::$_site_frame->assign('Form',$this->__generateForm('modul/tevekenysegikor/view/admin.tevekenysegikor_comment_edit.tpl'));

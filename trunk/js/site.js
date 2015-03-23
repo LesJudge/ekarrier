@@ -242,7 +242,7 @@ function siteTabPager(){
 
 
 $(function() {
-	/*
+	
 	customIn=new customInputs({
 		select : true,
 		checkbox : true,
@@ -254,7 +254,7 @@ $(function() {
 	});
 	customIn.start();
 	
-	*/
+	
 	
   //$('#menu_1').superfish();  
   

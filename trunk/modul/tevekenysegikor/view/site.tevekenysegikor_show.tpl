@@ -18,8 +18,8 @@
 	<div class="jobDataForm-top"><i id='jobSearchForm_icon--profil_1--50--50--S1.5:1.5:0:0--fff--fff' class='svgIcon'>&nbsp;</i></div>	
 	<p class="jobDataForm-head">{$jobData.Cim}</p>
 	<div class="jobDataForm-content">{$jobData.Leiras}</div>
-        {if $details != '1'}
-            <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}?details">Részletek</a>
+        {if $descriptionDetails != '1'}
+            <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}?descriptiondetails">Részletek</a>
         {else}
             <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}">Kevesebb</a>
             {include file="modul/tevekenysegikor/view/partial/tevkor_details.tpl"}
@@ -53,6 +53,13 @@
             {else}
             Nincs megjeleníthető elvárás!
             {/if}
+            
+            {if $expDetails != '1'}
+                <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}?expdetails">Részletek</a>
+                {else}
+                <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}">Kevesebb</a>
+                {include file="modul/tevekenysegikor/view/partial/tevkor_exp_comments.tpl"}
+            {/if}
         </div>
         <p class="jobDataForm-head">Feladatok</p>
         <div class="jobDataForm-content">
@@ -65,6 +72,12 @@
             {else}
             Nincs megjeleníthető feladat!
             {/if}
+            {if $tasksDetails != '1'}
+                <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}?tasksdetails">Részletek</a>
+                {else}
+                <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}">Kevesebb</a>
+                {include file="modul/tevekenysegikor/view/partial/tevkor_tasks_comments.tpl"}
+            {/if}
         </div>
         <p class="jobDataForm-head">Kompetenciák</p>
         <div class="jobDataForm-content">
@@ -76,6 +89,12 @@
             </ul>
             {else}
             Nincs megjeleníthető kompetencia!
+            {/if}
+            {if $compDetails != '1'}
+                <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}?compdetails">Részletek</a>
+                {else}
+                <a class="jobDataForm-btn" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}">Kevesebb</a>
+                {include file="modul/tevekenysegikor/view/partial/tevkor_comp_comments.tpl"}
             {/if}
         </div>
         
@@ -108,7 +127,7 @@
 {foreach from=$markers item=marker}
     <div class="jobOffers">
         <div class="jobOffers-title">
-            <a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$marker.krID}/">{$marker.uID}</a>
+            <a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$marker.krID}/">{$marker.uID}/{$marker.krID}</a>
         </div>
     </div>
 {foreachelse}
@@ -142,7 +161,10 @@
 </div>
   {/if}          
 
-            
+<a class="btn btn-sm btn-primary" href="{$DOMAIN}fooldal/">Irány a következő lépéshez</a>
+<a class="btn btn-sm btn-primary" href="{$DOMAIN}tevekenysegikor-kereso/">Vissza a keresőhöz</a>
+  
+  
 <div class="clear"></div>
 <style type="text/css">
 .ek-dolgozni-szeretnek-btn {
@@ -156,5 +178,3 @@
     margin-top: 16px;
 }
 </style>
-
-{include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}

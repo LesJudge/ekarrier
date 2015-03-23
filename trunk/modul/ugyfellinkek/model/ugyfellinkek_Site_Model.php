@@ -18,25 +18,26 @@ class ugyfellinkek_Site_Model extends Model
         return ((int)$langId > self::USE_DEFAULT_LANG_ID) ? $langId : Rimo::$_config->SITE_NYELV_ID;
     }
    
-    public function findLinks($uID)
+    public function findLinks($category,$id)
     {
         try {
             $query = "SELECT link_nev AS nev, link_url AS link
                      FROM ugyfel_attr_linkek 
-                     WHERE ugyfel_id=" . (int)$uID;
+                     WHERE category ='".  mysql_real_escape_string($category)."' AND id_in_category = ".(int)$id." AND ugyfel_attr_linkek_aktiv = 1
+                     AND ugyfel_attr_linkek_torolt = 0 AND checked = 1";
             return $this->_DB->prepare($query)->query_select()->query_result_array();
         } catch (Exception_MYSQL_Null_Rows $emnr) {
             return array();
         }
     }
     
-    public function saveLink($uID,$name,$url)
+    public function saveLink($uID,$name,$url,$cat,$idInCat)
     {
         try {
             $query = "INSERT INTO ugyfel_attr_linkek
-                     SET ugyfel_id = ".(int)$uID.", link_nev = '".mysql_real_escape_string($name)."', link_url = '".mysql_real_escape_string($url)."'
-                    ON DUPLICATE KEY UPDATE
-                    link_nev = '".mysql_real_escape_string($name)."'
+                     SET ugyfel_id = ".(int)$uID.", link_nev = '".mysql_real_escape_string($name)."', link_url = '".mysql_real_escape_string($url)."',
+                         category = '".mysql_real_escape_string($cat)."', id_in_category = ".(int)$idInCat.",
+                         letrehozas_timestamp = NOW(), checked=0, ugyfel_attr_linkek_aktiv = 0, ugyfel_attr_linkek_torolt = 0, tipus = 'ugyfel', letrehozo_id = ".(int)$uID."
                     ";
             $this->_DB->prepare($query)->query_insert();
             throw new Exception_Form_Message("Sikeresen hozzáadva!");
@@ -44,7 +45,7 @@ class ugyfellinkek_Site_Model extends Model
             throw new Exception_Form_Error("Hiba történt!");
         }
     }
-    
+    /*
     public function deleteLink($uID,$url)
     {
         try {
@@ -57,21 +58,49 @@ class ugyfellinkek_Site_Model extends Model
             throw new Exception_Form_Error("Hiba történt!");
         }
     }
-    
-    public function validateSaveLink($uID,$name,$url)
+    */
+    public function validateSaveLink($uID,$name,$url,$cat,$idInCat)
     {
-        if(empty($name))
+        if(empty($name) || strlen($name) < 5)
         {
-            throw new Exception_Form_Error("Adjon meg nevet!");
-        }else
+            throw new Exception_Form_Error("Nem megfelelő név! (Min. 5 karakter)");
+        }
+        elseif(empty($url) || !preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url))
         {
-            if((int)$uID < 1 || empty($url))
-            {
-                throw new Exception_Form_Error("Hiba történt!");
-            }
+            throw new Exception_Form_Error("Nem megfelelő URL!");
+        }
+        elseif($this->checkIfUrlExists($cat,$idInCat,$url) === true)
+        {
+            throw new Exception_Form_Error("Az adott URL már szerepel a rendszerben!");
+        }
+        elseif((int)$uID < 1 || empty($cat) || (int)$idInCat < 1)
+        {
+            throw new Exception_Form_Error("Hiba történt!");
         }
     }
     
+    public function checkIfUrlExists($cat,$idInCat,$url)
+    {
+        try{
+            $query = "SELECT ugyfel_attr_linkek_id
+                      FROM ugyfel_attr_linkek
+                      WHERE category = '".mysql_real_escape_string($cat)."'
+                      AND id_in_category = ".$idInCat."
+                      AND link_url = '".mysql_real_escape_string($url)."'
+                      AND ugyfel_attr_linkek_torolt = 0
+                    ";
+            
+            $this->_DB->prepare($query)->query_select()->query_result_array();
+            return true;
+            
+        }catch(Exception_MYSQL_Null_Rows $e)
+        {
+            return false;
+        }
+    }
+    
+    
+    /*
     public function validateDeleteLink($uID,$url)
     {
             if((int)$uID < 1 || empty($url))
@@ -79,5 +108,8 @@ class ugyfellinkek_Site_Model extends Model
                 throw new Exception_Form_Error("Hiba történt!");
             }   
     }
-   
+   */
+    
+    
+    
 }

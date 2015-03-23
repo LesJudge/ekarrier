@@ -26,6 +26,7 @@ $(function() { {$FormScript}
                 {include file='page/admin/view/admin.message.tpl'}
                 {include file='page/admin/view/admin.list_filter.tpl'}
                 <div class="top_filtering">
+                        {html_options name=$FilterChecked.name options=$FilterChecked.values selected=$FilterChecked.activ}
                         {html_options name=$FilterStatus.name options=$FilterStatus.values selected=$FilterStatus.activ}
                         <div class="clear"></div>
                 </div>
@@ -37,6 +38,7 @@ $(function() { {$FormScript}
                                 <th class="checkers"><input type="checkbox" class="select_row" name="{$SelRow.name}[{$lista.ID}]" value="{$lista.ID}"/></th>
                                 <td class="align_left"><a href="{$APP_LINK}/commentedit/{$lista.ID}{$LANG_PARAM}" title="Módosítás">{$lista.elso}</a></td>
                                 <td class="align_left center">{$lista.ugyfelnev}</td>
+                                <td class="align_left center">{$lista.checked}</td>
                                 <td class="align_left center">{$lista.modosito}</td>
                                 <td class="align_left center">{$lista.modositas_datum}</td>
                                 <td class="align_left center">

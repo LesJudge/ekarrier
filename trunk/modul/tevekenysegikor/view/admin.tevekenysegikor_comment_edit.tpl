@@ -24,7 +24,7 @@ $(function() { {$FormScript}
 		theme_advanced_resizing : true,			
 		document_base_url : $("#DOMAIN").val(),			
 		width : "630",  
-		height : "300", 
+		height : "100", 
 		paste_auto_cleanup_on_paste : true, 
 		plugin_preview_width : "1000", 
 		theme_advanced_resize_horizontal : false,
@@ -54,8 +54,24 @@ $(function() { {$FormScript}
                         
                         </div> 
                         <div class="field">
+                            
+                            <div class="form_row" style="display:none">
+                                        <input type="text" id="{$TxtType.name}" name="{$TxtType.name}" value="{$TxtType.activ}"/>
+                                        {if isset($TxtType.error)}<p class="error small">{$TxtType.error}</p>{/if}
+                            </div><div class="clear"></div>
+                            <div class="form_row" style="display:none">
+                                        <input type="text" id="{$TxtTevkorID.name}" name="{$TxtTevkorID.name}" value="{$TxtTevkorID.activ}"/>
+                                        {if isset($TxtTevkorID.error)}<p class="error small">{$TxtTevkorID.error}</p>{/if}
+                            </div><div class="clear"></div>
+                                
                             <label for="info">{$tevkorDesc.nev}</label>
                             <textarea id="info" class="mceNonEditable">{$tevkorDesc.tartalom}</textarea>    
+                            <div class="clear"></div>
+                            
+                            {if $relatedInfo != 'desc'}
+                                <textarea id="relatedInfo" class="mceNonEditable">{foreach from=$relatedInfo item=info}{$info.text}<br/>{/foreach}</textarea>    
+                                <div class="clear"></div>
+                            {/if}
                             
                                  <div class="form_row">
                                     <label for="{$TxtTartalom.name}">Hozzászólás <span class="require">*</span></label>
@@ -63,7 +79,12 @@ $(function() { {$FormScript}
                                     {if isset($TxtTartalom.error)}<p class="error small">{$TxtTartalom.error}</p>{/if}
 				</div><div class="clear"></div>
                                 
-        
+                                <div class="form_row">
+                                            <label>Ellenőrizve <span class="require">*</span></label>
+                                            {html_radios name=$ChkChecked.name options=$ChkChecked.values selected=$ChkChecked.activ}
+                                            {if isset($ChkChecked.error)}<p class="error small">{$ChkChecked.error}</p>{/if}
+                                    </div><div class="clear"></div>
+                                
                                 <div class="form_row">
                                         <label>Publikus <span class="require">*</span></label>
                                         {html_radios name=$ChkAktiv.name options=$ChkAktiv.values selected=$ChkAktiv.activ}

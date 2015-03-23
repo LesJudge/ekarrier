@@ -5,13 +5,9 @@
 	<form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor " enctype="multipart/form-data"> 
 	{include file='page/all/view/page.message.tpl'}                   
 
-	    <!--
-		<div class="form-row">
-			<label for="{$TxtBekuldo.name}">Beküldő <span class="require">*</span></label>
-	        <input type="text" id="{$TxtBekuldo.name}" name="{$TxtBekuldo.name}" value="{$TxtBekuldo.activ}"/>
-	        {if isset($TxtBekuldo.error)}<div class="ui-state-error">{$TxtBekuldo.error}</div>{/if} 
-	    </div>
-		-->
+	    
+	    <input type="hidden" id="{$TxtBekuldo.name}" name="{$TxtBekuldo.name}" value="{$TxtBekuldo.activ}"/>
+	
 	    <div class="form-row">
 			<label for="{$TxtTargy.name}">Tárgy <span class="require">*</span></label>
 			<input type="text" id="{$TxtTargy.name}" name="{$TxtTargy.name}" value="{$TxtTargy.activ}"/>

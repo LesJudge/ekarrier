@@ -29,6 +29,7 @@ class ForumHozzaszolasBekuldes_Site_Controller extends Page_Edit
     {
         //UserLoginOut_Site_Controller::isAuthorized('Exception_404');
         parent::__show();
+        
         $this->_params["TxtCaptcha"]->_value='';
         $data = $this->_model->getTartalom($_REQUEST["kapcs_id"],"forum");
         if($_REQUEST["parent_id"])
@@ -42,6 +43,7 @@ class ForumHozzaszolasBekuldes_Site_Controller extends Page_Edit
             3=>array("nev"=>"Hozzászólás"),
             )
         );
+
         Rimo::$_site_frame->assign("PageName",$data[0]["targy_min"]);
         Rimo::$_site_frame->assign("site_title",$data[0]["targy_min"]);
         Rimo::$_site_frame->assign("site_description",$data[0]["tartalom_min"]);
@@ -52,7 +54,9 @@ class ForumHozzaszolasBekuldes_Site_Controller extends Page_Edit
     
     public function onClick_New(){
         try{
+
         	$this->_model->_params["Nyelv"]->_value = Rimo::$_config->SITE_NYELV_ID;
+            
         	parent::onClick_New();
        	}catch(Exception_Form_Message $e){
        		$this->formReset(true);

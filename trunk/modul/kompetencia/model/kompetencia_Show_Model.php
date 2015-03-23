@@ -34,6 +34,7 @@ class Kompetencia_Show_Model extends Page_Edit_Model
                                WHERE kompetencia_link='".mysql_real_escape_string($url)."' AND
                                             kompetencia_aktiv=1 AND
                                             kompetencia_torolt=0 AND
+                                            tipus = 'sajat' AND
                                             nyelv_id=".(int)$lId."
                                LIMIT 1";
                 return $this->_DB->prepare($query)->query_select()->query_fetch_array();
@@ -59,7 +60,7 @@ class Kompetencia_Show_Model extends Page_Edit_Model
         
             $query = "INSERT INTO kompetencia_hozzaszolas
                       SET ugyfel_id = ".(int)$uID.", kompetencia_id = ".(int)$kID.", hozzaszolas = '".mysql_real_escape_string($comment)."', bekuldes_date = NOW(),
-                          kompetencia_hozzaszolas_aktiv = 0, kompetencia_hozzaszolas_torolt = 0
+                          kompetencia_hozzaszolas_aktiv = 0, kompetencia_hozzaszolas_torolt = 0, checked = 0
                      "
                         ;
         

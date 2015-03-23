@@ -23,10 +23,11 @@ class menu_Model extends Model {
                   jobboldal < {$parent["jobboldal"]} AND 
                   nyelv_id=".Rimo::$_config->SITE_NYELV_ID."  AND 
                   menu_aktiv=1 AND  
-              	  {$jogok_where}  
+              	  {$jogok_where}
             GROUP BY menu_id 
             ORDER BY baloldal ASC  
         ";
+                  
         return $this->_DB->prepare($query)->query_select()->query_result_array();
     }
 }

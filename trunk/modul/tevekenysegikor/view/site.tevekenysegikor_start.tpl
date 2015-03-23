@@ -1,16 +1,3 @@
-{if $FormError}
- <div class="info info-error">
-    <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
-</div> 
-<div class="clear"></div>
-{/if}
-{if $FormMessage}
-<div id="form_info" class="info info-success">
-    <p>{$FormMessage}</p>
-</div>
-<div class="clear"></div>
-{/if}
-
 <div class="jobCircle-cont">
 	<div>
         {$text}
@@ -91,4 +78,3 @@
 	<div class="clear"></div>
 </div>	
                 
-{include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}

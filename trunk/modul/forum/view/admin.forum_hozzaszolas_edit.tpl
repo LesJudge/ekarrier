@@ -27,7 +27,14 @@ $(function() { {$FormScript}
                     <textarea class="tinymce" id="{$TxtTartalom.name}" name="{$TxtTartalom.name}">{$TxtTartalom.activ}</textarea>
                     {if isset($TxtTartalom.error)}<p class="error small">{$TxtTartalom.error}</p>{/if} 
 				</div><div class="clear"></div>
-                <div class="form_row">
+                
+                    <div class="form_row">
+                        <label>Ellenőrizve <span class="require">*</span></label>
+                        {html_radios name=$ChkChecked.name options=$ChkChecked.values selected=$ChkChecked.activ}
+                        {if isset($ChkChecked.error)}<p class="error small">{$ChkChecked.error}</p>{/if}
+                    </div><div class="clear"></div>                
+                                
+                                <div class="form_row">
 					<label>Publikus</label>
 					{html_radios name=$ChkAktiv.name options=$ChkAktiv.values selected=$ChkAktiv.activ}
 					{if isset($ChkAktiv.error)}<p class="error small">{$ChkAktiv.error}</p>{/if} 

@@ -1,6 +1,6 @@
 <?php
 require 'modul/seo/model/seo_Site_Model.php';
-require 'modul/infobox/model/infobox_Site_Model.php';
+//require 'modul/infobox/model/infobox_Site_Model.php';
 class SzektortesztShow_Site_Controller extends RimoController {
     public $_name = "SzektortesztShow";
     
@@ -12,8 +12,7 @@ class SzektortesztShow_Site_Controller extends RimoController {
     
     public function __show(){
         parent::__show();
-        
-            
+
             if($_REQUEST["finalResults"]){
                     try{
                         
@@ -89,7 +88,6 @@ class SzektortesztShow_Site_Controller extends RimoController {
                         throw new Exception_404();
                     }
                 }   
- 
     }
 }
 ?>

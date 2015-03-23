@@ -1,5 +1,6 @@
 <script type="text/javascript">
 $(function() { {$FormScript}
+    $('select[name="{$FilterChecked.name}"]').change(function() { $('#{$BtnFilter}').click(); });
     $('select[name="{$FilterNyelv.name}"]').change(function() { $('#{$BtnFilter}').click(); });
     $('select[name="{$FilterKapcsolodo.name}"]').change(function() { $('#{$BtnFilter}').click(); });
 });
@@ -19,6 +20,7 @@ $(function() { {$FormScript}
         {include file='page/admin/view/admin.message.tpl'}
         {include file='page/admin/view/admin.list_filter.tpl'}
         <div class="top_filtering" >
+            {html_options name=$FilterChecked.name options=$FilterChecked.values selected=$FilterChecked.activ}
             {html_options name=$FilterNyelv.name options=$FilterNyelv.values selected=$FilterNyelv.activ}
             {html_options name=$FilterKapcsolodo.name options=$FilterKapcsolodo.values selected=$FilterKapcsolodo.activ}
         	<div class="clear"></div>
@@ -29,6 +31,7 @@ $(function() { {$FormScript}
                 <tr class="data_row">
                     <th class="checkers"><input type="checkbox" class="select_row" name="{$SelRow.name}[{$lista.ID}]" value="{$lista.ID}"/></th>
                     <td class="align_left"><a href="{$APP_LINK}/edit/{$lista.ID}" title="Módosítás">{$lista.elso}</a></td>
+                    <td class="align_left center">{$lista.checked}</td>
                     <td class="align_left center">{$lista.hozzaszolas_tartalom_min}</td>
 					<td class="align_left center">{$lista.bekuldve}</td>
                     <td class="align_left center">

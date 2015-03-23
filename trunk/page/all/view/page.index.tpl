@@ -29,12 +29,14 @@ fjs.parentNode.insertBefore(js, fjs);
 
 {include file="modul/user/view/partial/user_profile.tpl"}
 <div class="site_head_container">
+    {$LoginForm}
+    {$LogoutForm}
 	<div class="head_content site_center"> 
 		<div class="headArrow"></div>
 		<span class="headSlogen"></span>
 		<a href="{$DOMAIN}"><img src="images/site/site_logo.png" alt="" class="site_logo" /></a>				
-		<div class="main_menu"> {$Menu_1}</div>
-                <div class="main_menu" style="margin-top: 100px !important"> {$Menu_30}</div>
+		<div class="main_menu"> {$Menu_1}</div>	
+                <div class="main_menu" style="margin-top: 50px !important"> {$Menu_30}</div>
 		<div class="box-search">
 			<div class="page-nav-cont">
 				<!--<a href="{$DOMAIN}?type=mv" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkavállaló</a>
@@ -53,9 +55,7 @@ fjs.parentNode.insertBefore(js, fjs);
 			</form>							
 			<div class="clear"></div>							
 		</div>
-                      
                                         
-                                    
                 <!--<div>
                     {if $loggedIn}
                         <div style="background:lightgreen;position:absolute;top:150px;width:100%;height:35px;z-index:99;">
@@ -84,7 +84,7 @@ fjs.parentNode.insertBefore(js, fjs);
 	</div>
 </div>
 	
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>    		        
+		        
         
 <div class="site_body_container">	
 	<div class="site_content site_center">                 
@@ -95,7 +95,7 @@ fjs.parentNode.insertBefore(js, fjs);
 					<h1>{$PageName}</h1>
 				{/if}
 				
-				{$kategoriaList}
+				{if $kategoriaList}{$kategoriaList}{/if}
 				
 				{$Content}
 				<div class="clear"></div>

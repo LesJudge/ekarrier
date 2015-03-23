@@ -25,12 +25,15 @@
 <p style="display: none;"><input type="hidden" id="DOMAIN" value="{$DOMAIN}"/></p>
 
 <div class="site_head_container start">
+    {$LoginForm}
+    {$LogoutForm}
 	<div class="head_content site_center"> 
 		<div class="headArrow"></div>
 		<span class="headSlogen"></span>
 		<a href="{$DOMAIN}"><img src="images/site/site_logo.png" alt="" class="site_logo" /></a>				
-		<div class="main_menu"> {$Menu_1}</div>
+		<div class="main_menu"> {$Menu_1}</div>		
                 <div class="main_menu" style="margin-top: 100px !important"> {$Menu_30}</div>
+                
 		<div class="box-search">
 			<div class="page-nav-cont">
 
@@ -41,7 +44,8 @@
                                 {/if}
 
 			</div>	
-			{$ErrorMessage}		
+			{$ErrorMessage}	
+                        
 			<form action="" method="get" id="search">	
 				  <div class="form-row clearfix">
 					<input type="text" class="search_field autoclear" id="keresoszo" name="" value="Keresés" />						 
@@ -50,9 +54,9 @@
 				  </div>
 			</form>							
 			<div class="clear"></div>					
-		</div> 
+		</div> 		
                                         
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                                         
 		<!--div class="banner-top">				
 			{if $felsoBannerList}			
@@ -81,10 +85,90 @@
 			{$ErrorMessage}
 			<div class="mainContent">
 				<h1>{$PageName}</h1>
-				{$Content}
+				<div class="jobCircle-cont">
+	<div>
+        {$text}
+        </div>
+        <br/><br/><br/>
+	<a href="{$DOMAIN}keszulj-az-allasinterjura" class="jobCircle jobCircle-1">
+		<span class="jobCircle-panel">
+			<span class="jobCircle-top">5.</span>
+			<span class="jobCircle-content">
+				<img src="images/site/munkakor_img_1.jpg" alt="" />
+				<span class="jobCircle-text-1">Készülj az állásinterjúra!</span>
+				<span class="jobCircle-text-2">További segítség a sikeres elhelyezkedéshez</span>
+			</span>		
+		</span>	
+		<span class="jobCircle-shadow"></span>
+	</a>
+	<div class="rotateImg rotateImg-1"></div>
+	<a href="{$DOMAIN}tevekenysegikor-kereso/" class="jobCircle jobCircle-2">
+		<span class="jobCircle-panel">
+			<span class="jobCircle-top">1.</span>
+			<span class="jobCircle-content">
+				<img src="images/site/munkakor_img_2.jpg" alt="" />
+				<span class="jobCircle-text-1">Ismerd meg a munkakört</span>
+				<span class="jobCircle-text-2">Biztos ezt szeretnéd csinálni?</span>
+			</span>		
+		</span>	
+		<span class="jobCircle-shadow"></span>
+	</a>
+	<div class="rotateImg rotateImg-2"></div>
+	<a href="{$DOMAIN}kompetenciak/tesztek" class="jobCircle jobCircle-3">
+		<span class="jobCircle-panel">
+			<span class="jobCircle-top">2.</span>
+			<span class="jobCircle-content">
+				<img src="images/site/munkakor_img_3.jpg" alt="" />
+				<span class="jobCircle-text-1">Vizsgáld meg magad!</span>
+				<span class="jobCircle-text-2">Biztos alkalmas vagy erre a feladatra?</span>
+			</span>		
+		</span>	
+		<span class="jobCircle-shadow"></span>
+	</a>
+	
+	<div class="clear"></div>
+	
+	
+	<div class="rotateImg rotateImg-3"></div>
+	<a href="{$DOMAIN}kompetenciak/kompetenciarajz/" class="jobCircle jobCircle-4">
+		<span class="jobCircle-panel">
+			<span class="jobCircle-top">4.</span>
+			<span class="jobCircle-content">
+				<img src="images/site/munkakor_img_4.jpg" alt="" />
+				<span class="jobCircle-text-1">Készíts el kompetencia profilod!</span>
+				<span class="jobCircle-text-2">..hogy rád találjon a munáltató</span>
+			</span>		
+		</span>	
+		<span class="jobCircle-shadow"></span>
+	</a>
+	<div class="rotateImg rotateImg-4"></div>
+	<a href="{$DOMAIN}allaskereses/" class="jobCircle jobCircle-5">
+		<span class="jobCircle-panel">
+			<span class="jobCircle-top">3.</span>
+			<span class="jobCircle-content">
+				<img src="images/site/munkakor_img_5.jpg" alt="" />
+				<span class="jobCircle-text-1">Keress az álláshírdetések között!</span>
+				<span class="jobCircle-text-2">Válassz munkáltatót!</span>
+			</span>		
+		</span>	
+		<span class="jobCircle-shadow"></span>
+	</a>
+	<div class="rotateImg rotateImg-5"></div>
+	<a href="{$DOMAIN}en/" class="jobCircle jobCircle-6">
+		<span class="jobCircle-panel">
+			<span class="jobCircle-content">
+				<span class="jobCircle-text-1">Saját profilom!</span>
+			</span>		
+		</span>	
+		<span class="jobCircle-shadow"></span>
+	</a>
+	<div class="clear"></div>
+</div>	
+                
+
 				<div class="clear"></div>
 			</div>
-			<div class="boxType boxType-1">
+			<!--div class="boxType boxType-1">
 				<h2>Hasznos tanácsok</h2>
 				{if $usefulAdvices}
 					<table width="100%" border="0" cellspacing="0" cellpadding="0"  class="advice-table">
@@ -118,44 +202,14 @@
 					<div class="clear"></div>
 				</div>                         
 				{/foreach}
-			</div>	
+			</div-->	
 			<div class="clear"></div>		
 		</div>
         <div class="column-2">
 		   <div class="boxForm">					
-				{$LoginForm}							
-				{$LogoutForm}
+				
 			</div>	
-			<div class="boxForm">					
-				<h3 class="boxForm-form-title">Részletes keresés</h3>
-				<form action="" method="post" name="{$FormName}" id="{$FormName}" class="boxForm-form">	
-					<div class="form-row">        
-						<input type="text" name="{$TxtFnev.name}" value="munkavégzés helye..." class="text labelInField" alt="munkavégzés helye..." />
-						<div class="clear"></div>
-					</div>
-					<div class="form-row">       
-						<input type="text"  name="{$PassJelszo.name}" value="munka típusa..."  class="text labelInFieldPwd" alt="munka típusa..."/> 
-						<div class="clear"></div> 
-					</div>
-					<div class="selectCont selectFilter_1">     
-						 <select  class="select" name="{$FormKategoriaName}" id="{$FormKategoriaName}">						
-						   <option value="0">Válasszon a listából</option>
-						 </select>
-					</div>
-					<div class="clear"></div>	 
-					<div class="selectCont selectFilter_1">     
-						 <select  class="select" name="{$FormKategoriaName}" id="{$FormKategoriaName}">						
-						   <option value="0">Válasszon a listából</option>
-						 </select>
-					</div>	
-					<div class="clear"></div> 										
-					<div class="form-row form-row-submit">
-						<button class="submit" id="{$BtnLogin}" name="{$BtnLogin}" type="submit" value="Keresés">Keresés</button>
-						<div class="clear"></div>   
-					</div>		
-					<div class="clear"></div>
-				</form> 
-			</div>	
+			
 				
 		</div>
 		<div class="clear"></div>	

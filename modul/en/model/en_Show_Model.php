@@ -36,13 +36,33 @@ class En_Show_Model extends Page_Edit_Model {
         }
     }
     
-    public function getNumberOfJobsOfTevkor($ids)
+    public function getNumberOfJobsOfTevkor($ids,$cID)
     {
         try
         {
         $IDstring = implode(", ",$ids);
         
+        $llogin = $this->getLastLogin($cID);
+        
         $query = "SELECT COUNT( DISTINCT (a.allashirdetes_id)) AS ahDB,
+                    (
+                    
+                    SELECT COUNT( DISTINCT (a.allashirdetes_id))
+                    FROM allashirdetes a
+                    INNER JOIN allashirdetes_attr_munkakor aam ON a.allashirdetes_id = aam.allashirdetes_id
+                    INNER JOIN munkakor m ON m.munkakor_id = aam.munkakor_id
+                    INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = aam.munkakor_id
+                    INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id
+                    WHERE
+                        a.lejarati_datum > '" . date('Y-m-d') . "' AND 
+                        a.letrehozas_timestamp > '".mysql_real_escape_string($llogin)."' AND
+                        mk.munkakor_kategoria_id IN (".$IDstring.")
+                        /*mk.munkakor_kategoria_id = " . (int)$jobId . " */ AND 
+                        a.allashirdetes_aktiv = 1 AND a.allashirdetes_torolt = 0
+                    GROUP BY mk.munkakor_kategoria_id
+
+                      ) AS uj,
+
                         mk.munkakor_kategoria_id AS ID,
                         mk.kategoria_cim AS nev
                     FROM allashirdetes a
@@ -57,6 +77,8 @@ class En_Show_Model extends Page_Edit_Model {
                         a.allashirdetes_aktiv = 1 AND a.allashirdetes_torolt = 0
                     GROUP BY mk.munkakor_kategoria_id
             ";
+        
+        
         
         return $this->_DB->prepare($query)->query_select()->query_result_array();
         }catch(Exception_MYSQL_Null_Rows $e)
@@ -173,8 +195,7 @@ class En_Show_Model extends Page_Edit_Model {
                                LEFT JOIN kompetencia
                                ON kompetencia.kompetencia_id = ugyfel_attr_kompetencia.ugyfel_attr_kompetencia_kompetencia_id
                                WHERE ugyfel_attr_kompetencia_ugyfel_id= ".(int)$cID."
-                               AND
-                                            nyelv_id=".(int)$lId;
+                               AND nyelv_id=".(int)$lId." AND kompetencia.kompetencia_torolt = 0 AND kompetencia.kompetencia_aktiv = 1";
              return $this->_DB->prepare($query)->query_select()->query_result_array();
         }
         catch(Exception_MYSQL_Null_Rows $e)
@@ -227,6 +248,27 @@ class En_Show_Model extends Page_Edit_Model {
         {
         }
     }
+    
+     public function getPositionTestResultByClientId($cID)
+    {
+        try
+        {
+            $query = "
+                    SELECT eredmeny, pont
+                    FROM ugyfel_attr_pozicioteszt
+                    WHERE ugyfel_id = ".(int)$cID."
+                    LIMIT 1"   
+                    ;
+            $result = $this->_DB->prepare($query)->query_select()->query_result_array();
+            return $result;
+        }catch(Exception_MYSQL_Null_Rows $e)
+        {
+            return array();
+        }
+        catch(Exception_MYSQL $e)
+        {
+        }
+    }
 
     public function getCompRajzViews($cID)
     {
@@ -241,16 +283,20 @@ class En_Show_Model extends Page_Edit_Model {
                     
         $result = $this->_DB->prepare($query)->query_select()->query_result_array();
         
+         
         foreach ($result as $key => $value) {
-            $obj = unserialize($value['views']);
             
-            $view = count($obj);
-            $arr["".$view.""] = $value['nev'];
-            $total+=$view;
+            $obj = unserialize($value['views']);
+            if(is_array($obj)){
+                $view = count($obj);
+                //$arr["".$view.""] = $value['nev'];
+                $arr["".$value['nev'].""] = $view;
+                $total+=$view;
+
+            }
         }
         
         $this->_totalCompRajzViews = $total;
-        
         return $arr;
         }catch(Exception_MYSQL_Null_Rows $e)
         {
@@ -262,5 +308,72 @@ class En_Show_Model extends Page_Edit_Model {
         
     }
     
+    public function checkNewMessages($cID){
+            try{
+                $query = "SELECT COUNT(uau.ugyfel_attr_uzenetek_id) AS cnt
+                           FROM ugyfel_attr_uzenetek uau
+                          INNER JOIN user_ugyfel uu ON uu.ugyfel_id = uau.ugyfel_id
+                          INNER JOIN user u ON u.user_id = uu.user_id
+                          WHERE uau.ugyfel_id = ".(int)$cID." 
+                              AND uau.ugyfel_attr_uzenetek_aktiv = 1
+                              AND uau.ugyfel_attr_uzenetek_torolt = 0
+                              AND uau.bekuldes_datum > u.user_last_login
+                         ";
+                $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+                return $result[0]['cnt'];
+            }catch(Exception_MYSQL_Null_Rows $e){
+                return 0;
+            }
+            catch(Exception_MYSQL $e){
+                return false;
+            }
+            
+        }
+        
+        public function getLastLogin($cID){
+            try{
+                $query = "SELECT u.user_last_login AS lastLogin
+                          FROM ugyfel
+                          INNER JOIN user_ugyfel uu ON uu.ugyfel_id = ugyfel.ugyfel_id
+                          INNER JOIN user u ON u.user_id = uu.user_id
+                          WHERE ugyfel.ugyfel_id = ".(int)$cID." LIMIT 1
+                              
+                         ";
+                $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+
+                return $result['lastLogin'];
+                
+            }catch(Exception_MYSQL_Null_Rows $e){
+                return 0;
+            }
+            catch(Exception_MYSQL $e){
+                return 0;
+            }
+        }
+        
+        
+        
+    public function checkNewJobsByTevkor($cID,$tID){
+        try{
+                $query = "SELECT COUNT(ah.allashirdetes_id) AS cnt
+                           FROM ugyfel_attr_uzenetek uau
+                          INNER JOIN user_ugyfel uu ON uu.ugyfel_id = uau.ugyfel_id
+                          INNER JOIN user u ON u.user_id = uu.user_id
+                          WHERE uau.ugyfel_id = ".(int)$cID." 
+                              AND uau.ugyfel_attr_uzenetek_aktiv = 1
+                              AND uau.ugyfel_attr_uzenetek_torolt = 0
+                              AND uau.bekuldes_datum > u.user_last_login
+                         ";
+                $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+                return $result[0]['cnt'];
+            }catch(Exception_MYSQL_Null_Rows $e){
+                return 0;
+            }
+            catch(Exception_MYSQL $e){
+                return false;
+            }
+            
+        
+    }
 }
 ?>

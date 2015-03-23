@@ -82,6 +82,7 @@ class Tevekenysegikor_Show_Model extends Page_Edit_Model
                           a.allashirdetes_aktiv = 1 AND 
                           a.allashirdetes_torolt = 0
                       LIMIT " . $this->getOffersLimit();
+
             return $this->_DB->prepare($query)->query_select()->query_result_array();
         } catch (Exception_MYSQL_Null_Rows $emnr) {
             return array();
@@ -90,14 +91,34 @@ class Tevekenysegikor_Show_Model extends Page_Edit_Model
     
     public function findMarkersByJobId($jobId)
     {
+        
+        //összesítve hozza azokat az ügyfeleket akik az adott tev.kört megjelölték vagy a tevkör alá besorolt munkakörhöz kapcsolodó álláshirdetéseket megjelölték
         try {
             $query = "SELECT 
                           ugyfel_id AS uID, kompetenciarajz_id AS krID
                       FROM
                           ugyfel_attr_tevkor
                       WHERE
-                          tevkor_id = ".(int)$jobId
+                          tevkor_id = ".(int)$jobId."
+                     UNION
+                     
+                     SELECT
+                        uaam.ugyfel_id AS uID, uaam.kompetenciarajz_id AS krID
+                     FROM ugyfel_attr_allashirdetes_megjelolt uaam
+                     WHERE uaam.ugyfel_id IN
+                     (
+                        SELECT uaam2.ugyfel_id
+                        FROM ugyfel_attr_allashirdetes_megjelolt uaam2
+                        INNER JOIN allashirdetes_attr_munkakor aam ON aam.allashirdetes_id = uaam2.allashirdetes_id
+                        INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = aam.munkakor_id
+                        INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id
+                        WHERE mk.munkakor_kategoria_id = ".(int)$jobId."
+                      
+                        )
+                      "
                       ;
+            
+           
             return $this->_DB->prepare($query)->query_select()->query_result_array();
         } catch (Exception_MYSQL_Null_Rows $emnr) {
             return array();
@@ -242,17 +263,17 @@ class Tevekenysegikor_Show_Model extends Page_Edit_Model
            }
        }
     
-    public function addComment($uID, $tvID, $comment){
+    public function addComment($uID, $tvID, $comment, $type){
        
             $query = "INSERT INTO tevekenysegikor_hozzaszolas
-                      SET ugyfel_id = ".(int)$uID.", tevekenysegikor_id = ".(int)$tvID.", hozzaszolas = '".mysql_real_escape_string($comment)."', bekuldes_date = NOW(),
-                          tevekenysegikor_hozzaszolas_aktiv = 0, tevekenysegikor_hozzaszolas_torolt = 0
+                      SET ugyfel_id = ".(int)$uID.", tevekenysegikor_id = ".(int)$tvID.", hozzaszolas = '".mysql_real_escape_string($comment)."', type = '". mysql_real_escape_string($type)."', bekuldes_date = NOW(),
+                          tevekenysegikor_hozzaszolas_aktiv = 0, tevekenysegikor_hozzaszolas_torolt = 0, checked = 0
                      ";
         
             return $this->_DB->prepare($query)->query_insert();
     }
     
-    public function findCommentsByTevkorID($id)
+    public function findCommentsByTevkorID($id,$type)
     {
         try{
             $query = "
@@ -266,6 +287,7 @@ class Tevekenysegikor_Show_Model extends Page_Edit_Model
                           AND th.tevekenysegikor_hozzaszolas_torolt = 0
                           AND u.ugyfel_aktiv = 1
                           AND u.ugyfel_torolt = 0
+                          AND th.type = '". mysql_real_escape_string($type)."'
                             "
                     ;
             return $this->_DB->prepare($query)->query_select()->query_result_array();

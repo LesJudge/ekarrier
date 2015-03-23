@@ -20,14 +20,31 @@ class ForumHozzaszolas_Admin_Controller extends Admin_List {
 
     public function onClick_Filter() {
         $this->setWhereInput("hozzaszolas_bekuldo LIKE '%:item%' OR hozzaszolas_tartalom LIKE '%:item%'", "FilterSzuro");
-        if($this->getItemValue("FilterNyelv"))
+        if($this->getItemValue("FilterNyelv")){
             $this->setWhereInput("hozzaszolas_nyelv=:item", "FilterNyelv");
-        else 
+        }else{ 
             unset($_SESSION[$this->_name]["FilterNyelv"]);
-        if($this->getItemValue("FilterKapcsolodo"))
+        }
+        if($this->getItemValue("FilterKapcsolodo")){
             $this->setWhereInput("kapcsolodo_id=:item", "FilterKapcsolodo");
-        else 
+        }
+        else{ 
             unset($_SESSION[$this->_name]["FilterKapcsolodo"]);
+        }
+        
+        $filterChecked=$this->getItemValue('FilterChecked');
+                switch($filterChecked)
+                {
+                        case 1:
+                                $this->setWhereInput('checked = 0','FilterChecked');
+                                break;
+                        case 2:
+                                $this->setWhereInput('checked = 1','FilterChecked');
+                                break;
+                        default:
+                                unset($_SESSION[$this->_name]['FilterChecked']);
+                                break;
+                }
     }   
 }
 ?>

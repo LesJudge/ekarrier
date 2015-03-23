@@ -26,11 +26,10 @@ class Kompetencia_SiteEdit_Model extends Page_Edit_Model
             try{
                 $query="SELECT ugyfel_attr_kompetencia_ugyfel_id, kompetencia.kompetencia_nev, ugyfel_attr_kompetencia_tesztbol, kompetencia_id, kompetencia_szinkod, kompetencia_link
                                FROM ugyfel_attr_kompetencia
-                               LEFT JOIN kompetencia
-                               ON kompetencia.kompetencia_id = ugyfel_attr_kompetencia.ugyfel_attr_kompetencia_kompetencia_id
-                               WHERE ugyfel_attr_kompetencia_ugyfel_id= ".(int)$this->clientId."
-                               AND
-                                            nyelv_id=".(int)$lId;
+                               LEFT JOIN kompetencia ON kompetencia.kompetencia_id = ugyfel_attr_kompetencia.ugyfel_attr_kompetencia_kompetencia_id
+                               WHERE ugyfel_attr_kompetencia_ugyfel_id= ".(int)$this->clientId." AND kompetencia.kompetencia_aktiv = 1 AND kompetencia.kompetencia_torolt = 0
+                               AND nyelv_id=".(int)$lId;
+                
                 return $this->_DB->prepare($query)->query_select()->query_result_array();
                 }catch(Exception_MYSQL_Null_Rows $e){
             
@@ -43,7 +42,7 @@ class Kompetencia_SiteEdit_Model extends Page_Edit_Model
         public function getAllCompetences($lId)
         {
             try{    
-            $query="SELECT kompetencia_nev, kompetencia_id, kompetencia_szinkod, kompetencia_link
+            $query="SELECT kompetencia_nev, kompetencia_id, kompetencia_szinkod, kompetencia_link, tipus
                                FROM kompetencia
                                WHERE kompetencia_aktiv=1
                                AND kompetencia_torolt=0
@@ -126,6 +125,48 @@ class Kompetencia_SiteEdit_Model extends Page_Edit_Model
             catch(Exception_MYSQL $e){
            
             }
+       }
+       
+       
+       public function checkIfCompExistsByName($name)
+       {
+           
+           try
+           {
+            $query = "SELECT kompetencia_id FROM kompetencia WHERE LOWER(kompetencia_nev) = '".mb_strtolower(mysql_real_escape_string($name),'UTF-8')."'";
+            $this->_DB->prepare($query)->query_select();
+            
+            return true;
+           } catch (Exception_MYSQL_Null_Rows $e) {
+               return false;
+           }
+       }
+       
+       public function addOwnComp($name){
+           try{
+           $clientId = $this->clientId;
+           $query = "INSERT INTO kompetencia
+                     SET nyelv_id = 1, kompetencia_nev = '".ucfirst(mb_strtolower(mysql_real_escape_string($name),'UTF-8'))."', kompetencia_create_date = NOW(),
+                         kompetencia_letrehozo = ".$this->clientId.", tipus='ugyfel', checked = 0
+                     "
+                   ;
+           return $this->_DB->prepare($query)->query_insert();
+           }catch(Exception_MYSQL_Null_Rows $e){
+            
+            }
+            catch(Exception_MYSQL $e){
+            
+            }
+       }
+       
+       public function validateCompNev($nev)
+       {
+           if(empty($nev) || strlen($nev) < 5)
+           {
+             return false;  
+           }else{
+             return true;
+           }
        }
        
         

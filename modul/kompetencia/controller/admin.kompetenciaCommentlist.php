@@ -42,6 +42,20 @@ class KompetenciaCommentlist_Admin_Controller extends Admin_List
                                 unset($_SESSION[$this->_name]['FilterStatus']);
                                 break;
                 }
+                
+                $filterChecked=$this->getItemValue('FilterChecked');
+                switch($filterChecked)
+                {
+                        case 1:
+                                $this->setWhereInput('kompetencia_hozzaszolas.checked = 0','FilterChecked');
+                                break;
+                        case 2:
+                                $this->setWhereInput('kompetencia_hozzaszolas.checked = 1','FilterChecked');
+                                break;
+                        default:
+                                unset($_SESSION[$this->_name]['FilterChecked']);
+                                break;
+                }
         }
 
         

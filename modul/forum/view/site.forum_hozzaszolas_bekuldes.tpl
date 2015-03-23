@@ -16,13 +16,9 @@ $(function() { {$FormScript}
 	<form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor " enctype="multipart/form-data"> 
 		{include file='page/all/view/page.message.tpl'}                  
 
-		<!--
-	   	<div class="form-row">
-			<label for="{$TxtBekuldo.name}">Név <span class="require">*</span></label>		
-		   <input class="" type="text" id="{$TxtBekuldo.name}" name="{$TxtBekuldo.name}" value="{$TxtBekuldo.activ}"/>
-		   {if isset($TxtBekuldo.error)}<div class="ui-state-error">{$TxtBekuldo.error}</div>{/if}
-		</div>
-		-->
+		
+		   <input class="" type="hidden" id="{$TxtBekuldo.name}" name="{$TxtBekuldo.name}" value="{$TxtBekuldo.activ}"/>
+		
 		<div class="form-row">
 		  	<label for="{$TxtTartalom.name}">Hozzászólás <span class="require">*</span></label>	
 			<textarea  id="{$TxtTartalom.name}" name="{$TxtTartalom.name}" rows="10" class="tinymce">{$TxtTartalom.activ}</textarea>

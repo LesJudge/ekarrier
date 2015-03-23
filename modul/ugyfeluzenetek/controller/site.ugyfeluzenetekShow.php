@@ -1,6 +1,6 @@
  <?php
  require 'modul/seo/model/seo_Site_Model.php';
- require 'page/all/model/page.list_model.php';
+ //require 'page/all/model/page.list_model.php';
 
 class UgyfeluzenetekShow_Site_Controller extends Page_Edit
 {
@@ -15,9 +15,7 @@ class UgyfeluzenetekShow_Site_Controller extends Page_Edit
             $this->__addParams($this->_model->_params);
             $this->__addEvent('BtnAddUzenet', 'addUzenet');
             $this->__addEvent('BtnDelUzenet', 'deleteUzenet');
-            
             $this->__run();
-              
         }
 
         public function __show()
@@ -31,8 +29,6 @@ class UgyfeluzenetekShow_Site_Controller extends Page_Edit
                         //Üzenetek
                         $messages = $this->_model->getUzenetek($clientId,$lId);
                         $this->_view->assign('messages',$messages);
-                        
-
                         
                         Rimo::$_site_frame->assign('PageName',"Üzeneteim");
                         Rimo::$_site_frame->assign('site_title',"Üzeneteim");
@@ -70,7 +66,6 @@ class UgyfeluzenetekShow_Site_Controller extends Page_Edit
         try{
             if((int)$_REQUEST['delMessageID'] < 0)
             {
-                
                 throw new Exception_Form_Error("Hiba történt!");
             }
             else
@@ -84,9 +79,7 @@ class UgyfeluzenetekShow_Site_Controller extends Page_Edit
         catch(Exception_MYSQL $e){
             throw new Exception_Form_Error("Hiba történt!");
         }
-        
     }
-    
 }
 
 ?>

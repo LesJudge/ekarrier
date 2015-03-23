@@ -100,9 +100,9 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         $mr->_verify['select'] = true;
         $mr->_select_value = $this->getSelectValues(
             'munkarend',
-            'munkarend_nev',
+            'nev',
             ' AND munkarend_aktiv = 1 AND munkarend_torolt = 0',
-            ' ORDER BY munkarend_nev ASC',
+            ' ORDER BY nev ASC',
             false,
             array('' => '--Válasszon munkarendet!--')
         );

@@ -29,7 +29,7 @@ class Allashirdetes_Site_Show_Model extends Model
                         c.nev,
                         c.link,
                         cv.cim_varos_nev,
-                        m.munkarend_nev
+                        m.nev
                   FROM
                         allashirdetes a
                             LEFT JOIN

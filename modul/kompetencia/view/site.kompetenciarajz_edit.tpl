@@ -1,6 +1,6 @@
 <script type="text/javascript" src="{$DOMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <!--script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script-->
-
+{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
 {if $FormError}
  <div class="info info-error">
     <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
@@ -242,5 +242,3 @@ $(".compQuestion").mouseenter(function() {
     }*/
 });
 </script>
-
-{include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}

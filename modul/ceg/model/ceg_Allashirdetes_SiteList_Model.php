@@ -15,7 +15,7 @@ class Ceg_Allashirdetes_SiteList_Model extends Page_List_Model
      * @var string
      */
     public $_fields = 'allashirdetes.allashirdetes_id, allashirdetes.megnevezes, allashirdetes.num_megtekintve, 
-        sz.szektor_nev, p.pozicio_nev, m.munkarend_nev';
+        sz.szektor_nev, p.pozicio_nev, m.nev';
     /**
      * JOIN
      * @var string

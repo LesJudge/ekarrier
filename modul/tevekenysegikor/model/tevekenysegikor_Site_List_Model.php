@@ -80,10 +80,10 @@ class Tevekenysegikor_Site_List_Model extends Admin_List_Model
         //$searchName=$this->addItem('TxtSearchByName');
         
         $csoport = $this->addItem('FilterCsoport');
-        $csoport->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 1 ", "ORDER BY kategoria_cim ASC", false, array(""=>"--Válasszon--"));
+        $csoport->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 1 ", "ORDER BY kategoria_cim ASC", false, array("-1"=>"--Válasszon--"));
         
         $kor = $this->addItem('FilterKor');
-        $kor->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 2 ", "ORDER BY kategoria_cim ASC", false, array(""=>"--Válasszon--"));
+        $kor->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 2 ", "ORDER BY kategoria_cim ASC", false, array("-1"=>"--Válasszon--"));
         
         $szektor = $this->addItem('FilterSzektor');
         $szektor->_select_value = $this->getSelectValues("szektor", "szektor_nev", "", "", false, array(""=>"--Válasszon--"));

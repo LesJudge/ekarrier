@@ -9,7 +9,7 @@
  * @property Smarty $_view Site frame.
  * @author Petró Balázs Máté <balazs@uniweb.hu>
  */
-require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
+//require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
 abstract class AllashirdetesBaseListController extends Admin_List
 {
     /**
@@ -70,12 +70,11 @@ abstract class AllashirdetesBaseListController extends Admin_List
         }catch(Exception_MYSQL_Null_Rows $e){
         }
         
-        if($clientId){
-            $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
-            $this->_view->assign("linkMode","on");
-            $this->_view->assign("addLinkOption","on");
-            $this->_view->assign("links",$links);
-        }
+        $cegek = $this->getCegekByConditions();
+        $this->_view->assign('cegek',$cegek);
+        
+        
+        
         
         Rimo::$_site_frame->assign('PageName', $seo['seo_nev']);
         Rimo::$_site_frame->assign('site_title', $seo['seo_nev']);
@@ -174,16 +173,73 @@ abstract class AllashirdetesBaseListController extends Admin_List
     }
     */
     
-    public function onClick_addLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."allaskereses/");
-        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."allaskereses/");
-    }
-    
-    public function onClick_deleteLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
-        ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
-    }
+   public function getCegekByConditions(){
+       $filterTevKor = $this->getItemValue('FilterTevKor');
+       $filterSector = $this->getItemValue('FilterSector');
+       $filterLetter = $this->getItemValue('FilterLetter');
+       $filterTevCsoport = $this->getItemValue('FilterTevCsoport');
+       $filterCity = $this->getItemValue('FilterCity');
+       $filterCounty = $this->getItemValue('FilterCounty');
+       $wheres = array();
+        
+       if (!empty($filterTevKor) && $filterTevKor > 0) {
+            $wheres['tevkor'] = "catk.tevkor_id = ".(int)$filterTevKor;     
+        }
+        
+        if (!empty($filterTevCsoport) && $filterTevCsoport > 0) {
+            $wheres['tevcsop'] = "(SELECT munkakor_kategoria_id
+                                    FROM munkakor_kategoria mkin
+                                    WHERE mkin.baloldal < mk.baloldal AND mkin.jobboldal > mk.jobboldal AND mkin.szint = 1 LIMIT 1
+                                    ) =" .(int)$filterTevCsoport;     
+        }
+        
+        if (!empty($filterSector) && $filterSector > 0) {
+            $wheres['sector'] = "ca.szektor_id = ".(int)$filterSector;     
+        }
+        
+        if (!empty($filterLetter)) {
+            $wheres['letter'] = "c.nev LIKE '".mysql_real_escape_string($filterLetter)."%'";     
+        }
+        
+        if (!empty($filterCity)) {
+            $wheres['city'] = "(cv1.cim_varos_nev LIKE '".mysql_real_escape_string($filterCity)."' OR cv2.cim_varos_nev LIKE '".mysql_real_escape_string($filterCity)."')";     
+        }
+        
+        if (!empty($filterCounty)) {
+            $wheres['county'] = "(cm1.cim_megye_id = ".(int)$filterCounty." OR cm2.cim_megye_id = ".(int)$filterCounty.")";     
+        }
+        
+        $whereString = implode(' AND ', $wheres);
+        
+        
+        if(empty($whereString)){
+            $whereString = "";
+        }else{
+            $whereString = "AND ".$whereString;
+        }
+        
+        try{
+            $query = "SELECT c.nev AS cegnev, c.ceg_id AS ID, c.link AS link
+                      FROM ceg c
+                      INNER JOIN ceg_attr_tevkor catk ON catk.ceg_id = c.ceg_id
+                      INNER JOIN ceg_adatok ca ON ca.ceg_id = c.ceg_id
+                      INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = catk.tevkor_id
+                      LEFT JOIN ceg_szekhely csz ON csz.ceg_id = c.ceg_id
+                      LEFT JOIN ceg_telephely ct ON ct.ceg_id = c.ceg_id
+                      LEFT JOIN cim_varos cv1 ON cv1.cim_varos_id = csz.cim_varos_id
+                      LEFT JOIN cim_varos cv2 ON cv2.cim_varos_id = ct.cim_varos_id
+                      LEFT JOIN cim_megye cm1 ON cm1.cim_megye_id = csz.cim_megye_id
+                      LEFT JOIN cim_megye cm2 ON cm2.cim_megye_id = ct.cim_megye_id
+                      WHERE c.ceg_aktiv = 1 AND c.ceg_torolt = 0 ".$whereString." GROUP BY c.ceg_id
+                    ";
+            
+            return $this->_model->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();   
+        }
+        catch(Exception_MYSQL $e){
+            return array();   
+        }
+   }
     
 }

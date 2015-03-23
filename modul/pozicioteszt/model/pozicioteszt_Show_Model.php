@@ -1,7 +1,6 @@
 <?php
 class Pozicioteszt_Show_Model extends Model {
    
-    private $mainResKat;
     public  $questions = array("Ha a helyzet úgy hozza nem szívesen vállalom az irányítást, hagyom hogy vállalja más a vezetést.",
                                          "A változtatásokról mindig én értesülök legkésőbb.",
                                          "Aggódom amiatt, hogy valami elromlik, nem jól sikerül.",
@@ -97,10 +96,6 @@ class Pozicioteszt_Show_Model extends Model {
                                         );
 
 
-
-
-
-
     public function __construct(){
         $this->addDB("MYSQL_DB");
     }
@@ -115,7 +110,6 @@ class Pozicioteszt_Show_Model extends Model {
         
         foreach($arr as $key=>$value)
         {
-            
             if(array_key_exists($key, $this->rulesVezSkill)){
                
                 $vezSkillPoints+=$this->rulesVezSkill[$key][$value];
@@ -135,26 +129,16 @@ class Pozicioteszt_Show_Model extends Model {
                
                 $domPoints+=$this->rulesDom[$key][$value];
             }
-            
-            
-        }
-        
-        
-        
+        }   
         $vezSkillPoints = $vezSkillPoints/9;
         $introvPoints = round($introvPoints/5,1);
         
         if(array_key_exists("".$introvPoints."", $this->rulesExtra))
-        {       
-            
+        {          
                 $introvPoints = $this->rulesExtra["".$introvPoints.""];
-                
         }
-        
-        
         $statusPoints = $statusPoints/5;
         $domPoints = $domPoints/5;
-        
         
         $finalScore = ($statusPoints * $domPoints * $vezSkillPoints) / $introvPoints;
         
@@ -162,95 +146,74 @@ class Pozicioteszt_Show_Model extends Model {
         
     }
     
-    
-    
-    
-    
-
-    public function getMainResKatFromDB(){
-        $query = "
-            SELECT szektor_id, szektor_nev, szektor_leiras
-            FROM szektor 
-            WHERE szektor_torolt = '0' AND szektor_aktiv = '1'
-        ";
+    public function getLeaderDetails()
+    {
+        $query = "SELECT pozicio_id AS ID, pozicio_nev AS nev, pozicio_leiras AS leiras
+                  FROM pozicio
+                  WHERE pozicio_aktiv = 1 AND pozicio_torolt = 0 AND link = 'vezeto'
+                  LIMIT 1
+                ";
         
-        $result=$this->_DB->prepare($query)->query_select()->query_result_array();
-        foreach ($result as $key => $value) {
-            $this->setMainResKat($key, "szektor_nev", $result[$key]['szektor_nev']);
-            $this->setMainResKat($key, "szektor_id", $result[$key]['szektor_id']);
-            $this->setMainResKat($key, "szektor_leiras", $result[$key]['szektor_leiras']);
-            //$this->setContents($key, $result[$key]['szektor_nev']." ".$result[$key]['szektor_leiras']);
-            $this->setContents($key, $result[$key]['szektor_nev']);
-        }
-        return $this->mainResKat;
-   }
-    
-    public function getResultTartalom($id,$score){
-        //return $this->getContents($id)." - ".$score." pont";
-        return $this->getContents($id);
+        return $this->_DB->prepare($query)->query_select()->query_fetch_array();
     }
-
-    public function getKompetenciakFromDB(){
-       $query = "
-            SELECT kompetencia.kompetencia_nev, kompetencia.kompetencia_tartalom, szektor.szektor_id, kompetencia.kompetencia_id
-            FROM kompetencia
-            INNER JOIN szektor_kompetencia ON kompetencia.kompetencia_id = szektor_kompetencia.kompetencia_id
-            INNER JOIN szektor ON szektor.szektor_id = szektor_kompetencia.szektor_id
-            WHERE kompetencia_torolt =  '0' AND szektor_torolt =  '0'
-            ORDER BY szektor_id
-        "; 
-       $result=$this->_DB->prepare($query)->query_select()->query_result_array();
-       
-       foreach ($result as $key => $value) {
-           $this->setKompetenciak($key,"szektorid", $result[$key]['szektor_id']);
-           $this->setKompetenciak($key,"nev", $result[$key]['kompetencia_nev']);
-           $this->setKompetenciak($key,"tartalom", $result[$key]['kompetencia_tartalom']);
-           $this->setKompetenciak($key,"kompetenciaid", $result[$key]['kompetencia_id']);
-       }
-       return $this->kompetenciak;
-   }
     
-   public function getSzektorOrderArray($arr)
-   {
-       
-   }
-   
-   
-    public function getFinal($arr){
-      
-        $score=rtrim($arr,'_');
-        $score=explode("_", $score);
-        $scoreArr=array();
-        $kompetenciak = $this->getKompetenciak();
-
-        foreach ($score as $key => $value){
-            $a=explode("=", $value);
-            $scoreArr[$a[0]]=$a[1];
+    public function getLeaderComps($id)
+    {
+        try{
+        $query = "SELECT k.kompetencia_nev AS nev, k.kompetencia_link AS link
+                  FROM kompetencia k
+                  INNER JOIN pozicio_attr_kompetencia pak ON pak.kompetencia_id = k.kompetencia_id
+                  WHERE k.kompetencia_aktiv = 1 AND k.kompetencia_torolt = 0 AND pak.pozicio_id = ".(int)$id."
+                ";
+        }  catch (Exception_MYSQL_Null_Rows $e)
+        {
+                            
         }
-        arsort($scoreArr);
-                
-        $finalResArr=array();
-        $MainResKat=$this->getMainResKat();
+        return $this->_DB->prepare($query)->query_select()->query_result_array();
+    }
+    
+    public function getEmployeeDetails()
+    {
+        $query = "SELECT pozicio_id AS ID, pozicio_nev AS nev, pozicio_leiras AS leiras
+                  FROM pozicio
+                  WHERE pozicio_aktiv = 1 AND pozicio_torolt = 0 AND link = 'alkalmazott'
+                  LIMIT 1
+                ";
         
-        $i=0;
-        foreach ($scoreArr as $key => $value){
-            $kompArr=array();
-            foreach ($kompetenciak as $key1 => $value1){
-                if($kompetenciak[$key1]['szektorid']==$MainResKat[$key]['szektor_id']){
-                    $kompArr[$kompetenciak[$key1]['kompetenciaid']]="
-                                <div id='opener".$key1."' class='opener'>".$kompetenciak[$key1]["nev"]."</div><input type='hidden' name='".$kompetenciak[$key1]['kompetenciaid']."' value='".$kompetenciak[$key1]['kompetenciaid']."'>
-                                <div id='opener".$key1."_nev' class='hidden'>".$kompetenciak[$key1]["nev"]."</div>
-                                <div id='opener".$key1."_tartalom' class='hidden'>".$kompetenciak[$key1]["tartalom"]."</div>"
-                            ;
-                 }
-            }
-            $finalResArr[$i]["szektor_id"]=$MainResKat[$key]['szektor_id'];
-            $finalResArr[$i]["eredmeny"]=$this->getResultTartalom($key, $value);
-            $finalResArr[$i]["leiras"]=$this->mainResKat[$key]['szektor_leiras'];
-            $finalResArr[$i]["kompetencia"]=$kompArr;
-            $i++;
-        }
-    return $finalResArr;
+        return $this->_DB->prepare($query)->query_select()->query_fetch_array();
     }
+    
+    public function getEmployeeComps($id)
+    {
+        try{
+        $query = "SELECT k.kompetencia_nev AS nev, k.kompetencia_link AS link
+                  FROM kompetencia k
+                  INNER JOIN pozicio_attr_kompetencia pak ON pak.kompetencia_id = k.kompetencia_id
+                  WHERE k.kompetencia_aktiv = 1 AND k.kompetencia_torolt = 0 AND pak.pozicio_id = ".(int)$id."
+                ";
+        }  catch (Exception_MYSQL_Null_Rows $e)
+        {
+                            
+        }
+        return $this->_DB->prepare($query)->query_select()->query_result_array();
+    }
+    
+    public function saveResult($result,$cID,$score){
+        try{
+            $query = "INSERT INTO ugyfel_attr_pozicioteszt
+                        SET ugyfel_id = ".(int)$cID.", eredmeny = '". mysql_real_escape_string($result)."', pont = ".  mysql_real_escape_string($score)."
+                      ON DUPLICATE KEY UPDATE eredmeny = '". mysql_real_escape_string($result)."', pont = ".  mysql_real_escape_string($score)."
+                        ";
+            
+            $this->_DB->prepare($query)->query_insert();
+            
+        }catch(Exception_MYSQL_Null_Affected_Rows $e){
+        }
+        catch(Exception_MYSQL $e){
+        }
+    }
+    
+    
+    
 }
 ?>

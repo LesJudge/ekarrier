@@ -63,6 +63,11 @@ $(function() { {$FormScript}
                                     {if isset($TxtTartalom.error)}<p class="error small">{$TxtTartalom.error}</p>{/if}
 				</div><div class="clear"></div>
                                 
+                                <div class="form_row">
+                                            <label>Ellenőrizve <span class="require">*</span></label>
+                                            {html_radios name=$ChkChecked.name options=$ChkChecked.values selected=$ChkChecked.activ}
+                                            {if isset($ChkChecked.error)}<p class="error small">{$ChkChecked.error}</p>{/if}
+                                    </div><div class="clear"></div>
         
                                 <div class="form_row">
                                         <label>Publikus <span class="require">*</span></label>

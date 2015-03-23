@@ -30,6 +30,16 @@ class KompetenciaEdit_Admin_Controller extends Admin_Edit
         public function __show()
         {
                 parent::__show();
+                
+                if($this->_model->modifyID && $this->_model->_params['TxtTipus']->_value == 'ugyfel'){
+                    $this->_model->_params['TxtLink']->_value = "sajat";
+                    $this->_model->_params['TxtLeiras']->_value = "sajat";
+                    $this->_model->_params['TxtKulcsszo']->_value = ",sajat,";
+                    $this->_model->_params['TxtTartalom']->_value = "sajat";
+                    $this->_model->_params['TxtSzinkod']->_value = "";
+                    $this->_view->assign('ugyf','1');
+                    
+                }
                 Rimo::$_site_frame->assign('Form',$this->__generateForm('modul/kompetencia/view/admin.kompetencia_edit.tpl'));
         }
 
@@ -44,5 +54,7 @@ class KompetenciaEdit_Admin_Controller extends Admin_Edit
                 parent::onLoad_Edit();
                 $this->_view->assign('kompetencia_allapot',$this->_model->kompetenciaAllapot());
         }
+        
+        
 
 }

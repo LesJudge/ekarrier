@@ -71,9 +71,9 @@ class Kompetencia_SiteRajzEdit_Model extends Page_Edit_Model
             {
                 $query = "SELECT ugyfel_attr_kompetencia_ugyfel_id, kompetencia.kompetencia_nev, ugyfel_attr_kompetencia_tesztbol, kompetencia_id, kompetencia_szinkod, kompetencia_leiras
                                FROM ugyfel_attr_kompetencia
-                               LEFT JOIN kompetencia
+                               INNER JOIN kompetencia
                                ON kompetencia.kompetencia_id = ugyfel_attr_kompetencia.ugyfel_attr_kompetencia_kompetencia_id
-                               WHERE ugyfel_attr_kompetencia_ugyfel_id='".mysql_real_escape_string($id)."'
+                               WHERE ugyfel_attr_kompetencia_ugyfel_id='".mysql_real_escape_string($id)."' AND kompetencia.kompetencia_aktiv = 1 AND kompetencia.kompetencia_torolt = 0 
                                AND
                                             nyelv_id=".(int)$lId;
                 return $this->_DB->prepare($query)->query_select()->query_result_array();

@@ -7,10 +7,7 @@ class ProfilIndex_Site_Controller extends RimoController
         
         public function __construct()
         {
-                if(!UserLoginOut_Site_Controller::$_id)
-                {
-                        throw new Exception_404;
-                }
+                
                 $this->__run();
         }
         

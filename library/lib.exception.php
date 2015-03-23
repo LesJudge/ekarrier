@@ -311,3 +311,17 @@ class Exception_404 extends Exception
 {
     
 }
+
+class Exception_RegRequiredMV extends Exception
+{
+    public function __construct (){
+        header('Location: '.Rimo::$_config->DOMAIN.'munkavallalo/regisztracio/');
+    }
+}
+
+class Exception_RegRequiredMA extends Exception
+{
+    public function __construct (){
+        header('Location: '.Rimo::$_config->DOMAIN.'ceg/regisztracio/');
+    }
+}

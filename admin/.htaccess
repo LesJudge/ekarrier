@@ -9,5 +9,5 @@ RewriteRule ^([^/]*)/([^/]*)$  index.php?m=$1&al=$2&%{QUERY_STRING} [L]
 RewriteRule ^([^/]*)/([^/]*)/([0-9]*)$  index.php?m=$1&al=$2&id=$3&%{QUERY_STRING} [L]
 RewriteRule ^([^/]*)/([^/]*)/([^/]*)$  index.php?m=$1&al=$2$3&%{QUERY_STRING} [L]
 RewriteRule ^([^/]*)/([^/]*)/([^/]*)/([0-9]*)$  index.php?m=$1&al=$2$3&id=$4&%{QUERY_STRING} [L]
-# Egy újabb fölösleges hackelés az indokolatlan rewrite rule miatt.
+# Egy Ãºjabb fÃ¶lÃ¶sleges hackelÃ©s az indokolatlan rewrite rule miatt.
 RewriteRule ^([^/]*)/([^/]*)/([^/]*)/([^/]*)$  index.php?m=$1&al=$2$3&id=$4&%{QUERY_STRING} [L]

@@ -4,7 +4,7 @@
  * @property Ceg_ShowCeg_Model $_model
  * @property Smarty $_view
  */
-require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
+
 class CegShow_Site_Controller extends Page_Edit {
 
     public $name = 'Ceg';
@@ -56,12 +56,7 @@ class CegShow_Site_Controller extends Page_Edit {
             }catch(Exception_MYSQL_Null_Rows $e){
             }
 
-            if($clientId){
-                $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
-                $this->_view->assign("linkMode","on");
-                $this->_view->assign("addLinkOption","on");
-                $this->_view->assign("links",$links);
-            }
+           
             
             
             Rimo::$_site_frame->assign('site_title', 'Munkáltatók - ' . $companyData['nev']);
@@ -73,18 +68,5 @@ class CegShow_Site_Controller extends Page_Edit {
         }
     }
     
-     public function onClick_addLink() {
-         $lId = Rimo::$_config->SITE_NYELV_ID;
-        // Lekérdezi a cég adatait.
-        $companyData = $this->_model->findCompanyByUrl($_GET['link'], $lId);
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."munkaltato/".$companyData['nev']);
-        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."munkaltato/".$companyData['nev']);
-    }
-    
-    public function onClick_deleteLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
-        ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
-    }
+   
 }

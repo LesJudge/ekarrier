@@ -5,8 +5,8 @@ class Hir_ShowList_Model extends Page_List_Model {
     public $_fields = "hir_cim, hir_link, hir_leiras, DATE_FORMAT(hir_megjelenes,'%Y-%m-%d %H:%i') AS megjelenes,
                        hir_kep_nev
     ";
-    public $_join = "LEFT JOIN hir_attr_kategoria ON hir_attr_kategoria.hir_id=hir.hir_id 
-                     LEFT JOIN hir_kategoria ON hir_attr_kategoria_id=hir_kategoria_id
+    public $_join = "INNER JOIN hir_attr_kategoria ON hir_attr_kategoria.hir_id=hir.hir_id 
+                     INNER JOIN hir_kategoria ON hir_attr_kategoria_id=hir_kategoria_id
     ";
     
     
@@ -24,13 +24,19 @@ class Hir_ShowList_Model extends Page_List_Model {
         }
         else{
             $_REQUEST["link"] = mysql_real_escape_string($_REQUEST["link"]);
-            $this->listWhere["kategoria"] = "kategoria_full_link='{$_REQUEST["link"]}'";
+            if($_SESSION['type']==="ma"){
+                $this->listWhere["kategoria"] = "kategoria_full_link='hirek/5-kategoria-munkaado'";
+            }else{
+                $this->listWhere["kategoria"] = "kategoria_full_link='{$_REQUEST["link"]}'";
+            }
         }
     
        if($_SESSION['type']==="ma"){
-           $this->_join.=" AND hir_kategoria.kategoria_ma=1 ";
+           //$this->_join.=" AND hir_kategoria.kategoria_ma=1 ";
+           $this->listWhere[] = " hir_kategoria.kategoria_ma=1 ";
        }else{
-           $this->_join.=" AND hir_kategoria.kategoria_ma=0 ";
+           $this->listWhere[] = " hir_kategoria.kategoria_ma=0 ";
+           //$this->_join.=" AND hir_kategoria.kategoria_ma=0 ";
        }
        
        

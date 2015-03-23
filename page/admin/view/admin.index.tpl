@@ -27,6 +27,33 @@
         {include file='page/admin/view/admin.confirm.tpl'}
 <div id="wrap" class="container_24">
       <div class="grid_24">
+        {if !$notiferror}
+        <div id="notifications" style="color:red; font-weight: bolder; text-shadow: black 0px 0px; font-size: 20px;">
+            {if $urMessages > 0}
+              {$urMessages} elolvasatlan üzenet <br/>  
+            {/if}
+            {if $urComments > 0}
+              {$urComments} elolvasatlan hozzászólás <br/>  
+            {/if}
+            {if $urLinks > 0}
+              {$urLinks} ellenőrizetlen URL <br/>  
+            {/if}
+            {if $urOpinions > 0}
+              {$urOpinions} megválaszolatlan szakértői vélemény <br/>  
+            {/if}
+            {if $urForumTopics > 0}
+              {$urForumTopics} ellenőrizetlen fórum téma <br/>  
+            {/if}
+            {if $urForumComments > 0}
+              {$urForumComments} ellenőrizetlen fórum hozzászólás <br/>  
+            {/if}
+            {if $urComps > 0}
+              {$urComps} ellenőrizetlen kompetencia <br/>  
+            {/if}
+        {else}
+        {$notiferror}
+        {/if}
+        </div>
             <div id="userpanel">
                   <ul id="user" class="dropdown">
                         {$LogoutForm}
@@ -45,7 +72,7 @@
                         {/if}
                   </ul>
                   <ul class="right">
-                        <li><a href="{$DOMAIN} " class="icon home tip" title="A honlap főoldala" target="_blank">Főoldal</a></li>
+                        <li><a href="{$DOMAIN} " class="icon home tip" title="A honlap fĹ‘oldala" target="_blank">FĹ‘oldal</a></li>
                   </ul>
             </div>
             {$ErrorMessage}

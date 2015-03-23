@@ -29,11 +29,8 @@ class Kompetencia_SiteRajzShow_Model extends Page_Edit_Model
             
         }
         
-
-     
         public function getCompRajzById($id,$mod = "default")
         {
-            
             if($mod === "default")
             {
                 $query = "
@@ -45,7 +42,7 @@ class Kompetencia_SiteRajzShow_Model extends Page_Edit_Model
                         LIMIT 1    
                         ";
             }
-            
+
             if($mod === "ceg")
             {
                 $query = "
@@ -56,14 +53,9 @@ class Kompetencia_SiteRajzShow_Model extends Page_Edit_Model
                         LIMIT 1    
                         ";
             }
-            
-            
-            
             return $this->_DB->prepare($query)->query_select()->query_fetch_array();
         }
-        
-       
-        
+
         public function findCompetencesByCompRajzId($id,$lId)
         {
             try{
@@ -79,11 +71,10 @@ class Kompetencia_SiteRajzShow_Model extends Page_Edit_Model
                                AND k.kompetencia_aktiv=1
                                             ";
                 return $this->_DB->prepare($query)->query_select()->query_result_array();
-                }catch(Exception_MYSQL_Null_Rows $e){
-            
+            }catch(Exception_MYSQL_Null_Rows $e){
+
             }
             catch(Exception_MYSQL $e){
-            
             }
         }
         
@@ -96,7 +87,6 @@ class Kompetencia_SiteRajzShow_Model extends Page_Edit_Model
                           LIMIT 1
                                             ";
                 $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
-                
                 
                 $result = unserialize($result['megtekintve_ceg']);
                 
@@ -111,22 +101,58 @@ class Kompetencia_SiteRajzShow_Model extends Page_Edit_Model
                     
                     $query = "UPDATE kompetenciarajz
                               SET megtekintve_ceg='".  serialize($result)."'
-                            WHERE kompetenciarajz_id =".(int)$id;
+                              WHERE kompetenciarajz_id =".(int)$id;
                     $ins = $this->_DB->prepare($query)->query_insert();
                 }else{
                     //ha nem tömb
                     $result[] = $cID;
                     $query = "UPDATE kompetenciarajz
                               SET megtekintve_ceg='".serialize($result)."'
-                            WHERE kompetenciarajz_id =".(int)$id;
+                              WHERE kompetenciarajz_id =".(int)$id;
                     $ins = $this->_DB->prepare($query)->query_insert();
                 }
             }catch(Exception_MYSQL_Null_Rows $e){
             
             }
             catch(Exception_MYSQL $e){
-            
             }
         }
+        
+    public function createFolder($companyID, $name)
+    {
+        $query = "INSERT INTO ceg_attr_mappa SET ceg_id = ".(int)$companyID.", mappa_nev = '".  mysql_real_escape_string($name)."'";
+        $this->_DB->prepare($query)->query_insert();
+    }
+    
+    public function checkIfFolderExistsByName($companyID, $name)
+       {
+           try
+           {
+            $query = "SELECT mappa_nev FROM ceg_attr_mappa WHERE mappa_nev = '".  mysql_real_escape_string($name)."' AND ceg_id = ".(int)$companyID;
+            $this->_DB->prepare($query)->query_select();
+            return true;
+           } catch (Exception_MYSQL_Null_Rows $e) {
+               return false;
+           }
+       }
+       
+   public function getFolders($companyID)
+   {
+      return $this->getSelectValues('ceg_attr_mappa', 
+                                          'mappa_nev', 
+                                          ' AND ceg_id = '.(int)$companyID.' ', 
+                                          '', 
+                                          false, 
+                                          array('' => '--Válasszon!--'));
+   }
+   
+   public function addDrawToFolder($folderID, $krID)
+   {
+        $query = "INSERT INTO ceg_attr_mappa_kompetenciarajz SET mappa_id = ".(int)$folderID.", kompetenciarajz_id = ".(int)$krID." ON DUPLICATE KEY UPDATE kompetenciarajz_id = ".(int)$krID;
+        $this->_DB->prepare($query)->query_insert();
+   }
+        
+        
+        
         
 }

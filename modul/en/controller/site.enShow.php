@@ -1,10 +1,9 @@
  <?php
  require 'modul/seo/model/seo_Site_Model.php';
- require 'page/all/model/page.list_model.php';
- require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
+ //require 'page/all/model/page.list_model.php';
+ //require 'modul/ugyfellinkek/model/ugyfellinkek_Site_Model.php';
 class EnShow_Site_Controller extends Page_Edit
 {
-
         public $_name="EnShow";
 
         public function __construct()
@@ -13,10 +12,7 @@ class EnShow_Site_Controller extends Page_Edit
             $this->__loadModel("_Show");
             parent::__construct();
             $this->__addParams($this->_model->_params);
-            $this->__addEvent('BtnAddLink', 'addLink');
-            $this->__addEvent('BtnDeleteLink', 'deleteLink');
             $this->__run();
-              
         }
 
         public function __show()
@@ -26,6 +22,10 @@ class EnShow_Site_Controller extends Page_Edit
                 {        
                         $lId = Rimo::$_config->SITE_NYELV_ID;
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+                        
+                        // Új üzenetek
+                        $newMessage = $this->_model->checkNewMessages($clientId);
+                        $this->_view->assign('newMessage',$newMessage);
                         
                         //Kompetenciák
                         $myComps = $this->_model->findCompetencesByClientId($clientId,$lId);
@@ -40,49 +40,12 @@ class EnShow_Site_Controller extends Page_Edit
                         $this->_view->assign('myTevkorok',$myTevkorok);
                         
                         
-                        
-                        
-                        if(!isset($_SESSION['userstat']['ujAllashirdetes']))
-                        {
-                            $obj = $this->_model->getStat($clientId);
-                            $prevStat = unserialize($obj[0]);
-                        
-                            if(is_array($prevStat) && !empty($prevStat))
-                            {
-                                $_SESSION['userstat']['ujAllashirdetes'] = $prevStat;
-                                $this->_view->assign('prevStat',$prevStat);
-                            }
-                        }else{
-                            $prevStat = $_SESSION['userstat']['ujAllashirdetes'];
-                            $this->_view->assign('prevStat',$prevStat);
-                        }
-                        
                         foreach ($myTevkorok as $key=>$value)
                         {
                             $IDarr[] = $value['ID'];
                         }
                         
-                        $tevkorStats = $this->_model->getNumberOfJobsOfTevkor($IDarr);
-
-                        foreach ($tevkorStats as $key=>$value)
-                        {
-                            $STATarr[$value['ID']] = $value['ahDB'];
-                        }
-                        
-                        
-                        $this->_model->saveStat($clientId,serialize($STATarr));
-                        
-                        //if(!isset($_SESSION['userstat']['ujAllashirdetes']))
-                        //{
-                        
-                        
-                            
-                        //}
-                        
-                        
-                        
-                        
-                        
+                        $tevkorStats = $this->_model->getNumberOfJobsOfTevkor($IDarr,$clientId);
                         $this->_view->assign('tevkorStats',$tevkorStats);
                         
                         //Megjelölt álláshirdetések
@@ -93,26 +56,18 @@ class EnShow_Site_Controller extends Page_Edit
                         $myFavouriteJobs=$this->_model->getFavouriteJobsByClientId($clientId);
                         $this->_view->assign('myFavouriteJobs',$myFavouriteJobs);
                         
-                        //Szektorteszt eredmények
+                        //Szektorteszt eredmény
                         $mySectorTestResult=$this->_model->getSectorTestResultByClientId($clientId);
                         $this->_view->assign('mySectorTestResult',$mySectorTestResult);
+                        
+                        //Pozídióteszt eredmény
+                        $myPositionTestResult = $this->_model->getPositionTestResultByClientId($clientId);
+                        $this->_view->assign('myPositionTestResult',$myPositionTestResult);
                         
                         // komprajzonkénti cégmegtekintés
                         $compRajzViews = $this->_model->getCompRajzViews($clientId);
                         $this->_view->assign('compRajzViews',$compRajzViews);
-                        
-                        
                         $this->_view->assign('compRajzViewsAll',  $this->_model->_totalCompRajzViews);
-                        
-                        
-                        //Linkek
-                        $links = ugyfellinkek_Site_Model::model()->findLinks($clientId);  
-                        
-                        $this->_view->assign("linkMode","on");
-                        $this->_view->assign("addLinkOption","on");
-                        $this->_view->assign("links",$links);
-                        
-                        
                         
                         //SEO
                         $seo = seo_Site_Model::model()->getSeoItemByKey('profil_en',$lId);
@@ -127,20 +82,6 @@ class EnShow_Site_Controller extends Page_Edit
                         throw new Exception_404();
                 }
         }
-        
-    public function onClick_addLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateSaveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."en/");
-        ugyfellinkek_Site_Model::model()->saveLink($clientId, $_REQUEST['linkName'], Rimo::$_config->DOMAIN."en/");
-    }
-    
-    public function onClick_deleteLink() {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
-        ugyfellinkek_Site_Model::model()->validateDeleteLink($clientId, $_REQUEST['delLink']);
-        ugyfellinkek_Site_Model::model()->deleteLink($clientId, $_REQUEST['delLink']);
-    }
-        
-        
         
 }
 

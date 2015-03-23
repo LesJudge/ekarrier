@@ -3,6 +3,7 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
 {
 
         public $_tableName='kompetencia';
+        public $_type='';
         public $_bindArray=array(
                 'kompetencia_nev'=>'TxtNev',
                 'kompetencia_link'=>'TxtLink',
@@ -10,14 +11,21 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
                 'kompetencia_meta_kulcsszo'=>'TxtKulcsszo',
                 'kompetencia_tartalom'=>'TxtTartalom',
                 'kompetencia_szinkod'=>'TxtSzinkod',
-                'kompetencia_aktiv'=>'ChkAktiv'
-        );
+                'kompetencia_aktiv'=>'ChkAktiv',
+                'checked'=>'ChkChecked',
+                'tipus' =>'TxtTipus'
+            );
 
         public function __addForm()
         {
                 parent::__addForm();
+                
+                
                 // Név
                 $this->addItem('TxtNev')->_verify['string']=true;
+               
+               
+                    
                 // Link
                 $link=$this->addItem('TxtLink');
                 $link->_verify['string']=true;
@@ -52,6 +60,13 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
                         ' ORDER BY szektor_nev ASC',
                         true
                 );
+               
+                
+                
+               $this->addItem("ChkChecked")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
+               $this->addItem('TxtTipus');
+               
+              
         }
 
         public function deleteMegtekintes()
@@ -65,7 +80,9 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
 
         public function removeAccentsFromLink()
         {
+            if($this->_type!='ugyfel'){
                 $this->_params['TxtLink']->_value=Create::remove_accents($this->_params['TxtLink']->_value);
+            }
         }
 
         public function removeDelimitterFromKulcsszo()
@@ -84,6 +101,8 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
         public function __editData()
         {
                 parent::__editData();
+                
+               
                 $query="SELECT kompetencia_megtekintve,
                                             kompetencia_javitas_szama, 
                                             DATE_FORMAT(kompetencia_create_date,'%Y-%m-%d %H:%i') AS kompetencia_create_date, 
@@ -103,28 +122,56 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
         public function __formValues()
         {
                 parent::__formValues();
+                
                 //$this->_params['SelKapcsolodo']->_value=$this->getSelectedMkValues('munkakor_id','kompetencia_id',$this->modifyID);
-                $this->_params['SelKapcsolodo']->_value=$this->getSelectedMkValues('szektor_id','kompetencia_id',$this->modifyID);
+                
+                    $this->_params['SelKapcsolodo']->_value=$this->getSelectedMkValues('szektor_id','kompetencia_id',$this->modifyID);
+                
         }
 
         public function __update()
         {
-            $this->deleteSectorsByCompetenceId($this->modifyID);
             
-                parent::__update(',kompetencia_modositas_datum=now()
-                                              ,kompetencia_javitas_szama=kompetencia_javitas_szama+1
-                                              ,kompetencia_modosito='.UserLoginOut_Controller::$_id
-                );
-                $sectors = $this->_params['SelKapcsolodo']->_value;
-                if (is_array($sectors) && !empty($sectors)) {
-                    foreach ($sectors as $sector) {
-                        $this->saveSector($sector, $this->modifyID);
+            if($this->_params['TxtTipus']->_value == 'sajat'){
+                $this->_params['ChkChecked']->_value = 1;
+                
+            
+               $this->deleteSectorsByCompetenceId($this->modifyID);
+
+                    parent::__update(',kompetencia_modositas_datum=now()
+                                                  ,kompetencia_javitas_szama=kompetencia_javitas_szama+1
+                                                  ,kompetencia_modosito='.UserLoginOut_Controller::$_id
+                    );
+                    $sectors = $this->_params['SelKapcsolodo']->_value;
+                    if (is_array($sectors) && !empty($sectors)) {
+                        foreach ($sectors as $sector) {
+                            $this->saveSector($sector, $this->modifyID);
+                        }
                     }
-                }
+                
+            }elseif($this->_params['TxtTipus']->_value == 'ugyfel'){
+                $this->_params['TxtLink']->_value = "sajat";
+                $this->_params['TxtLeiras']->_value = "sajat";
+                $this->_params['TxtKulcsszo']->_value = ",sajat,";
+                $this->_params['TxtTartalom']->_value = "sajat";
+                $this->_params['TxtSzinkod']->_value = "";
+            
+                    parent::__update(',kompetencia_modositas_datum=now()
+                                                  ,kompetencia_javitas_szama=kompetencia_javitas_szama+1
+                                                  ,kompetencia_modosito='.UserLoginOut_Controller::$_id
+                    );
+           }
+                
+               
+           
         }
 
         public function __insert()
         {
+            //unset($this->_bindArray['checked']);
+            //unset($this->_bindArray['tipus']);
+            $this->_params['TxtTipus']->_value = 'sajat';
+            
                 parent::__insert(',kompetencia_letrehozo='.UserLoginOut_Controller::$_id);
                 $sectors = $this->_params['SelKapcsolodo']->_value;
                 if (is_array($sectors) && !empty($sectors)) {
@@ -174,4 +221,20 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
                 return "<span class='ui-icon ui-icon-circle-check tip' title='<strong>Megjelenik.</strong>'></span>";
         }
 
+        public function getType(){
+            try{
+                $query = "SELECT tipus FROM kompetencia WHERE kompetencia_id = ".$this->modifyID." LIMIT 1";
+                $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+                
+                if($result['tipus']=='ugyfel'){
+                    $this->_type = 'ugyfel';
+                }else{
+                    $this->_type = '';
+                }
+                
+                return $result['tipus'];
+            }catch(Exception_MYSQL_Null_Rows $e){
+                
+            }
+        }
 }

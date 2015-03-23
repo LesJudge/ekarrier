@@ -2,7 +2,8 @@
 class hozzaszolas_Edit_Model extends Admin_Edit_Model {
 	public $_bindArray = array("hozzaszolas_nyelv" => "SelNyelv", 
                                "hozzaszolas_bekuldo" => "TxtBekuldo", 
-                               "hozzaszolas_tartalom" => "TxtTartalom"
+                               "hozzaszolas_tartalom" => "TxtTartalom",
+                               "checked" => "ChkChecked"
     );
 
     public function __addForm(){
@@ -13,6 +14,7 @@ class hozzaszolas_Edit_Model extends Admin_Edit_Model {
         $nyelv->_select_value = $this->getSelectValues("nyelv", "nyelv_nev", "", "", false);                
         $this->addItem("TxtBekuldo")->_verify["string"] = true;
         $this->addItem("TxtTartalom")->_verify["string"] = true;
+        $this->addItem("ChkChecked")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
     }   
 }
 ?>

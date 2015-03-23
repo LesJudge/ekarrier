@@ -107,33 +107,124 @@
  color: green;
  font-weight: 800;
  }
+ 
+ .disabledItemCircle, .disabledItemGroup{
+    color: darkgrey !important;
+    //display:none;
+}
  </style>   
         
  <script type="text/javascript">
  $(document).ready(function(){
-     
      $(".letter").each(function(){
         var val = $("#{$FilterLetter.name}").attr('value');
-        if(val == $(this).text().toLowerCase())
-        {
-        $(this).addClass("activeLetter");
+        if(val == $(this).text().toLowerCase()){
+            $(this).addClass("activeLetter");
         }
      });
+     
+     $('#{$FilterTevCsoport.name}').on('change',function(){
+        var selectedID = $(this).find('option:selected').attr('value');
+        
+        if(parseInt(selectedID) > 0){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbygroup&gid='+selectedID, 
+                dataType: 'json', 
+                success: function(data){
+                    resetCircleOpts();
+                    filterByGroup(data);
+                }, 
+                error: function(){
+                    resetCircleOpts();
+                }
+            });
+        }else{
+            resetCircleOpts();
+        }
+    });
     
+    
+    $('#{$FilterTevKor.name}').on('change',function(){
+        var selectedID = $(this).find('option:selected').attr('value');
+        
+        if(parseInt(selectedID) > 0){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbycircle&cid='+selectedID, 
+                dataType: 'json', 
+                success: function(data){
+                    resetGroupOpts();
+                    filterByCircle(data);
+                }, 
+                error: function(){
+                    resetGroupOpts();
+                }
+            });
+        }else{
+            resetGroupOpts();
+        }
+        
 
+    });
+     
+     
+     
+     
  });
  
- $(".letter").click(function(){
+$(".letter").click(function(){
+    $('.activeLetter').removeClass('activeLetter');
+    $(this).addClass('activeLetter');
+    var letter = $(this).text().toLowerCase();
+    $('#{$FilterLetter.name}').attr('value',letter);
+});
+
+
+function filterByGroup(data){
+    var IDs = new Array();
     
-   $('.activeLetter').removeClass('activeLetter');
-   $(this).addClass('activeLetter');
-   
-   var letter = $(this).text().toLowerCase();
-   
-  $('#{$FilterLetter.name}').attr('value',letter);
-  
-        
+    for(i=0; i<data.length; i++){
+        IDs.push(data[i]['ID']);
+    }
+
+    $('#{$FilterTevKor.name} option').each(function(){
+        if(parseInt($(this).attr('value')) != -1){
+            if($.inArray($(this).attr('value'),IDs) == -1){
+                $(this).attr('disabled',true);
+                $(this).addClass('disabledItemCircle');
+            }
+        }
     });
+}
+
+function filterByCircle(data){
+    var IDs = new Array();
+    
+    for(i=0; i<data.length; i++){
+        IDs.push(data[i]['ID']);
+    }
+
+    $('#{$FilterTevCsoport.name} option').each(function(){
+        if(parseInt($(this).attr('value')) != -1){
+            $(this).removeAttr("selected");
+            if($.inArray($(this).attr('value'),IDs) == -1){
+                $(this).attr('disabled',true);
+                $(this).addClass('disabledItemGroup');
+            }else{
+                $(this).attr("selected",true);
+            }   
+        }
+    });
+}
+
+function resetCircleOpts(){
+    $('.disabledItemCircle').removeClass('disabledItemCircle');
+    $('#{$FilterTevKor.name} option').attr('disabled', false);
+}
+
+function resetGroupOpts(){
+    $('.disabledItemGroup').removeClass('disabledItemGroup');
+    $('#{$FilterTevCsoport.name} option').attr('disabled', false);
+}
  </script>
         
     {include file='page/all/view/page.message.tpl'}

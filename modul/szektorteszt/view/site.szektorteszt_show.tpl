@@ -100,7 +100,7 @@ $(function() {
     $( "#sortable2" ).on( "sortover", function( event, ui ) {
         $('#'+ui.item[0].id).addClass("ordered");
         var list = $(this);
-          if (list.children().length > 5) {
+          if (list.children().length > 15) {
             $(ui.sender).sortable('cancel');
             $('#'+ui.item[0].id).removeClass("ordered");
         }
@@ -206,7 +206,7 @@ function eval(){
         //return false;
     }
     
-    if($('#sortable2 li').length!=5){
+    if($('#sortable2 li').length!=15){
         $('#orderFailAlert').show();
         setTimeout(function() { $("#orderFailAlert").fadeOut("slow"); }, 3000);
         window.scrollTo(0, 0);
@@ -214,7 +214,7 @@ function eval(){
     }
     
     //if(($('#firstWordsResultRemaining').val()==0 && $('#sortable1 li').length==0) || !$('#validation').is(':checked')){
-    if(($('#firstWordsResultRemaining').val()==0 && $('#sortable2 li').length==5)){
+    if(($('#firstWordsResultRemaining').val()==0 && $('#sortable2 li').length==15)){
         for(i=0;i<$(".res").length;i++){
             finalResults+=i+"="+$("#res"+i).val()+"_";
         }
@@ -271,6 +271,25 @@ function calcOrder(){
 }
 
 calcPoints(); 
+
+$('.firstWordsValues').focusin(function(){
+     $(this).val('');
+     //$(this).attr('value','');
+});
+
+$('.firstWordsValues').click(function(){
+    
+    //$(this).attr('value','');
+});
+
+$('.firstWordsValues').focusout(function(){
+    if(parseInt($(this).val())<=0 || parseInt($(this).val())>100 || isNaN($(this).val()) || $(this).val()=='') 
+    {
+        //$(this).attr('value',0);
+        $(this).val(0);
+    }
+    calcScore();
+});
 
 </script>
 {/if}

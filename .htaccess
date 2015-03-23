@@ -1,6 +1,6 @@
 RewriteEngine On
 
-
+#RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
@@ -97,11 +97,17 @@ RewriteRule ^munkakor-kereso/([^/.]*)(/)?$ index.php?m=munkakor&al=list&caturl=$
 RewriteRule ^tevekenysegikor-kereso/([^/.]*)(/)?$ index.php?m=tevekenysegikor&al=list&caturl=$1&%{QUERY_STRING} [L]
 RewriteRule ^tevekenysegikor/(.*)$ index.php?m=tevekenysegikor&al=show&link=$1&%{QUERY_STRING} [L]
 
+#-- Kompetenciarajzkereso kor
+RewriteRule ^kompetenciarajz-kereso/([^/.]*)(/)?$ index.php?m=kompetenciarajzkereso&al=list&caturl=$1&%{QUERY_STRING} [L]
+
 #-- Szektor
 RewriteRule ^szektor/(.*)$ index.php?m=szektor&al=show&sid=$1&%{QUERY_STRING} [L]
 
 #-- Fooldal
 RewriteRule ^fooldal/$ index.php?m=tevekenysegikor&al=start&%{QUERY_STRING} [L]
+
+#-- Szolgaltatasok
+RewriteRule ^szolgaltatasok/$ index.php?m=szolgaltatas&al=show&%{QUERY_STRING} [L]
 
 #-- Ugyfeluzenetek
 RewriteRule ^uzeneteim/$ index.php?m=ugyfeluzenetek&al=show&%{QUERY_STRING} [L]
@@ -133,10 +139,12 @@ RewriteRule ^kompetenciak/kompetenciarajz-keszites/$ index.php?m=kompetencia&al=
 RewriteRule ^kompetenciak/kompetenciarajz-nezet/([0-9]*)/$ index.php?m=kompetencia&al=rajzshow&krid=$1&%{QUERY_STRING} [L]
 #--
 #--Szektorteszt
-RewriteRule ^szektorteszt/$  index.php?m=szektorteszt&%{QUERY_STRING} [L]
+RewriteRule ^szektorteszt/$  index.php?m=szektorteszt%{QUERY_STRING} [L]
 
 #--Pozícioteszt
-RewriteRule ^pozicioteszt/$  index.php?m=pozicioteszt&%{QUERY_STRING} [L]
+RewriteRule ^pozicioteszt/$  index.php?m=pozicioteszt&al=show%{QUERY_STRING} [L]
+RewriteRule ^pozicio/alkalmazott/$  index.php?m=pozicioteszt&al=showpozicio&link=alkalmazott%{QUERY_STRING} [L]
+RewriteRule ^pozicio/vezeto/$  index.php?m=pozicioteszt&al=showpozicio&link=vezeto%{QUERY_STRING} [L]
 
 #--En
 RewriteRule ^en/$  index.php?m=en&%{QUERY_STRING} [L]

@@ -43,7 +43,6 @@ abstract class AttachableUserController extends Page_Edit
             } catch (Exception_MYSQL $e) {
                 $this->_model->_DB->prepare('ROLLBACK')->query_execute();
                 throw new Exception_Form_Error($this->getInsertFailMessage());
-                //throw new Exception_Form_Error($e->getMessage());
             } catch (phpmailerException $pme) {
                 $this->_model->_DB->prepare('ROLLBACK')->query_execute();
                 throw new Exception_Form_Error($this->getUpdateSuccessMessage());
@@ -51,7 +50,6 @@ abstract class AttachableUserController extends Page_Edit
         } catch(Exception_Form_Message $e) {
             $this->formReset(true);
             $this->onLoad_New();
-            header('Location: '.Rimo::$_config->DOMAIN.'koszonjuk-regisztraciodat');
             throw new Exception_Form_Message($this->getInsertSuccessMessage());
         }
     }

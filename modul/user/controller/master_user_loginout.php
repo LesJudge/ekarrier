@@ -78,6 +78,8 @@ abstract class UserLoginOut_Controller extends RimoController
                     $user = $this->_model->login($this->getItemValue('TxtFnev'), $this->getItemValue('PassJelszo'),"mv");
                 }elseif($_SESSION['type']=="ma"){
                     $user = $this->_model->login($this->getItemValue('TxtFnev'), $this->getItemValue('PassJelszo'),'ma');
+                }else{
+                    $user = $this->_model->login($this->getItemValue('TxtFnev'), $this->getItemValue('PassJelszo'),'');
                 }
             }else{
                 $user = $this->_model->login($this->getItemValue('TxtFnev'), $this->getItemValue('PassJelszo'),'');

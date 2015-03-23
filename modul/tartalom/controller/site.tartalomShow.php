@@ -19,8 +19,8 @@ class TartalomShow_Site_Controller extends RimoController
                         /**
                          * @todo Gergő - Kérlek, ellenőrizd, hogy így is megfelelően működik-e.
                          */
-                        //if(($_SESSION['type']=='ma' && empty($_REQUEST["link"])) OR $_REQUEST["link"]=='nyito-oldal'){
-                        if (
+                        if(($_SESSION['type']=='ma' && empty($_REQUEST["link"])) OR $_REQUEST["link"]=='nyito-oldal'){
+                        /*if (
                             array_key_exists('type', $_SESSION) 
                             && 
                             $_SESSION['type'] == 'ma' 
@@ -28,42 +28,36 @@ class TartalomShow_Site_Controller extends RimoController
                             array_key_exists('link', $_REQUEST) 
                             && 
                             ((empty($_REQUEST['link']) || $_REQUEST['link'] == 'nyito-oldal'))
-                        ) {
+                        ) {*/
                             
                             $_REQUEST["link"]='nyito-oldal';
-                            $banner=Rimo::__loadPublic('model', 'banner_ShowBox_List', 'banner');
-                            Rimo::$_site_frame->assign('felsoBannerList', $banner->getBannerList(1, 'banner_sorrend', 4,1));
+                            //$banner=Rimo::__loadPublic('model', 'banner_ShowBox_List', 'banner');
+                            //Rimo::$_site_frame->assign('felsoBannerList', $banner->getBannerList(1, 'banner_sorrend', 4,1));
                             
-                            $hir=Rimo::__loadPublic('model','hir_ShowBox_List','hir');
-                            Rimo::$_site_frame->assign('newHirList',$hir->getHirList(3,5,1));
+                            //$hir=Rimo::__loadPublic('model','hir_ShowBox_List','hir');
+                            //Rimo::$_site_frame->assign('newHirList',$hir->getHirList(3,5,1));
+                            
+
                             Rimo::$_config->MASTER_TPL="page/all/view/page.ma.start.tpl";
-                            
-                            if(!empty($_REQUEST['searchWord'])){
-                                
-                                $searchMunkakorResult=$this->_model->searchMvByMunkakor(mysql_real_escape_string($_REQUEST['searchWord']));
-                                
-                                Rimo::$_site_frame->assign('munkakorResult', $searchMunkakorResult);
-                                
-                            }
-                           
-                            Rimo::$_site_frame->assign('countAllClients', $this->_model->getCountAllClients());
-                            Rimo::$_site_frame->assign('countWorkingClients', $this->_model->getCountWorkingClients());
                             
                             
                         }
                       
                         $data=$this->_model->getTartalom($_REQUEST["link"]);
                           
-                        if(!$_REQUEST["link"]OR$data[0]["tartalom_kezdolap"]==1)
+                       // if(!$_REQUEST["link"]OR$data[0]["tartalom_kezdolap"]==1)
+                         if(!$_REQUEST["link"])
                         {
                                 // Banner ShowBox
-                                $banner=Rimo::__loadPublic('model', 'banner_ShowBox_List', 'banner');
-                                Rimo::$_site_frame->assign('felsoBannerList', $banner->getBannerList(1, 'banner_sorrend', 4));
-                                Rimo::$_config->MASTER_TPL="page/all/view/page.start.tpl";
+                                //$banner=Rimo::__loadPublic('model', 'banner_ShowBox_List', 'banner');
+                                //Rimo::$_site_frame->assign('felsoBannerList', $banner->getBannerList(1, 'banner_sorrend', 4));
+                             $obj = $this->_model->getTartalomByID(20);
+                            Rimo::$_site_frame->assign("text",$obj[0]["tartalom_tartalom"]);
+                            Rimo::$_config->MASTER_TPL="page/all/view/page.start.tpl";
                                 // Hír ShowBox
-                                $hir=Rimo::__loadPublic('model','hir_ShowBox_List','hir');
-                                Rimo::$_site_frame->assign('newHirList',$hir->getHirList(3,1));
-                                Rimo::$_site_frame->assign('usefulAdvices',$hir->getHirList(4,4));
+                                //$hir=Rimo::__loadPublic('model','hir_ShowBox_List','hir');
+                                //Rimo::$_site_frame->assign('newHirList',$hir->getHirList(3,1));
+                                //Rimo::$_site_frame->assign('usefulAdvices',$hir->getHirList(4,4));
                         }
                         
                         // DEBUG

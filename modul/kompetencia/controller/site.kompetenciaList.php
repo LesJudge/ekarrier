@@ -1,7 +1,7 @@
 <?php
-require 'page/all/controller/page.list.php';
+//require 'page/all/controller/page.list.php';
 require 'modul/seo/model/seo_Site_Model.php';
-require 'modul/infobox/model/infobox_Site_Model.php';
+//require 'modul/infobox/model/infobox_Site_Model.php';
 /**
  * @property Kompetencia_SiteList_Model $_model
  * @property Smarty $_view
@@ -14,11 +14,11 @@ class KompetenciaList_Site_Controller extends Page_List
         
         public function __construct()
         {       
+                
                 $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                 defined(LANG_PageList_nincs_elem) or define(LANG_PageList_nincs_elem,'Nincs megjeleníthető kompetencia!');
                 $this->__loadModel('_SiteList');
                 parent::__construct(Rimo::$_config->SITE_NYELV_ID);
-                $this->_model->listWhere[]='kompetencia_aktiv=1';
                 $this->__addParams($this->_model->_params);
                 $this->__run();
         }

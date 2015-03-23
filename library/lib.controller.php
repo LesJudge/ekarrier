@@ -412,7 +412,9 @@ abstract class RimoController {
         if (isset(Rimo::$_config->APP_LINK) && isset($_REQUEST['al']) && isset(Rimo::$_config->APP_LINK[$_REQUEST['al']])) {
             $appLink = Rimo::$_config->APP_LINK[$_REQUEST['al']];
         }
-        $this->_view->assign("APP_LINK", $appLink);
+//        $this->_view->assign("APP_LINK", $appLink);
+        
+        $this->_view->assign("APP_LINK", Rimo::$_config->APP_LINK[$_REQUEST["al"]]);
         $this->_view->assign("DOMAIN_ADMIN", Rimo::$_config->DOMAIN_ADMIN);
         $this->_view->assign("DOMAIN", Rimo::$_config->DOMAIN);
         $this->_translate = Rimo::getTranslate();

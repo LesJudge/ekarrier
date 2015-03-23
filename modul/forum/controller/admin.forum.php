@@ -23,6 +23,20 @@ class Forum_Admin_Controller extends Admin_List {
             $this->setWhereInput("forum_nyelv=:item", "FilterNyelv");
         else 
             unset($_SESSION[$this->_name]["FilterNyelv"]);
+        
+        $filterChecked=$this->getItemValue('FilterChecked');
+                switch($filterChecked)
+                {
+                        case 1:
+                                $this->setWhereInput('checked = 0','FilterChecked');
+                                break;
+                        case 2:
+                                $this->setWhereInput('checked = 1','FilterChecked');
+                                break;
+                        default:
+                                unset($_SESSION[$this->_name]['FilterChecked']);
+                                break;
+                }
     }   
 }
 ?>

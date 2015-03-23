@@ -1,11 +1,17 @@
 <?php
 ini_set("display_errors",0);
 define("", "Nincs megjelenítendő elem!");
+require 'vendor/autoload.php';
+
 include_once "Rimo.php";
+include_once 'RimoConfig.php';
 include_once "site.config.php";
 Rimo::__addConfig();
+Rimo::init();
+Rimo::$pimple->register(new \Uniweb\Library\DependencyInjection\Smarty\SmartyProvider);
+Rimo::initSiteFrame();
 //include_once "page/admin/lang/".Rimo::$_config->ADMIN_NYELV_VAR.".php";
-Rimo::__addSession();
+//Rimo::__addSession();
 Rimo::$_site_frame = new Smarty;
 Rimo::$_site_frame->assign("DOMAIN_ADMIN",  Rimo::$_config->DOMAIN_ADMIN);
 Rimo::$_site_frame->assign("DOMAIN",  Rimo::$_config->DOMAIN);

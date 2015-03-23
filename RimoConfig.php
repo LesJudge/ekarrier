@@ -22,7 +22,8 @@ class RimoConfig
 
         public $CHARSET="UTF-8";
         public $SESSION_NAME="referenciasite";
-        public $SESSION_DIR="/var/www/session/admin";
+        //public $SESSION_DIR="/var/www/session/admin";
+        public $SESSION_DIR="session/admin";
         public $SQL_PATH="sql";
         public $MODEL_PATH="model";
         public $APP_PATH="";
@@ -35,15 +36,17 @@ class RimoConfig
         //public $MYSQL_DB_USER="uwsql19W";
         //public $MYSQL_DB_PASS="H56sJP:2";
         public $MYSQL_DB_USER="root";
-        public $MYSQL_DB_PASS="root";
+        public $MYSQL_DB_PASS="";
         public $MYSQL_DB_CHARSET="utf8";
         public $PAGE_CHARSET="UTF-8";
         //public $DOMAIN_ADMIN="http://balazs.ekarrier.hadesz.lan/admin/";
         //public $DOMAIN="http://balazs.ekarrier.hadesz.lan/";
         //public $DOMAIN_ADMIN="http://local.ekarrier/admin/";
         //public $DOMAIN="http://local.ekarrier/";
-        public $DOMAIN_ADMIN="http://192.168.33.10/admin/";
-        public $DOMAIN="http://192.168.33.10/";
+        //public $DOMAIN_ADMIN="http://192.168.33.10/admin/";
+        //public $DOMAIN="http://192.168.33.10/";
+        public $DOMAIN_ADMIN="http://ekarrier.local/admin/";
+        public $DOMAIN="http://ekarrier.local/";
         public $DEFAULT_NYELV_ID=1;
         public $ADMIN_NYELV_ID=1;
         public $ADMIN_NYELV_VAR="hu";

@@ -1,3 +1,4 @@
+
 <script type="text/javascript" src="js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -19,30 +20,31 @@ $(function() { {$FormScript}
 /*]]>*/
 </script>
 
-<div onClick="$('#editorCont').toggle();">Írj hozzá!</div>
-<div id="editorCont" style="display:none">
+<div onClick="$('#descriptionEditorCont').toggle();">Írj hozzá!</div>
+<div id="descriptionEditorCont" style="display:none">
 <form action="" method="post" name="{$FormName}" id="{$FormName}">
     <div class="form-row">
-				<label for="comment">Tartalom <span class="require">*</span></label>
-				<textarea id="comment" name="comment" class="tinymce">{$content}</textarea>
+				<label for="descriptionComment">Tartalom <span class="require">*</span></label>
+				<textarea id="descriptionComment" name="descriptionComment" class="tinymce">{$content}</textarea>
 		</div><div class="clear"></div>
 		
 		<div class="form-row">
 				<label>&nbsp;</label>
-				<button class="submit btn" name="{$BtnAddComment}" id="{$BtnAddComment}" type="submit">Beküld</button>
+				<button class="submit btn" name="{$BtnAddDescriptionComment}" id="{$BtnAddDescriptionComment}" type="submit">Beküld</button>
             </div><div class="clear"></div>
 </form>
 </div>
             
             
-{if not empty($comments)}
-{foreach from=$comments item=comment}    
+{if not empty($descriptionComments)}
+{foreach from=$descriptionComments item=descComment}    
 <div style="background-color: lightgray; margin-top: 2px;">
-    <div>{$comment.bekuldve} - {$comment.nev}</div>
-    <div>{$comment.text}</div>
+    <div>{$descComment.bekuldve} - {$descComment.nev}</div>
+    <div>{$descComment.text}</div>
 </div>
 {/foreach}
 
 {else}
 Még senki nem írt hozzá!
 {/if}
+

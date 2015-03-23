@@ -6,7 +6,8 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
         public $_bindArray=array(
                 'uzenet'=>'TxtTartalom',
                 'uzenet_elolvasva'=>'ChkSeen',
-                'ugyfel_attr_uzenetek_aktiv'=>'ChkAktiv'
+                'ugyfel_attr_uzenetek_aktiv'=>'ChkAktiv',
+                'ugyfel_id' => 'SelUgyfel'
         );
 
         public function __addForm()
@@ -53,6 +54,7 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
 
         public function __update()
         {
+         
             parent::__update(',modositas_datum=now(),modosito='.UserLoginOut_Controller::$_id
             );
             

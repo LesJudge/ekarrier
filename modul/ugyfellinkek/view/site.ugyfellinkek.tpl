@@ -18,8 +18,8 @@ z-index: 99999;
         {foreach from=$links item=link}    
             <form name="{$FormName}" method="post" action="">
             <input type="hidden" id="delLink" name="delLink" value="{$link.link}"/>
-            <a href="{$link.link}">{$link.nev}</a>
-            <button class="" name="{$BtnDeleteLink}" id="{$BtnDeleteLink}" type="submit"><b>x</b></button>
+            <a href="{$link.link}" target="_blank">{$link.nev}</a>
+            <!--button class="" name="{$BtnDeleteLink}" id="{$BtnDeleteLink}" type="submit"><b>x</b></button-->
             </form>
             <br/>
         {/foreach}
@@ -32,8 +32,10 @@ z-index: 99999;
         <div onClick="$('#linkFormCont').toggle();">Adja hozzá az oldalt</div>
         <div id="linkFormCont" style="display:none">
             <form name="{$FormName}" method="post" action="">
-                <label for="addLink">Név <span class="require">*</span></label>
+                <label for="linkName">Név <span class="require">*</span></label>
                 <input type="text" id="linkName" name="linkName" maxlength="50"/>
+                <label for="linkUrl">URL <span class="require">*</span></label>
+                <input type="text" id="linkUrl" name="linkUrl" maxlength="200"/>
                 <div class="clear"></div>
                 <button class="submit btn" name="{$BtnAddLink}" id="{$BtnAddLink}" type="submit">Hozzáadás</button>
             </form>

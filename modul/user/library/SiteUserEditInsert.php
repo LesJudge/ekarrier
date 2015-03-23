@@ -161,10 +161,10 @@ class SiteUserEditInsert extends \AttachedUserInsert
         $this->db->prepare("INSERT INTO ugyfel_attr_szuletesi_adatok 
             (
                 ugyfel_id, 
-                szuletesi_vezeteknev, 
-                szuletesi_keresztnev, 
-                szuletesi_hely_orszag_id, 
-                szuletesi_hely_varos_id, 
+                vezeteknev, 
+                keresztnev, 
+                orszag_id, 
+                varos_id, 
                 szuletesi_ido
             ) 
             VALUES 

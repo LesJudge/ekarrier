@@ -68,6 +68,7 @@ return array(
     'site_js' => array(
         //$domain.'/js/jquery.min.js',
         $domain . '/js/jquery-1.11.0.min.js',
+		$domain . '/js/bootstrap.min.js',
         //$domain.'/js/jquery-1.7.1.min.js',
         $domain . '/js/jquery-ui-1.10.3.custom.js',
         $domain . '/js/jquery.tip.custom.js',

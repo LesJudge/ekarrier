@@ -12,7 +12,11 @@
 {/if}
 <div class="jobDataForm-cont">
 	<div class="jobDataForm-top"><i id='jobSearchForm_icon--document_1--50--50--S1.5:1.5:0:0--fff--fff' class='svgIcon'>&nbsp;</i></div>	
-	<div class="jobDataForm-content">{$companyData.nev} - {$companyData.szhely}</div>	
+	<div class="jobDataForm-content">{$companyData.nev}</div>	
+        <img src="{$DOMAIN}pic/enceg/{$companyData.ceg_kep}_380x265_2"/>
+        <div class="jobDataForm-content">{$companyData.tartalom}</div>
+        <!--
+        <div class="jobDataForm-content">{$companyData.nev} - {$companyData.szhely}</div>	
         {if not empty($sites)}
         Telephelyek
         {foreach from=$sites item=site}
@@ -21,6 +25,7 @@
         {/if}
         <div class="jobDataForm-content">{$companyData.tartalom}</div>		
 	<div class="clear"></div>	
+        -->
 </div>
 
  {if $jobs}

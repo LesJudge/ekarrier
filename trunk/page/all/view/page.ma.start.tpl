@@ -9,7 +9,7 @@
         </script>
 </head>
     
-<body class="page-ma page-ma-start">
+<body>
 <div id="fb-root"></div>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -23,148 +23,159 @@
 /*]]>*/
 </script>
 <p style="display: none;"><input type="hidden" id="DOMAIN" value="{$DOMAIN}"/></p>
+{if $bgBannerList}
+	{foreach from=$bgBannerList key=banner_for_id item=banner_lista}
+		{if $banner_lista.banner_kep_nev}				
+		<img src="{$DOMAIN}pic/banner/{$banner_lista.banner_kep_nev}_1920x1660_1" alt="{$banner_lista.banner_nev}" class="site-bg-1" />
+		{/if}
+	{/foreach}	
+{/if}
 
-<div class="site_head_container start">
-	<div class="head_content site_center"> 		
-		<span class="headSlogen"></span>
-		<a href="{$DOMAIN}"><img src="images/site/site_logo.png" alt="" class="site_logo" /></a>				
-		<div class="main_menu"> {$Menu_23} </div>
-                <div class="main_menu" style="margin-top: 30px !important"> {$Menu_46}</div>
-		<div class="box-login-itmes">			
-			<div class="page-nav-cont">
-				<!--<a href="{$DOMAIN}?type=mv" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkavállaló</a>
-				<a href="{$DOMAIN}?type=ma" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkaadó</a>-->
-                                {if $loggedIn != "1"}
-                                <a href="{$DOMAIN}?type=cl" class="btn btn-primary btn-xs" title="Nyitólap"> Nyitólap</a>
-                                {/if}
-			</div>
-			{if $LoginForm}
-			<script type="text/javascript">
-				function loginDialog(){
-					$("#popUploginForm").dialog({ 	
-						//autoOpen: false,							
-						closeOnEscape: false,
-						width: 380,								
-						modal: true,								
-						draggable: true,
-						close: function (event, ui) {									
-							$(this).dialog("close");							
-						}																
-					});
-					return true;
-				}						
-				$(function(){
-					$(".btn.loginBtn").bind("click",function(){
-						loginDialog();
-					});					
-				});			
-			</script>
+<div class="siteWrapper">
 
-			<div class="loginBtns">				
-				<a href="javascript:;">
-					<button class="btn loginBtn" id="Login" name="Login" value=""  data-toggle="tooltip" data-placement="bottom" 
-					title="A belépéshez kattints ide, majd a bejelentkezési panelen add meg az adataidat!"  >
-					<i class="icomoon icomoon-unlocked">&nbsp;</i> Bejelentkezés
-					</button>
-					<div id="popUploginForm" title="Bejelentkezés" style="display:none;">
-						<div class="boxform">
-						{$LoginForm}					
-						</div>
-					</div>    
-				</a>
-				<a class="btn btn-default" href="ceg/regisztracio/" role="button" >
-					<i class="icomoon icomoon-user3">&nbsp;</i>Regisztráció
-				</a>
-			</div>	
-			{else}
-			{$LogoutForm}	
-			{include file="modul/user/view/partial/user_profile.tpl"}
-			{/if}
-			<!-- 
-			{$ErrorMessage}		
-			<form action="" method="get" id="search">	
-				  <div class="form-row clearfix">
-					<input type="text" class="search_field autoclear" id="keresoszo" name="" value="Keresés" />						 
-					<button class="submit search_button no_fix" onclick="if(($('#keresoszo').val()!='')&amp;&amp;($('#keresoszo').val()!='Keresés')){ window.location = '{$DOMAIN}kereses/'+$('#keresoszo').val(); }"  name="{$BtnLogin}" type="button" value="Keresés">Keresés</button>
-					<div class="clear"></div>
-				  </div>
-			</form>		
-			-->					
-			<div class="clear"></div>					
-		</div> 			
-	</div>
-</div>
-			        
-        
-<div class="site_body_container">	
-	<div class="site_content site_center">                 
+	<div class="site_head_container start">
 		
-			{$ErrorMessage}
-			<div class="mainContent">
-				<h1>{$PageName}</h1>
-                                <br/><br/><br/>
-				<a class="btn btn-sm btn-primary" href="{$DOMAIN}{$compRajzID}/">Álláshirdetés feltöltése</a><br/>
-                                <a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciarajz-kereso/">Kompetenciarajz böngésző</a><br/>
-                                <a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/regisztracio/">Regisztrálok saját oldal kialakításáért</a><br/>
-                                <a class="btn btn-sm btn-primary" href="{$DOMAIN}szolgaltatasok/">Szolgáltatásaink</a>
-
-				<div class="clear"></div>
+		<div class="head_content site_center"> 		
+			<div class="row">
+				<div class="col-lg-8">
+					<!--
+					{$ErrorMessage}	
+					<div class="search">       
+						 <form action="kereses/" method="get" id="search">
+							<div class="form-row clearfix form-group">
+								<input type="text" class="search_field form-control" id="keresoszo" name="keresoszo" placeholder="Keresés az oldalon" />
+								<button id="searchButton" class="search_button" type="submit" value="Keres"><span class="glyphicon glyphicon-search">&nbsp;</span></button>
+								<div class="clear"></div>
+							</div>
+						</form>	            
+					</div>	
+					-->							
+					<div class="clear"></div>	
+				</div>
+				<div class="col-lg-1">
+					{if $loggedIn != "1"}
+						<a href="{$DOMAIN}?type=cl" class="page-select-link" title="Nyitólap"> Nyitólap</a>
+					{/if}
+				</div>
+				<div class="col-lg-6 site_logo_cont">
+					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" /></a>	
+				</div>
+				<div class="col-lg-8">
+					<div class="login">	
+						{if $LogoutForm}								
+							{$LogoutForm}
+							{include file="modul/user/view/partial/user_profile.tpl"}
+						{else}
+						<div class="loginBtns">
+							<a data-toggle="modal" href="#popUpLoginForm-modal" onclick="setTimeout(function(){ $('#popUpLoginForm-modal').appendTo('body').modal('show'); },100);">
+							<button class="btn loginBtn" id="Login" name="Login" value=""  data-toggle="tooltip" data-placement="top" 
+							title="A belépéshez kattints ide, majd add meg az adataidat!"  >Bejelentkezés</button>
+							</a>
+							<div id="popUploginForm" title="Bejelentkezés" style="display:none;">
+								{$LoginForm}
+							</div>					
+							<a class="btn btn-default" href="regisztracio/" role="button" >
+							Regisztráció
+							</a>
+						</div>	
+						{/if}							
+					</div>
+				</div>
+				<div class="col-lg-1">
+					<a href="javascript:;"><img src="images/site/akadalymentes-logo.png" alt="" class="akadalymentes-logo" /></a>	
+				</div>
+				<div class="clear"></div> 
 			</div>
 			
-		<div class="clear"></div>	
-      </div>	
-</div>				
+			<div class="row menu-row">
+				<div class="menu-left-bg"></div>
+				<div class="menu-right-bg"></div>
+				<div class="col-lg-9"><div class="menu_table">{$Menu_23}</div></div>
+				<div class="col-lg-6"></div>
+				<div class="col-lg-9"><div class="menu_table">{$Menu_46}</div></div>
+				<div class="clear"></div> 
+			</div>							
+			
+			<div class="clear"></div> 			
+		</div>
+		
+	</div>		
+
+	<div class="site_body_container start">	
+		<div class="site_content site_center">  
+			<div class="site_content_inner">           
+				
+					{$ErrorMessage_}
+					<div class="mainContent">
+						{if $PageName}
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="h1-table">
+							<tr>
+							<td class="h1-td">&nbsp;</td>
+							<td class="h1-td-center"><h1>{$PageName}</h1></td>
+							<td class="h1-td">&nbsp;</td>
+							</tr>
+						</table>
+						{/if}
+									
+						<a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/allashirdetes/szerkesztes/">Álláshirdetés feltöltése</a><br/>
+						<a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciarajz-kereso/">Kompetenciarajz böngésző</a><br/>
+						{if $loggedIn}
+							<a class="btn btn-sm btn-primary" href="{$DOMAIN}enprofil/">Én profil</a><br/>
+						{else}
+							<a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/regisztracio/">Regisztrálok saját oldal kialakításáért</a><br/>
+						{/if}
+						<a class="btn btn-sm btn-primary" href="{$DOMAIN}szolgaltatasok/">Szolgáltatásaink</a>
+						<div class="clear"></div>
+						
+					</div>					
+				
+				<div class="clear"></div>	
+			</div>
+		</div>	
+	</div>					        
+
  
-                
-<div class="site_footer_container">
-    <div class="footer site_center">							
-		<div class="footer-middle">
-			<div class="footerBoxElement">                               
-				<div class="impressum">
-					<span class="impressum-title">CSAT Egyesület a Hátrányos Helyzetű Rétegek Munkaerőpiaci Csatlakozásáért</span>
-					<br /><br />
-					Székhely és levelezési cím: 
-					4025 Debrecen, Arany János u. 2. sz.
-					<br /><br />
-					<span>Székhely telefonszáma:</span> 	+36-52-530-895<br />
-					<span>Székhely faxszáma:</span>  		+36-52-530-896<br />
-					<span>Székhely mobilszáma:</span>  	+36 20 469 9634<br />
-					<span>Ügyfélfogadási idő:</span>  	H-CS: 8:00-16:00, P: 8:00-14:00
-				</div>                               
+   <div class="site_footer_container">
+		<div class="footer site_center">							
+			<div class="footer-middle">
+				<div class="footerBoxElement">                               
+					<div class="newsLetter">
+						{$HirlevelFeliratkozas}
+					</div>                               
+				</div>
+				<div class="footerBoxElement">
+						<div class="{$FBLike.class}" data-href="{$FBLike.url}" data-width="{$FBLike.width}" data-height="{$FBLike.height}" data-colorscheme="{$FBLike.colorscheme}" data-show-faces="{$FBLike.show_faces}" data-header="{$FBLike.header}" data-stream="{$FBLike.stream}" data-show-border="{$FBLike.show_border}"></div>
+				</div>
+				<div class="footerBoxElement">
+					<a href="http://nfu.hu"><img src="images/site/nfu.png" alt="" class="nfu_img" /></a>
+				</div>
+				<div class="clear"></div>
 			</div>
-			<div class="footerBoxElement">
-					<div class="{$FBLike.class}" data-href="{$FBLike.url}" data-width="{$FBLike.width}" data-height="{$FBLike.height}" data-colorscheme="{$FBLike.colorscheme}" data-show-faces="{$FBLike.show_faces}" data-header="{$FBLike.header}" data-stream="{$FBLike.stream}" data-show-border="{$FBLike.show_border}"></div>
+			<div class="site_bottom"></div>						
+			<div class="footer-menu">
+				<ul class="footer-nav">
+				{foreach from=$footerMenu item=menu}
+						<li><a href="{$menu.menu_link}">{$menu.menu_nev}</a></li>
+				{/foreach}
+				</ul>
+			</div>      
+		  </div>	
+	</div>	
+	
+	
+	<div class="footer-bottom-cont">
+		<div class="footer-bottom site_center">
+			<div class="copyright">  
+				<span class="copyright-blinding"> &copy; E-karrier </span> Minden jog fenntartva! / All rights reserved!  
 			</div>
-			<div class="footerBoxElement">
-				<a href="http://nfu.hu"><img src="images/site/nfu.png" alt="" class="nfu_img" /></a>
-			</div>
-			<div class="clear"></div>
+			<div class="uniweb_logo"><a href="http://www.uniweb.hu/" target="_blank"><img src="{$DOMAIN}images/site/uniweb_logo.png" alt="uniweb logo" /></a></div>
+			<div class="clear"></div> 
 		</div>
-		<div class="site_bottom"></div>						
-		<!--
-		<div class="footer-menu">
-			<ul class="footer-nav">
-			{foreach from=$footerMenu item=menu}
-					<li><a href="{$menu.menu_link}">{$menu.menu_nev}</a></li>
-			{/foreach}
-			</ul>
-		</div>  
-		-->    
-      </div>	
-</div>	
+	</div>	
+
+</div>
 
 
-<div class="footer-bottom-cont">
-	<div class="footer-bottom site_center">
-		<div class="copyright">  
-			<span class="copyright-blinding"> &copy; E-karrier </span> Minden jog fenntartva! / All rights reserved!  
-		</div>
-		<div class="uniweb_logo"><a href="http://www.uniweb.hu/" target="_blank"><img src="{$DOMAIN}images/site/ma_uniweb_logo.png" alt="uniweb logo" /></a></div>
-		<div class="clear"></div> 
-	</div>
-</div>	
-
-<!--
 <script type="text/javascript">
 {literal} 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -176,6 +187,6 @@
   ga('send', 'pageview');
 {/literal} 
 </script>
--->
+
 </body>
 </html>

@@ -91,16 +91,41 @@ class Szolgaltatas_Order_Edit_Model extends Admin_Edit_Model
         return $result['nev'];
     }
     
+    public function getClients($orderID){
+        try{
+        $query = "SELECT ugyfelek_mappakbol, ugyfelek_jelentkezettek
+                  FROM ceg_szolgaltatas_megrendeles
+                    WHERE ceg_szolgaltatas_megrendeles_id = ".(int)$orderID." LIMIT 1
+                ";
+        
+        $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+        $result['ugyfelek_mappakbol'] = array_unique(unserialize($result['ugyfelek_mappakbol']));
+        $result['ugyfelek_jelentkezettek'] = array_unique(unserialize($result['ugyfelek_jelentkezettek']));
+        
+        
+        return $result;
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();
+        }
+    }
+    
+    
+    //depr
     public function getFolders($orderID){
+        try{
         $query = "SELECT mappa_id
                   FROM szolgaltatas_megrendeles_ugyfelek
                     WHERE megrendeles_id = ".(int)$orderID."
                 ";
         $result = $this->_DB->prepare($query)->query_select()->query_result_array();
         return $result;
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();
+        }
     }
-    
+    //depr
     public function getClientsByFolder($fID,$orderID){
+        try{
         $query = "SELECT szmu.ugyfelek, cam.mappa_nev AS mappa
                     FROM szolgaltatas_megrendeles_ugyfelek szmu
                   INNER JOIN ceg_attr_mappa cam ON cam.ceg_attr_mappa_id = szmu.mappa_id
@@ -108,20 +133,31 @@ class Szolgaltatas_Order_Edit_Model extends Admin_Edit_Model
                   LIMIT 1
                 ";
         
+        
         $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
-               
+         
         $resultArray = array();
         $resultArray["mappanev"] = $result["mappa"];
         
         $uIDArr = unserialize($result["ugyfelek"]);
         
+        
         foreach($uIDArr as $key=>$value){    
             $query = "SELECT ugyfel_id AS ugyfelID, CONCAT(vezeteknev, ' ', keresztnev) AS ugyfelNev FROM ugyfel WHERE ugyfel_id = ".(int)$value['ugyfelID'];
-            $result = $this->_DB->prepare($query)->query_select()->query_result_array();
+            try{
+                $result = $this->_DB->prepare($query)->query_select()->query_result_array();
+            }catch(Exception_MYSQL_Null_Rows $e){
+                $result = array();
+            }
             $resultArray["ugyfelek"][] = $result;
         }
         
         return $resultArray;
+        
+        
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();
+        }
     }
     
     

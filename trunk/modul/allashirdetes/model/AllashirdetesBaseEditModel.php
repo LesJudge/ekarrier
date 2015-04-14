@@ -476,6 +476,7 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     
     public function findKompetenciaByJobId($jobId)
     {
+        
         return $this->findSheepItDataByJobId($jobId, self::TABLE_ATTR_KOMP, 'kompetencia_id');
     }
     

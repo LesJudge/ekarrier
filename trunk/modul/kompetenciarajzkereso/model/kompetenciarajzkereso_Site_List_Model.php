@@ -65,18 +65,6 @@ class Kompetenciarajzkereso_Site_List_Model extends Admin_List_Model
        // $this->sortBY = "munkakor.munkakor_nev ASC";
         parent::__addForm();
         
-        /*
-        // Leszűri a kategória azonosítókat az $ids tömbbe.
-        if (!empty($categories)) {
-            $ids = array_map(function($data) {
-                return (int)$data['munkakor_kategoria_id'];
-            }, $categories);
-            $condition = 'mak.munkakor_attr_kategoria_id IN (' . implode(',', $ids) . ')';
-        } else {
-            $condition = 'mak.munkakor_attr_kategoria_id = NULL'; // NULL sort adó feltétel.
-        }
-        */
-        
         $munkakor = $this->addItem('FilterMunkakor');
         
         $csoport = $this->addItem('FilterCsoport');

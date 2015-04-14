@@ -352,7 +352,7 @@ class En_Show_Model extends Page_Edit_Model {
         }
         
         
-        
+/*        
     public function checkNewJobsByTevkor($cID,$tID){
         try{
                 $query = "SELECT COUNT(ah.allashirdetes_id) AS cnt
@@ -372,8 +372,7 @@ class En_Show_Model extends Page_Edit_Model {
             catch(Exception_MYSQL $e){
                 return false;
             }
-            
-        
     }
+  */
 }
 ?>

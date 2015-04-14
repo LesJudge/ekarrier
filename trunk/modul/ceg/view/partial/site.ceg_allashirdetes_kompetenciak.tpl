@@ -4,13 +4,13 @@
             <label for="kompetenciaForm_#index#_kompetencia">Kompetencia</label>
 			<div class="sheepIt-form-block">
             	<!--input id="kompetenciaForm_#index#_kompetencia_id" name="{$piKompetenciak}[#index#]" type="text"/-->
-                
+                          
                             <select class="" name="kompetenciak[#index#][kompetencia_id]" id="kompetenciaForm_#index#_kompetencia_id">
 					<option value="">--Kérem, válasszon!--</option>
 					{foreach from=$kompetenciakSel item=value}
 					<option value="{$value.kompetencia_id}">{$value.Nev}</option>
 					{/foreach}
-				</select>
+                            </select>
                          
                                 
 			</div>

@@ -92,6 +92,10 @@ try {
         
         Rimo::__loadModul($_REQUEST['m']);
     }
+	
+	$banner = Rimo::__loadPublic("model","banner_ShowBox_List","banner");
+	Rimo::$_site_frame->assign("bgBannerList", $banner->getBannerList(5,"RAND()",1));
+	
     
 } catch(Exception_Load_error $e) {
     Rimo::$_site_frame->assign('ErrorMessage', $e->getMessage());

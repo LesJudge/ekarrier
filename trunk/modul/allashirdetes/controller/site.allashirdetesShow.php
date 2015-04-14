@@ -17,14 +17,15 @@ class AllashirdetesShow_Site_Controller extends RimoController
      * @var int
      */
     protected $userCompanyId = 0;
+    private $visitType;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+        //$clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         $this->_action_type = $_REQUEST;
-        //$this->init();
+        $this->init();
         $this->__loadModel('_Site_Show');
         $this->__addParams($this->_model->_params);
         $this->__addEvent('BtnMark', 'Mark');
@@ -46,13 +47,12 @@ class AllashirdetesShow_Site_Controller extends RimoController
             $aem = new Allashirdetes_Edit_Model;
             $this->_view->assign('elvarasok', $aem->findElvarasByJobId($pjId));
             $this->_view->assign('feladatok', $aem->findFeladatByJobId($pjId));
-            $this->_view->assign('kompetenciak', $aem->findKompetenciaByJobId($pjId));
+            $this->_view->assign('kompetenciak', $this->_model->findKompetenciaByJobId($pjId));
             $this->_view->assign('amitKinalunk', $aem->findAmitKinalunkByJobId($pjId));
             $this->_view->assign('pj', $pj);
             
             // Ha be van jelentkezve a felhasználó, akkor megvizsgálja, hogy megjelölte-e már az álláshirdetést.
-            if ($this->isLoggedIn() && !$this->isCompanyUser()) {
-                
+            if ($this->isLoggedIn() && $this->visitType === "client") {
                 //Megjelölve-e
                 $isMarked = $this->_model->isMarkedByUser(Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id), $pjId);
                 
@@ -75,6 +75,10 @@ class AllashirdetesShow_Site_Controller extends RimoController
                 $markable = false;
                 $favouritable = false;
             }
+            
+            
+            
+            
             
             $this->_view->assign('markable', $markable);
             Rimo::$_site_frame->assign('PageName', 'Álláshirdetés');
@@ -172,7 +176,7 @@ class AllashirdetesShow_Site_Controller extends RimoController
             if(
                 $this->isLoggedIn()
                 && 
-                !$this->isCompanyUser()
+                $this->visitType === "client"
                 &&
                 isset($_POST['postingJobId'])
                 &&
@@ -186,7 +190,7 @@ class AllashirdetesShow_Site_Controller extends RimoController
             if(
                 $this->isLoggedIn()
                 && 
-                !$this->isCompanyUser()
+                $this->visitType === "client"
                 &&
                 isset($_POST['postingJobId'])
                 &&
@@ -199,25 +203,44 @@ class AllashirdetesShow_Site_Controller extends RimoController
         }
         
     }
-    /**
-     * Megvizsgálja, hogy a felhasználó céghez tartozik-e.
-     * @return boolean
-     */
-    protected function isCompanyUser()
-    {
-        return ((int)$this->userCompanyId > 0) ? true : false;
-    }
-    /**
-     * Controller inicializálása.
-     */
+        
     protected function init()
-    {/*
+    {
         if ($this->isLoggedIn()) {
-            $this->userCompanyId = (int)CompanyHelperModel::model()->findCompanyByUserId(
-                UserLoginOut_Site_Controller::$_id
-            );
-        }*/ 
+            try{
+                $clientID = Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
+             }catch(Exception_MYSQL_Null_Rows $e){
+            }
+            
+            try{
+                $companyID = Rimo::getCompanyWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
+             }catch(Exception_MYSQL_Null_Rows $e){
+            }
+        
+            if (empty($clientID) && empty($companyID))
+            {
+                throw new Exception_404();
+                return false;
+            }
+            // ha cég van bejelentkezve
+            if (empty($clientID) && (int)$companyID > 0)
+            {
+                $this->visitType = "company";
+                return true;
+            }
+            
+            // ha ügyfél van bejelentkezve
+            if (empty($companyID) && (int)$clientID > 0)
+            {
+                $this->visitType = "client";
+                return true;
+            }
+            
+        }else{
+            $this->visitType = "neutral";
+        }
     }
+    
     /**
      * Megvizsgálja, hogy a felhasználó be van-e jelentkezve.
      * @return boolean
@@ -226,4 +249,8 @@ class AllashirdetesShow_Site_Controller extends RimoController
     {
         return (int)UserLoginOut_Site_Controller::$_id > 0;
     }
+    
+    
+    
+    
 }

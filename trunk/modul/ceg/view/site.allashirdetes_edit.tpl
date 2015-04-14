@@ -87,6 +87,7 @@ $(function() {
     });
     
     function onExists( mainId, subId ) {
+        
         this.find(".job-select-main").val(mainId).trigger("change");
         var $subSelect = this.find(".job-select-sub"), 
             $subOption = $subSelect.find("option[value=\"" + subId + "\"]");
@@ -117,8 +118,10 @@ $(function() {
                 onNotExists, 
                 "input[id$=\"_elvaras\"]", 
                 "input[id$=\"_feladat\"]", 
-                "a"
+                "a",
+                "div[id='newMkCont_#index#']"
             );
+    
         },
         data: {if $tkorok}{$tkorok}{else}[]{/if}
     }),
@@ -191,19 +194,26 @@ $(function() {
         },*/
         data: {if $kompetenciak}{$kompetenciak}{else}[]{/if}
     });
-    /*
+    
+    {if $kompetenciak}
     for(i = 0; i<{$kompetenciak}.length; i++)
     {
         $("#kompetenciaForm_"+i+"_kompetencia_id option[value='"+{$kompetenciak}[i]["kompetenciaForm_#index#_kompetencia_id"]+"']").attr("selected",true);
+        
+        var text = $("#kompetenciaForm_"+i+"_kompetencia_id").parent().find(".styled.customInput-text");
+        text.text($("#kompetenciaForm_"+i+"_kompetencia_id option:selected").text());
     }
-    */
-    
+    {/if}
+    $("#kompetenciaForm").on("change", "select",function() { 
+        $(this).parent().find(".styled.customInput-text").text($(this).find("option:selected").text());
+    });
     
     {if $isNewRecord eq false}
     $(".job-select").jobSelect();
     updateExpectationsAndTasks(findJobIds(".job-select-id"), "input[id$=\"_elvaras\"]", "input[id$=\"_feladat\"]");
     {/if}
 });
+
 /*]]>*/
 </script>
 {/if}

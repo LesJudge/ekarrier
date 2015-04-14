@@ -1,6 +1,6 @@
 <?php
-require 'page/admin/controller/admin.edit.php';
-require 'page/admin/model/admin.edit_model.php';
+//require 'page/admin/controller/admin.edit.php';
+//require 'page/admin/model/admin.edit_model.php';
 require 'modul/allashirdetes/model/AllashirdetesBaseEditModel.php';
 require 'modul/user_cim/model/UserAddressFinder.php';
 require 'library/uniweb/model/AjaxModel.php';

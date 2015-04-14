@@ -74,6 +74,7 @@ abstract class Page_Edit_Model extends Page_Model {
             SET     
                 " . Create::query_set_sets($data). $sets . "  
         ";
+            //echo $query;
         if ($this->nyelvID) $query .= " ,nyelv_id={$this->nyelvID}";
         if($this->modifyID)  $query .= " ,{$this->_tableName}_id={$this->modifyID}";
         $this->insertID = $this->_DB->prepare($query)->query_insert();

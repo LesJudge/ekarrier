@@ -130,15 +130,7 @@ function resetGroupOpts(){
     $('#{$FilterCsoport.name} option').attr('disabled', false);
 }
 
-function selectAll(){
-   
-    
-}
-
-
 </script>
-
-
 
 <style type="text/css">
 .ek-job-main {
@@ -171,84 +163,94 @@ function selectAll(){
 </div>
 <div class="clear"></div>
 {/if}
-<form action="" method="POST" name="{$FormName}" id="{$FormName}" enctype="multipart/form-data">
-    <div id="anc" class="jobDataForm-cont">
+
+<br/><br/><br/><br/>
+
+<div onclick="$('#cont1').toggle()">1. lépés - Hogyan keress?</div>
+    <div id="cont1">
         
-        <!--input type="text" name="{$TxtSearchByName.name}" value="{$TxtSearchByName.activ}"-->
-        
-        <div class="filter_row">
-		<label for="{$FilterCsoport.name}">Csoport</label>
-		{html_options id=$FilterCsoport.name name=$FilterCsoport.name options=$FilterCsoport.values selected=$FilterCsoport.activ}
-		<div class="clear"></div> 
-        </div>
-                
-        <div class="filter_row">
-		<label for="{$FilterKor.name}">Kör</label>
-		{html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ}
-		<div class="clear"></div> 
-        </div>
-               
-        <div class="filter_row">
-		<label for="{$FilterSzektor.name}">Szektor</label>
-		{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ}
-		<div class="clear"></div> 
-        </div>
-                
-        <div class="filter_row">
-		<label for="{$FilterPozicio.name}">Pozíció</label>
-		{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ}
-		<div class="clear"></div> 
-        </div>
-                
-        <input type="text" name="{$FilterMunkakor.name}" value="{$FilterMunkakor.activ}">
-                
-        <input class="submit" type="submit" id="{$BtnFilter}" name="{$BtnFilter}" value="Keresés">
-        <input class="submit" type="submit" name="{$BtnFilterDEL}" value="Feltételek törlése">
-        <div class="clear"></div>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     </div>
-        
-            
-</form>
-        
-<form id="compDraws" name="compDraws" action="" method="post">        
-    <div class="jobFindList-cont">
-        <div class="jobFindList-top"><i class='icomoon icomoon-file3'>&nbsp;</i></div>
-        <div class="jobFindList-title">Találati eredmények</div>
-        {if not empty($Lista)}
-            <div id="paging_container1">
-                <div class="page_navigation"></div>
-                <ul class="content">
-                    {foreach from=$Lista item=krajz}
-                        <li>
-                            <div class="jobFindList-block">
-                                <input type="checkbox" name="draws[]" class="compDraws" value="{$krajz.krID}">
-                                <a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$krajz.krID}/">{$krajz.uID}/{$krajz.krID}</a>
-                                <div class="clear"></div>
-                            </div>
-                        </li>    
-                    {/foreach}
-                </ul>
+
+
+<div onclick="$('#cont2').toggle()">2. lépés - Böngészés</div>
+<div id="cont2" style="display: none;">
+    <form action="" method="POST" name="{$FormName}" id="{$FormName}" enctype="multipart/form-data">
+        <div id="anc" class="jobDataForm-cont">
+
+            <!--input type="text" name="{$TxtSearchByName.name}" value="{$TxtSearchByName.activ}"-->
+
+            <div class="filter_row">
+                    <label for="{$FilterCsoport.name}">Csoport</label>
+                    {html_options id=$FilterCsoport.name name=$FilterCsoport.name options=$FilterCsoport.values selected=$FilterCsoport.activ}
+                    <div class="clear"></div> 
             </div>
+
+            <div class="filter_row">
+                    <label for="{$FilterKor.name}">Kör</label>
+                    {html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ}
+                    <div class="clear"></div> 
+            </div>
+
+            <div class="filter_row">
+                    <label for="{$FilterSzektor.name}">Szektor</label>
+                    {html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ}
+                    <div class="clear"></div> 
+            </div>
+
+            <div class="filter_row">
+                    <label for="{$FilterPozicio.name}">Pozíció</label>
+                    {html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ}
+                    <div class="clear"></div> 
+            </div>
+
+            <input type="text" name="{$FilterMunkakor.name}" value="{$FilterMunkakor.activ}">
+
+            <input class="submit" type="submit" id="{$BtnFilter}" name="{$BtnFilter}" value="Keresés">
+            <input class="submit" type="submit" name="{$BtnFilterDEL}" value="Feltételek törlése">
+            <div class="clear"></div>
+        </div>
+
+    </form>
+
+    <form id="compDraws" name="compDraws" action="" method="post">        
+        <div class="jobFindList-cont">
+            <div class="jobFindList-top"><i class='icomoon icomoon-file3'>&nbsp;</i></div>
+            <div class="jobFindList-title">Találati eredmények</div>
+            {if not empty($Lista)}
+                <div id="paging_container1">
+                    <div class="page_navigation"></div>
+                    <ul class="content">
+                        {foreach from=$Lista item=krajz}
+                            <li>
+                                <div class="jobFindList-block">
+                                    <input type="checkbox" name="draws[]" class="compDraws" value="{$krajz.krID}">
+                                    <a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$krajz.krID}/">{$krajz.uID}/{$krajz.krID}</a>
+                                    <div class="clear"></div>
+                                </div>
+                            </li>    
+                        {/foreach}
+                    </ul>
+                </div>
+            {/if}
+            <div class="clear"></div>
+        </div>
+        {if $loggedInAs == 'company'}
+            <label for="folders">Mappa <span class="require">*</span></label>
+                <select id="folders" name="folders">
+                    {foreach from=$folders item=folder key=key}
+                        <option value="{$key}">{$folder}</option>
+                    {/foreach}
+                </select>
+            <button class="submit btn" id="select-all" type="button">Összes kijelölése</button>
+            <button class="submit btn" name="{$BtnAddDraws}" type="submit">Hozzáadás</button>
+            <input type="text" name="folderName">
+            <button class="submit btn" name="{$BtnCreateFolder}" type="submit">Mappa létrehozása</button>
+
+        {else}
+            <a class="submit btn" title="Regisztráció szükséges" href="{$DOMAIN}ceg/regisztracio/">Hozzáadás</a>
         {/if}
-        <div class="clear"></div>
-
-        {*include file='page/all/view/page.paging.tpl'*}
-    </div>
-    {if $loggedInAs == 'company'}
-        <label for="folders">Mappa <span class="require">*</span></label>
-            <select id="folders" name="folders">
-                {foreach from=$folders item=folder key=key}
-                    <option value="{$key}">{$folder}</option>
-                {/foreach}
-            </select>
-        <button class="submit btn" id="select-all" type="button">Összes kijelölése</button>
-        <button class="submit btn" name="{$BtnAddDraws}" type="submit">Hozzáadás</button>
-        <input type="text" name="folderName">
-        <button class="submit btn" name="{$BtnCreateFolder}" type="submit">Mappa létrehozása</button>
-        
-    {else}
-        <a class="submit btn" title="Regisztráció szükséges" href="{$DOMAIN}ceg/regisztracio/">Hozzáadás</a>
-    {/if}
 </form>
+</div>
 
-
+<div><a href="{$DOMAIN}szolgaltatasok/">3. lépés - Kérem a jelöltek elérhetőségét!</a></div>

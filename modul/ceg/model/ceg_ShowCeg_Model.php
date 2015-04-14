@@ -36,6 +36,7 @@ class Ceg_ShowCeg_Model extends Page_Edit_Model
                                             leiras,
                                             meta_kulcsszo,
                                             tartalom,
+                                            ceg_kep,
                                             CONCAT(ci.iranyitoszam, ' ', cv.cim_varos_nev, ' ', csz.utca, ' ', csz.hazszam) AS szhely
                                             
                                FROM ceg

@@ -51,13 +51,24 @@ $(function() {
             </div>
             <div class="clear"></div>
               
-            {foreach from=$folders key=key item=folder}
+            {*foreach from=$folders key=key item=folder}
             <b>{$folder.mappanev}</b><br/><br/>
-                {foreach from=$folder.ugyfelek item=client}
-                    {$client[0].ugyfelNev} - ({$client[0].ugyfelID})<br/>
-                {/foreach}
-            {/foreach}
+                    {foreach from=$folder.ugyfelek item=client}
+                        {if $client}
+                            {$client[0].ugyfelNev} - ({$client[0].ugyfelID})<br/>
+                        {/if}
+                    {/foreach}
+                
+            {/foreach*}
             
+            {foreach from=$clients.ugyfelek_mappakbol item=client}
+            {$client}<br/>
+            
+            {/foreach}
+            {foreach from=$clients.ugyfelek_jelentkezettek item=client}
+            {$client}<br/>
+            
+            {/foreach}
             
             
             

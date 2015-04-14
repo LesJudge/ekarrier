@@ -24,238 +24,185 @@
 </script>
 <p style="display: none;"><input type="hidden" id="DOMAIN" value="{$DOMAIN}"/></p>
 
-<div class="site_head_container start">
-    {$LoginForm}
-    {$LogoutForm}
-	<div class="head_content site_center"> 
-		<div class="headArrow"></div>
-		<span class="headSlogen"></span>
-		<a href="{$DOMAIN}"><img src="images/site/site_logo.png" alt="" class="site_logo" /></a>				
-		<div class="main_menu"> {$Menu_1}</div>		
-                <div class="main_menu" style="margin-top: 100px !important"> {$Menu_30}</div>
-                
-		<div class="box-search">
-			<div class="page-nav-cont">
+{if $bgBannerList}
+	{foreach from=$bgBannerList key=banner_for_id item=banner_lista}
+		{if $banner_lista.banner_kep_nev}				
+		<img src="{$DOMAIN}pic/banner/{$banner_lista.banner_kep_nev}_1920x1660_1" alt="{$banner_lista.banner_nev}" class="site-bg-1" />
+		{/if}
+	{/foreach}	
+{/if}
 
-				<!--<a href="{$DOMAIN}?type=mv" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkavállaló</a>
-				<a href="{$DOMAIN}?type=ma" class="btn btn-primary btn-xs" title="Munkavállalói oldal"> Munkaadó</a>-->
-                                {if $loggedIn != "1"}
-                                    <a href="{$DOMAIN}?type=cl" class="btn btn-primary btn-xs" title="Nyitólap"> Nyitólap</a>
-                                {/if}
+<div class="siteWrapper">
 
-			</div>	
-			{$ErrorMessage}	
-                        
-			<form action="" method="get" id="search">	
-				  <div class="form-row clearfix">
-					<input type="text" class="search_field autoclear" id="keresoszo" name="" value="Keresés" />						 
-					<button class="submit search_button no_fix" onclick="if(($('#keresoszo').val()!='')&amp;&amp;($('#keresoszo').val()!='Keresés')){ window.location = '{$DOMAIN}kereses/'+$('#keresoszo').val(); }"  name="{$BtnLogin}" type="button" value="Keresés">Keresés</button>
+	<div class="site_head_container start">
+		
+		<div class="head_content site_center"> 		
+			<div class="row">
+				<div class="col-lg-8">
+					{$ErrorMessage}	
+					<div class="search">       
+						 <form action="kereses/" method="get" id="search">
+							<div class="form-row clearfix form-group">
+								<input type="text" class="search_field form-control" id="keresoszo" name="keresoszo" placeholder="Keresés az oldalon" />
+								<button id="searchButton" class="search_button" type="submit" value="Keres"><span class="glyphicon glyphicon-search">&nbsp;</span></button>
+								<div class="clear"></div>
+							</div>
+						</form>	            
+					</div>								
+					<div class="clear"></div>	
+				</div>
+				<div class="col-lg-1">
+					{if $loggedIn != "1"}
+						<a href="{$DOMAIN}?type=cl" class="page-select-link" title="Nyitólap"> Nyitólap</a>
+					{/if}
+				</div>
+				<div class="col-lg-6 site_logo_cont">
+					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" /></a>	
+				</div>
+				<div class="col-lg-8">
+					<div class="login">	
+						{if $LogoutForm}								
+							{$LogoutForm}
+							{include file="modul/user/view/partial/user_profile.tpl"}
+						{else}
+						<div class="loginBtns">
+							<a data-toggle="modal" href="#popUpLoginForm-modal" onclick="setTimeout(function(){ $('#popUpLoginForm-modal').appendTo('body').modal('show'); },100);">
+							<button class="btn loginBtn" id="Login" name="Login" value=""  data-toggle="tooltip" data-placement="top" 
+							title="A belépéshez kattints ide, majd add meg az adataidat!"  >Bejelentkezés</button>
+							</a>
+							<div id="popUploginForm" title="Bejelentkezés" style="display:none;">
+								{$LoginForm}
+							</div>					
+							<a class="btn btn-default" href="regisztracio/" role="button" >
+							Regisztráció
+							</a>
+						</div>	
+						{/if}							
+					</div>
+				</div>
+				<div class="col-lg-1">
+					<a href="javascript:;"><img src="images/site/akadalymentes-logo.png" alt="" class="akadalymentes-logo" /></a>	
+				</div>
+				<div class="clear"></div> 
+			</div>
+			
+			<div class="row menu-row">
+				<div class="menu-left-bg"></div>
+				<div class="menu-right-bg"></div>
+				<div class="col-lg-9"><div class="menu_table">{$Menu_1}</div></div>
+				<div class="col-lg-6"></div>
+				<div class="col-lg-9"><div class="menu_table">{$Menu_30}</div></div>
+				<div class="clear"></div> 
+			</div>							
+			
+			<div class="clear"></div> 			
+		</div>
+		
+	</div>		
+			
+	<div class="site_body_container start">	
+		<div class="site_content site_center">  
+			<div class="site_content_inner">           
+				
+					{$ErrorMessage_}
+					<div class="mainContent">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="h1-table">
+							<tr>
+							<td class="h1-td">&nbsp;</td>
+							<td class="h1-td-center"><h1>{$PageName}</h1></td>
+							<td class="h1-td">&nbsp;</td>
+							</tr>
+						</table>
+									
+						{$text}
+					</div>
+					
+					<div class="jobCircle-cont">
+						<a href="{$DOMAIN}tevekenysegikor-kereso/" class="jobCircle jobCircle-1">
+							<span class="jobCircle-content">								
+								<span class="jobCircle-text-1">Ismerd meg a munkakört</span>
+								<span class="jobCircle-text-2">Biztos ezt szeretnéd csinálni?</span>
+							</span>							
+						</a>	
+						<a href="{$DOMAIN}kompetenciak/tesztek" class="jobCircle jobCircle-2">									
+							<span class="jobCircle-content">
+								<span class="jobCircle-text-1">Vizsgáld meg<br /> magad!</span>
+								<span class="jobCircle-text-2">Biztos alkalmas vagy<br /> erre a feladatra?</span>
+							</span>						
+						</a>
+						<a href="{$DOMAIN}allaskereses/" class="jobCircle jobCircle-3">						
+							<span class="jobCircle-content">								
+								<span class="jobCircle-text-1">Keress az<br /> álláshírdetések<br/> között!</span>
+								<span class="jobCircle-text-2">Válassz munkáltatót!</span>
+							</span>							
+						</a>	
+						<a href="{$DOMAIN}kompetenciak/kompetenciarajz/" class="jobCircle jobCircle-4">
+							<span class="jobCircle-content">							
+								<span class="jobCircle-text-1">Készítsd el<br /> kompetencia<br /> profilod!</span>
+								<span class="jobCircle-text-2">Hogy rád találjon a munáltató!</span>
+							</span>								
+						</a>									
+						<a href="{$DOMAIN}keszulj-az-allasinterjura" class="jobCircle jobCircle-5">
+							<span class="jobCircle-content">								
+								<span class="jobCircle-text-1">Készülj az<br /> állásinterjúra!</span>
+								<span class="jobCircle-text-2">További segítség a sikeres elhelyezkedéshez</span>
+							</span>								
+						</a>					
+						<a href="{$DOMAIN}en/" class="jobCircle jobCircle-6">						
+							<span class="jobCircle-content">
+								<span class="jobCircle-text-1">ÉN<br/>Profil</span>								
+							</span>							
+						</a>
+					</div>	
 					<div class="clear"></div>
-				  </div>
-			</form>							
-			<div class="clear"></div>					
-		</div> 		
-                                        
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                        
-		<!--div class="banner-top">				
-			{if $felsoBannerList}			
-			<ul class="bxslider">
-			{foreach from=$felsoBannerList key=banner_for_id item=banner_lista}
-				{if $banner_lista.banner_kep_nev}
-				<li>
-					<a href="{$banner_lista.banner_link}">
-						<img src="{$DOMAIN}pic/banner/{$banner_lista.banner_kep_nev}_946x325_1" alt=" " />
-					</a>
-				</li>
-				{/if}
-			{/foreach}						 		  
-			</ul>
-			{/if}		
-		</div-->		
-		<div class="clear"></div> 			
-	</div>
-</div>
-	
-		        
-        
-<div class="site_body_container">	
-	<div class="site_content site_center">                 
-		<div class="column-1">
-			{$ErrorMessage}
-			<div class="mainContent">
-				<h1>{$PageName}</h1>
-				<div class="jobCircle-cont">
-	<div>
-        {$text}
-        </div>
-        <br/><br/><br/>
-	<a href="{$DOMAIN}keszulj-az-allasinterjura" class="jobCircle jobCircle-1">
-		<span class="jobCircle-panel">
-			<span class="jobCircle-top">5.</span>
-			<span class="jobCircle-content">
-				<img src="images/site/munkakor_img_1.jpg" alt="" />
-				<span class="jobCircle-text-1">Készülj az állásinterjúra!</span>
-				<span class="jobCircle-text-2">További segítség a sikeres elhelyezkedéshez</span>
-			</span>		
-		</span>	
-		<span class="jobCircle-shadow"></span>
-	</a>
-	<div class="rotateImg rotateImg-1"></div>
-	<a href="{$DOMAIN}tevekenysegikor-kereso/" class="jobCircle jobCircle-2">
-		<span class="jobCircle-panel">
-			<span class="jobCircle-top">1.</span>
-			<span class="jobCircle-content">
-				<img src="images/site/munkakor_img_2.jpg" alt="" />
-				<span class="jobCircle-text-1">Ismerd meg a munkakört</span>
-				<span class="jobCircle-text-2">Biztos ezt szeretnéd csinálni?</span>
-			</span>		
-		</span>	
-		<span class="jobCircle-shadow"></span>
-	</a>
-	<div class="rotateImg rotateImg-2"></div>
-	<a href="{$DOMAIN}kompetenciak/tesztek" class="jobCircle jobCircle-3">
-		<span class="jobCircle-panel">
-			<span class="jobCircle-top">2.</span>
-			<span class="jobCircle-content">
-				<img src="images/site/munkakor_img_3.jpg" alt="" />
-				<span class="jobCircle-text-1">Vizsgáld meg magad!</span>
-				<span class="jobCircle-text-2">Biztos alkalmas vagy erre a feladatra?</span>
-			</span>		
-		</span>	
-		<span class="jobCircle-shadow"></span>
-	</a>
-	
-	<div class="clear"></div>
-	
-	
-	<div class="rotateImg rotateImg-3"></div>
-	<a href="{$DOMAIN}kompetenciak/kompetenciarajz/" class="jobCircle jobCircle-4">
-		<span class="jobCircle-panel">
-			<span class="jobCircle-top">4.</span>
-			<span class="jobCircle-content">
-				<img src="images/site/munkakor_img_4.jpg" alt="" />
-				<span class="jobCircle-text-1">Készíts el kompetencia profilod!</span>
-				<span class="jobCircle-text-2">..hogy rád találjon a munáltató</span>
-			</span>		
-		</span>	
-		<span class="jobCircle-shadow"></span>
-	</a>
-	<div class="rotateImg rotateImg-4"></div>
-	<a href="{$DOMAIN}allaskereses/" class="jobCircle jobCircle-5">
-		<span class="jobCircle-panel">
-			<span class="jobCircle-top">3.</span>
-			<span class="jobCircle-content">
-				<img src="images/site/munkakor_img_5.jpg" alt="" />
-				<span class="jobCircle-text-1">Keress az álláshírdetések között!</span>
-				<span class="jobCircle-text-2">Válassz munkáltatót!</span>
-			</span>		
-		</span>	
-		<span class="jobCircle-shadow"></span>
-	</a>
-	<div class="rotateImg rotateImg-5"></div>
-	<a href="{$DOMAIN}en/" class="jobCircle jobCircle-6">
-		<span class="jobCircle-panel">
-			<span class="jobCircle-content">
-				<span class="jobCircle-text-1">Saját profilom!</span>
-			</span>		
-		</span>	
-		<span class="jobCircle-shadow"></span>
-	</a>
-	<div class="clear"></div>
-</div>	
-                
-
+				
+				<div class="clear"></div>	
+			</div>
+		</div>	
+	</div>				
+	 
+					
+	<div class="site_footer_container">
+		<div class="footer site_center">							
+			<div class="footer-middle">
+				<div class="footerBoxElement">                               
+					<div class="newsLetter">
+						{$HirlevelFeliratkozas}
+					</div>                               
+				</div>
+				<div class="footerBoxElement">
+						<div class="{$FBLike.class}" data-href="{$FBLike.url}" data-width="{$FBLike.width}" data-height="{$FBLike.height}" data-colorscheme="{$FBLike.colorscheme}" data-show-faces="{$FBLike.show_faces}" data-header="{$FBLike.header}" data-stream="{$FBLike.stream}" data-show-border="{$FBLike.show_border}"></div>
+				</div>
+				<div class="footerBoxElement">
+					<a href="http://nfu.hu"><img src="images/site/nfu.png" alt="" class="nfu_img" /></a>
+				</div>
 				<div class="clear"></div>
 			</div>
-			<!--div class="boxType boxType-1">
-				<h2>Hasznos tanácsok</h2>
-				{if $usefulAdvices}
-					<table width="100%" border="0" cellspacing="0" cellpadding="0"  class="advice-table">
-						{foreach from=$usefulAdvices item=advice name=adviceList}
-						<tr>
-							<td class="advice-td advice-td-left">
-							<i id='check_{$smarty.foreach.adviceList.index}--check_2--16--16--S0.5:0.5:0:0--24c100--24c100' class='svgIcon'>&nbsp;</i>
-							<td class="advice-td advice-td-right">
-                                                                                                                                     <a href="{$DOMAIN}hirek/{$advice.hir_link}" class="newsList-title">{$advice.hir_cim}</a>
-                                                                                                                                     <a href="{$DOMAIN}hirek/{$advice.hir_link}">
-                                                                                                                                             <span class="advice-text">{$advice.hir_leiras}</span>
-                                                                                                                                     </a>
-                                                                                                                           </td>
-						</tr>
-						{/foreach}
-					</table>							
-				{else}
-				 <div>Nincs megjeleníthető elem!</div>
-				{/if}						
-			</div>
-			<div class="boxType boxType-2">
-				<h2>{$hirek}Legutóbbi hírek</h2>
-				{foreach from=$newHirList key=hir_for_id item=hir_lista name=hir_lista}
-				<div class="newsList">						
-					<a href="hirek/{$hir_lista.hir_link}" class="newsList-frame"><img class="newsList-img" alt="{$hir_lista.hir_cim}" src="{if $hir_lista.hir_kep_nev}{$DOMAIN}pic/hir/{$hir_lista.hir_kep_nev}_104x68{else}images/site/no_image.jpg{/if}" /></a>
-					<div class="newsList-data">
-						<a href="hirek/{$hir_lista.hir_link}" class="newsList-title">{$hir_lista.hir_cim}</a>
-						<div class="newsList-lead">{$hir_lista.hir_leiras_min}</div>
-						<a href="hirek/{$hir_lista.hir_link}" class="newsList-next">Részletek</a>
-					</div>
-					<div class="clear"></div>
-				</div>                         
+			<div class="site_bottom"></div>						
+			<div class="footer-menu">
+				<ul class="footer-nav">
+				{foreach from=$footerMenu item=menu}
+						<li><a href="{$menu.menu_link}">{$menu.menu_nev}</a></li>
 				{/foreach}
-			</div-->	
-			<div class="clear"></div>		
-		</div>
-        <div class="column-2">
-		   <div class="boxForm">					
-				
-			</div>	
-			
-				
-		</div>
-		<div class="clear"></div>	
-      </div>	
-</div>				
- 
-                
-<div class="site_footer_container">
-    <div class="footer site_center">							
-		<div class="footer-middle">
-			<div class="footerBoxElement">                               
-				<div class="newsLetter">
-					{$HirlevelFeliratkozas}
-				</div>                               
+				</ul>
+			</div>      
+		  </div>	
+	</div>	
+	
+	
+	<div class="footer-bottom-cont">
+		<div class="footer-bottom site_center">
+			<div class="copyright">  
+				<span class="copyright-blinding"> &copy; E-karrier </span> Minden jog fenntartva! / All rights reserved!  
 			</div>
-			<div class="footerBoxElement">
-					<div class="{$FBLike.class}" data-href="{$FBLike.url}" data-width="{$FBLike.width}" data-height="{$FBLike.height}" data-colorscheme="{$FBLike.colorscheme}" data-show-faces="{$FBLike.show_faces}" data-header="{$FBLike.header}" data-stream="{$FBLike.stream}" data-show-border="{$FBLike.show_border}"></div>
-			</div>
-			<div class="footerBoxElement">
-				<a href="http://nfu.hu"><img src="images/site/nfu.png" alt="" class="nfu_img" /></a>
-			</div>
-			<div class="clear"></div>
+			<div class="uniweb_logo"><a href="http://www.uniweb.hu/" target="_blank"><img src="{$DOMAIN}images/site/uniweb_logo.png" alt="uniweb logo" /></a></div>
+			<div class="clear"></div> 
 		</div>
-		<div class="site_bottom"></div>						
-		<div class="footer-menu">
-			<ul class="footer-nav">
-			{foreach from=$footerMenu item=menu}
-					<li><a href="{$menu.menu_link}">{$menu.menu_nev}</a></li>
-			{/foreach}
-			</ul>
-		</div>      
-      </div>	
-</div>	
+	</div>	
 
+</div>
 
-<div class="footer-bottom-cont">
-	<div class="footer-bottom site_center">
-		<div class="copyright">  
-			<span class="copyright-blinding"> &copy; E-karrier </span> Minden jog fenntartva! / All rights reserved!  
-		</div>
-		<div class="uniweb_logo"><a href="http://www.uniweb.hu/" target="_blank"><img src="{$DOMAIN}images/site/uniweb_logo.png" alt="uniweb logo" /></a></div>
-		<div class="clear"></div> 
-	</div>
-</div>	
-
-<script>
+<script type="text/javascript">
 {literal} 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -266,5 +213,6 @@
   ga('send', 'pageview');
 {/literal} 
 </script>
+
 </body>
 </html>

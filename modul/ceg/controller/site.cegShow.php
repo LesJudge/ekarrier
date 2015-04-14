@@ -48,17 +48,13 @@ class CegShow_Site_Controller extends Page_Edit {
                     'nev' => $companyData['ceg_nev'],
                 )
             ));
-            
-            //linkek
+
             try
             {
                 $clientId = Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
             }catch(Exception_MYSQL_Null_Rows $e){
             }
 
-           
-            
-            
             Rimo::$_site_frame->assign('site_title', 'Munkáltatók - ' . $companyData['nev']);
             Rimo::$_site_frame->assign('site_description', $companyData['leiras']);
             Rimo::$_site_frame->assign('site_keywords', $companyData['meta_kulcsszo']);

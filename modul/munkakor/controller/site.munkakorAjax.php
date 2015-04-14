@@ -37,6 +37,20 @@ class MunkakorAjax_Site_Controller extends AjaxController
                             $subId = (int)filter_input(INPUT_GET, 'subId');
                             echo json_encode($this->_model->findBySubId($subId));
                             break;
+                        case 'addNewMunkakor':
+                            $subcatID = (int)filter_input(INPUT_GET, 'subcatID');
+                            $munkakorName = filter_input(INPUT_GET, 'munkakorName');
+                            
+                            try{
+                                $companyID = Rimo::getCompanyWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
+                            }catch(Exception_MYSQL_Null_Rows $e){
+                                echo "Csak regisztrált felhasználók adhatnak hozzá munkakört!";
+                                break;
+                            }
+                            
+                            $resp = $this->_model->addNewMunkakor($subcatID,$munkakorName,UserLoginOut_Site_Controller::$_id);
+                            echo $resp;
+                            break;
                         default:
                             throw new \Exception;
                     }

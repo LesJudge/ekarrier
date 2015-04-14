@@ -123,7 +123,8 @@ class banner_ShowBox_List_Model extends Model {
     }
     
     public function getBannerList($pozicio, $order_by, $limit=1, $ma=0){
-    	$where = " AND (".$this->getBannerOldalID()." OR banner_attr_oldal_id='fix__3') AND banner_ma='".$ma."'";
+    	//$where = " AND (".$this->getBannerOldalID()." OR banner_attr_oldal_id='fix__3') AND banner_ma='".$ma."'";
+        $where = " AND banner_ma='".$ma."'";
         try{
             $query = "
                 SELECT banner_link,
@@ -146,7 +147,11 @@ class banner_ShowBox_List_Model extends Model {
                 ORDER BY {$order_by} 
                 LIMIT {$limit}
             ";
-              
+/*
+                echo "<pre>";
+                echo htmlspecialchars($query);
+              echo "</pre>";
+*/
            return $this->_DB->prepare($query)->query_select()->query_result_array();
         }catch(Exception_MYSQL_Null_Rows $e){
         }

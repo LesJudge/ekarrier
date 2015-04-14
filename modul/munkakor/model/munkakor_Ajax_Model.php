@@ -100,4 +100,63 @@ class Munkakor_Ajax_Model extends AjaxModel
             return array();
         }
     }
+    
+    
+    public function addNewMunkakor($katID,$name,$uID){
+        try{
+            
+            if((int)$katID < 1){
+                return "Válasszon kategóriát!";
+            }
+            if(strlen($name) < 5){
+                return "Adja meg a munkakör nevét! (Min. 5 karakter)";
+            }
+            
+            $exists = $this->checkIfMunkakorExistsInCat($name,$katID);
+
+            if($exists === "Hiba"){
+                return "Hiba történt!";
+            }
+            if ($exists === "exists"){
+                return"Már létezik ilyen nevű munkakör a kategóriában";
+            }else
+            if ($exists === "notexists") {
+                $query = "INSERT INTO munkakor
+                            SET munkakor_nev = '".mysql_real_escape_string($name)."',
+                                munkakor_create_date = NOW(),
+                                munkakor_letrehozo = ".(int)$uID.", nyelv_id = 1, munkakor_link = '".Create::remove_accents(mysql_real_escape_string($name))."'
+                    
+                            ";
+                $ins = $this->_DB->prepare($query)->query_insert();
+                
+                $query = "INSERT INTO munkakor_attr_kategoria SET munkakor_id = ".(int)$ins.", munkakor_attr_kategoria_id = ".(int)$katID."";
+                $this->_DB->prepare($query)->query_insert();
+                return "OK";
+            }
+            
+        }catch(Exception_MYSQL $e){
+            
+            return "Hiba történt!";
+        }
+    }
+    
+    public function checkIfMunkakorExistsInCat($name,$katID){
+        try{
+            
+            $query = "SELECT m.munkakor_id
+                        FROM munkakor m
+                        INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = m.munkakor_id
+                        WHERE LOWER(m.munkakor_nev) = '".  mysql_real_escape_string(mb_strtolower($name,"UTF-8"))."' AND mak.munkakor_attr_kategoria_id = ".(int)$katID." LIMIT 1
+            ";
+
+            $ret = $this->_DB->prepare($query)->query_select()->query_fetch_array(); 
+           return "exists";
+        }
+        catch(Exception_MYSQL_Null_Rows $e){
+            return "notexists";
+        }
+        catch(Exception_MYSQL $e){
+            return "Hiba";
+        }
+    }
 }

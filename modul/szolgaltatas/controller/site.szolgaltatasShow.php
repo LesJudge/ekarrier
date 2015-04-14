@@ -14,10 +14,12 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
             $this->__loadModel("_Show");
             parent::__construct();
             $this->__addParams($this->_model->_params);
-            if($this->visitType == 'company')
-                {
-                    $this->__addEvent('BtnOrderService', 'orderService');
-                }
+            if($this->visitType == 'company'){
+                $this->__addEvent('BtnOrderService', 'orderService');
+            }
+            if($this->visitType == 'client'){
+                $this->__addEvent('BtnOrderClientService', 'orderClientService');
+            }
             $this->__run();
               
         }
@@ -27,18 +29,50 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
                 parent::__show();
                 try
                 {        
-                        $services = $this->_model->getSzolgaltatasok();
-                        $this->_view->assign('services', $services);
-                            
                         if($this->visitType == 'company'){
+                            $services = $this->_model->getSzolgaltatasok('company');
+                            $this->_view->assign('services', $services);
+                            
                             $companyID = Rimo::getCompanyWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
                             $folders = $this->_model->getFolders($companyID);
-                            $pendingOrders = $this->_model->getPendingOrders($companyID);
+                            $pendingOrders = $this->_model->getPendingOrders($companyID,'company');
+                            
+                            $myJobsModel = Rimo::__loadPublic('model', 'enceg_Show', 'enceg');
+                            $myJobs = $myJobsModel->getJobsByCompanyId($companyID);
+                            $this->_view->assign('myJobs',$myJobs);
                             
                             $this->_view->assign("folders", $folders);
                             $this->_view->assign("pendingOrders", $pendingOrders);
                             $this->_view->assign("loggedInAs", "company");
+                            $this->_view->assign("loggedIn", "1");
                         }
+                        
+                        if($this->visitType == 'client'){
+                            $services = $this->_model->getSzolgaltatasok('client');
+                            $clientID = Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
+                            $pendingOrders = $this->_model->getPendingOrders($clientID,'client');
+                            $this->_view->assign("pendingOrders", $pendingOrders);
+                            $this->_view->assign('services', $services);
+                            $this->_view->assign("loggedInAs", "client");
+                            $this->_view->assign("loggedIn", "1");
+                            
+                        }
+                        
+                        if($this->visitType == 'neutral'){
+                            if($_SESSION['type']=='ma'){
+                                $services = $this->_model->getSzolgaltatasok('company');
+                                $this->_view->assign('regLink', 'ceg/regisztracio/');
+                            }
+                            if($_SESSION['type']=='mv'){
+                                $services = $this->_model->getSzolgaltatasok('client');
+                                $this->_view->assign('regLink', 'munkavallalo/regisztracio/');
+                            }
+                            $this->_view->assign('services', $services);
+                            $this->_view->assign("loggedIn", "0");
+                        }
+                        
+                        
+                        
                         //SEO
                         $seo = seo_Site_Model::model()->getSeoItemByKey('profil_en',$lId);
                         Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
@@ -53,7 +87,7 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
                 }
         }
     
-        protected function isLoggedIn()
+    protected function isLoggedIn()
     {
         return (int)UserLoginOut_Site_Controller::$_id > 0;
     }
@@ -95,22 +129,39 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
         }
     }
         
-    public function onClick_orderService()
-    {
+    public function onClick_orderService(){
         $companyID = Rimo::getCompanyWebUser()->verify(UserLoginOut_Controller::$_id);
-        
         try{
             if(!isset($_REQUEST['serviceID']) || (int)$_REQUEST['serviceID'] < 1){
                 throw new Exception_Form_Error("Hiba történt!");
             }
-            if($this->_model->pendingOrderExists($companyID, $_REQUEST['serviceID'])){
+            if($this->_model->pendingOrderExists($companyID, $_REQUEST['serviceID'],'company')){
                 throw new Exception_Form_Message('Megrendelése feldolgozás alatt!');
             }
             
-            $this->_model->saveOrder($companyID, $_REQUEST['serviceID'] ,$_REQUEST['folders']);
+            //$this->_model->saveOrder($companyID, $_REQUEST['serviceID'] ,$_REQUEST['folders']);
+            $this->_model->saveOrder($companyID, $_REQUEST['serviceID'], $_REQUEST["".$_REQUEST['serviceID']."clients"], $_REQUEST["".$_REQUEST['serviceID']."clientsMarkers"]);
             throw new Exception_Form_Message('Sikeres megrendelés!');
         }
         catch(Exception_MYSQL $e){
+            throw new Exception_Form_Error("Hiba történt!");
+        }
+    }
+    
+    public function onClick_orderClientService(){
+        $clientID = Rimo::getClientWebUser()->verify(UserLoginOut_Controller::$_id);
+        try{
+            if(!isset($_REQUEST['clientServiceID']) || (int)$_REQUEST['clientServiceID'] < 1){
+                throw new Exception_Form_Error("Hiba történt!");
+            }
+            if($this->_model->pendingOrderExists($clientID, $_REQUEST['serviceID'],'client')){
+                throw new Exception_Form_Message('Megrendelése feldolgozás alatt!');
+            }
+            $this->_model->saveClientOrder($clientID, $_REQUEST['clientServiceID']);
+            throw new Exception_Form_Message('Sikeres megrendelés!');
+        }
+        catch(Exception_MYSQL $e){
+            throw new Exception_Form_Error($e->getMessage());
             throw new Exception_Form_Error("Hiba történt!");
         }
     }

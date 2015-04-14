@@ -6,5 +6,7 @@ return array(
         'edit' => 'szolgaltatas',
         'orderlist' => 'szolgaltatas',
         'orderedit' => 'szolgaltatas',
+        'clientorderlist' => 'szolgaltatas',
+        'clientorderedit' => 'szolgaltatas',
     )
 );

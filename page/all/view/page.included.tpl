@@ -17,7 +17,9 @@
 
 <link rel="shortcut icon" type="image/x-icon" href="{$DOMAIN}images/site/favicon.ico" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href="{$DOMAIN}css/fonts/icomoon-style.css" rel="stylesheet" media="screen" type="text/css"/>
 <link href="{$DOMAIN}css_min/site.css" rel="stylesheet" media="screen" type="text/css"/>
 
 

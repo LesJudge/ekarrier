@@ -52,7 +52,7 @@
         <p class="allashirdetes-label">Kompetenciák:</p>
         <ul class="allashirdetes-ul">
             {foreach from=$kompetenciak item=kompetencia}
-            <li>{$kompetencia.kompetencia_id}</li>
+            <li>{$kompetencia.nev}</li>
             {/foreach}
         </ul>
         {/if}

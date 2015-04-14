@@ -120,4 +120,23 @@ class Allashirdetes_Site_Show_Model extends Model
             return array();
         }    
     }
+    
+    public function findKompetenciaByJobId($ahID){
+        try{
+            $query = "
+                    SELECT k.kompetencia_nev AS nev
+                    FROM allashirdetes_attr_kompetencia aak
+                    INNER JOIN kompetencia k ON k.kompetencia_id = aak.kompetencia_id
+                    WHERE aak.allashirdetes_id = ".(int)$ahID." AND k.kompetencia_aktiv = 1 AND k.kompetencia_torolt = 0"    
+                    ;
+            return $this->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            return array();
+        }  
+    }
+    
+    
+    
+    
+    
 }

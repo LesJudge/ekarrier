@@ -14,10 +14,14 @@ class StatisticsController extends SlimBasedController
     
     public function index()
     {
-        $statistics = new Statistics((new \ActiveRecord\ConnectionManager)->get_connection()->connection);
+        $connectionManager = new \ActiveRecord\ConnectionManager;
+        $statistics = new Statistics($connectionManager->get_connection()->connection);
         /* @var $view \Smarty */
         $view = Rimo::$pimple['smarty'];
+        $view->assign('countClients', $statistics->countClients());
         $view->assign('programInformations', $statistics->programInformations());
+        $view->assign('workschedules', $statistics->workschedules());
+        $view->assign('educations', $statistics->educations());
         echo $view->fetch('modul/ugyfel/view/Admin/Statistics.tpl');
         $this->stop();
     }

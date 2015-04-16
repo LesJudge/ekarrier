@@ -1,0 +1,26 @@
+.dynamic-filter-label {
+    display: inline-block;
+    height: 36px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    width: 45%;
+}
+.dynamic-filter-label span {
+    font-size: 14px;
+    text-shadow: none;
+}
+.dynamic-filter-label button {
+    border: 1px solid #999 !important;
+    height: 26px;
+    position: absolute;
+    right: 0px;
+    width: 26px;
+}
+.dynamic-filter-label-separator {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-shadow: none;
+    text-transform: uppercase;
+}

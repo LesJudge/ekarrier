@@ -1,3 +1,7 @@
+<div class="notice">
+    <strong>Tipp!</strong> Kezdje el gépelni a kompetenciát, ha rendszerünk talál hasonlót, akkor felajánlja azt!
+</div>
+<br />
 <div id="kompetenciaForm">
     <div id="kompetenciaForm_template">
         

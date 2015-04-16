@@ -73,10 +73,13 @@ abstract class AllashirdetesBaseListController extends Admin_List
         $cegek = $this->getCegekByConditions();
         $this->_view->assign('cegek',$cegek);
         
+        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+        $obj = $tartalom->getTartalomByID(34);
+        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
         
         
         
-        Rimo::$_site_frame->assign('PageName', $seo['seo_nev']);
+        Rimo::$_site_frame->assign('PageName', $obj[0]["tartalom_cim"]);
         Rimo::$_site_frame->assign('site_title', $seo['seo_nev']);
         Rimo::$_site_frame->assign('site_description', $seo['seo_leiras']);
         Rimo::$_site_frame->assign('site_keywords', $seo['seo_meta_kulcsszo']);
@@ -114,14 +117,14 @@ abstract class AllashirdetesBaseListController extends Admin_List
         }
         
         $filterTevKor = $this->getItemValue('FilterTevKor');
-        if (!empty($filterTevKor)) {
+        if (!empty($filterTevKor) && (int)$filterTevKor > 0) {
             $this->setWhereInput("mk2.munkakor_kategoria_id = " . (int)$filterTevKor, 'FilterTevKor');
         } else {
             unset($_SESSION[$this->_name]['FilterTevKor']);
         }
         
         $filterTevCsoport = $this->getItemValue('FilterTevCsoport');
-        if (!empty($filterTevCsoport)) {
+        if (!empty($filterTevCsoport) && (int)$filterTevCsoport > 0) {
             $this->setWhereInput("(
                       SELECT munkakor_kategoria_id
                       FROM munkakor_kategoria mkin
@@ -134,7 +137,7 @@ abstract class AllashirdetesBaseListController extends Admin_List
         
         $letter = $this->getItemValue('FilterLetter');
         if (!empty($letter)) {
-            $this->setWhereInput(" mk2.kategoria_cim LIKE '" . mysql_real_escape_string($letter) . "%'", 'FilterLetter');
+            $this->setWhereInput("munkakor.munkakor_nev LIKE '".mysql_real_escape_string($letter)."%'", 'FilterLetter');
         } else {
             unset($_SESSION[$this->_name]['FilterLetter']);
         }
@@ -182,11 +185,11 @@ abstract class AllashirdetesBaseListController extends Admin_List
        $filterCounty = $this->getItemValue('FilterCounty');
        $wheres = array();
         
-       if (!empty($filterTevKor) && $filterTevKor > 0) {
+       if (!empty($filterTevKor) && (int)$filterTevKor > 0) {
             $wheres['tevkor'] = "catk.tevkor_id = ".(int)$filterTevKor;     
         }
         
-        if (!empty($filterTevCsoport) && $filterTevCsoport > 0) {
+        if (!empty($filterTevCsoport) && (int)$filterTevCsoport > 0) {
             $wheres['tevcsop'] = "(SELECT munkakor_kategoria_id
                                     FROM munkakor_kategoria mkin
                                     WHERE mkin.baloldal < mk.baloldal AND mkin.jobboldal > mk.jobboldal AND mkin.szint = 1 LIMIT 1

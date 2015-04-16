@@ -1,3 +1,7 @@
+<div class="notice">
+    <strong>Tipp!</strong> Kezdje el gépelni, hogy mit kínál, ha rendszerünk talál hasonlót, akkor felajánlja azt!
+</div>
+<br />
 <div id="amitKinalunkForm">
     <div id="amitKinalunkForm_template">
         <div>

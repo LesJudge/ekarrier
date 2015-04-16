@@ -8,8 +8,8 @@
 </script>
 
     {if $Lapozas}
-            <div class="row" style="text-align:center;">
-                <ul class="pagination pagination-sm pagination-sm" style="margin-top:0px;">
+            <div class="row">
+                <ul class="pagination pagination-sm pagination-sm" style="margin-top:2em;">
                 {if $Lapozas.prev_item}			
                     <li><a href="{$Lapozas.url}{if $Lapozas.prev_item neq 1}{$Lapozas.urlvar}={$Lapozas.prev_item}{/if}">&laquo;</a></li>
                 {else}

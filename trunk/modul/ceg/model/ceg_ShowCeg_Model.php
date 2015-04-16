@@ -82,45 +82,30 @@ class Ceg_ShowCeg_Model extends Page_Edit_Model
          * @param int $lId
          * @return mixed (false|array)
          */
-        public function findJobsByCompanyId($companyId,$lId)
-        {
-                try
-                {/*
-                        $query="SELECT allashirdetes_id,
-                                                    nyelv_id,
-                                                    ceg_id,
-                                                    munkakor_id,
-                                                    allashirdetes_nev,
-                                                    allashirdetes_link,
-                                                    allashirdetes_tartalom,
-                                                    allashirdetes_create_date
-                                       FROM allashirdetes
-                                       WHERE ceg_id=".(int)$companyId." AND
-                                                    allashirdetes_aktiv=1 AND
-                                                    allashirdetes_torolt=0 AND
-                                                    nyelv_id=".(int)$lId;*/
-                    
-                 $query="SELECT allashirdetes.allashirdetes_id AS allashirdetes_id,
-                                ceg_id,
-                                /*munkakor.munkakor_id,*/
-                                megnevezes,
-                                link,
-                                ismerteto,
-                                letrehozas_timestamp,
-                                munkakor.munkakor_nev AS munkakor_nev
-                                /*munkakor.munkakor_link AS munkakor_link*/
-                        FROM allashirdetes
-                        INNER JOIN allashirdetes_attr_munkakor ON allashirdetes_attr_munkakor.allashirdetes_id = allashirdetes.allashirdetes_id
-                        INNER JOIN munkakor ON munkakor.munkakor_id = allashirdetes_attr_munkakor.munkakor_id
-                        WHERE ceg_id=".(int)$companyId." AND
-                              allashirdetes_aktiv=1 AND
-                              allashirdetes_torolt=0";
-                 
-                 
+        public function findJobsByCompanyId($companyId,$lId){
+                try{
+                 $query = "SELECT ah.allashirdetes_id AS ahID,
+                        ah.link AS link,
+                        mk.baloldal AS leftSide,
+                        mk.jobboldal AS rightSide,
+                        mk.kategoria_cim AS subCat,
+                        m.munkakor_nev AS munkakor,
+                        (
+                         SELECT kategoria_cim
+                         FROM munkakor_kategoria mk2
+                         WHERE mk2.baloldal < leftSide AND mk2.jobboldal > rightSide AND szint = 1
+                        ) AS mainCat
+                  FROM allashirdetes ah
+                  INNER JOIN allashirdetes_attr_munkakor aam ON aam.allashirdetes_id = ah.allashirdetes_id
+                  INNER JOIN munkakor m ON m.munkakor_id = aam.munkakor_id
+                  INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = m.munkakor_id
+                  INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id AND mk.szint = 2
+                  WHERE ah.ceg_id = ".(int)$companyId." AND ah.allashirdetes_aktiv = 1 AND ah.allashirdetes_torolt = 0
+                  ORDER BY ah.letrehozas_timestamp DESC
+                  ";
                         return $this->_DB->prepare($query)->query_select()->query_result_array();
                 }
-                catch(Exception_MYSQL_Null_Rows $e)
-                {
+                catch(Exception_MYSQL_Null_Rows $e){
                         return false;
                 }
         }
@@ -135,4 +120,16 @@ class Ceg_ShowCeg_Model extends Page_Edit_Model
             $query="UPDATE ceg SET megtekintve = megtekintve+1 WHERE ceg_id=" . (int)$companyId . " LIMIT 1";
             $this->_DB->prepare($query)->query_execute();
     }
+    
+    public function updateCompanyView($clientID, $companyID){
+        try{
+            $query = "INSERT INTO ceg_megtekintes
+                      SET ceg_id = ".(int)$companyID.", ugyfel_id = ".(int)$clientID.", datum = NOW()
+                      ON DUPLICATE KEY UPDATE ugyfel_id = ".(int)$clientID."
+                     ";
+            $this->_DB->prepare($query)->query_insert();
+        }catch(Exception_MYSQL $e){   
+        }
+    }
+    
 }

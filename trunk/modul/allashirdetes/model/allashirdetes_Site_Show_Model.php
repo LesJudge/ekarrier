@@ -135,6 +135,17 @@ class Allashirdetes_Site_Show_Model extends Model
         }  
     }
     
+    public function updateJobView($clientID, $ahID){
+        try{
+            
+            $query = "INSERT INTO allashirdetes_megtekintes
+                      SET allashirdetes_id = ".(int)$ahID.", ugyfel_id = ".(int)$clientID.", datum = NOW()
+                      ON DUPLICATE KEY UPDATE ugyfel_id = ".(int)$clientID."
+                     ";
+            $this->_DB->prepare($query)->query_insert();
+        }catch(Exception_MYSQL $e){   
+        }
+    }
     
     
     

@@ -41,6 +41,7 @@ class Contact extends BaseResourcable
     public static $primary_key = 'ugyfel_attr_esetnaplo_id';
     
     public static $has_one = array(
+        // Közvetítés kapcsolat.
         array(
             'mediation',
             'class_name' => '\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\Mediation',
@@ -63,18 +64,6 @@ class Contact extends BaseResourcable
             'foreign_key' => 'ugyfel_id',
             'read_only' => true
         ),
-        // Közvetítés
-        /*
-        array(
-            'mediation',
-            'class_name' => '\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\Mediation',
-            'conditions' => 'ugyfel_attr_kozvetites_torolt = 0',
-            'foreign_key' => 'ugyfel_attr_esetnaplo_id',
-            'primary_key' => 'ugyfel_attr_esetnaplo_id',
-            'read_only' => true
-        ),
-         * 
-         */
         // Létrehozó kapcsolat.
         array(
             'creator',
@@ -112,13 +101,15 @@ class Contact extends BaseResourcable
             'within' => array(3, 128),
             'too_short' => 'Legalább 3 karakter hosszúnak kell lennie!',
             'too_long' => 'Legfeljebb 128 karakter hosszú lehet!'
-        ),
+        )
+        /*,
         array(
             'megjegyzes',
             'allow_blank' => true,
             'minimum' => 3,
             'too_short' => 'Legalább 3 karakter hosszúnak kell lennie!'
         )
+        */
     );
     
     public function get_ugyfel_attr_esetnaplo_id()
@@ -133,7 +124,8 @@ class Contact extends BaseResourcable
     
     public function get_datum($format = 'Y-m-d')
     {
-        return (new ReadDateTime($format))->readAttribute('datum', $this);
+        $readDateTime = new ReadDateTime($format);
+        return $readDateTime->readAttribute('datum', $this);
     }
     
     public function get_megjegyzes()
@@ -143,21 +135,25 @@ class Contact extends BaseResourcable
     
     public function set_ugyfel_attr_esetnaplo_id($ugyfel_attr_esetnaplo_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_attr_esetnaplo_id', $ugyfel_attr_esetnaplo_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_attr_esetnaplo_id', $ugyfel_attr_esetnaplo_id, $this);
     }
     
     public function set_nev($nev)
     {
-        (new AssignString)->assignAttribute('nev', $nev, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('nev', $nev, $this);
     }
     
     public function set_datum($datum)
     {
-        (new AssignDateTime('Y-m-d'))->assignAttribute('datum', $datum, $this);
+        $assignDateTime = new AssignDateTime('Y-m-d');
+        return $assignDateTime->assignAttribute('datum', $datum, $this);
     }
     
     public function set_megjegyzes($megjegyzes)
     {
-        (new AssignString)->assignAttribute('megjegyzes', $megjegyzes, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('megjegyzes', $megjegyzes, $this);
     }
 }

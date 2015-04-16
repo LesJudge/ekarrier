@@ -20,6 +20,7 @@ class SaveAdapter extends AbstractAdapter implements SavableInterface
      */
     public function setResourceId($resourceId)
     {
-        (new AssignWithoutCast)->assignAttribute($this->model->getResourceKey(), $resourceId, $this->model);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute($this->model->getResourceKey(), $resourceId, $this->model);
     }
 }

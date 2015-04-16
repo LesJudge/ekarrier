@@ -48,6 +48,11 @@ class XlsExport
             }
         }
         $writer = new \PHPExcel_Writer_Excel2007($this->phpExcel);
+        
+        //$filename = '/var/www/virtual/ekarrier.hu/teszt/htdocs/xls/' . time() . '.xls';
+        //$writer->save('/var/www/virtual/ekarrier.hu/teszt/htdocs/xls/' . time() . '.xls');
+        //echo readfile($filename);
+    
         return $writer->save('php://output');
     }
     /**

@@ -39,9 +39,12 @@ class RenderFacade
             'female' => 'Nő'
         ));
         $this->data->offsetSet('birthDataDecorator', new BirthDataDecorator($this->client->birthdata));
-        (new SheepItFacade)->assign($this->data);
-        (new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']))->assign($this->data);
-        (new SelectedFacade)->assign($this->data);
+        $sheepItFacade = new SheepItFacade;
+        $optionsFacade = new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']);
+        $selectFacade = new SelectedFacade;
+        $sheepItFacade->assign($this->data);
+        $optionsFacade->assign($this->data);
+        $selectFacade->assign($this->data);
         $smarty = Rimo::$pimple['smarty'];
         foreach ($this->data as $key => $value) {
             $smarty->assign($key, $value);

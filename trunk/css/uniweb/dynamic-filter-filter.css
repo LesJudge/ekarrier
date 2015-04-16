@@ -1,0 +1,22 @@
+.dynamic-filter-filter {
+    float: left;
+    display: inline-block;
+    margin-bottom: 14px;
+    width: 33%;
+}
+.dynamic-filter-filter.dynamic-filter-text input[type="text"] {
+    width: 50%;
+}
+.dynamic-filter-filter.dynamic-filter-text .selector {
+    left: 6px;
+    top: 2px;
+    width: 28%;
+}
+.dynamic-filter-filter button[data-button-role="delete"] {
+    border: 1px solid #999;
+    display: inline-block;
+    float: right;
+    height: 28px;
+    right: 10px;
+    width: 28px;
+}

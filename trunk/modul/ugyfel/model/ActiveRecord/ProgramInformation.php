@@ -73,7 +73,8 @@ class ProgramInformation extends BaseResourcable
      */
     public function set_ugyfel_attr_program_informacio_id($ugyfel_attr_program_informacio_id)
     {
-        (new AssignWithoutCast)->assignAttribute(
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute(
             'ugyfel_attr_program_informacio_id', 
             $ugyfel_attr_program_informacio_id, 
             $this
@@ -82,11 +83,13 @@ class ProgramInformation extends BaseResourcable
     
     public function set_program_informacio_id($program_informacio_id)
     {
-        (new AssignWithoutCast)->assignAttribute('program_informacio_id', $program_informacio_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('program_informacio_id', $program_informacio_id, $this);
     }
     
     public function set_egyeb($egyeb)
     {
-        (new AssignString)->assignAttribute('egyeb', $egyeb, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('egyeb', $egyeb, $this);
     }
 }

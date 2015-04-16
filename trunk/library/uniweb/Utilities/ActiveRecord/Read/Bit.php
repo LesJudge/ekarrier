@@ -14,7 +14,8 @@ class Bit implements ReadAttributeInterface
     {
         $value = $on->read_attribute($name);
         if (!is_null($value)) {
-            $value = ord($value);
+            //$value = ord($value);
+            $value = (int)$value;
         }
         return $value;
     }

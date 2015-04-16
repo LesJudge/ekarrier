@@ -11,27 +11,51 @@
  * */
 $domain = "/" . str_replace("Minify/index.php", "", $_SERVER["PHP_SELF"]);
 return array(
+    // Ügyfélkezelő form JS
     'admin_ugyfelkezelo_edit_js' => array(
+        // Third Party
         $domain . 'js/tinymce/jscripts/tiny_mce/tiny_mce.js',
         $domain . 'js/dropzone/dropzone.min.js',
-        $domain . 'js/uniweb/uniweb.prototype.js',
+        $domain . 'js/jquery.sheepItPlugin.js',
+        // UniWeb Plugins and functions.
         $domain . 'js/uniweb/helper/uniweb.helper.uniform.js',
-        $domain . 'js/uniweb/helper/uniweb.helper.datetime.js',
-        $domain . 'js/uniweb/plugin/jquery.uniweb.clientBaseWidget.js',
-        $domain . 'js/uniweb/plugin/jquery.uniweb.clientContact.js',
-        $domain . 'js/uniweb/modul/ugyfel/ugyfel_edit_new.js',
-        $domain . 'js/uniweb/modul/ugyfel/uniweb.ugyfelkezelo.helper.js',
-        $domain . 'modul/ugyfel/Assets/Js/Form/Client/Admin/SheepItEdit.js',
+        $domain . 'js/uniweb/jquery.uniweb.dropzoneDocumentManager.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/jquery.uniweb.clientContacts.js',
+        // Module assets.
         $domain . 'modul/ugyfel/Assets/Js/Admin/Client/Form/functions.js',
-        $domain . 'modul/ugyfel/Assets/Js/Form/Client.js'
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/Form/BirthplaceSetting.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/Form/SheepItEdit.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/Form/TabSwitch.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/Form/Form.js'
     ),
+    // Ügyfélkezelő lista JS
+    'admin_ugyfelkezelo_list_js' => array(
+        $domain . 'js/uniweb/jquery.uniweb.dynamicFilter.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/FilterProcessor/Date.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/FilterProcessor/Education.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/FilterProcessor/HighestEducation.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/FilterProcessor/Service.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/FilterProcessor/Text.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/FilterProcessor/TrueOrFalse.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/DynamicFilter.js',
+        $domain . 'modul/ugyfel/Assets/Js/Admin/Client/List/Actions.js'
+    ),
+    // Ügyfélkezelő form CSS
     'admin_ugyfelkezelo_edit_css' => array(
-        $domain . 'css/uniweb/sheepit-form.css',
+        // Third Party
         $domain . 'js/dropzone/css/dropzone.css',
+        // Uniweb Stylesheet(s).
+        $domain . 'css/uniweb/sheepit-form.css',
+        // Module Stylesheets.
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/form.css',
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_contact.css',
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_document.css',
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_project.css',
+    ),
+    'admin_ugyfelkezelo_list_css' => array(
+        $domain . 'css/uniweb/dynamic-filter-label.css',
+        $domain . 'css/uniweb/dynamic-filter-filter.css',
+        $domain . 'modul/ugyfel/Assets/Css/Admin/Client/List/List.css',
     ),
     'admin_js' => array(
         $domain . '/js/jquery.min.js',

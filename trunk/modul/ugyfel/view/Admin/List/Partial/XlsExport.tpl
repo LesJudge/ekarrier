@@ -8,3 +8,4 @@
     </div>
     {/foreach}
 </div>
+<form id="clientExportForm" method="post" action="{$DOMAIN_ADMIN}ugyfel/xlsexport" style="display: none;"></form>

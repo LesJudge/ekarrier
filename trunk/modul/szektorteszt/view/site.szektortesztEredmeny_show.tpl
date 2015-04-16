@@ -1,7 +1,7 @@
 {if $Error}
 {$Error}
 {else}
- 
+ <div>{$text}</div>
 <div class="jobFindList-cont">
 	<div class="jobFindList-top"><i class='icomoon icomoon-numbered-list'>&nbsp;</i></div>	
 	<div class="jobFindList-data">

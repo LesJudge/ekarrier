@@ -35,7 +35,7 @@
 	{foreach from=$jobs item=job name=job}
 	<div class="jobFindList-block">
 		<div class="jobFindList-name">
-			<a class="dataLink" href="{$DOMAIN}allashirdetes/{$job.link}/{$job.allashirdetes_id}/">{*$job.megnevezes*}{$job.munkakor_nev} - {$job.letrehozas_timestamp}</a>
+			<a class="dataLink" href="{$DOMAIN}allashirdetes/{$job.link}/{$job.ahID}/">{$job.munkakor} - {$job.subCat} - {$job.mainCat}</a>
                         <!--
                         <a class="dataLink" href="{$DOMAIN}munkakorok/{$job.munkakor_link}">{$job.munkakor_nev}</a>
 			<a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.allashirdetes_id}/" class="iconCont" title="Megtekintés">
@@ -56,4 +56,10 @@
 {/if}
 <br />
 <!--a href="{$DOMAIN}munkaltato/" class="bigBtn-link">Vissza a munkáltatókhoz!</a-->
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}allaskereses/">Vissza a keresőhöz</a>
+{if $loggedInAs === 'client'}
+    <a class="btn btn-sm btn-primary" href="{$DOMAIN}allaskereses/">Vissza a keresőhöz</a>
+{/if}
+
+{if $loggedInAs === 'company'}
+    <a class="btn btn-sm btn-primary" href="{$DOMAIN}enprofil/">Szerkeszt</a>
+{/if}

@@ -69,6 +69,24 @@
     </div>
     <div class="clear"></div>
     <div class="form_row">
+        <label for="{$TxtMunkavegzesJellege.name}">Munkavégzés jellege</label>
+        <input id="{$TxtMunkavegzesJellege.name}" name="{$TxtMunkavegzesJellege.name}" type="text" value="{$TxtMunkavegzesJellege.activ}" />
+        {if isset($TxtMunkavegzesJellege.error)}<p class="error small">{$TxtMunkavegzesJellege.error}</p>{/if}
+    </div>
+    <div class="clear"></div>
+    <div class="form_row">
+        <label for="{$TxtMunkaber.name}">Munkabér</label>
+        <input id="{$TxtMunkaber.name}" name="{$TxtMunkaber.name}" type="text" value="{$TxtMunkaber.activ}" />
+        {if isset($TxtMunkaber.error)}<p class="error small">{$TxtMunkaber.error}</p>{/if}
+    </div>
+    <div class="clear"></div>
+    <div class="form_row">
+        <label for="{$TxtProbaido.name}">Próbaidő</label>
+        <input id="{$TxtProbaido.name}" name="{$TxtProbaido.name}" type="text" value="{$TxtProbaido.activ}" />
+        {if isset($TxtProbaido.error)}<p class="error small">{$TxtProbaido.error}</p>{/if}
+    </div>
+    <div class="clear"></div>
+    <div class="form_row">
         <label for="{$DateLejar.name}">Lejárati dátum <span class="require">*</span></label>
         <input id="{$DateLejar.name}" name="{$DateLejar.name}" type="text" value="{$DateLejar.activ}" />
         {if isset($DateLejar.error)}<p class="error small">{$DateLejar.error}</p>{/if}
@@ -78,6 +96,12 @@
         <label for="{$SelErtesites.name}">Értesítés <span class="require">*</span></label>
         {html_options name=$SelErtesites.name options=$SelErtesites.values selected=$SelErtesites.activ}  
         {if isset($SelErtesites.error)}<p class="error small">{$SelErtesites.error}</p>{/if}
+    </div>
+    <div class="clear"></div>
+    <div class="form_row">
+        <label for="{$TxtEgyeb.name}">Egyéb</label>
+        <textarea id="{$TxtEgyeb.name}" name="{$TxtEgyeb.name}">{$TxtEgyeb.activ}</textarea>
+        {if isset($TxtEgyeb.error)}<p class="error small">{$TxtEgyeb.error}</p>{/if}
     </div>
     <div class="clear"></div>
     <div class="form_row">

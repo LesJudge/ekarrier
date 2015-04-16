@@ -1,6 +1,5 @@
 <script type="text/javascript" src="{$DOMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <!--script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script-->
-{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
 {if $FormError}
  <div class="info info-error">
     <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
@@ -13,9 +12,8 @@
 </div>
 <div class="clear"></div>
 {/if}
-
-<h2>Kompetenciarajzaim</h2>
-<br />
+<div>{$text}</div>
+{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
 <div><a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/">Új kompetencia rajz</a></div>
 
 {if not empty($compRajzok)}
@@ -118,7 +116,6 @@
 				{if $val['user_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'></div>{/if}
                                 <div>{$val['kompetencia_leiras']}</div>
 				<div id='myComp_{$val['kompetencia_id']}_operations' class="sortedUL-right">						
-					<!--a id="editComp_{$val['kompetencia_id']}" class="myCompEditDialogOpener iconCont" title="Szerkesztés"><i class="icomoon icomoon-pencil">&nbsp;</i></a-->
 					<a id='delButt_{$val['kompetencia_id']}' class="delButt iconCont" title="Töröl"><i class="icomoon icomoon-remove2">&nbsp;</i></a>
 				</div>
 				<div class="clear"></div>
@@ -133,8 +130,7 @@
 	<div class="clear"></div>
 </div> 
 
-
- </form>
+</form>
 
 <div><a href="{$DOMAIN}kompetenciak/kompetenciarajz/">Kompetencia hozzáadása</a></div>                
 <br/>
@@ -150,7 +146,8 @@
 {else}
     Nincs még szakértői vélemény
 {/if}
-
+<br/>
+<a href="{$DOMAIN}uzeneteim/">Lépjen kapcsolatba szaktanácsadóinkkal!</a>
 <script type='text/javascript'>
 $(document).ready(function(){
 
@@ -190,55 +187,10 @@ $(".compQuestion").mouseenter(function() {
    var id = $(this).attr('id');
     $("#"+id+"Detailed").hide();
   });
-
-
-    $("#myCompEditDialog").dialog({ autoOpen: false, width: 600, modal:true });
-    
-        $( ".sortable1" ).sortable({
-        connectWith: ".sortedUL",
-        cursor: "move"
-    });
-    
-    $( " .sortable2" ).sortable({
-        receive: function( event, ui ) { 
-            $('#'+ui.item[0].id).addClass("fixed");
-            var a=$('#'+ui.item[0].id).attr('id').split("_");
-            $("#newCompId").attr('value',a[1]);
-            $("#addCompSbmt").trigger("click");
-            },
-        cancel: ".fixed",
-        cursor: "move"
-    });
-    /*
-    $(".myComp").click(function(){
-        $('#'+$(this).attr('id')+'_operations').toggle();
-    });
-    */
-    $(".myCompEditDialogOpener").click(function(){
-        var a=$(this).attr('id').split("_");
-        $("#editComp_valasz").text($("#myComp_"+a[1]+"_valasz").text());
-        $("#editCompId").attr('value',a[1]);
-        $("#myCompEditDialog").dialog('option', 'title', $("#myComp_"+a[1]).text()+' szerkesztése');
-        $("#myCompEditDialog").dialog( "open" );
-    });
     
     $(".delButt").click(function(){
         $(this).closest('li').remove();
     });
-/*
-    var json_data={$testCompetences};
-    var result = [];
 
-    for(var i in json_data)
-        result.push([i, json_data [i]]);
-
-    for(var i=0; i<result.length; i++ ){
-        if($('#myComp_'+result[i][0]).length){
-            $('#myComp_'+result[i][0]).addClass('fromTest');
-        }
-        if($('#allComp_'+result[i][0]).length){
-            $('#allComp_'+result[i][0]).addClass('fromTest');
-        }
-    }*/
 });
 </script>

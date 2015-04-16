@@ -72,23 +72,25 @@ class Document
     public function findAllByClientId($clientId)
     {
         /* @var $client \Uniweb\Module\Ugyfel\Model\ActiveRecord\Client */
-        $client = (new ClientRepository)->findById($clientId);
+        $clientRepo = new ClientRepository;
+        $client = $clientRepo->findById($clientId);
         if (!is_null($client)) {
             $documents = $client->documents;
             $files = array();
             /* @var $document \Uniweb\Module\Ugyfel\Model\ActiveRecord\Document */
             foreach ($documents as $document) {
-                $files[] = $document->to_array(array(
+                $file = $document->to_array(array(
                     'only' => array(
                         DocumentAr::$primary_key,
                         'ugyfel_id',
                         'nev',
-                        'dokumentum_nev',
-                        'letrehozas_timestamp'
-                    )
+                        'dokumentum_nev'
+                    ),
                 )) + $document->creator->to_array(array('only' => array(
                     'user_id', 'user_fnev', 'user_knev', 'user_vnev'
                 )));
+                $file['letrehozas_timestamp'] = $document->letrehozas_timestamp;
+                $files[] = $file;
             }
             return array('result' => true, 'files' => $files);
         }

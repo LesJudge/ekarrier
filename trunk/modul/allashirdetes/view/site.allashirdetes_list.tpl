@@ -1,9 +1,12 @@
 {if not $isArchive}
-<div>
+<!--div>
     <a href="{$DOMAIN}allaskereses/archivum/" class="bigBtn-link">Archívum</a>
 </div>
-<br />
+<br /-->
 {/if}
+<div>{$text}</div>
+<br/><br/>
+
 <form action="" method="POST" name="{$FormName}" id="{$FormName}" class="form form_list" enctype="multipart/form-data">
     <div class="jobDataForm-cont hiddenLabels">
         <div class="jobDataForm-top"><i class='icomoon icomoon-search'>&nbsp;</i></div>
@@ -162,13 +165,8 @@
         }else{
             resetGroupOpts();
         }
-        
-
     });
-     
-     
-     
-     
+    
  });
  
 $(".letter").click(function(){
@@ -231,5 +229,3 @@ function resetGroupOpts(){
     {include file='modul/allashirdetes/view/partial/site_allashirdetes_list.tpl'}
     {include file='page/all/view/page.paging.tpl'} 
 </form>
-
-{include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}

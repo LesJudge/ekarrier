@@ -28,6 +28,11 @@ class TevekenysegikorList_Site_Controller extends Admin_List
         $lId = Rimo::$_config->SITE_NYELV_ID;
         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         
+        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+        
+        $obj = $tartalom->getTartalomByID(25);
+        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+        
         if( isset($_GET['oldal'])   || $this->getItemValue('FilterCsoport') > -1 
                                     || $this->getItemValue('FilterKor') > -1
                                     || $this->getItemValue('FilterSzektor') > 0
@@ -39,7 +44,7 @@ class TevekenysegikorList_Site_Controller extends Admin_List
         //SEO
         $seo = seo_Site_Model::model()->getSeoItemByKey('tevkorkereso',$lId);
         
-        Rimo::$_site_frame->assign('PageName', $seo['seo_nev']);
+        Rimo::$_site_frame->assign('PageName', $obj[0]["tartalom_cim"]);
         Rimo::$_site_frame->assign('Indikator', array());
         Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
         Rimo::$_site_frame->assign('site_description', $seo['seo_leiras']);
@@ -50,6 +55,13 @@ class TevekenysegikorList_Site_Controller extends Admin_List
     
     public function onClick_Filter()
     {
+        
+        $filterMunkakor = $this->getItemValue('TxtSearchByName');
+        if (!empty($filterMunkakor)) {
+            $this->setWhereInput("munkakor_nev LIKE '%". mysql_real_escape_string($filterMunkakor)."%'", 'TxtSearchByName');
+        } else {
+            unset($_SESSION[$this->_name]['TxtSearchByName']);
+        }
         //Főkat szűrő
         $filterCsoport = $this->getItemValue('FilterCsoport');
           
@@ -101,26 +113,6 @@ class TevekenysegikorList_Site_Controller extends Admin_List
             $this->setWhereInput('ah.pozicio_id IN('.(int)$filterPozicio.')', 'FilterPozicio');
         }     
     }
-    /*
-    protected function getList()
-    {
-        try{
-            $this->_view->assign('Fejlec', $this->_model->tableHeader);
-            $this->getCount();
-            $this->_model->limit = $this->vPaging->getSqlLimit();
-            $this->vDataArray = $this->_model->__loadList();
-        }
-        catch (Exception_Mysql_Null_Rows $e) {
-        	$this->_view->assign('No_SelTetel', true);
-            $this->_view->assign('FormInfo', 'Nincs megjeleníthető szolgáltatás!');
-        }
-        catch (Exception $e) {
-            //echo $e->getMessage();
-        	$this->_view->assign('No_SelTetel', true);
-            $this->_view->assign('FormError', 'Végzetes hiba lépett fel a művelet során!');
-        }
-    }
-    */
-    
+   
 }
 

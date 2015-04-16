@@ -127,7 +127,8 @@ class Education extends BaseResourcable
     
     public function set_ugyfel_attr_vegzettseg_id($ugyfel_attr_vegzettseg_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_attr_vegzettseg_id', $ugyfel_attr_vegzettseg_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_attr_vegzettseg_id', $ugyfel_attr_vegzettseg_id, $this);
     }
     /**
      * Beállítja a végzettség azonosítót.
@@ -135,7 +136,8 @@ class Education extends BaseResourcable
      */
     public function set_vegzettseg_id($vegzettseg_id)
     {
-        (new AssignWithoutCast)->assignAttribute('vegzettseg_id', $vegzettseg_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('vegzettseg_id', $vegzettseg_id, $this);
     }
     /**
      * Beállítja az iskola nevét.
@@ -143,7 +145,8 @@ class Education extends BaseResourcable
      */
     public function set_iskola($iskola)
     {
-        (new AssignString)->assignAttribute('iskola', $iskola, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('iskola', $iskola, $this);
     }
     /**
      * Beállítja a kezdés évét.
@@ -151,7 +154,8 @@ class Education extends BaseResourcable
      */
     public function set_kezdet($kezdet)
     {
-        (new AssignWithoutCast)->assignAttribute('kezdet', $kezdet, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('kezdet', $kezdet, $this);
     }
     /**
      * Beállítja a végzés évét.
@@ -159,7 +163,8 @@ class Education extends BaseResourcable
      */
     public function set_veg($veg)
     {
-        (new AssignWithoutCast)->assignAttribute('veg', $veg, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('veg', $veg, $this);
     }
     /**
      * Beállítja a szak nevét.
@@ -167,7 +172,8 @@ class Education extends BaseResourcable
      */
     public function set_szak($szak)
     {
-        (new AssignString)->assignAttribute('szak', $szak, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('szak', $szak, $this);
     }
     /**
      * Beállítja a megnevezést.
@@ -175,6 +181,7 @@ class Education extends BaseResourcable
      */
     public function set_megnevezes($megnevezes)
     {
-        (new AssignString)->assignAttribute('megnevezes', $megnevezes, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('megnevezes', $megnevezes, $this);
     }
 }

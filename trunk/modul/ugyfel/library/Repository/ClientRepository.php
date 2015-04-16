@@ -87,7 +87,8 @@ class ClientRepository implements ResourceRepositoryInterface
         \Uniweb\Library\Resource\Interfaces\ResourceInterface $resource, 
         array $relatedModels = array()
     ) {
-        return (new ClientResourceSave)->save($resource, $relatedModels);
+        $clientResourceSave = new ClientResourceSave;
+        return $clientResourceSave->save($resource, $relatedModels);
     }
     
     public function update(
@@ -95,7 +96,8 @@ class ClientRepository implements ResourceRepositoryInterface
         array $relatedModels = array(), 
         array $deletablesByResource = array()
     ) {
-        return (new ClientResourceSave)->save($resource, $relatedModels, $deletablesByResource);
+        $clientResourceSave = new ClientResourceSave;
+        return $clientResourceSave->save($resource, $relatedModels, $deletablesByResource);
     }
     /**
      * Ügyfél törlése azonosító alapján.

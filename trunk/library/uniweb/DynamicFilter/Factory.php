@@ -23,7 +23,9 @@ class Factory implements FactoryInterface
             $reflector = new ReflectionClass($type);
             if ($reflector->implementsInterface('\\Uniweb\\Library\\DynamicFilter\\Interfaces\\FilterInterface')) {
                 /* @var $filter \Uniweb\Library\DynamicFilter\Interfaces\FilterInterface */
-                $filter = $reflector->newInstanceWithoutConstructor();
+                //$filter = $reflector->newInstanceWithoutConstructor();
+                //$filter->setPdo($this->pdo);
+                $filter = $reflector->newInstance($this->pdo);
                 $filter->setPdo($this->pdo);
                 foreach ($settings as $key => $value) {
                     $method = 'set' . ucfirst($key);

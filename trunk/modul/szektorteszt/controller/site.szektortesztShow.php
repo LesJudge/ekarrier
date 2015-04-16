@@ -15,6 +15,10 @@ class SzektortesztShow_Site_Controller extends RimoController {
 
             if($_REQUEST["finalResults"]){
                     try{
+                        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                        $obj = $tartalom->getTartalomByID(31);
+                        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+                        
                         
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                         $lId = Rimo::$_config->SITE_NYELV_ID;
@@ -44,7 +48,7 @@ class SzektortesztShow_Site_Controller extends RimoController {
                         $this->_view->assign('bottominfo',$bottominfo);
                         
                         $seo=seo_Site_Model::model()->getSeoItemByKey('sectortestEredmeny',$lId);
-                        Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                        Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                         Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                         Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                         Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);
@@ -77,8 +81,18 @@ class SzektortesztShow_Site_Controller extends RimoController {
                         $pointsRemaining = infobox_Site_Model::model()->findInfoboxItemByKey('sectorTestpointsRemainingInfobox',$lId);
                         $this->_view->assign('pointsRemaining',$pointsRemaining);
                         
+                        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                        $obj = $tartalom->getTartalomByID(30);
+                        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+                        
+                        $allAttr = infobox_Site_Model::model()->findInfoboxItemByKey('szektorTesztTulajdonsagLista',$lId);
+                        $this->_view->assign('allAttr',$allAttr);
+                        
+                        $negativeOrder = infobox_Site_Model::model()->findInfoboxItemByKey('szektorTesztNegativRangsor',$lId);
+                        $this->_view->assign('negativeOrder',$negativeOrder);
+                        
                         $seo = seo_Site_Model::model()->getSeoItemByKey('sectortest',$lId);
-                        Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                        Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                         Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                         Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                         Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);

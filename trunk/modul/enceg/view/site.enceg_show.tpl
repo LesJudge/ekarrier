@@ -98,14 +98,55 @@ $(function() { {$FormScript}
 {/foreach}
 
 
-
+<!-- Majd, ha kell kivesszük
 <form id="compDraws" name="compDraws" action="" method="post">        
         <input type="text" name="folderName">
         <button class="submit btn" name="{$BtnCreateFolder}" type="submit">Mappa létrehozása</button>
-   
+</form>
+-->
+{if $stat|is_array || $activeClientsSum > 0}
+    {$stat.ah}<br/>
+    {$stat.profil}<br/>
+    <div id="slider-vertical" style="height:200px; float:left; margin-top: 25px;"></div>
+{/if}
+
+
+<form id="statForm" name="statForm" action="" method="post">        
+        <input type="text" name="startDate" id="startDate" value="{$startDate}">
+        <input type="text" name="endDate" id="endDate" value="{$endDate}">
+        {if $stat == 'Hiba' || $activeClientsSum == 'Hiba'}Hiba történt!{/if}
+        <button class="submit btn" name="" type="submit">Kész</button>
 </form>
 
-
-</div>
-
-
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#startDate').datepicker({
+        dateFormat: "yy-mm-dd",
+        minDate: new Date('{$companyCreateDate}'),
+        maxDate: +0,
+        defaultDate: new Date('{$companyCreateDate}')
+    });
+    
+    $('#endDate').datepicker({
+        dateFormat: "yy-mm-dd",
+        minDate: new Date('{$companyCreateDate}'),
+        maxDate: +0,
+        defaultDate: +0
+    });
+    
+{if $stat|is_array && $activeClientsSum > 0}
+    var maxValue = {$activeClientsSum};
+    var result = {$stat.ah + $stat.profil};
+    $( "#slider-vertical" ).slider({
+              orientation: "vertical",
+              range: false,
+              disabled: true,
+              min: 0,
+              max: maxValue,
+              step: 1,
+              value: result
+            });
+{/if}
+    
+});
+</script>

@@ -41,8 +41,12 @@ class PoziciotesztShow_Site_Controller extends RimoController {
                     throw new Exception_404();
                 }
         
+                $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                $obj = $tartalom->getTartalomByID(33);
+                $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+                
                 $seo = seo_Site_Model::model()->getSeoItemByKey('positiontestEredmeny',$lId);
-                Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                 Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                 Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                 Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);
@@ -53,9 +57,12 @@ class PoziciotesztShow_Site_Controller extends RimoController {
                 try{
                     $lId = Rimo::$_config->SITE_NYELV_ID;
                     $this->_view->assign('questions',$this->_model->questions);
+                    $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                    $obj = $tartalom->getTartalomByID(32);
+                    $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
                         
                     $seo=seo_Site_Model::model()->getSeoItemByKey('positiontest',$lId);
-                    Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                    Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                     Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                     Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                     Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);

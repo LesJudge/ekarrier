@@ -5,7 +5,7 @@ error_reporting(E_ERROR | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_WARNING | 
 
 //error_reporting(E_ALL);
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 chdir('..');
 require 'vendor/autoload.php';
 Rimo::init();

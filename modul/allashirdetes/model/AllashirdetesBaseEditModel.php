@@ -48,6 +48,10 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         'egyedi' => 'ChkEgyedi',
         'link' => 'TxtLink',
         'megnevezes' => 'TxtNev',
+        'munkavegzes_jellege' => 'TxtMunkavegzesJellege',
+        'munkaber' => 'TxtMunkaber',
+        'probaido' => 'TxtProbaido',
+        'egyeb' => 'TxtEgyeb',
         'ismerteto' => 'TxtIsmerteto',
         'jelentkezes_modja' => 'TxtJelMod',
         'utca' => 'TxtUtca',
@@ -153,6 +157,14 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         $this->addItem('ChkEllenorzott');
         // Egyedi álláshirdetés-e.
         $this->addItem('ChkEgyedi');
+        // Munkavégzés jellege.
+        $this->addItem('TxtMunkavegzesJellege');
+        // Munkabér
+        $this->addItem('TxtMunkaber');
+        // Próbaidő
+        $this->addItem('TxtProbaido');
+        // Egyéb.
+        $this->addItem('TxtEgyeb');
     }
     /**
      * SEO URL elkészítése.

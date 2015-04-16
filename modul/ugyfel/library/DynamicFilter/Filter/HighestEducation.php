@@ -8,10 +8,11 @@ class HighestEducation extends FieldFilter
 {
     public function filter()
     {
+        $naturalNumberValidator = new NaturalNumber();
         if (
             isset($this->data['educationId']) 
             && 
-            (new NaturalNumber())->validate((int)$this->data['educationId'])
+            $naturalNumberValidator->validate((int)$this->data['educationId'])
         ) {
             $query = 'SELECT ugyfel_id FROM ugyfel WHERE vegzettseg_id = :educationId AND ugyfel_torolt = 0';
             $statement = $this->pdo->prepare($query);

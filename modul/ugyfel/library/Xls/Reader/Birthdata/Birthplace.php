@@ -7,6 +7,7 @@ class Birthplace implements ReaderInterface
 {
     public function read(\Uniweb\Module\Ugyfel\Model\ActiveRecord\Client $client)
     {
-        return (new BirthData($client->birthdata))->getFullBirthplace();
+        $birthdata = new BirthData($client->birthdata);
+        return $birthdata->getFullBirthplace();
     }
 }

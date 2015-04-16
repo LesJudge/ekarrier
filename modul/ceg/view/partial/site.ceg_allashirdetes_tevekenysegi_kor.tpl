@@ -33,7 +33,10 @@
         });
     }
 </script>
-
+<div class="notice">
+    <strong>Tipp!</strong> Kezdje el gépelni a tevékenységi kört, ha rendszerünk talál hasonlót, akkor felajánlja azt!
+</div>
+<br />
 <div id="tkorForm">
     <div id="tkorForm_template">
         <div class="job-select">

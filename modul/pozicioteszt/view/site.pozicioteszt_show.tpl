@@ -1,5 +1,6 @@
 <div id='testError' style='display: none;'>
 </div>
+<div>{$text}</div>
 
 <form id="{$FormName}" name="{$FormName}" action="" method="post">
     {foreach from=$questions item=question}

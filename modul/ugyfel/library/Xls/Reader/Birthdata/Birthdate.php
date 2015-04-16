@@ -7,6 +7,7 @@ class Birthdate implements ReaderInterface
 {
     public function read(\Uniweb\Module\Ugyfel\Model\ActiveRecord\Client $client)
     {
-        return (new BirthData($client->birthdata))->getBirthDate();
+        $birthdata = new BirthData($client->birthdata);
+        return $birthdata->getBirthDate();
     }
 }

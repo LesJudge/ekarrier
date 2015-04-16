@@ -126,7 +126,8 @@ class Knowledge extends BaseResourcable
     
     public function set_ugyfel_attr_nyelvtudas_id($ugyfel_attr_nyelvtudas_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_attr_nyelvtudas_id', $ugyfel_attr_nyelvtudas_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_attr_nyelvtudas_id', $ugyfel_attr_nyelvtudas_id, $this);
     }
     /**
      * Beállítja a nyelv azonosítót.
@@ -134,7 +135,8 @@ class Knowledge extends BaseResourcable
      */
     public function set_nyelvtudas_nyelv_id($nyelvtudas_nyelv_id)
     {
-        (new AssignWithoutCast)->assignAttribute('nyelvtudas_nyelv_id', $nyelvtudas_nyelv_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('nyelvtudas_nyelv_id', $nyelvtudas_nyelv_id, $this);
     }
     /**
      * Beállítja a szint azonosítót.
@@ -142,6 +144,7 @@ class Knowledge extends BaseResourcable
      */
     public function set_nyelvtudas_szint_id($nyelvtudas_szint_id)
     {
-        (new AssignWithoutCast)->assignAttribute('nyelvtudas_szint_id', $nyelvtudas_szint_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('nyelvtudas_szint_id', $nyelvtudas_szint_id, $this);
     }
 }

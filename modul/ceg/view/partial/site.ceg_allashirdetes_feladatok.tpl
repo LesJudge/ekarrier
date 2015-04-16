@@ -1,3 +1,7 @@
+<div class="notice">
+    <strong>Tipp!</strong> Kezdje el gépelni a feladatot, ha rendszerünk talál hasonlót, akkor felajánlja azt!
+</div>
+<br />
 <div id="feladatForm">
     <div id="feladatForm_template">
         <div>

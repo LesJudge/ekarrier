@@ -20,7 +20,7 @@
     <input type="hidden" id="finalResults" name="finalResults" />
 </form>
 
-
+<div>{$text}</div>
 <div class="jobFindList-cont">
 	<div class="jobFindList-top"><i class='icomoon icomoon-tree'>&nbsp;</i></div>	
 	<div class="jobFindList-title textAlign-center">{$pointsRemaining.infobox_tartalom}: <span id='remainingShow'></span></div>	
@@ -47,11 +47,17 @@
 <div class="clear"></div>
 <div class="jobFindList-cont noselect">
 	<div class="jobFindList-top"><i class='icomoon icomoon-tab'>&nbsp;</i></div>	
-	<div class="jobFindList-title textAlign-center">Negatív tulajdonságot rangsoroló teszt</div>	
+        <div class="jobFindList-title textAlign-center">Negatív tulajdonságot rangsoroló teszt</div>
 	<div class="jobFindList-data">
 	
-		<div class="connectedSortable-cont">  			
+		<div class="connectedSortable-cont">
+                    Teljes tulajdonság lista<br/>
+                            {$allAttr.infobox_tartalom}<br/>
+                          Negatív rangsor<br/> 
+                          {$negativeOrder.infobox_tartalom}  
+                            
 			<ul id="sortable1" class="connectedSortable">
+                            
 				{foreach from=$SecondKat key=key item=val name=total}
 					<li id="secondWord_{$key}" class="secondWords" value="">{$val}
 						{foreach from=$MainResKat key=key1 item=val1}
@@ -60,7 +66,9 @@
 					</li>
 				{/foreach}
 			</ul>	
-			<ul id="sortable2" class="connectedSortable"></ul>
+                        <ul id="sortable2" class="connectedSortable">
+
+                        </ul>
 			<div class="clear"></div>
 		</div>
 	
@@ -272,7 +280,7 @@ function calcOrder(){
 
 calcPoints(); 
 
-$('.firstWordsValues').focusin(function(){
+$('.firstWordsValues').on('focus',function(){
      $(this).val('');
      //$(this).attr('value','');
 });
@@ -282,7 +290,7 @@ $('.firstWordsValues').click(function(){
     //$(this).attr('value','');
 });
 
-$('.firstWordsValues').focusout(function(){
+$('.firstWordsValues').on('blur',function(){
     if(parseInt($(this).val())<=0 || parseInt($(this).val())>100 || isNaN($(this).val()) || $(this).val()=='') 
     {
         //$(this).attr('value',0);

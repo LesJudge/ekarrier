@@ -71,26 +71,23 @@ class AllashirdetesShow_Site_Controller extends RimoController
                 
                 $favouritable = true;
                 $markable = true;
+                
             } else {
                 $markable = false;
                 $favouritable = false;
             }
-            
-            
-            
-            
             
             $this->_view->assign('markable', $markable);
             Rimo::$_site_frame->assign('PageName', 'Álláshirdetés');
             Rimo::$_site_frame->assign('site_title', 'Álláshirdetés');
             Rimo::$_site_frame->assign('site_description', 'Leírás');
             Rimo::$_site_frame->assign('site_keywords', 'meta, keywords');
-            Rimo::$_site_frame->assign(
-                'Content',
-                $this->__generateForm(
-                    'modul/' . Rimo::$_config->APP_PATH . '/view/site.allashirdetes_show.tpl'
-                )
-            );
+            Rimo::$_site_frame->assign('Content',$this->__generateForm('modul/' . Rimo::$_config->APP_PATH . '/view/site.allashirdetes_show.tpl'));
+            if ($this->isLoggedIn() && $this->visitType === "client") {
+                $clientId = Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
+                $this->_model->updateJobView($clientId,$pjId);
+            }
+            
         } catch (Exception_MYSQL $e) {
             throw new Exception_404;
         } catch (Exception_MYSQL_Null_Rows $emnr) {

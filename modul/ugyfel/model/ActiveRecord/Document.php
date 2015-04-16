@@ -1,6 +1,7 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Model\ActiveRecord;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\Abstracts\BaseResourcable;
+use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
 use Uniweb\Library\Utilities\ActiveRecord\Assign\String as AssignString;
 /**
  * Ügyfél dokumentum model.
@@ -88,6 +89,12 @@ class Document extends BaseResourcable
     public function get_dokumentum_nev()
     {
         return $this->read_attribute('dokumentum_nev');
+    }
+    
+    public function get_letrehozas_timestamp($format = 'Y-m-d H:i:s')
+    {
+        $readDateTime = new ReadDateTime($format);
+        return $readDateTime->readAttribute('letrehozas_timestamp', $this);
     }
     /**
      * Beállítja a dokumentum hash-elt nevét.

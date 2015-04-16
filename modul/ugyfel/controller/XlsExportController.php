@@ -61,10 +61,11 @@ class XlsExportController
                     $clients = $this->filter->filter();
                     // Ügyfelek adatainak exportálása .xls-be.
                     $xlsExport = new XlsExport($clients, $exportConfig);
-                    $xls = $xlsExport->export();
+                    //$xls = $xlsExport->export();
+                    $xlsExport->export();
                     header('Content-Type: application/octet-stream');
                     header('Content-Disposition: attachment; filename=export.xlsx');
-                    readfile($xls);
+                    //readfile($xls);
                     exit;
                 } else {
                     $this->flash->setFlash('error', 'Nem váltasztott ki exportálandó attribútumot!');

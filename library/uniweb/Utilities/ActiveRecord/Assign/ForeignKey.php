@@ -10,6 +10,7 @@ class ForeignKey extends AbstractAssignAttribute
         if ($value == '') {
             $value = null;
         }
-        return (new WithoutCast)->assignAttribute($name, $value, $on, $flagDirty);
+        $withoutCast = new WithoutCast;
+        return $withoutCast->assignAttribute($name, $value, $on, $flagDirty);
     }
 }

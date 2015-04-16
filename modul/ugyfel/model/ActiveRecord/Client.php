@@ -453,6 +453,7 @@ class Client extends Behaviorable implements ResourceInterface
     
     public function get_kapcsolatfelvetel_ideje($format = 'Y-m-d')
     {
-        return (new ReadDateTime($format))->readAttribute('kapcsolatfelvetel_ideje', $this);
+        $readDateTime = new ReadDateTime($format);
+        return $readDateTime->readAttribute('kapcsolatfelvetel_ideje', $this);
     }
 }

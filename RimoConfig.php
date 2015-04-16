@@ -29,23 +29,19 @@ class RimoConfig
         public $APP_PATH="";
         public $PAGE_NAME="";
         public $SITE_TIPUS="";
-        //public $MYSQL_DB_NAME="uniweb_ekarrier2013";
         //public $MYSQL_DB_NAME="uniweb_ekarrier";
-        public $MYSQL_DB_NAME="ekarrier_dev";
+        //public $MYSQL_DB_HOST="localhost";
+        
+		public $MYSQL_DB_NAME="ekarrier_dev";
         public $MYSQL_DB_HOST="localhost";
-        //public $MYSQL_DB_USER="uwsql19W";
-        //public $MYSQL_DB_PASS="H56sJP:2";
-        public $MYSQL_DB_USER="root";
+		public $MYSQL_DB_USER="root";
         public $MYSQL_DB_PASS="";
+		
         public $MYSQL_DB_CHARSET="utf8";
         public $PAGE_CHARSET="UTF-8";
-        //public $DOMAIN_ADMIN="http://balazs.ekarrier.hadesz.lan/admin/";
-        //public $DOMAIN="http://balazs.ekarrier.hadesz.lan/";
-        //public $DOMAIN_ADMIN="http://local.ekarrier/admin/";
-        //public $DOMAIN="http://local.ekarrier/";
-        //public $DOMAIN_ADMIN="http://192.168.33.10/admin/";
-        //public $DOMAIN="http://192.168.33.10/";
-        public $DOMAIN_ADMIN="http://ekarrier.local/admin/";
+        //public $DOMAIN_ADMIN="http://localhost/ekarrier/admin/";
+        //public $DOMAIN="http://localhost/ekarrier/";
+		public $DOMAIN_ADMIN="http://ekarrier.local/admin/";
         public $DOMAIN="http://ekarrier.local/";
         public $DEFAULT_NYELV_ID=1;
         public $ADMIN_NYELV_ID=1;

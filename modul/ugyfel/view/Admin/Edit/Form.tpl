@@ -21,15 +21,19 @@
                 {/if}
                 <li>
                     <a href="{$DOMAIN_ADMIN}ugyfel" id="clientClose">
-                        <img class="tip" title="Vissza az ügyfél listára." src="../images/admin/icons/cancel.png"/>
+                        <img class="tip" title="Vissza az ügyfél listára." src="../images/admin/icons/arrow_right.png"/>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="box_content padding">
             <div class="field">
-                <div id="uw-ugyfelkezelo-loader" style="display: none;"><p id="uw-ugyfelkezelo-loader-text">Betöltés, kérem várjon...</p></div>
-                <div id="ugyfel-edit-tabs" style="display: block;">
+                <div id="uw-ugyfelkezelo-loader" style="display: block;">
+                    <p id="uw-ugyfelkezelo-loader-text" style="font-size: 24px; top: 140px;">
+                        <strong>Betöltés, kérem várjon...</strong>
+                    </p>
+                </div>
+                <div id="ugyfel-edit-tabs" style="display: none;">
                     <ul>
                         <li><a href="#tab-ugyfel-informacio">Ügyfél információ</a></li>
                         <li><a href="#tab-szemelyes-adatok">Személyes adatok</a></li>
@@ -67,100 +71,17 @@
 <div id="dialog-loading" title="Betöltés"></div>
 <script type="text/javascript">
 //<![CDATA[
-var domain = "{$DOMAIN}", 
-    clientId = {$clientId};
-var educations = {$educations},
-    knowledges = {$knowledges},
-    computerKnowledges = {$computerKnowledges},
-    addresses = {$addresses},
-    jobs = {$jobs};
+var domain = "{$DOMAIN}", clientId = {$clientId}, educations = {$educations}, knowledges = {$knowledges},
+    computerKnowledges = {$computerKnowledges}, addresses = {$addresses}, jobs = {$jobs};
 //]]>
 </script>
-<script type="text/javascript" src="{$DOMAIN}js/jquery.sheepItPlugin.js"></script>
-<script type="text/javascript" src="{$DOMAIN}js_min/admin_ugyfelkezelo_edit.js"></script>
-<script type="text/javascript" src="{$DOMAIN}js/uniweb/jquery.uniweb.dropzoneDocumentManager.js"></script>
 <script type="text/javascript">
+//<![CDATA[
 $(function() {
-    // Ügyfél dokumentumok.
-    $("#client-document").dropzoneDocumentManager({
-        readUrl: DOMAIN_ADMIN + "ugyfel/" + clientId + "/documents",
-        downloadUrl: DOMAIN_ADMIN + "ugyfel/document/-filename-/download",
-        uploadUrl: DOMAIN_ADMIN + "ugyfel/" + clientId + "/document",
-        deleteUrl: DOMAIN_ADMIN + "ugyfel/document/-filename-",
-        dialogDelete: {
-            autoOpen: false,
-            height: 200,
-            modal: true,
-            width: 450
-        },
-        selectors: {
-            btnUpload: "#client-document-btn-upload",
-            dialogDelete: "#client-document-dialog-delete",
-            dropzone: "#client-document-dropzone",
-            fatalError: "#client-document-fatal-error",
-            feedbackError: "#client-document-feedback-error",
-            feedbackInfo: "#client-document-feedback-info",
-            feedbackSuccess: "#client-document-feedback-success",
-            table: "#client-document-table"
-        }
-    });
-    $("#client-document").trigger("refresh");
-    
-    $("#birthdata-birthplace-edit-btn").button({
-        create: function(event, ui) {
-            var $self = $(event.target);
-            $self.click(function() {
-                $self.hide();
-                $("#birthdata-birthplace-info").hide();
-                $("#birthdata-birthplace-edit").show();
-                var $country = $("#birthdata-birthplace-country"),
-                    $city = $("#birthdata-birthplace-city");
-                $country.attr("disabled", false).parent().removeClass("disabled");
-                $city.attr("disabled", false).parent().removeClass("disabled");
-                $country.change(function() {
-                    loadingAddress.call(null);
-                    findAndSetCitiesByCountryId.call($city, +this.value);
-                });
-                loadingAddress.call(null);
-                if (clientId === 0) {
-                    loadingAddress.call(null);
-                    $.ajax({
-                        dataType: "json",
-                        type: "GET",
-                        url: domain + "modul/cim/api/find/countries/",
-                        success: function(data) {
-                            createOptions.call($country, 'country_id', 'country_name', data);
-                            setUniformSelectValue.call($country, null);
-                        },
-                        error: function(xhr) {
-                            alert("Hiba lépett fel a művelet során!");
-                        }
-                    });
-                    findAndSetCitiesByCountryId.call($city, 124);
-                } else {
-                    $.ajax({
-                        dataType: "json",
-                        type: "GET",
-                        url: DOMAIN_ADMIN + "ugyfel/" + clientId + "/birthplace",
-                        success: function(data) {
-                            createOptions.call($country, 'country_id', 'country_name', data.countries);
-                            createOptions.call($city, 'city_id', 'city_name', data.cities);
-                            setUniformSelectValue.call($country, data.country_id);
-                            setUniformSelectValue.call($city, data.city_id);
-                        },
-                        error: function(xhr) {
-                            alert("Hiba lépett fel a művelet során!");
-                        },
-                        complete: function() {
-                            $("#dialog-loading").dialog("close");
-                        }
-                    });
-                }
-            });
-        },
-        icons: {
-            primary: "ui-icon-pencil"
-        }
+    $("#uw-ugyfelkezelo-loader").fadeOut(500, function() {
+        $("#ugyfel-edit-tabs").fadeIn(500);
     });
 });
+//]]>
 </script>
+<script type="text/javascript" src="{$DOMAIN}js_min/admin_ugyfelkezelo_edit.js"></script>

@@ -29,8 +29,10 @@ class ClientRelationCreator
     
     public function create()
     {
-        $relatedObjects = (new RelationCreator($this->client, $this->prepare, $this->creators))->create();
-        (new RelationFixer($this->client))->fix($relatedObjects);
+        $relationCreator = new RelationCreator($this->client, $this->prepare, $this->creators);
+        $relatedObjects = $relationCreator->create();
+        $relationFixer = new RelationFixer($this->client);
+        $relationFixer->fix($relatedObjects);
         return $relatedObjects;
     }
     /**

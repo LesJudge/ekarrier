@@ -114,9 +114,11 @@ class ClientController
         $pageLimit = array(100 => 100, 250 => 250, 500 => 500);
         
         $options = new ArrayObject;
-        (new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']))->assign($options);        
+        $optionsFacade = new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']);
+        $optionsFacade->assign($options);        
         /* @var $view \Smarty */
         $view = Rimo::$pimple['smarty'];
+        $view->assign('DOMAIN', Rimo::$_config->DOMAIN);
         $view->assign('DOMAIN_ADMIN', Rimo::$_config->DOMAIN_ADMIN);
         $view->assign('clients', $pagerfanta->getCurrentPageResults());
         $view->assign('paginator', $paginatorHtml);
@@ -132,6 +134,9 @@ class ClientController
         $view->loadPlugin('Smarty_Function_Filter_Text');
         $view->loadPlugin('Smarty_Function_Filter_True_Or_False');
         // Lista renderelése.
+        $head = array();
+        $head[] = '<link rel="stylesheet" type="text/css" href="../css_min/admin_ugyfelkezelo_list.css" />';
+        Rimo::$_site_frame->assign('head', $head);
         Rimo::$_site_frame->assign('Form', $view->fetch('modul/ugyfel/view/Admin/List/Form.tpl'));
     }
     /**
@@ -162,17 +167,22 @@ class ClientController
     {
         try {
             // Kérés validálása.
-            (new PostValidator)->validate(array(
+            $postValidator = new PostValidator;
+            $postValidator->validate(array(
                 'get' => filter_input_array(INPUT_GET), 
                 'post' => filter_input_array(INPUT_POST)
             ));
             // Ügyfél objektum létrehozása.
-            $client = $this->repository->instance(filter_input_array(INPUT_POST)['client']);
-            $relatedObjects = (new ClientRelationCreator(
+            $filterInputArray = filter_input_array(INPUT_POST);
+            $client = $this->repository->instance($filterInputArray['client']);
+            $editConfig = new EditConfig;
+            $post = filter_input_array(INPUT_POST);
+            $clientRelationCreator = new ClientRelationCreator(
                 $client, 
-                filter_input_array(INPUT_POST)['relationships'], 
-                (new EditConfig())->getConfig()
-            ))->create();
+                $post['relationships'], 
+                $editConfig->getConfig()
+            );
+            $relatedObjects = $clientRelationCreator->create();
             // Ügyfél mentése.
             if ($this->repository->create($client, $relatedObjects)) {
                 // Sikeres mentés esetén irányítson át az ügyfél formra az üzenettel.
@@ -188,7 +198,7 @@ class ClientController
                 )), $client);
             }
         } catch (Exception $e) {
-            $this->handeFormError($e);
+            $this->handleFormError($e);
         }
     }
     
@@ -212,19 +222,24 @@ class ClientController
     public function update($id)
     {
         try {
-            (new PostValidator)->validate(array(
+            $postValidator = new PostValidator;
+            $postValidator->validate(array(
                 'get' => filter_input_array(INPUT_GET),
                 'post' => filter_input_array(INPUT_POST)
             ));
             // Ügyfél lekérdezése.
             $client = $this->repository->findById($id, false);
             // Kapcsolódó objektumok létrehozása.
-            $relatedObjects = (new ClientRelationCreator(
+            $filterInputArray = filter_input_array(INPUT_POST);
+            $editConfig = new EditConfig;
+            $clientRelationCreator = new ClientRelationCreator(
                 $client, 
-                filter_input_array(INPUT_POST)['relationships'], 
-                (new EditConfig())->getConfig()
-            ))->create();
-            $attributes = filter_input_array(INPUT_POST)['client'];
+                $filterInputArray['relationships'], 
+                $editConfig->getConfig()
+            );
+            $relatedObjects = $clientRelationCreator->create();
+            $post = filter_input_array(INPUT_POST);
+            $attributes = $post['client'];
             foreach ($attributes as $attribute => $value) {
                 $client->{$attribute} = $value;
             }
@@ -243,7 +258,7 @@ class ClientController
                 )), $client);
             }
         } catch (Exception $e) {
-            $this->handeFormError($e);
+            $this->handleFormError($e);
         }
     }
     /**
@@ -297,7 +312,8 @@ class ClientController
         }
         $data->offsetSet('flash', $this->flash);
         // Form renderelése.
-        (new RenderFacade($data, $client))->render();
+        $renderFacade = new RenderFacade($data, $client);
+        $renderFacade->render();
     }
     
     protected function handleFormError(Exception $e)

@@ -22,7 +22,8 @@ class AddressController extends SlimBasedController
     {
         try {
             $addressFinder = new AddressView;
-            $client = (new ClientRepository)->findById($clientId, array('include' => array('birthdata')));
+            $clientRepo = new ClientRepository;
+            $client = $clientRepo->findById($clientId, array('include' => array('birthdata')));
             $countryRepo = new CountryRepository($addressFinder);
             $cityRepository = new CityRepository($addressFinder);
             $countryId = 124;

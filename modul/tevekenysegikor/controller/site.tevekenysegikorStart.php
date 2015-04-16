@@ -1,24 +1,14 @@
 <?php
 require 'modul/seo/model/seo_Site_Model.php';
-/**
- * @author Petró Balázs Máté <balazs@uniweb.hu>
- */
+
 class TevekenysegikorStart_Site_Controller extends Page_Edit
 {
-    /**
-     * Controller neve.
-     * @var string
-     */
     public $_name = 'TevekenysegikorStart';
-    /**
-     * SEO Site model.
-     * @var seo_Site_Model
-     */
     public $seo;
     
     public function __construct()
     {
-        //$clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+
         $this->seo = new seo_Site_Model;
         $this->__loadModel('_Show');
         parent::__construct();

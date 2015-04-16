@@ -1,5 +1,4 @@
 <?php
-require "page/admin/controller/admin.list.php";
 /**
  * @property Szolgaltatas_List_Model $_model Model.
  * @property Smarty $_view Smarty.

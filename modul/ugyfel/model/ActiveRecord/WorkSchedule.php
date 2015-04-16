@@ -88,7 +88,8 @@ class WorkSchedule extends BaseResourcable
      */
     public function set_ugyfel_attr_munkarend_id($ugyfel_attr_munkarend_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_attr_munkarend_id', $ugyfel_attr_munkarend_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_attr_munkarend_id', $ugyfel_attr_munkarend_id, $this);
     }
     /**
      * Beállítja a munkarend azonosítóját.
@@ -96,7 +97,8 @@ class WorkSchedule extends BaseResourcable
      */
     public function set_munkarend_id($munkarend_id)
     {
-        (new AssignWithoutCast)->assignAttribute('munkarend_id', $munkarend_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('munkarend_id', $munkarend_id, $this);
     }
     /**
      * Beállítja az egyéb értéket.
@@ -104,6 +106,7 @@ class WorkSchedule extends BaseResourcable
      */
     public function set_egyeb($egyeb)
     {
-        (new AssignString)->assignAttribute('egyeb', $egyeb, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('egyeb', $egyeb, $this);
     }
 }

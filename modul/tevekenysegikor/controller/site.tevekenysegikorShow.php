@@ -38,6 +38,10 @@ class TevekenysegikorShow_Site_Controller extends Page_Edit
         try {
             $lId = Rimo::$_config->SITE_NYELV_ID;
             
+            $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+            $obj = $tartalom->getTartalomByID(26);
+            $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+            
             $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
             
             // Lekérdezi a tevkör adatait.

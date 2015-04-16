@@ -1,3 +1,7 @@
+<div class="notice">
+    <strong>Tipp!</strong> Kezdje el gépelni az elvárást, ha rendszerünk talál hasonlót, akkor felajánlja azt!
+</div>
+<br />
 <div id="elvarasForm">
     <div id="elvarasForm_template">
         <div>

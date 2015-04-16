@@ -153,5 +153,69 @@ class Enceg_Show_Model extends Page_Edit_Model {
         }
     }
     
+    public function getCompanyCreateDate($companyID){
+        try{
+            $query = "SELECT DATE_FORMAT(`letrehozas_timestamp`, '%Y-%m-%d') AS letrehozas_datum
+                      FROM ceg
+                      WHERE ceg_id = ".(int)$companyID."
+                        ";
+    
+            return $this->_DB->prepare($query)->query_select()->query_fetch_array();
+        }catch(Exception_MYSQL $e){
+            return array();
+        }
+    }
+    
+    
+    
+    public function getStat($companyID,$start,$end){
+        
+        try{
+            $query = "SELECT COUNT(am.ugyfel_id) AS cnt
+                      FROM allashirdetes_megtekintes am
+                      INNER JOIN allashirdetes a ON a.allashirdetes_id = am.allashirdetes_id
+                      WHERE a.ceg_id = ".(int)$companyID." AND am.datum >= '". mysql_real_escape_string($start)."' AND am.datum <= '". mysql_real_escape_string($end)."'
+                        ";
+            $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+            $ahSzum = $result['cnt'];
+            
+            $query = "SELECT COUNT(cm.ugyfel_id) AS cnt
+                      FROM ceg_megtekintes cm
+                      WHERE cm.ceg_id = ".(int)$companyID." AND cm.datum >= '". mysql_real_escape_string($start)."' AND cm.datum <= '". mysql_real_escape_string($end)."'
+                        ";
+            $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+            $profilSzum = $result['cnt'];
+            
+            $return['ah'] = $ahSzum;
+            $return['profil'] = $profilSzum;
+            
+            return $return;
+        }catch(Exception_MYSQL $e){
+            return 'Hiba';
+        }
+    }
+    
+    public function checkDates($start,$end){
+        if(strtotime($start) === false || strtotime($end) === false){
+            return false;
+        }
+            return true;
+    }
+    
+    public function getActiveClientsSum(){
+        try{
+            
+            $query = "SELECT COUNT(ugyfel_id) AS cnt
+                      FROM ugyfel
+                      WHERE ugyfel_aktiv = 1 AND ugyfel_torolt = 0
+                        ";
+            $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+            return $result['cnt'];
+            
+        }catch(Exception_MYSQL $e){
+            return 'Hiba';
+        }
+    }
+    
 }
 ?>

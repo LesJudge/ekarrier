@@ -65,55 +65,21 @@ class Tevekenysegikor_Site_List_Model extends Admin_List_Model
         $this->sortBY = "munkakor.munkakor_nev ASC";
         parent::__addForm();
         
-        /*
-        // Leszűri a kategória azonosítókat az $ids tömbbe.
-        if (!empty($categories)) {
-            $ids = array_map(function($data) {
-                return (int)$data['munkakor_kategoria_id'];
-            }, $categories);
-            $condition = 'mak.munkakor_attr_kategoria_id IN (' . implode(',', $ids) . ')';
-        } else {
-            $condition = 'mak.munkakor_attr_kategoria_id = NULL'; // NULL sort adó feltétel.
-        }
-        */
-        
-        //$searchName=$this->addItem('TxtSearchByName');
         
         $csoport = $this->addItem('FilterCsoport');
-        $csoport->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 1 ", "ORDER BY kategoria_cim ASC", false, array("-1"=>"--Válasszon--"));
+        $csoport->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 1 ", "ORDER BY kategoria_cim ASC", false, array("-1"=>"Tevékenységi csoport"));
         
         $kor = $this->addItem('FilterKor');
-        $kor->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 2 ", "ORDER BY kategoria_cim ASC", false, array("-1"=>"--Válasszon--"));
+        $kor->_select_value = $this->getSelectValues("munkakor_kategoria", "kategoria_cim", " AND szint = 2 ", "ORDER BY kategoria_cim ASC", false, array("-1"=>"Tevékenységi kör"));
         
         $szektor = $this->addItem('FilterSzektor');
-        $szektor->_select_value = $this->getSelectValues("szektor", "szektor_nev", "", "", false, array(""=>"--Válasszon--"));
+        $szektor->_select_value = $this->getSelectValues("szektor", "szektor_nev", "", "", false, array(""=>"Szektor"));
         
         $pozicio = $this->addItem('FilterPozicio');
-        $pozicio->_select_value = $this->getSelectValues("pozicio", "pozicio_nev", "", "", false, array(""=>"--Válasszon--"));
+        $pozicio->_select_value = $this->getSelectValues("pozicio", "pozicio_nev", "", "", false, array(""=>"Pozíció"));
         
+        $this->addItem('TxtSearchByName');
         
     }
-    
-    /*
-    public function __loadList() {
-        if(!empty($this->sortBY)){
-            $order = " ORDER BY {$this->sortBY}";
-        } 
-        $query =  "SELECT {$this->_fields} FROM `{$this->_tableName}` {$this->_join} {$this->listWhere} {$order} {$this->limit}";
-       echo $query;
-        return $this->_DB->prepare($query)->query_select()->query_result_array();
-    }
-    
-    */
-    
-    /*
-    public function __loadListCount() {
-        $this->__createWhere();
-        $query = "SELECT COUNT(DISTINCT(`{$this->_tableName}`.{$this->_tableName}_id)) AS cnt, {$this->_fields} FROM `{$this->_tableName}` {$this->_join} {$this->listWhere}";
-        echo $query;
-        return $this->_DB->prepare($query)->query_select()->query_fetch_array("cnt");
-    }
-    */
-    
     
 }

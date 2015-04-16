@@ -63,11 +63,11 @@ fjs.parentNode.insertBefore(js, fjs);
 					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" /></a>	
 				</div>
 				<div class="col-lg-8">
+					{if $LogoutForm}								
+						{$LogoutForm}
+						{include file="modul/user/view/partial/user_profile.tpl"}
+					{else}
 					<div class="login">	
-						{if $LogoutForm}								
-							{$LogoutForm}
-							{include file="modul/user/view/partial/user_profile.tpl"}
-						{else}
 						<div class="loginBtns">
 							<a data-toggle="modal" href="#popUpLoginForm-modal" onclick="setTimeout(function(){ $('#popUpLoginForm-modal').appendTo('body').modal('show'); },100);">
 							<button class="btn loginBtn" id="Login" name="Login" value=""  data-toggle="tooltip" data-placement="top" 
@@ -80,8 +80,8 @@ fjs.parentNode.insertBefore(js, fjs);
 							Regisztráció
 							</a>
 						</div>	
-						{/if}							
 					</div>
+					{/if}
 				</div>
 				<div class="col-lg-1">
 					<a href="javascript:;"><img src="images/site/akadalymentes-logo.png" alt="" class="akadalymentes-logo" /></a>	

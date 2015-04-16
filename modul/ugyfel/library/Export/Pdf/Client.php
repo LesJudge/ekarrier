@@ -35,9 +35,9 @@ class Client
         // Születési adatok decorator.
         $smarty->assign('birthdataDecorator', new BirthDataDecorator($this->client->birthdata));
         // Cím decorator.
-        $smarty->assign('addressDecorator', (new ReflectionClass(
-            '\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\Decorator\\Address'
-        ))->newInstanceWithoutConstructor());
+        $reflector = new ReflectionClass('\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\Decorator\\Address');
+        //$smarty->assign('addressDecorator', $reflector->newInstanceWithoutConstructor());
+        $smarty->assign('addressDecorator', $reflector->newInstance());
         // Munkaerőpiaci helyzete decorator.
         $smarty->assign('laborMarketDecorator', new LaborMarketDecorator($this->client->labormarket));
         // Projektinformáció decorator.
@@ -45,7 +45,8 @@ class Client
             'projectInformationDecorator', new ProjectInformationDecorator($this->client->projectinformation)
         );
         $options = new ArrayObject;
-        (new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']))->assign($options);
+        $optionsFacade = new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']);
+        $optionsFacade->assign($options);
         // Végzettség típusok.
         $smarty->assign('educationTypes', $options->offsetGet('beallitasEducations'));
         // Ügyfél végzettségei.
@@ -55,17 +56,14 @@ class Client
         }
         $smarty->assign('educations', $educations);
         // Szolgáltatások.
-        $smarty->assign('services', (new MapServices(
-            $options->offsetGet('szolgaltatasServices'), $this->client->services
-        ))->map());
+        $mapServices = new MapServices($options->offsetGet('szolgaltatasServices'), $this->client->services);
+        $smarty->assign('services', $mapServices->map());
         // Programinformációk.
-        $smarty->assign('programInformations', (new MapProgramInformations(
-            $options->offsetGet('beallitasProgramInformation'), $this->client->programinformations
-        ))->map());
+        $mapProgramInformations = new MapProgramInformations($options->offsetGet('beallitasProgramInformation'), $this->client->programinformations);
+        $smarty->assign('programInformations', $mapProgramInformations->map());
         // Munkarendek.
-        $smarty->assign('workschedules', (new MapWorkSchedules(
-            $options->offsetGet('beallitasWorkSchedule'), $this->client->workschedules
-        ))->map());
+        $mapWorkschedules = new MapWorkSchedules($options->offsetGet('beallitasWorkSchedule'), $this->client->workschedules);
+        $smarty->assign('workschedules', $mapWorkschedules->map());
         // .pdf létrehozása.
         $mPdf = new mPDF;
         $mPdf->WriteHTML($smarty->fetch('modul/ugyfel/Assets/Pdf/ClientPdfTemplate.tpl'));

@@ -1,6 +1,5 @@
 <script type="text/javascript" src="{$DOAMAIN}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script>
-{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
 {if $FormError}
  <div class="info info-error">
     <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
@@ -14,13 +13,8 @@
 <div class="clear"></div>
 {/if}
 
-<div class="jobFindList-cont">
-	<div class="jobFindList-top"><i class='icomoon icomoon-info2'>&nbsp;</i></div>
-	<div class="jobFindList-title">{$question.infobox_nev}</div>	
-	<div class="jobFindList-data">{$question.infobox_tartalom}</div>	
-	<div class="clear"></div>
-</div>
-
+<div>{$text}</div>
+{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
 <form id="newCompForm" action="" method="post" hidden='hidden'>
 <div class="dialog-form">
     <input type="text" id='newCompId' name="newCompId" value="" hidden="hidden" />

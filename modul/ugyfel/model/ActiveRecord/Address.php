@@ -145,41 +145,49 @@ class Address extends BaseResourcable
     
     public function set_ugyfel_attr_cim_id($ugyfel_attr_cim_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_attr_cim_id', $ugyfel_attr_cim_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_attr_cim_id', $ugyfel_attr_cim_id, $this);
     }
     
     public function set_ugyfel_cim_tipus_id($ugyfel_cim_tipus_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_cim_tipus_id', $ugyfel_cim_tipus_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_cim_tipus_id', $ugyfel_cim_tipus_id, $this);
     }
     
     public function set_cim_orszag_id($cim_orszag_id)
     {
-        (new AssignWithoutCast)->assignAttribute('cim_orszag_id', $cim_orszag_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('cim_orszag_id', $cim_orszag_id, $this);
     }
     
     public function set_cim_megye_id($cim_megye_id)
     {
-        (new AssignWithoutCast)->assignAttribute('cim_megye_id', $cim_megye_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('cim_megye_id', $cim_megye_id, $this);
     }
     
     public function set_cim_varos_id($cim_varos_id)
     {
-        (new AssignWithoutCast)->assignAttribute('cim_varos_id', $cim_varos_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('cim_varos_id', $cim_varos_id, $this);
     }
     
     public function set_cim_iranyitoszam_id($cim_iranyitoszam_id)
     {
-        (new AssignWithoutCast)->assignAttribute('cim_iranyitoszam_id', $cim_iranyitoszam_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('cim_iranyitoszam_id', $cim_iranyitoszam_id, $this);
     }
     
     public function set_utca($utca)
     {
-        (new AssignString)->assignAttribute('utca', $utca, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('utca', $utca, $this);
     }
     
     public function set_hazszam($hazszam)
     {
-        (new AssignString)->assignAttribute('hazszam', $hazszam, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('hazszam', $hazszam, $this);
     }
 }

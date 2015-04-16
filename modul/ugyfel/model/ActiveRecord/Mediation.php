@@ -28,12 +28,14 @@ class Mediation extends BaseResourcable
     
     public function get_mikor($format = 'Y-m-d')
     {
-        return (new ReadDateTime($format))->readAttribute('mikor', $this);
+        $readDateTime = new ReadDateTime($format);
+        return $readDateTime->readAttribute('mikor', $this);
     }
     
     public function get_megjelent()
     {
-        return (new ReadBit)->readAttribute('megjelent', $this);
+        $readBit = new ReadBit;
+        return $readBit->readAttribute('megjelent', $this);
     }
     
     public function get_hova()
@@ -43,21 +45,25 @@ class Mediation extends BaseResourcable
     
     public function set_ugyfel_attr_kozvetites_id($ugyfel_attr_kozvetites_id)
     {
-        (new AssignWithoutCast)->assignAttribute('ugyfel_attr_kozvetites_id', $ugyfel_attr_kozvetites_id, $this);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('ugyfel_attr_kozvetites_id', $ugyfel_attr_kozvetites_id, $this);
     }
     
     public function set_mikor($mikor)
     {
-        (new AssignDateTime('Y-m-d'))->assignAttribute('mikor', $mikor, $this);
+        $assignDateTime = new AssignDateTime('Y-m-d');
+        $assignDateTime->assignAttribute('mikor', $mikor, $this);
     }
     
     public function set_megjelent($megjelent)
     {
-        (new AssignBit)->assignAttribute('megjelent', $megjelent, $this);
+        $assignBit = new AssignBit;
+        $assignBit->assignAttribute('megjelent', $megjelent, $this);
     }
     
     public function set_hova($hova)
     {
-        (new AssignString)->assignAttribute('hova', $hova, $this);
+        $assignString = new AssignString;
+        $assignString->assignAttribute('hova', $hova, $this);
     }
 }

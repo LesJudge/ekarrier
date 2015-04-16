@@ -36,6 +36,10 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
                         $lId=Rimo::$_config->SITE_NYELV_ID;
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                         
+                        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                        $obj = $tartalom->getTartalomByID(36);
+                        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+                        
                         // -----  Létező Kompetenciarajz
                         $_REQUEST['krid'] = mysql_real_escape_string($_REQUEST['krid']);
                         
@@ -72,7 +76,7 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
                             $this->_view->assign('compRajzok',$compRajzok);
 
                         $seo=seo_Site_Model::model()->getSeoItemByKey('competenceEdit',$lId);
-                        Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                        Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                         Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                         Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                         Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);

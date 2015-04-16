@@ -17,9 +17,12 @@ class BirthData
     
     public function getBirthDate()
     {
-        $birthdate = $this->instance->read_attribute('szuletesi_ido');
-        if (is_object($birthdate)) {
-            return $birthdate->format('Y-m-d');
+        if (is_object($this->instance)) {
+            $birthdate = $this->instance->read_attribute('szuletesi_ido');
+            if (is_object($birthdate)) {
+                return $birthdate->format('Y-m-d');
+            }
+            return null;
         }
         return null;
     }

@@ -36,8 +36,32 @@ class EncegShow_Site_Controller extends Page_Edit
                         
                         $companyData = $this->_model->getCompanyData($companyId);
                         
+                        $companyCreateDate = $this->_model->getCompanyCreateDate($companyId);
+                        $this->_view->assign('companyCreateDate',$companyCreateDate['letrehozas_datum']);
+                        
+                        $startDate = $companyCreateDate['letrehozas_datum'];
+                        $endDate =  date("Y-m-d");
+                        
+                        if($this->_model->checkDates($_REQUEST['startDate'],$_REQUEST['endDate']) === true){
+                            $startDate = $_REQUEST['startDate'];
+                            $endDate = $_REQUEST['endDate'];
+                        }
+                            $this->_view->assign('startDate',$startDate);
+                            $this->_view->assign('endDate',$endDate);
+                            
+                            $stat = $this->_model->getStat($companyId,$startDate,$endDate);
+                            $this->_view->assign('stat',$stat);
+                            
+                            $activeClientsSum = $this->_model->getActiveClientsSum();
+                            $this->_view->assign('activeClientsSum',$activeClientsSum);
+                        
+                        
                         $this->_view->assign('companyData',$companyData);
-
+                        
+                        
+                        
+                        
+                        
                         
                         //SEO
                         $seo = seo_Site_Model::model()->getSeoItemByKey('profil_ceg_en',$lId);

@@ -1,4 +1,5 @@
-<div class="jobFindList-cont">
+<div>{$text}</div>
+<div>
 	Eredmény: {$result}
 </div>
 <script type="text/javascript">
@@ -20,9 +21,6 @@ $(document).ready(function(){
 
 <br/>
 
-
-<!--div class="jobFindList-title">{$topinfo.infobox_nev}</div-->	
-<div class="jobFindList-data">{$topinfo.infobox_tartalom}</div>
 
 <ul class="">
     

@@ -11,12 +11,6 @@
             @page {
                 odd-header-name: html_MyHeader1;
                 odd-footer-name: html_MyFooter1;
-                /*
-                margin-left: 1.25cm;
-                margin-header: 6mm;
-                margin-top: 3.8cm;
-                margin-footer: 0mm;
-                */
                 margin-footer: 0mm;
                 margin: 0px;
             }
@@ -58,6 +52,9 @@
                 padding-right: 1.25cm;
                 padding-top: 4cm;
             }
+            ul {
+                list-style-type: none;
+            }
         </style>
     </head>
     <body>
@@ -87,7 +84,7 @@
                     <th colspan="2">Személyes adatai</th>
                 </tr>
                 <tr>
-                    <td class="col-label">Név:</td>
+                    <td class="col-label" style="width: 36%;">Név:</td>
                     <td>{$client->vezeteknev} {$client->keresztnev}</td>
                 </tr>
                 <tr>
@@ -275,35 +272,30 @@
             <strong>Iskolai végzettség</strong>
             <ul>
                 {foreach from=$educationTypes item=educationType}
-                <li {if in_array($educationType->vegzettseg_id, $educations)}style="font-weight: bold; text-decoration: underline;"{/if}>{$educationType->nev}</li>
+                <li>
+                    {if in_array($educationType->vegzettseg_id, $educations)}
+                    <span style="font-weight: bold;">x&nbsp;&nbsp;</span>
+                    {else}
+                    <span style="width: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    {/if}
+                    <span {if in_array($educationType->vegzettseg_id, $educations)}style="font-weight: bold; text-decoration: underline;"{/if}>
+                    {$educationType->nev}
+                    </span>
+                </li>
                 {/foreach}
             </ul>
             <strong>Milyen szolgáltatásokban szeretne részt venni ?</strong>
             <ul>
                 {foreach from=$services item=service}
-                <li {if $service->getChecked()}style="font-weight: bold; text-decoration: underline;"{/if}>{$service->getName()}</li>
-                {/foreach}
-            </ul>
-        </div>
-        <pagebreak />
-        
-        <div class="page">
-            <div></div>
-            <strong>Honnan szerzett információt a programunkról ?</strong>
-            <ul>
-                {foreach from=$programInformations item=programInformation}
                 <li>
-                    <span {if $programInformation->getChecked()}style="font-weight: bold; text-decoration: underline;"{/if}>{$programInformation->getName()}</span>
-                    {if $programInformation->getMisc()}({$programInformation->getMisc()}){/if}
-                </li>
-                {/foreach}
-            </ul>
-            <strong>Munkarendek</strong>
-            <ul>
-                {foreach from=$workschedules item=workschedule}
-                <li>
-                    <span {if $workschedule->getChecked()}style="font-weight: bold; text-decoration: underline;"{/if}>{$workschedule->getName()}</span>
-                    {if $workschedule->getMisc()}({$workschedule->getMisc()}){/if}
+                    {if $service->getChecked()}
+                    <span style="font-weight: bold;">x&nbsp;&nbsp;</span>
+                    {else}
+                    <span style="width: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    {/if}
+                    <span {if $service->getChecked()}style="font-weight: bold; text-decoration: underline;"{/if}>
+                    {$service->getName()}
+                    </span>
                 </li>
                 {/foreach}
             </ul>
@@ -311,6 +303,41 @@
         <pagebreak />
         
         <div class="page">
+            <div style="float: left; width: 50%;">
+                <strong>Honnan szerzett információt a programunkról ?</strong>
+                <ul>
+                    {foreach from=$programInformations item=programInformation}
+                    <li>
+                        {if $programInformation->getChecked()}
+                        <span style="font-weight: bold;">x&nbsp;&nbsp;</span>
+                        {else}
+                        <span style="width: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        {/if}
+                        <span {if $programInformation->getChecked()}style="font-weight: bold; text-decoration: underline;"{/if}>{$programInformation->getName()}</span>
+                        {if $programInformation->getMisc()}({$programInformation->getMisc()}){/if}
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+            <div style="float: right; width: 48%;">
+                <strong>Munkarendek</strong>
+                <ul>
+                    {foreach from=$workschedules item=workschedule}
+                    <li>
+                        {if $workschedule->getChecked()}
+                        <span style="font-weight: bold;">x&nbsp;&nbsp;</span>
+                        {else}
+                        <span style="width: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        {/if}
+                        <span {if $workschedule->getChecked()}style="font-weight: bold; text-decoration: underline;"{/if}>{$workschedule->getName()}</span>
+                        {if $workschedule->getMisc()}({$workschedule->getMisc()}){/if}
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="page" style="padding-top: 1cm;">
             <p>A programról az információkat megkaptam, szándékomat fejezem ki az abban való részvételre! Kérem a programról történő további tájékoztatást!</p>
             <p style="padding-top: 20px;">Dátum: {$date}</p>
             <div style="width: 30%; padding-top: 6px; margin-top: 100px; float: right; text-align: center; border-top: 1px solid;">aláírás</div>

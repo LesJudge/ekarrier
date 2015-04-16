@@ -81,7 +81,8 @@ class String extends AbstractBehavior
     
     public function set_string($string)
     {
-        (new AssignString)->assignAttribute($this->stringAttribute, $string, $this->owner);
+        $assignString = new AssignString;
+        $assignString->assignAttribute($this->stringAttribute, $string, $this->owner);
     }
     
     public function getStringAttribute()

@@ -58,7 +58,7 @@ class KompetenciaShow_Site_Controller extends Page_Edit
                             Rimo::$_site_frame->assign('Content',$this->__generateForm('modul/kompetencia/view/site.kompetencia_show.tpl'));
 
                         }else{
-                            
+                            /*
                             $topinfo=infobox_Site_Model::model()->findInfoboxItemByKey('competencesTestsTopInfobox',$lId);
                             $this->_view->assign('topinfo',$topinfo);
                             
@@ -67,9 +67,17 @@ class KompetenciaShow_Site_Controller extends Page_Edit
                             
                             $rightinfo=infobox_Site_Model::model()->findInfoboxItemByKey('competencesTestsRightInfobox',$lId);
                             $this->_view->assign('rightinfo',$rightinfo);
+                            */
+                            
+                            $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                            $obj = $tartalom->getTartalomByID(28);
+                            $this->_view->assign("text1",$obj[0]["tartalom_tartalom"]);
+                            
+                            $obj1 = $tartalom->getTartalomByID(29);
+                            $this->_view->assign("text2",$obj1[0]["tartalom_tartalom"]);
                             
                             $seo=seo_Site_Model::model()->getSeoItemByKey('testselect',$lId);
-                            Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                            Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                             Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                             Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                             Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);

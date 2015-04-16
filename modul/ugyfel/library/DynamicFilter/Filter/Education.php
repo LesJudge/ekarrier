@@ -9,10 +9,11 @@ class Education extends FieldFilter
 {
     public function filter()
     {
+        $naturalNumberValidator = new NaturalNumber();
         if (
             isset($this->data['educationId']) 
             && 
-            (new NaturalNumber())->validate((int)$this->data['educationId']) 
+            $naturalNumberValidator->validate((int)$this->data['educationId']) 
             && 
             isset($this->data['denomination']) 
             && 

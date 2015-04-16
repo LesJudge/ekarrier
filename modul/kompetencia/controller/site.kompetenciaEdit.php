@@ -30,6 +30,9 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                 try
                 {
                         $lId=Rimo::$_config->SITE_NYELV_ID;
+                        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                        $obj = $tartalom->getTartalomByID(35);
+                        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
                         try{
                             $this->_view->assign('userCompetences',$this->_model->findCompetencesByClientId($lId));
                         }
@@ -44,7 +47,7 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                         $this->_view->assign('question',$question);
                                                
                         $seo=seo_Site_Model::model()->getSeoItemByKey('competenceEdit',$lId);
-                        Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);
+                        Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);
                         Rimo::$_site_frame->assign('site_title',$seo['seo_nev']);
                         Rimo::$_site_frame->assign('site_description',$seo['seo_leiras']);
                         Rimo::$_site_frame->assign('site_keywords',$seo['seo_meta_kulcsszo']);

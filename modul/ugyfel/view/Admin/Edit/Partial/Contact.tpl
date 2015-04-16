@@ -6,9 +6,10 @@
         <table id="client-contact-table" class="uw-ugyfelkezelo-client-contact-table">
             <thead>
                 <tr>
-                    <th class="uw-ugyfelkezelo-client-contact-table-megjegyzes">Megjegyzés</th>
+                    <th>Megjegyzés</th>
                     <th>Dátum</th>
                     <th>Név</th>
+                    <th>Közvetítés</th>
                     <th>Hova</th>
                     <th>Megjelent</th>
                     <th>Mikor</th>
@@ -16,7 +17,7 @@
             </thead>
             <tbody></tbody>
             <tfoot>
-                <tr><td colspan="6"><button id="client-contact-add-btn" type="button">Új elem</button></td></tr>
+                <tr><td colspan="7"><button id="client-contact-add-btn" type="button">Új elem</button></td></tr>
             </tfoot>
         </table>
         <div id="client-contact-dialog-create" title="Új esetnapló bejegyzés">
@@ -25,34 +26,41 @@
             </ul>
             <div>
                 <label>Típus</label>
-                <select name="contact[is_mediation]">
-                    <option value="1">Közvetítés</option>
+                <select id="contact-is-mediation" name="contact[is_mediation]">
                     <option value="0">Esetnapló</option>
+                    <option value="1">Közvetítés</option>
                 </select>
             </div>
-            <div>
-                <label>Hova</label>
-                <input name="contact[mediation][hova]" />
-            </div>
-            <div>
-                <label>Megjelent</label>
-                <input name="contact[mediation][megjelent]" type="checkbox" />
-            </div>
-            <div>
-                <label>Mikor</label>
-                <input name="contact[mediation][mikor]" type="text" />
+            <div class="clear"></div>
+            <div id="contact-mediation-data" style="display: none;">
+                <div>
+                    <label>Hova</label>
+                    <input id="contact-mediation-hova" name="contact[mediation][hova]" type="text" />
+                </div>
+                <div>
+                    <label>Megjelent</label>
+                    <select id="contact-mediation-megjelent" name="contact[mediation][megjelent]">
+                        <option value="">--Kérem, válasszon!--</option>
+                        <option value="1">Igen</option>
+                        <option value="0">Nem</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Mikor</label>
+                    <input id="contact-mediation-mikor" name="contact[mediation][mikor]" type="text" />
+                </div>
             </div>
             <div>
                 <label>Név</label>
-                <input name="contact[contact][nev]" />
+                <input id="contact-nev" name="contact[contact][nev]" type="text" />
             </div>
             <div>
                 <label>Dátum</label>
-                <input name="contact[contact][datum]" />
+                <input id="contact-datum" name="contact[contact][datum]" type="text" />
             </div>
             <div>
                 <label>Megjegyzés</label>
-                <textarea name="contact[contact][megjegyzes]"></textarea>
+                <textarea id="contact-megjegyzes" name="contact[contact][megjegyzes]"></textarea>
             </div>
         </div>
     </div>

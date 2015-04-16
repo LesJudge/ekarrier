@@ -31,6 +31,7 @@ class ClientId extends ResourceKey
      */
     public function set_ugyfel_id($ugyfel_id)
     {
-        (new AssignWithoutCast)->assignAttribute($this->resourceKeyAttribute, $ugyfel_id, $this->owner);
+        $assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute($this->resourceKeyAttribute, $ugyfel_id, $this->owner);
     }
 }

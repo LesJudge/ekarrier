@@ -141,51 +141,51 @@ function resetGroupOpts(){
 </div>
 <div class="clear"></div>
 {/if}
+
+<div>{$text}</div>
+
 <form action="" method="POST" name="{$FormName}" id="{$FormName}" enctype="multipart/form-data">
     <div id="anc" class="jobDataForm-cont">
         
-        <!--input type="text" name="{$TxtSearchByName.name}" value="{$TxtSearchByName.activ}"-->
+		<div class="filter_row_cont">
+			<div class="filter_row">		
+			{html_options id=$FilterCsoport.name name=$FilterCsoport.name options=$FilterCsoport.values selected=$FilterCsoport.activ}
+			<div class="clear"></div> 
+			</div>
+					
+			<div class="filter_row">		
+			{html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ}
+			<div class="clear"></div> 
+			</div>
+				   
+			<div class="filter_row">		
+			{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ}
+			<div class="clear"></div> 
+			</div>
+					
+			<div class="filter_row">		
+			{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ}
+			<div class="clear"></div> 
+			</div>
+    	</div>  
+		 
+        <span class="size-1"><input type="text" name="{$TxtSearchByName.name}" value="{$TxtSearchByName.activ}" autocomplete="off" placeholder="Keress konkrét tevékenységi kört..." /></span>
+		<button class="btn btn-danger" type="submit" name="{$BtnFilterDEL}" value="Feltételek törlése"><i class="icomoon icomoon-remove2"></i></button>                   
+        <input class="submit" type="submit" id="{$BtnFilter}" name="{$BtnFilter}" value="Keresés" />
         
-        <div class="filter_row">
-		<label for="{$FilterCsoport.name}">Csoport</label>
-		{html_options id=$FilterCsoport.name name=$FilterCsoport.name options=$FilterCsoport.values selected=$FilterCsoport.activ}
-		<div class="clear"></div> 
-        </div>
-                
-        <div class="filter_row">
-		<label for="{$FilterKor.name}">Kör</label>
-		{html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ}
-		<div class="clear"></div> 
-        </div>
-               
-        <div class="filter_row">
-		<label for="{$FilterSzektor.name}">Szektor</label>
-		{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ}
-		<div class="clear"></div> 
-        </div>
-                
-        <div class="filter_row">
-		<label for="{$FilterPozicio.name}">Pozíció</label>
-		{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ}
-		<div class="clear"></div> 
-        </div>
-                
-        <input class="submit" type="submit" id="{$BtnFilter}" name="{$BtnFilter}" value="Keresés">
-        <input class="submit" type="submit" name="{$BtnFilterDEL}" value="Feltételek törlése">
         <div class="clear"></div>
     </div>
-        
-            
+                    
 </form>
-<div class="jobFindList-cont">
-    <div class="jobFindList-top"><i class='icomoon icomoon-file3'>&nbsp;</i></div>
-    <div class="jobFindList-title">Találati eredmények</div>
+
+<div class="jobFindList-title-cont"><div class="jobFindList-title">Találati eredmények</div></div>
+<div class="jobFindList-cont">      
     {include file='page/all/view/page.message.tpl'}
     {if not empty($Lista)}
     {foreach from=$Lista item=munkakor}
     <div class="jobFindList-block">
-        {$munkakor.munkakor_nev} - <font color="red">{$munkakor.korCim}</font> - <font color="blue">{$munkakor.csoportCim}</font> - {$munkakor.subCatID}
-        <a href="{$DOMAIN}tevekenysegikor/{$munkakor.tevkorLink}">Részletek</a>
+        <span class="jobFindList-item-type-1">{$munkakor.munkakor_nev}</span> - {$munkakor.korCim} - {$munkakor.csoportCim} - <span class="badge">{$munkakor.subCatID}</span>
+        <a href="{$DOMAIN}tevekenysegikor/{$munkakor.tevkorLink}" class="btn btn-primary btn-sm">Részletek</a>
         <div class="clear"></div>
     </div>
     {/foreach}
@@ -193,5 +193,7 @@ function resetGroupOpts(){
     <div class="clear"></div>
     {include file='page/all/view/page.paging.tpl'}
 </div>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}fooldal/">Vissza a főoldalra</a>
+
+<br />
+<a class="btn btn-sm btn-default" href="{$DOMAIN}fooldal/">Vissza a főoldalra</a>
 

@@ -1,5 +1,4 @@
 <?php
-require "page/admin/controller/admin.list.php";
 /**
  * @property Beallitas_MunkarendList_Model $_model Model.
  * @property Smarty $_view Smarty.

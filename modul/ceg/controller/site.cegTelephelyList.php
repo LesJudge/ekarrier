@@ -1,5 +1,5 @@
 <?php
-require 'page/all/controller/page.list.php';
+//require 'page/all/controller/page.list.php';
 require 'modul/seo/model/seo_Site_Model.php';
 /**
  * @property Ceg_TelephelyList_Model $_model

@@ -19,6 +19,8 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
                       allashirdetes.link,
                       allashirdetes.megnevezes,
                       allashirdetes.ellenorzott,
+                      kezdes_datum,
+                      lejarati_datum,
                       cv.cim_varos_nev,
                       cm.cim_megye_nev,
                       munkakor.munkakor_nev AS munkakor,
@@ -47,10 +49,10 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
      */
     public $_join = 'LEFT JOIN cim_varos cv ON allashirdetes.cim_varos_id = cv.cim_varos_id 
                     LEFT JOIN cim_megye cm ON cv.cim_megye_id = cm.cim_megye_id
-                    LEFT JOIN allashirdetes_attr_munkakor ON allashirdetes_attr_munkakor.allashirdetes_id = allashirdetes.allashirdetes_id
-                    LEFT JOIN munkakor ON munkakor.munkakor_id = allashirdetes_attr_munkakor.munkakor_id
-                    LEFT JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = allashirdetes_attr_munkakor.munkakor_id
-                    LEFT JOIN munkakor_kategoria mk2 ON mk2.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id AND mk2.szint = 2
+                    INNER JOIN allashirdetes_attr_munkakor ON allashirdetes_attr_munkakor.allashirdetes_id = allashirdetes.allashirdetes_id
+                    INNER JOIN munkakor ON munkakor.munkakor_id = allashirdetes_attr_munkakor.munkakor_id
+                    INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = allashirdetes_attr_munkakor.munkakor_id
+                    INNER JOIN munkakor_kategoria mk2 ON mk2.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id AND mk2.szint = 2
                     INNER JOIN ceg c ON c.ceg_id = allashirdetes.ceg_id
                     ';
     /**
@@ -60,6 +62,8 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
     public $listWhere = array(
         'allashirdetes_aktiv = 1',
         'allashirdetes_torolt = 0',
+        'kezdes_datum <= NOW()',
+        //'lejarati_datum <= NOW()',
     );
     /**
      * Form generálás.

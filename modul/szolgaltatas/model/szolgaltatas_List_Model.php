@@ -15,6 +15,7 @@ class Szolgaltatas_List_Model extends Admin_List_Model
                        letrehozas_timestamp,
                        modositas_timestamp,
                        modositas_szama,
+                       szolgaltatas_tipus AS Tipus,
                        szolgaltatas_aktiv AS Aktiv,
                        CONCAT(u1.user_vnev, \' \', u1.user_knev) AS letrehozo_nev,
                        CONCAT(u2.user_vnev, \' \', u2.user_knev) AS modosito_nev';
@@ -32,6 +33,7 @@ class Szolgaltatas_List_Model extends Admin_List_Model
         parent::__addForm();
         $this->tableHeader=array(
             'nev' => array('label' => 'Név'),
+            'Tipus' => array('label' => 'Típus'),
             'u1.user_vnev' => array('label' => 'Létrehozó'),
             'letrehozas_timestamp' => array('label' => 'Létrehozás ideje'),
             'u2.user_vnev' => array('label' => 'Módosító'),
@@ -41,5 +43,6 @@ class Szolgaltatas_List_Model extends Admin_List_Model
         );
         $this->_params['TxtSort']->_value='nev__ASC';
         $this->addItem('FilterStatus')->_select_value=Rimo::$_config->CMSAllapot[Rimo::$_config->ADMIN_NYELV_ID];
+        $this->addItem('FilterTipus')->_select_value = array("0" => "--Válasszon állapotot--", "1" => "Ügyfél", "2" => "Cég");
     }
 }

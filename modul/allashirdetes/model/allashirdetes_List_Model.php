@@ -18,8 +18,8 @@ class Allashirdetes_List_Model extends Admin_List_Model
                        p.pozicio_nev,
                        sz.szektor_nev,
                        COUNT(uaad.allashirdetes_id) AS count_user';
-    public $_join = 'INNER JOIN user u1 ON allashirdetes.letrehozo = u1.user_id 
-                     INNER JOIN user u2 ON allashirdetes.modosito = u2.user_id
+    public $_join = 'LEFT JOIN user u1 ON allashirdetes.letrehozo = u1.user_id 
+                     LEFT JOIN user u2 ON allashirdetes.modosito = u2.user_id
                      LEFT JOIN ceg c ON allashirdetes.ceg_id = c.ceg_id
                      INNER JOIN szektor sz ON allashirdetes.szektor_id = sz.szektor_id
                      INNER JOIN pozicio p ON allashirdetes.pozicio_id = p.pozicio_id

@@ -25,10 +25,10 @@
             {/if}
         </td>
     </tr>
-    <tr>
+    <!--tr>
         <td>Leírás:</td>
         <td>{strip_tags($pj.ismerteto)}</td>
-    </tr>
+    </tr-->
 </table>
 <div id="allashirdetes-cols">
     <div class="allashirdetes-col">
@@ -64,19 +64,68 @@
             {/foreach}
         </ul>
         {/if}
-        <p class="allashirdetes-label">Munkavégzés jellege</p>
-        <p class="allashirdetes-content">{$pj.munkarend_nev}</p>
+        {if not empty($munkakorok)}
+        <p class="allashirdetes-label">Munkakörök:</p>
+        <ul class="allashirdetes-ul">
+            {foreach from=$munkakorok item=mk}
+            <li>{$mk.munkakor_nev}</li>
+            {/foreach}
+        </ul>
+        {/if}
+        
+        {if not empty($pj.munkavegzes_jellege)}
+            <p class="allashirdetes-label">Munkavégzés jellege</p>
+            <p class="allashirdetes-content">{$pj.munkavegzes_jellege}</p>
+        {/if}
+        {if not empty($pj.szektor_nev)}
+            <p class="allashirdetes-label">Szektor:</p>
+            <p class="allashirdetes-content">{$pj.szektor_nev}</p>
+        {/if}
+        {if not empty($pj.pozicio_nev)}
+            <p class="allashirdetes-label">Pozíció:</p>
+            <p class="allashirdetes-content">{$pj.pozicio_nev}</p>
+        {/if}
     </div>
     <div class="allashirdetes-col">
-        <p class="allashirdetes-label">Munkavégzés helye:</p>
-        <p class="allashirdetes-content">{$pj.cim_varos_nev}</p>
-        <p class="allashirdetes-label">Jelentkezés módja:</p>
-        <p class="allashirdetes-content">{strip_tags($pj.jelentkezes_modja)}</p>
+        {if not empty($pj.cim_varos_nev) && not empty($pj.cim_megye_nev)}
+            <p class="allashirdetes-label">Munkavégzés helye:</p>
+            <p class="allashirdetes-content">{$pj.cim_megye_nev}</p>
+            <p class="allashirdetes-content">{$pj.cim_varos_nev}</p>
+        {/if}
+        {if not empty($pj.jelentkezes_modja)}
+            <p class="allashirdetes-label">Jelentkezés módja:</p>
+            <p class="allashirdetes-content">{strip_tags($pj.jelentkezes_modja)}</p>
+        {/if}
+        {if $pj.jelentkezes_hatarideje != '0000-00-00'}
+            <p class="allashirdetes-label">Jelentkezés határideje:</p>
+            <p class="allashirdetes-content">{$pj.jelentkezes_hatarideje}</p>
+        {/if}
+        {if not empty($pj.munkaber)}
+            <p class="allashirdetes-label">Munkabér:</p>
+            <p class="allashirdetes-content">{$pj.munkaber}</p>
+        {/if}
+        {if not empty($pj.probaido)}
+            <p class="allashirdetes-label">Próbaidő:</p>
+            <p class="allashirdetes-content">{$pj.probaido}</p>
+        {/if}
+        {if $pj.munkakezdes_ideje != '0000-00-00'}
+            <p class="allashirdetes-label">Munkakezdés ideje:</p>
+            <p class="allashirdetes-content">{$pj.munkakezdes_ideje}</p>
+        {/if}
+        {if not empty($pj.egyeb)}
+            <p class="allashirdetes-label">Egyéb:</p>
+            <p class="allashirdetes-content">{$pj.egyeb}</p>
+        {/if}
+        {if $pj.letrehozas_timestamp != '0000-00-00'}
+            <p class="allashirdetes-label">Hirdetés feladásának dátuma:</p>
+            <p class="allashirdetes-content">{$pj.letrehozas_timestamp}</p>
+        {/if}
+        
     </div>
     <div class="clear"></div>
 </div>
-<div>{$pj.elvarasok}</div>
-<div>{$pj.tevekenyseg}</div>
+<!--div>{$pj.elvarasok}</div-->
+<!--div>{$pj.tevekenyseg}</div-->
 
 {if $markable}
 <form name="{$FormName}" action="" method="post" enctype="multipart/form-data">

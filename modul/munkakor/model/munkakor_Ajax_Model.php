@@ -104,39 +104,46 @@ class Munkakor_Ajax_Model extends AjaxModel
     
     public function addNewMunkakor($katID,$name,$uID){
         try{
-            
+            $returnArr = array();
             if((int)$katID < 1){
-                return "Válasszon kategóriát!";
+                $returnArr['message'] = "Válasszon kategóriát!";
+                return $returnArr;
             }
             if(strlen($name) < 5){
-                return "Adja meg a munkakör nevét! (Min. 5 karakter)";
+                $returnArr['message'] = "Adja meg a munkakör nevét! (Min. 5 karakter)";
+                return $returnArr;
             }
             
             $exists = $this->checkIfMunkakorExistsInCat($name,$katID);
 
             if($exists === "Hiba"){
-                return "Hiba történt!";
+                $returnArr['message'] = "Hiba történt!";
+                return $returnArr;
             }
             if ($exists === "exists"){
-                return"Már létezik ilyen nevű munkakör a kategóriában";
+                $returnArr['message'] = "Már létezik ilyen nevű munkakör a kategóriában";
+                return $returnArr;
             }else
             if ($exists === "notexists") {
                 $query = "INSERT INTO munkakor
                             SET munkakor_nev = '".mysql_real_escape_string($name)."',
                                 munkakor_create_date = NOW(),
                                 munkakor_letrehozo = ".(int)$uID.", nyelv_id = 1, munkakor_link = '".Create::remove_accents(mysql_real_escape_string($name))."'
-                    
                             ";
                 $ins = $this->_DB->prepare($query)->query_insert();
                 
                 $query = "INSERT INTO munkakor_attr_kategoria SET munkakor_id = ".(int)$ins.", munkakor_attr_kategoria_id = ".(int)$katID."";
                 $this->_DB->prepare($query)->query_insert();
-                return "OK";
+                
+                $returnArr['message'] = "OK";
+                $returnArr['ID'] = $ins;
+                $returnArr['nev'] = mysql_real_escape_string($name);
+                return $returnArr;
             }
             
         }catch(Exception_MYSQL $e){
-            
-            return "Hiba történt!";
+            $returnArr['message'] = "Hiba történt!";
+            return $returnArr;
         }
     }
     

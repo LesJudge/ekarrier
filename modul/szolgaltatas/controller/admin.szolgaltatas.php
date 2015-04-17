@@ -40,5 +40,20 @@ class Szolgaltatas_Admin_Controller extends Admin_List
                 unset($_SESSION[$this->_name]['FilterStatus']);
                 break;
         }
+        
+        // Típus filter
+        $filterTipus = $this->getItemValue('FilterTipus');
+        switch($filterTipus)
+        {
+            case 1:
+                $this->setWhereInput("szolgaltatas_tipus = 'ugyfel'",'FilterTipus');
+                break;
+            case 2:
+                $this->setWhereInput("szolgaltatas_tipus = 'ceg'",'FilterTipus');
+                break;
+            default:
+                unset($_SESSION[$this->_name]['FilterTipus']);
+                break;
+        }
     }
 }

@@ -29,15 +29,32 @@ class Allashirdetes_Site_Show_Model extends Model
                         c.nev,
                         c.link,
                         cv.cim_varos_nev,
-                        m.nev
+                        cm.cim_megye_nev,
+                        a.munkavegzes_jellege,
+                        a.munkaber,
+                        a.probaido,
+                        a.egyeb,
+                        a.jelentkezes_hatarideje,
+                        a.munkakezdes_ideje,
+                        a.egyeb,
+                        a.letrehozas_timestamp,
+                        sz.szektor_nev,
+                        p.pozicio_nev
+                        
                   FROM
                         allashirdetes a
                             LEFT JOIN
                         ceg c ON a.ceg_id = c.ceg_id
                             LEFT JOIN
                         cim_varos cv ON a.cim_varos_id = cv.cim_varos_id
-                            INNER JOIN
-                        munkarend m ON a.munkarend_id = m.munkarend_id
+                            LEFT JOIN
+                        cim_megye cm ON a.cim_megye_id = cm.cim_megye_id
+                            LEFT JOIN
+                        szektor sz ON sz.szektor_id = a.szektor_id
+                            LEFT JOIN
+                        pozicio p ON p.pozicio_id = a.pozicio_id
+                            /*INNER JOIN
+                        munkarend m ON a.munkarend_id = m.munkarend_id*/
                   WHERE
                         a.allashirdetes_id = " . (int)$id . "
                             AND a.allashirdetes_aktiv = 1

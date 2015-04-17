@@ -24,6 +24,8 @@ $(function() { {$FormScript}
                 
                 {include file='modul/user/view/partial/site.user_edit_form_fields.tpl'}
                 
-                <button class="submit btn" name="{$BtnSave}" id="{$BtnSave}" value="reg" type="submit">Módosít</button>
+				<div class="form-row">
+                <button class="submit btn btn-primary" name="{$BtnSave}" id="{$BtnSave}" value="reg" type="submit">Módosít</button>
+				</div>
         </form>
 </div>

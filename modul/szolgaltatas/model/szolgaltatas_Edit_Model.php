@@ -14,6 +14,7 @@ class Szolgaltatas_Edit_Model extends Admin_Edit_Model
         'nev' => 'TxtNev',
         'leiras' => 'TxtLeiras',
         'szolgaltatas_aktiv' => 'ChkAktiv',
+        'szolgaltatas_tipus' => 'ChkTipus',
     );
     /**
      * Nyelv ellenőrzés felülírása, kikerülése. Erre azért van szükség, mert a táblában nincs nyelv_id mező.
@@ -42,11 +43,21 @@ class Szolgaltatas_Edit_Model extends Admin_Edit_Model
         );
         // Leírás
         $this->addItem('TxtLeiras')->_verify['string']=true;
+        
+        $tipus = $this->addItem("ChkTipus");
+        $tipus->_verify['string']=true;
+        $tipus->_select_value = array("ugyfel" => "Ügyfél", "ceg" => "Cég");
+    }
+    
+    public function __newData() {
+        parent::__newData();
+        $this->_params["ChkTipus"]->_value = 'ugyfel';
     }
     /**
      * Egyéb adatok lekérdezése.
      * @return array
      */
+    
     public function __editData()
     {
         parent::__editData();
@@ -72,6 +83,7 @@ class Szolgaltatas_Edit_Model extends Admin_Edit_Model
      */
     public function __update()
     {
+        
         parent::__update(',modositas_timestamp = NOW()
                           ,modositas_szama = modositas_szama + 1
                           ,modosito_id = ' . UserLoginOut_Controller::$_id);

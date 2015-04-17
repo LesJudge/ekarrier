@@ -49,7 +49,7 @@ class MunkakorAjax_Site_Controller extends AjaxController
                             }
                             
                             $resp = $this->_model->addNewMunkakor($subcatID,$munkakorName,UserLoginOut_Site_Controller::$_id);
-                            echo $resp;
+                            echo json_encode($resp);
                             break;
                         default:
                             throw new \Exception;

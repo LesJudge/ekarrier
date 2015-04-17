@@ -224,9 +224,9 @@ abstract class AllashirdetesBaseListController extends Admin_List
         try{
             $query = "SELECT c.nev AS cegnev, c.ceg_id AS ID, c.link AS link
                       FROM ceg c
-                      INNER JOIN ceg_attr_tevkor catk ON catk.ceg_id = c.ceg_id
+                      LEFT JOIN ceg_attr_tevkor catk ON catk.ceg_id = c.ceg_id
                       INNER JOIN ceg_adatok ca ON ca.ceg_id = c.ceg_id
-                      INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = catk.tevkor_id
+                      LEFT JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = catk.tevkor_id
                       LEFT JOIN ceg_szekhely csz ON csz.ceg_id = c.ceg_id
                       LEFT JOIN ceg_telephely ct ON ct.ceg_id = c.ceg_id
                       LEFT JOIN cim_varos cv1 ON cv1.cim_varos_id = csz.cim_varos_id

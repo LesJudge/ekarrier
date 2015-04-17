@@ -102,60 +102,18 @@
 			
 	<div class="site_body_container start">	
 		<div class="site_content site_center">  
-			<div class="site_content_inner">           
-				
-					{$ErrorMessage_}
-					<div class="mainContent">
-						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="h1-table">
-							<tr>
-							<td class="h1-td">&nbsp;</td>
-							<td class="h1-td-center"><h1>{$PageName}</h1></td>
-							<td class="h1-td">&nbsp;</td>
-							</tr>
-						</table>
-									
-						{$text}
-					</div>
-					
-					<div class="jobCircle-cont">
-						<a href="{$DOMAIN}tevekenysegikor-kereso/" class="jobCircle jobCircle-1">
-							<span class="jobCircle-content">								
-								<span class="jobCircle-text-1">Ismerd meg a munkakört</span>
-								<span class="jobCircle-text-2">Biztos ezt szeretnéd csinálni?</span>
-							</span>							
-						</a>	
-						<a href="{$DOMAIN}kompetenciak/tesztek" class="jobCircle jobCircle-2">									
-							<span class="jobCircle-content">
-								<span class="jobCircle-text-1">Vizsgáld meg<br /> magad!</span>
-								<span class="jobCircle-text-2">Biztos alkalmas vagy<br /> erre a feladatra?</span>
-							</span>						
-						</a>
-						<a href="{$DOMAIN}allaskereses/" class="jobCircle jobCircle-3">						
-							<span class="jobCircle-content">								
-								<span class="jobCircle-text-1">Keress az<br /> álláshírdetések<br/> között!</span>
-								<span class="jobCircle-text-2">Válassz munkáltatót!</span>
-							</span>							
-						</a>	
-						<a href="{$DOMAIN}kompetenciak/kompetenciarajz/" class="jobCircle jobCircle-4">
-							<span class="jobCircle-content">							
-								<span class="jobCircle-text-1">Készítsd el<br /> kompetencia<br /> profilod!</span>
-								<span class="jobCircle-text-2">Hogy rád találjon a munáltató!</span>
-							</span>								
-						</a>									
-						<a href="{$DOMAIN}keszulj-az-allasinterjura" class="jobCircle jobCircle-5">
-							<span class="jobCircle-content">								
-								<span class="jobCircle-text-1">Készülj az<br /> állásinterjúra!</span>
-								<span class="jobCircle-text-2">További segítség a sikeres elhelyezkedéshez</span>
-							</span>								
-						</a>					
-						<a href="{$DOMAIN}en/" class="jobCircle jobCircle-6">						
-							<span class="jobCircle-content">
-								<span class="jobCircle-text-1">ÉN<br/>Profil</span>								
-							</span>							
-						</a>
-					</div>	
-					<div class="clear"></div>
-				
+			<div class="site_content_inner">  
+				<div class="mainContent">         
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="h1-table">
+						<tr>
+						<td class="h1-td">&nbsp;</td>
+						<td class="h1-td-center"><h1>{$PageName}</h1></td>
+						<td class="h1-td">&nbsp;</td>
+						</tr>
+					</table>	
+					{$ErrorMessage}					
+					{include file='modul/tevekenysegikor/view/site.tevekenysegikor_start.tpl'}
+				</div>
 				<div class="clear"></div>	
 			</div>
 		</div>	

@@ -244,6 +244,7 @@ function siteTabPager(){
 $(function() {
 	
 	customIn=new customInputs({
+		/*
 		select : true,
 		checkbox : true,
 		allCheckbox : false,
@@ -251,6 +252,21 @@ $(function() {
 		radio : true,		
 		allRadio : true,
 		file : true	
+		*/
+		
+		
+		
+		select : true,
+		selectType_1 : ".select-type-1",	
+		selectType_2 : ".select-type-2",	
+		allSelect : false,	
+		checkbox : true,
+		allCheckbox : true,
+		regularCheckbox : true,
+		radio : true,		
+		file : true
+	
+		
 	});
 	customIn.start();
 	

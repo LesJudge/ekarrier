@@ -41,7 +41,7 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         'pozicio_id' => 'SelPozicio',
         'cim_megye_id' => 'SelMegye',
         'cim_varos_id' => 'SelVaros',
-        'munkarend_id' => 'SelMunkarend',
+        //'munkarend_id' => 'SelMunkarend',
         'mas_hirdetese' => 'ChkMasHirdetese',
         'mas_hirdetese_link' => 'TxtMasHirdeteseLink',
         'ceg_id' => 'SelCeg',
@@ -52,12 +52,15 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         'munkaber' => 'TxtMunkaber',
         'probaido' => 'TxtProbaido',
         'egyeb' => 'TxtEgyeb',
-        'ismerteto' => 'TxtIsmerteto',
+        //'ismerteto' => 'TxtIsmerteto',
         'jelentkezes_modja' => 'TxtJelMod',
-        'utca' => 'TxtUtca',
-        'hazszam' => 'TxtHazszam',
+        'jelentkezes_hatarideje' => 'DateJelentkezesHatarideje',
+        'munkakezdes_ideje' => 'DateMunkakezdesIdeje',
+        //'utca' => 'TxtUtca',
+        //'hazszam' => 'TxtHazszam',
         'lejarati_datum' => 'DateLejar',
-        'ertesites_mikor' => 'SelErtesites',
+        'kezdes_datum' => 'DateKezdes',
+        //'ertesites_mikor' => 'SelErtesites',
         'ellenorzott' => 'ChkEllenorzott',
         'allashirdetes_aktiv' => 'ChkAktiv',
     );
@@ -100,6 +103,7 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         // Más hirdetése link
         $this->addItem('TxtMasHirdeteseLink');
         // Munkarend
+        /*
         $mr = $this->addItem('SelMunkarend');
         $mr->_verify['select'] = true;
         $mr->_select_value = $this->getSelectValues(
@@ -110,10 +114,20 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
             false,
             array('' => '--Válasszon munkarendet!--')
         );
+        */
         // Ismertető
-        $this->addItem('TxtIsmerteto')->_verify['string'] = true;
+        //$this->addItem('TxtIsmerteto')->_verify['string'] = true;
         // Jelentkezés módja
-        $this->addItem('TxtJelMod')->_verify['string'] = true;
+        $this->addItem('TxtJelMod');
+        // Jelentkezés határideje
+        $jelentkezesDeadline = $this->addItem('DateJelentkezesHatarideje');
+        $jelentkezesDeadline->_verify['date'] = true;
+        
+        //Munkakezdés ideje
+        $munkakezdesDeadline = $this->addItem('DateMunkakezdesIdeje');
+        $munkakezdesDeadline->_verify['date'] = true;
+        
+        
         // Megye.
         $ps = array('' => '--Kérem, válasszon!--');
         $county = $this->addItem('SelMegye');
@@ -138,14 +152,18 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
             $ps
         );
         // Utca
-        $this->addItem('TxtUtca');
+        //$this->addItem('TxtUtca');
         // Házszám
-        $this->addItem('TxtHazszam');
+        //$this->addItem('TxtHazszam');
         // Lejárati dátum
         $deadline = $this->addItem('DateLejar');
-        $deadline->_verify['required'] = true;
         $deadline->_verify['date'] = true;
+        
+        $start = $this->addItem('DateKezdes');
+        $start->_verify['date'] = true;
+        
         // Értesítés
+        /*
         $notification = $this->addItem('SelErtesites');
         $notification->_verify['select'] = true;
         $notification->_select_value = $ps + array(
@@ -153,6 +171,7 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
             self::NOTIFICATION_EXPIRE => 'Lejáratkor',
             self::NOTIFICATION_WEEKLY => 'Hetente'
         );
+        */
         // Ellenőrzött álláshirdetés
         $this->addItem('ChkEllenorzott');
         // Egyedi álláshirdetés-e.
@@ -246,12 +265,16 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     {
         $jobId = &$this->insertID;
         $userId = $this->getUserId();
+        if(empty($this->_params['DateKezdes']->_value)){
+            $this->_params['DateKezdes']->_value = date("Y-m-d");
+        }
         parent::__insert(',letrehozo = ' . $userId . ', modosito = ' . $userId);
         // sheepIt adatok mentése.
         $this->saveAllMunkakor($jobId);
         $this->saveAllAmitKinalunk($jobId);
         $this->saveAllElvaras($jobId);
         $this->saveAllFeladat($jobId);
+        $this->saveAllKompetencia($jobId);
     }
     /**
      * Álláshirdetés módosítása.
@@ -259,6 +282,11 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
     public function __update($sets = '')
     {
         $jobId = $this->modifyID;
+        
+        if(empty($this->_params['DateKezdes']->_value)){
+            $this->_params['DateKezdes']->_value = date("Y-m-d");
+        }
+        
         // sheepIt adatok mentése.
         $this->saveAllMunkakor($jobId, true);
         $this->saveAllAmitKinalunk($jobId, true);

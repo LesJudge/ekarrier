@@ -1,3 +1,126 @@
+<script type="text/javascript" src="../js/pajinate/jquery.pajinate.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+     $('#paging_container1').pajinate({ items_per_page : 10,
+                                       nav_label_first : 'Első',
+                                       nav_label_prev : 'Előző',
+                                       nav_label_next : 'Következő',
+                                       nav_label_last : 'Utolsó' 
+                                   });
+                                   
+     $('#paging_container2').pajinate({ items_per_page : 10,
+                                       nav_label_first : 'Első',
+                                       nav_label_prev : 'Előző',
+                                       nav_label_next : 'Következő',
+                                       nav_label_last : 'Utolsó' 
+                                   });
+
+      
+     $(".letter").each(function(){
+        var val = $("#{$FilterLetter.name}").attr('value');
+        if(val == $(this).text().toLowerCase()){
+            $(this).addClass("activeLetter");
+        }
+     });
+     
+     $('#{$FilterTevCsoport.name}').on('change',function(){
+        var selectedID = $(this).find('option:selected').attr('value');
+        
+        if(parseInt(selectedID) > 0){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbygroup&gid='+selectedID, 
+                dataType: 'json', 
+                success: function(data){
+                    resetCircleOpts();
+                    filterByGroup(data);
+                }, 
+                error: function(){
+                    resetCircleOpts();
+                }
+            });
+        }else{
+            resetCircleOpts();
+        }
+    });
+    
+    
+    $('#{$FilterTevKor.name}').on('change',function(){
+        var selectedID = $(this).find('option:selected').attr('value');
+        
+        if(parseInt(selectedID) > 0){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbycircle&cid='+selectedID, 
+                dataType: 'json', 
+                success: function(data){
+                    resetGroupOpts();
+                    filterByCircle(data);
+                }, 
+                error: function(){
+                    resetGroupOpts();
+                }
+            });
+        }else{
+            resetGroupOpts();
+        }
+    });
+    
+ });
+ 
+$(".letter").click(function(){
+    $('.activeLetter').removeClass('activeLetter');
+    $(this).addClass('activeLetter');
+    var letter = $(this).text().toLowerCase();
+    $('#{$FilterLetter.name}').attr('value',letter);
+});
+
+
+function filterByGroup(data){
+    var IDs = new Array();
+    
+    for(i=0; i<data.length; i++){
+        IDs.push(data[i]['ID']);
+    }
+
+    $('#{$FilterTevKor.name} option').each(function(){
+        if(parseInt($(this).attr('value')) != -1){
+            if($.inArray($(this).attr('value'),IDs) == -1){
+                $(this).attr('disabled',true);
+                $(this).addClass('disabledItemCircle');
+            }
+        }
+    });
+}
+
+function filterByCircle(data){
+    var IDs = new Array();
+    
+    for(i=0; i<data.length; i++){
+        IDs.push(data[i]['ID']);
+    }
+
+    $('#{$FilterTevCsoport.name} option').each(function(){
+        if(parseInt($(this).attr('value')) != -1){
+            $(this).removeAttr("selected");
+            if($.inArray($(this).attr('value'),IDs) == -1){
+                $(this).attr('disabled',true);
+                $(this).addClass('disabledItemGroup');
+            }else{
+                $(this).attr("selected",true);
+            }   
+        }
+    });
+}
+
+function resetCircleOpts(){
+    $('.disabledItemCircle').removeClass('disabledItemCircle');
+    $('#{$FilterTevKor.name} option').attr('disabled', false);
+}
+
+function resetGroupOpts(){
+    $('.disabledItemGroup').removeClass('disabledItemGroup');
+    $('#{$FilterTevCsoport.name} option').attr('disabled', false);
+}
+ </script>
 {if not $isArchive}
 <!--div>
     <a href="{$DOMAIN}allaskereses/archivum/" class="bigBtn-link">Archívum</a>
@@ -117,115 +240,9 @@
 }
  </style>   
         
- <script type="text/javascript">
- $(document).ready(function(){
-     $(".letter").each(function(){
-        var val = $("#{$FilterLetter.name}").attr('value');
-        if(val == $(this).text().toLowerCase()){
-            $(this).addClass("activeLetter");
-        }
-     });
-     
-     $('#{$FilterTevCsoport.name}').on('change',function(){
-        var selectedID = $(this).find('option:selected').attr('value');
-        
-        if(parseInt(selectedID) > 0){
-            $.ajax({
-                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbygroup&gid='+selectedID, 
-                dataType: 'json', 
-                success: function(data){
-                    resetCircleOpts();
-                    filterByGroup(data);
-                }, 
-                error: function(){
-                    resetCircleOpts();
-                }
-            });
-        }else{
-            resetCircleOpts();
-        }
-    });
-    
-    
-    $('#{$FilterTevKor.name}').on('change',function(){
-        var selectedID = $(this).find('option:selected').attr('value');
-        
-        if(parseInt(selectedID) > 0){
-            $.ajax({
-                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbycircle&cid='+selectedID, 
-                dataType: 'json', 
-                success: function(data){
-                    resetGroupOpts();
-                    filterByCircle(data);
-                }, 
-                error: function(){
-                    resetGroupOpts();
-                }
-            });
-        }else{
-            resetGroupOpts();
-        }
-    });
-    
- });
  
-$(".letter").click(function(){
-    $('.activeLetter').removeClass('activeLetter');
-    $(this).addClass('activeLetter');
-    var letter = $(this).text().toLowerCase();
-    $('#{$FilterLetter.name}').attr('value',letter);
-});
-
-
-function filterByGroup(data){
-    var IDs = new Array();
-    
-    for(i=0; i<data.length; i++){
-        IDs.push(data[i]['ID']);
-    }
-
-    $('#{$FilterTevKor.name} option').each(function(){
-        if(parseInt($(this).attr('value')) != -1){
-            if($.inArray($(this).attr('value'),IDs) == -1){
-                $(this).attr('disabled',true);
-                $(this).addClass('disabledItemCircle');
-            }
-        }
-    });
-}
-
-function filterByCircle(data){
-    var IDs = new Array();
-    
-    for(i=0; i<data.length; i++){
-        IDs.push(data[i]['ID']);
-    }
-
-    $('#{$FilterTevCsoport.name} option').each(function(){
-        if(parseInt($(this).attr('value')) != -1){
-            $(this).removeAttr("selected");
-            if($.inArray($(this).attr('value'),IDs) == -1){
-                $(this).attr('disabled',true);
-                $(this).addClass('disabledItemGroup');
-            }else{
-                $(this).attr("selected",true);
-            }   
-        }
-    });
-}
-
-function resetCircleOpts(){
-    $('.disabledItemCircle').removeClass('disabledItemCircle');
-    $('#{$FilterTevKor.name} option').attr('disabled', false);
-}
-
-function resetGroupOpts(){
-    $('.disabledItemGroup').removeClass('disabledItemGroup');
-    $('#{$FilterTevCsoport.name} option').attr('disabled', false);
-}
- </script>
         
     {include file='page/all/view/page.message.tpl'}
     {include file='modul/allashirdetes/view/partial/site_allashirdetes_list.tpl'}
-    {include file='page/all/view/page.paging.tpl'} 
+    {*include file='page/all/view/page.paging.tpl'*} 
 </form>

@@ -21,7 +21,8 @@ class CegEdit_Admin_Controller extends Admin_Edit
 {
 
     public $_name = 'CegmEdit';
-
+    public $_multiple_lang = false;
+    
     public function __construct()
     {
         $this->__loadModel('_Edit');

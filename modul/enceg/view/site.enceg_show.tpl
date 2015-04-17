@@ -105,9 +105,7 @@ $(function() { {$FormScript}
 </form>
 -->
 {if $stat|is_array || $activeClientsSum > 0}
-    {$stat.ah}<br/>
-    {$stat.profil}<br/>
-    <div id="slider-vertical" style="height:200px; float:left; margin-top: 25px;"></div>
+    <div id="slider-vertical" style="height:400px; float:left; margin-top: 25px;"></div>
 {/if}
 
 
@@ -136,7 +134,7 @@ $(document).ready(function(){
     
 {if $stat|is_array && $activeClientsSum > 0}
     var maxValue = {$activeClientsSum};
-    var result = {$stat.ah + $stat.profil};
+    var result = {$stat|@count};
     $( "#slider-vertical" ).slider({
               orientation: "vertical",
               range: false,

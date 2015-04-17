@@ -171,25 +171,43 @@ class Enceg_Show_Model extends Page_Edit_Model {
     public function getStat($companyID,$start,$end){
         
         try{
-            $query = "SELECT COUNT(am.ugyfel_id) AS cnt
-                      FROM allashirdetes_megtekintes am
-                      INNER JOIN allashirdetes a ON a.allashirdetes_id = am.allashirdetes_id
-                      WHERE a.ceg_id = ".(int)$companyID." AND am.datum >= '". mysql_real_escape_string($start)."' AND am.datum <= '". mysql_real_escape_string($end)."'
-                        ";
-            $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
-            $ahSzum = $result['cnt'];
+            try{
+                $query = "SELECT am.ugyfel_id AS id
+                          FROM allashirdetes_megtekintes am
+                          INNER JOIN allashirdetes a ON a.allashirdetes_id = am.allashirdetes_id
+                          WHERE a.ceg_id = ".(int)$companyID." AND am.datum >= '". mysql_real_escape_string($start)."' AND am.datum <= '". mysql_real_escape_string($end)."'
+                            ";
+                $resultAh = $this->_DB->prepare($query)->query_select()->query_result_array();
+            }catch(Exception_MYSQL_Null_Rows $e){
+                $resultAh = array();
+            }
+            //$ahSzum = $result['cnt'];
+            try{
+                $query = "SELECT cm.ugyfel_id AS id
+                          FROM ceg_megtekintes cm
+                          WHERE cm.ceg_id = ".(int)$companyID." AND cm.datum >= '". mysql_real_escape_string($start)."' AND cm.datum <= '". mysql_real_escape_string($end)."'
+                            ";
+                $resultProfil = $this->_DB->prepare($query)->query_select()->query_result_array();
+            }catch(Exception_MYSQL_Null_Rows $e){
+                $resultProfil = array();
+            }
+            //$profilSzum = $result['cnt'];
             
-            $query = "SELECT COUNT(cm.ugyfel_id) AS cnt
-                      FROM ceg_megtekintes cm
-                      WHERE cm.ceg_id = ".(int)$companyID." AND cm.datum >= '". mysql_real_escape_string($start)."' AND cm.datum <= '". mysql_real_escape_string($end)."'
-                        ";
-            $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
-            $profilSzum = $result['cnt'];
+            $finalArr = array();
             
-            $return['ah'] = $ahSzum;
-            $return['profil'] = $profilSzum;
+            foreach ($resultAh as $key => $value) {
+                $finalArr[] = $value['id'];
+            }
             
-            return $return;
+            foreach ($resultProfil as $key => $value) {
+                $finalArr[] = $value['id'];
+            }
+            
+            $finalArr = array_unique($finalArr);
+            
+            //$return['ah'] = $ahSzum;
+            //$return['profil'] = $profilSzum;
+            return $finalArr;
         }catch(Exception_MYSQL $e){
             return 'Hiba';
         }

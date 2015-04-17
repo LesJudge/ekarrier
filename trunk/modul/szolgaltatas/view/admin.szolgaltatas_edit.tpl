@@ -30,6 +30,19 @@ $(function() {
                 </div>
                 <div class="clear"></div>
             </div>
+            <div class="field" {if $mode == 'modify'}style=""{/if}>
+                <div class="form_row">
+                    <label>Típus <span class="require">*</span></label>
+                    {if $mode == 'modify'}
+                        <input type="text" id="{$ChkTipus.name}" name="{$ChkTipus.name}" value="{$ChkTipus.activ}" readonly="readonly"/>
+                    {else}
+                        {html_radios name=$ChkTipus.name options=$ChkTipus.values selected=$ChkTipus.activ}
+                    {/if}
+                    
+                    {if isset($ChkTipus.error)}<p class="error small">{$ChkTipus.error}</p>{/if}
+                </div>
+                <div class="clear"></div>
+            </div>
             <div class="field">
                 <div class="form_row">
                     <label>Publikus <span class="require">*</span></label>

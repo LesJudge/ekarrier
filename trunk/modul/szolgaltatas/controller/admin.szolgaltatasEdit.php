@@ -27,6 +27,9 @@ class SzolgaltatasEdit_Admin_Controller extends Admin_Edit
     public function __show()
     {
         parent::__show();
+        if($this->_model->modifyID){
+            $this->_view->assign('mode','modify');
+        }
         $this->_view->assign('recordStatus', $this->_model->modifyID > 0);
         Rimo::$_site_frame->assign('Form', $this->__generateForm('modul/szolgaltatas/view/admin.szolgaltatas_edit.tpl'));
     }

@@ -8,6 +8,7 @@
 </div>
 <div class="clear"></div>
 
+<!--
 <div class="form_row">
     <label for="{$SelMunkarend.name}">
         Munkarend
@@ -17,6 +18,7 @@
     {if isset($SelMunkarend.error)}<p class="error small">{$SelMunkarend.error}</p>{/if}
 </div>
 <div class="clear"></div>
+-->
 
 <div class="form_row">
     <label for="{$SelSzektor.name}">
@@ -61,15 +63,45 @@
 <div class="clear"></div>
 
 <div class="form_row">
+    <label for="{$DateMunkakezdesIdeje.name}">
+        Munkakezdés ideje
+    </label>
+    {if $DateMunkakezdesIdeje.activ == '0000-00-00'}    
+        <input id="{$DateMunkakezdesIdeje.name}" name="{$DateMunkakezdesIdeje.name}" type="text" value="" />
+    {else}
+        <input id="{$DateMunkakezdesIdeje.name}" name="{$DateMunkakezdesIdeje.name}" type="text" value="{$DateMunkakezdesIdeje.activ}" />
+    {/if}
+    {if isset($DateMunkakezdesIdeje.error)}<p class="error small">{$DateMunkakezdesIdeje.error}</p>{/if}
+</div>
+<div class="clear"></div>
+
+<div class="form_row">
+    <label for="{$DateKezdes.name}">
+        Kezdődátum
+    </label>
+    {if $DateKezdes.activ == '0000-00-00'}    
+        <input id="{$DateKezdes.name}" name="{$DateKezdes.name}" type="text" value="" />
+    {else}
+        <input id="{$DateKezdes.name}" name="{$DateKezdes.name}" type="text" value="{$DateKezdes.activ}" />
+    {/if}
+    {if isset($DateKezdes.error)}<p class="error small">{$DateKezdes.error}</p>{/if}
+</div>
+<div class="clear"></div>
+
+<div class="form_row">
     <label for="{$DateLejar.name}">
         Lejárati dátum
-        <span class="require">*</span>
     </label>
-    <input id="{$DateLejar.name}" name="{$DateLejar.name}" type="text" value="{$DateLejar.activ}" />
+    {if $DateLejar.activ == '0000-00-00'}    
+        <input id="{$DateLejar.name}" name="{$DateLejar.name}" type="text" value="" />
+    {else}
+        <input id="{$DateLejar.name}" name="{$DateLejar.name}" type="text" value="{$DateLejar.activ}" />
+    {/if}
     {if isset($DateLejar.error)}<p class="error small">{$DateLejar.error}</p>{/if}
 </div>
 <div class="clear"></div>
 
+<!--
 <div class="form_row">
     <label for="{$SelErtesites.name}">
         Értesítés
@@ -79,7 +111,7 @@
     {if isset($SelErtesites.error)}<p class="error small">{$SelErtesites.error}</p>{/if}
 </div>
 <div class="clear"></div>
-
+-->
 <div class="form_row">
     <label>Publikus <span class="require">*</span></label>
     <div class="inputItem-group">

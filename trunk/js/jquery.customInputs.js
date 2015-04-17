@@ -39,45 +39,44 @@
 		}
 		
 		
-		$this.selectbox = function() {		
-			var inputs, c, cArr=Array();		
+		$this.selectbox = function() {	
+			var inputs, c, cArr=Array();	
 			
-			inputs=($this.opt.allSelect==true)?$("SELECT"):$(".select");		
-			inputs.each(function(){				
-				$(this).wrap("<span class='select-cont'/>"); 	
-				c=$.trim($(this).attr("class")).toLowerCase();
-				cArr=c.split(' ');
-				for(var i=0; i<=cArr.length-1; i++){
-					if (cArr[i].search(/select-size-/i)!=-1) {
-						$(this).parent().addClass(cArr[i]);	
-					}
-					if (cArr[i].search(/select-type-/i)!=-1) {
-						$(this).parent().addClass(cArr[i]);	
-					}
-				}				
-				if ($(this).find("option:selected").length!=0) { 
-				 	$(this).before("<span class='styled customInput-text'>"+$(this).find("option:selected").text()+"</span><span class='styled-arrow'></span>");
+			if($this.opt.allSelect!=true){
+				if( ($($this.opt.selectType_1).length!==0) && ($($this.opt.selectType_1)!=true) ){					
+					renderSelect($("SELECT"+$this.opt.selectType_1)); 					
+				}if( ($($this.opt.selectType_2).length!==0) && ($($this.opt.selectType_2)!=true) ){					
+					renderSelect($("SELECT"+$this.opt.selectType_2)); 					
 				}
-				$(this).parent().find(".customInput-text").css("font-size",parseInt($(this).height())/2.5+"px");	
-				$(this).css("width",$this.widestObject($(this).find("option"))+$(this).parent().find(".styled-arrow").width()+8);									
-			});	
-			inputs.change(function () { 
-				$(this).parent().find(".styled.customInput-text").text($(this).find("option:selected").text());
-			});			
-			return false;
-		}
-		
-		$this.selectboxInit = function(selectInput) {	
-			if( selectInput.parent().attr('class').indexOf('select-cont') == -1 ){
-				selectInput.wrap("<span class='select-cont'>");
-				if (selectInput.find("option:selected").length!=0) { 
-				 	selectInput.before("<span class='styled customInput-text'>"+selectInput.find("option:selected").text()+"</span><span class='styled-arrow'></span>");
-				}				
-				selectInput.change(function () { 
-					selectInput.parent().find(".styled.customInput-text").text(selectInput.find("option:selected").text());
-				});
 			}
+			else if(opt.allSelect==true){				
+				renderSelect($("SELECT")); 				
+			}
+			
+			function renderSelect(inp){				
+				inp.each(function(e){								
+					$(this).wrap("<span class='select-cont'/>"); 					
+					c=$.trim($(this).attr("class")).toLowerCase();
+					cArr=c.split(' ');
+					for(var i=0; i<=cArr.length-1; i++){					
+						if (cArr[i].search(/select-type-/i)!=-1) {
+							$(this).parent().addClass(cArr[i]);	
+						}
+					}							
+					if ($(this).find("option:selected").length!=0) { 
+						$(this).before("<span class='styled customInput-text'>"+ $(this).find("option:selected").text() +"</span><span class='styled-arrow'></span>");
+					}					
+					$(this).css("width",$this.widestObject($(this).find("option"))+$(this).parent().find(".styled-arrow").width()+parseInt($(this).parent().find(".styled").css("padding-left")));						
+					//$(this).css("width","100%");									
+				});	
+				inp.change(function () { 
+					$(this).parent().find(".styled.customInput-text").text($(this).find("option:selected").text());
+				});	
+				return false;
+			} 
 			return false;
+
+		
 		}
 		
 		$this.checkbox = function() {		

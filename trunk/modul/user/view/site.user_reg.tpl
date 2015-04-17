@@ -19,24 +19,28 @@ $(function() { {*$FormScript*}
 });
 /*]]>*/
 </script>
-<style type="text/css">
-.select-cont {
-    width: 260px;
-}
-</style>
 
 <div class="content clearfix">
     <form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor regisztracio" enctype="multipart/form-data">
-        <div>{$regcontent[0].tartalom_tartalom}</div>
+        
+		<div class="jobFindList-title-cont">
+			<div class="jobFindList-cont">  			
+				<div class="jobFindList-data-1">
+					{$regcontent[0].tartalom_tartalom}
+				</div>	
+			</div>		
+		</div>
+		
         {include file='page/all/view/page.message.tpl'} 
         {include file='modul/user/view/partial/site.user_edit_form_fields.tpl'}
         <div class="feltetelek form-row">
         {$altalanos_szerzodesi_feltetelek}
         </div>
         <div class="clear"></div>
-        <div class="form-row">
-            <label for="{$ChkElfogad.name}" style="width:250px;">Felhasználási feltételeket elfogadom</label>
-            <input type="checkbox" name="{$ChkElfogad.name}" id="{$ChkElfogad.name}" style="height:auto;" value="1" {if $ChkElfogad.activ}checked="checked"{/if}/>
+        <div class="form-row checkbox-row">
+            <label for="{$ChkElfogad.name}">Felhasználási feltételeket elfogadom
+            <input type="checkbox" name="{$ChkElfogad.name}" id="{$ChkElfogad.name}"value="1" {if $ChkElfogad.activ}checked="checked"{/if}/>
+			</label>
             {if isset($ChkElfogad.error)}<div class="ui-state-error">{$ChkElfogad.error}</div>{/if} 
         </div>
         <div class="clear"></div>

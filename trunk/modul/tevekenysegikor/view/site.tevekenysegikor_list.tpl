@@ -149,22 +149,22 @@ function resetGroupOpts(){
         
 		<div class="filter_row_cont">
 			<div class="filter_row">		
-			{html_options id=$FilterCsoport.name name=$FilterCsoport.name options=$FilterCsoport.values selected=$FilterCsoport.activ}
+			{html_options id=$FilterCsoport.name name=$FilterCsoport.name options=$FilterCsoport.values selected=$FilterCsoport.activ class='select-type-1'}
 			<div class="clear"></div> 
 			</div>
 					
 			<div class="filter_row">		
-			{html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ}
+			{html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ class='select-type-1'}
 			<div class="clear"></div> 
 			</div>
 				   
 			<div class="filter_row">		
-			{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ}
+			{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ class='select-type-1'}
 			<div class="clear"></div> 
 			</div>
 					
 			<div class="filter_row">		
-			{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ}
+			{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ class='select-type-1'}
 			<div class="clear"></div> 
 			</div>
     	</div>  
@@ -178,6 +178,7 @@ function resetGroupOpts(){
                     
 </form>
 
+<br/>
 <div class="jobFindList-title-cont"><div class="jobFindList-title">Találati eredmények</div></div>
 <div class="jobFindList-cont">      
     {include file='page/all/view/page.message.tpl'}

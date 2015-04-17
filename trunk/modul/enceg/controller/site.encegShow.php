@@ -59,10 +59,6 @@ class EncegShow_Site_Controller extends Page_Edit
                         $this->_view->assign('companyData',$companyData);
                         
                         
-                        
-                        
-                        
-                        
                         //SEO
                         $seo = seo_Site_Model::model()->getSeoItemByKey('profil_ceg_en',$lId);
                         Rimo::$_site_frame->assign('PageName',$seo['seo_nev']);

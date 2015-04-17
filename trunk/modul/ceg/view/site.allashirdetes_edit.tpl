@@ -44,7 +44,7 @@ $(document).ready(function(){
 							<div class="siteTab" siteTab-bredcrumb="Feladatok">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_feladatok.tpl"}</div>
                                                         <div class="siteTab" siteTab-bredcrumb="Kompetenciák">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_kompetenciak.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Amit kínálunk">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_amit_kinalunk.tpl"}</div>
-							<div class="siteTab" siteTab-bredcrumb="Ismertető">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_ismerteto.tpl"}</div>
+							<!--div class="siteTab" siteTab-bredcrumb="Ismertető">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_ismerteto.tpl"}</div-->
 							<div class="siteTab" siteTab-bredcrumb="Jelentkezés módja">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_jelentkezes_modja.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Munkavégzés helye">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_munkavegzes_helye.tpl"}</div>							
 						</div>
@@ -81,7 +81,7 @@ $(function() {
     var date = new Date();
     date.setDate(date.getDate() + 7);
     
-    $("#{$DateLejar.name}").datepicker({
+    $("#{$DateLejar.name}, #{$DateJelentkezesHatarideje.name}, #{$DateMunkakezdesIdeje.name}, #{$DateKezdes.name}").datepicker({
         dateFormat: "yy-mm-dd",
         minDate: date
     });

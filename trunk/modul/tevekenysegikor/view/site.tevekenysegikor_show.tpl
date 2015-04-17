@@ -129,19 +129,25 @@
 				<div class="jobOffersList">
 				<form action="" method="post" name="{$FormName}" id="{$FormName}">
 					Megjelölve ( {$markedWithCompRajz} )
-					<button  class="submit btn ek-dolgozni-szeretnek-btn" name="{$BtnRemoveTevekenysegikor}" id="{$BtnRemoveTevekenysegikor}" type="submit" >Mégsem szeretnék ebben a tevékenységi körben dolgozni!</button>
+					<button  class="submit btn btn-block" name="{$BtnRemoveTevekenysegikor}" id="{$BtnRemoveTevekenysegikor}" type="submit" >Mégsem szeretnék ebben a tevékenységi körben dolgozni!</button>
 				</form>
 				</div>    
 			{elseif $marked == "unmarked"}
-				<div class="jobOffersList">
+				<div class="row">
 					<form action="" method="post" name="{$FormName}" id="{$FormName}">
-						<select name="kRajzok">
-							<option value="">--Válasszon kompetenciarajzai közül!--</option>
-						   {foreach from=$kompetenciaRajzok item=kr}
-								<option value="{$kr.ID}">{$kr.nev}</option>
-						   {/foreach}
-						</select>
-						<button class="submit btn ek-dolgozni-szeretnek-btn" name="{$BtnAddTevekenysegikor}" id="{$BtnAddTevekenysegikor}" type="submit">Én is dolgozni szeretnék ebben a tevékenységi körben!</button>
+						<div class="form-row">
+							<select name="kRajzok" class="select-type-1">
+								<option value="">--Válasszon kompetenciarajzai közül!--</option>
+							   {foreach from=$kompetenciaRajzok item=kr}
+									<option value="{$kr.ID}">{$kr.nev}</option>
+							   {/foreach}
+							</select>
+							<div class="clear"></div>
+						</div>
+						<div class="form-row">
+							<button class="submit btn btn-block " name="{$BtnAddTevekenysegikor}" id="{$BtnAddTevekenysegikor}" type="submit">Én is dolgozni szeretnék ebben a tevékenységi körben!</button>
+							<div class="clear"></div>
+						</div>
 					</form>
 				</div>
 			{/if}			

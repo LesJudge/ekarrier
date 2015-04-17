@@ -49,6 +49,10 @@ class AllashirdetesShow_Site_Controller extends RimoController
             $this->_view->assign('feladatok', $aem->findFeladatByJobId($pjId));
             $this->_view->assign('kompetenciak', $this->_model->findKompetenciaByJobId($pjId));
             $this->_view->assign('amitKinalunk', $aem->findAmitKinalunkByJobId($pjId));
+            $mks = $aem->findMunkakorByJobId($pjId);
+            $this->_view->assign('munkakorok', $mks);
+            
+            
             $this->_view->assign('pj', $pj);
             
             // Ha be van jelentkezve a felhasználó, akkor megvizsgálja, hogy megjelölte-e már az álláshirdetést.

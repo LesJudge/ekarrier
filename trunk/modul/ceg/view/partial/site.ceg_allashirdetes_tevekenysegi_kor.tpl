@@ -16,14 +16,18 @@
         
        $.ajax({
             url: '{$DOMAIN}ajax.php?m=munkakor&al=ajax&method=addNewMunkakor&subcatID='+subcatID+'&munkakorName='+name+'', 
-            dataType: 'text', 
+            dataType: 'json', 
             contentType:"application/x-www-form-urlencoded; charset=UTF-8",
             success: function(data){
-                if(data === 'OK'){
+                console.log(data);
+                if(data['message'] === 'OK'){
                     alert('Sikeres felvitel!');
+                    $(o).parent().parent().find('.fakeName').attr('value',data['nev']);
+                    $(o).parent().parent().find('.job-select-id').attr('value',data['ID']);
                     $(o).parent().parent().find('.munkakor_al_id').trigger('change');
+                    $(o).parent().hide();
                 }else{
-                    alert(data);
+                    alert(data['message']);
                 }
             }, 
             error: function(){
@@ -55,7 +59,7 @@
 				</select>
 				<div class="clear"></div>
 				
-				<input id="tkorForm_#index#_munkakor_nev" name="fake" class="job-select-name" type="text" />
+				<input id="tkorForm_#index#_munkakor_nev" name="fake" class="job-select-name fakeName" type="text" />
 				<div class="clear"></div>
                                
                                 <div onclick="$(this).next().toggle()">Új munkakör</div>

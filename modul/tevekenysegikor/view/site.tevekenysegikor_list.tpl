@@ -41,18 +41,14 @@ $(document).ready(function(){
         }else{
             resetGroupOpts();
         }
-        
-
-    });
+      });
    
     {if $jumpToAnc == '1'}
         $('html, body').animate({
             scrollTop: $('#anc').offset().top
         }, 1);
     {/if}
-        
-    
-
+ 
 });
 
 function filterByGroup(data){
@@ -102,9 +98,6 @@ function resetGroupOpts(){
     $('.disabledItemGroup').removeClass('disabledItemGroup');
     $('#{$FilterCsoport.name} option').attr('disabled', false);
 }
-
-
-
 
 </script>
 
@@ -185,7 +178,7 @@ function resetGroupOpts(){
     {if not empty($Lista)}
     {foreach from=$Lista item=munkakor}
     <div class="jobFindList-block">
-        <span class="jobFindList-item-type-1">{$munkakor.munkakor_nev}</span> - {$munkakor.korCim} - {$munkakor.csoportCim} - <span class="badge">{$munkakor.subCatID}</span>
+        <span class="jobFindList-item-type-1">{$munkakor.munkakor_nev}</span> - {$munkakor.korCim} - {$munkakor.csoportCim}
         <a href="{$DOMAIN}tevekenysegikor/{$munkakor.tevkorLink}" class="btn btn-primary btn-sm">Részletek</a>
         <div class="clear"></div>
     </div>

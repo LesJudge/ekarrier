@@ -30,8 +30,8 @@ class ProjektEdit_Admin_Controller extends Admin_Edit
         parent::__show();
         $this->_view->assign('recordStatus', $this->_model->modifyID > 0);
         $this->_view->assign('client', new \Uniweb\Module\Ugyfel\Model\ActiveRecord\Client);
-        $this->_view->assign('laborMarket', new LaborMarket);
-        $this->_view->assign('projectInformation', new ProjectInformation);
+        $this->_view->assign('laborMarket', new \Uniweb\Module\Ugyfel\Model\ActiveRecord\LaborMarket);
+        $this->_view->assign('projectInformation', new \Uniweb\Module\Ugyfel\Model\ActiveRecord\ProjectInformation);
         Rimo::$_site_frame->assign(
             'Form',
             $this->__generateForm('modul/projekt/view/admin.projekt_edit.tpl')

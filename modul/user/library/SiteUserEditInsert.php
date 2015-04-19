@@ -29,6 +29,7 @@ class SiteUserEditInsert extends \AttachedUserInsert
             $params['TxtTelszamMobil2']->_value,
             $userId
         );
+        /*
         // Születési adatok mentése.
         $this->insertBirthData(
             $clientId, 
@@ -90,6 +91,7 @@ class SiteUserEditInsert extends \AttachedUserInsert
         $this->insertTabComment($clientId, 2, '', $userId);
         $this->insertTabComment($clientId, 8, '', $userId);
         $this->insertTabComment($clientId, 4, '', $userId);
+        */
         return $clientId;
     }
     /**

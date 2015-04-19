@@ -11,26 +11,17 @@
 <div class="clear"></div>
 {/if}
 
-
 <div>{$text}</div>
 
-<div class="jobFindList-cont">
-	<div class="jobFindList-data">	
-		<ul id="myComps" class='sortable2 sortedUL'>
-			{foreach from=$compRajzCompetences item=val}
-			<li class='fixed'>
-				<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-				<div class='myComp'>{$val['kompetencia_nev']}</div>			
-				<div class="clear"></div>
-				<div>
-                                {$val['valasz']}
-				</div>				
-			</li>
-			{/foreach}
-		</ul>	
-	</div>
-	<div class="clear"></div>
-</div> 
+{foreach from=$compRajzCompetences item=val}	
+<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">{$val['kompetencia_nev']}</div><i class="write-icon"></i></div>
+<div class="jobFindList-cont">   
+	<div class="jobFindList-data-1">
+		{$val['valasz']}
+	</div>		
+</div>
+{/foreach}	
+
 
 <form id="compDraw" name="compDraw" action="" method="post">
     {if $loggedInAs == 'company'}

@@ -15,6 +15,10 @@ function findJobIds(selector) {
  * @returns {void}
  */
 function updateExpectationsAndTasks(jobIds, expectationsSelector, tasksSelector) {
+    //console.log('updateExpectationsAndTasks');
+    //console.log(jobIds);
+    //console.log($(expectationsSelector).length);
+    //console.log($(tasksSelector).length);
     $.ajax({
         async: false,
         type: "POST",
@@ -28,6 +32,8 @@ function updateExpectationsAndTasks(jobIds, expectationsSelector, tasksSelector)
             feladatOptions = data['feladatok'];
         }
     });
+    //feladatOptions = feladatOptions;
+    //console.log(feladatOptions);
     $(expectationsSelector).autocomplete("option", "source", elvarasOptions);
     $(tasksSelector).autocomplete("option", "source", feladatOptions);
 }
@@ -57,7 +63,9 @@ function sheepItJobsAfterAdd (newForm, tks, onExists, onNotExists, expSelector, 
     newForm.find(".job-select-name").bind("autocompletechange", function( event, ui ) {
         var jobIds = findJobIds(".job-select-id");
         if ($.isPlainObject( ui )) {
-            jobIds.push(+ui.item.value);
+            if (ui.item !== null) {
+                jobIds.push(+ui.item.value);
+            }
         }
         updateExpectationsAndTasks(jobIds, expSelector, tasksSelector);
     });

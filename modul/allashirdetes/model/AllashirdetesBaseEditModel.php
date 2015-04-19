@@ -642,9 +642,11 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         if ($deleteBefore === true) {
             $this->deleteAllMunkakorByJobId($jobId);
         }
-        $tks = $_POST[self::PI_TKOR];
-        foreach ($tks as $tk) {
-            $this->saveMunkakor($jobId, $tk['munkakor_id']);
+        $tks = isset($_POST[self::PI_TKOR]) ? $_POST[self::PI_TKOR] : array();
+        if (is_array($tks) && !empty($tks)) {
+            foreach ($tks as $tk) {
+                $this->saveMunkakor($jobId, $tk['munkakor_id']);
+            }
         }
     }
     
@@ -653,10 +655,11 @@ abstract class AllashirdetesBaseEditModel extends Admin_Edit_Model
         if ($deleteBefore === true) {
             $this->deleteAllKompetenciaByJobId($jobId);
         }
-        //print_r($_POST);
-        $kompetenciak = $_POST[self::PI_KOMPETENCIAK];
-        foreach ($kompetenciak as $kompetencia) {
-            $this->saveKompetencia($jobId, $kompetencia['kompetencia_id']);
+        $kompetenciak = isset($_POST[self::PI_KOMPETENCIAK]) ? $_POST[self::PI_KOMPETENCIAK] : array();
+        if (is_array($kompetenciak) && !empty($kompetenciak)) {
+            foreach ($kompetenciak as $kompetencia) {
+                $this->saveKompetencia($jobId, $kompetencia['kompetencia_id']);
+            }
         }
     }
     

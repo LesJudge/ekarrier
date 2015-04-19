@@ -63,6 +63,8 @@ try {
                       'ceg'=>'edit',
                       'kompetenciarajzkereso'=>'',
                       'szolgaltatas'=>'',
+                      'allashirdetes'=>'',
+                      'munkakor'=>''
                        );
     
     if($_REQUEST['m']) {

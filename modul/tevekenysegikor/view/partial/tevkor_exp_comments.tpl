@@ -1,48 +1,33 @@
 <script type="text/javascript" src="js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript">
-/*<![CDATA[*/
-$(function() { {$FormScript}
-	jQuery.each($(".tinymce"), function() {
-        tinyMCE.init({ mode : "exact", elements : this.id, theme : "advanced", skin : "o2k7", skin_variant : "silver", language : "hu", theme_advanced_toolbar_location : "top", theme_advanced_toolbar_align : "left", theme_advanced_statusbar_location : "bottom", gecko_spellcheck : "true", plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,preview,example",
-    	theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,link,unlink,forecolor,backcolor,cleanup,|",    	
-		theme_advanced_resizing : true,			
-		document_base_url : $("#DOMAIN").val(),			
-		width : "630",  
-		height : "300", 
-		paste_auto_cleanup_on_paste : true, 
-		plugin_preview_width : "1000", 
-		theme_advanced_resize_horizontal : false,
-        theme_advanced_path : false,theme_advanced_statusbar_location : 0,
-		});
-    });
-});
-/*]]>*/
-</script>
-
-<div onClick="$('#expEditorCont').toggle();">Írj hozzá!</div>
-<div id="expEditorCont" style="display:none">
-<form action="" method="post" name="{$FormName}" id="{$FormName}">
-    <div class="form-row">
-				<label for="expComment">Tartalom <span class="require">*</span></label>
-				<textarea id="expComment" name="expComment" class="tinymce">{$content}</textarea>
-		</div><div class="clear"></div>
+<script type="text/javascript" src="js/admin/add_tinymce_mini.js"></script>
 		
-		<div class="form-row">
-				<label>&nbsp;</label>
-				<button class="submit btn" name="{$BtnAddExpComment}" id="{$BtnAddExpComment}" type="submit">Beküld</button>
-            </div><div class="clear"></div>
-</form>
-</div>
-            
+<a onClick="$('#expEditorCont').toggle();" href="javascript:;" class="btn btn-primary">Írj hozzá!</a>
+
+<div id="expEditorCont" style="display:none">
+	<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title">Tartalom</div>
+	<div class="jobFindList-cont jobFindList-cont-2">   
+		
+			<form action="" method="post" name="{$FormName}" id="{$FormName}">
+				<div class="form-row">	
+					<textarea id="compComment" name="compComment" class="tinymce">{$content}</textarea>				
+				</div>
+				<div class="form-row textAlign-center" style="margin:0.5em 0;">					
+					<button class="btn btn-md btn-primary" name="{$BtnAddExpComment}" id="{$BtnAddExpComment}" type="submit">Beküld</button>
+				</div><div class="clear"></div>
+			</form>
+				
+	</div>
+</div>			
+		
             
 {if not empty($expComments)}
 {foreach from=$expComments item=expComment}    
-<div style="background-color: lightgray; margin-top: 2px;">
+
     <div>{$expComment.bekuldve} - {$expComment.nev}</div>
     <div>{$expComment.text}</div>
-</div>
+
 {/foreach}
 
 {else}
-Még senki nem írt hozzá!
+<div class="no-content">Még senki nem írt hozzá!</div>
 {/if}

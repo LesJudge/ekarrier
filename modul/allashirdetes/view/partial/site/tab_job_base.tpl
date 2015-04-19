@@ -44,12 +44,14 @@
         {if isset($TxtMasHirdeteseLink.error)}<p class="error small">{$TxtMasHirdeteseLink.error}</p>{/if}
     </div>
     <div class="clear"></div>
+    <!--
     <div class="form_row">
         <label for="{$SelMunkarend.name}">Munkarend <span class="require">*</span></label>
         {html_options name=$SelMunkarend.name options=$SelMunkarend.values selected=$SelMunkarend.activ}  
         {if isset($SelMunkarend.error)}<p class="error small">{$SelMunkarend.error}</p>{/if}
     </div>
     <div class="clear"></div>
+    -->
     <div class="form_row">
         <label for="{$SelSzektor.name}">Szektor <span class="require">*</span></label>
         {html_options name=$SelSzektor.name options=$SelSzektor.values selected=$SelSzektor.activ}  

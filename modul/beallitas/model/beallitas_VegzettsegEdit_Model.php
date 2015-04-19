@@ -15,6 +15,16 @@ class Beallitas_VegzettsegEdit_Model extends Admin_Edit_Model
                 $this->addItem('TxtNev')->_verify['string']=true;
         }
 
+    /**
+     * Nyelv ellenőrzés felülírása, kikerülése. Erre azért van szükség, mert a táblában nincs nyelv_id mező.
+     * @param string $nyelv
+     * @return boolean
+     */
+    public function verifyRow($nyelv = "")
+    {
+        return true;
+    }
+
         public function __editData()
         {
                 parent::__editData();
@@ -26,8 +36,7 @@ class Beallitas_VegzettsegEdit_Model extends Admin_Edit_Model
                                FROM {$this->_tableName}
                                LEFT JOIN user AS u1 ON letrehozo_id=u1.user_id
                                LEFT JOIN user AS u2 ON modosito_id=u2.user_id
-                               WHERE vegzettseg_id='{$this->modifyID}' AND 
-                                            vegzettseg.nyelv_id='{$this->nyelvID}'
+                               WHERE vegzettseg_id='{$this->modifyID}' 
                                LIMIT 1";
                 $data=$this->_DB->prepare($query)->query_select()->query_fetch_array();
                 return $data;

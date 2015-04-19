@@ -117,7 +117,7 @@ $(function() { {$FormScript}
                     {if $lista.generated eq 1}Igen{else}Nem{/if}
                     <button name="{$BtnGenDoc}" value="{$lista.ID}"></button>
                     <button name="{$BtnGenPdf}" value="{$lista.ID}"></button>
-                    <button name="preview" type="button" value="{$lista.ID}"></button>
+                    <!--<button name="preview" type="button" value="{$lista.ID}"></button>-->
                 </td>
                 <td class="align_left center">
                 {if $lista.Aktiv}

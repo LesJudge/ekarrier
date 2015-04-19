@@ -30,7 +30,7 @@ class BeallitasHovaerkezettedit_Admin_Controller extends Admin_Edit
         $this->_view->assign('recordStatus', $this->_model->modifyID > 0);
         Rimo::$_site_frame->assign(
             'Form',
-            $this->__generateForm('modul/beallitas/view/admin.beallitas_karrierpont_edit.tpl')
+            $this->__generateForm('modul/beallitas/view/admin.beallitas_hova_erkezett_edit.tpl')
         );
     }
 }

@@ -31,7 +31,7 @@ class SiteCegEditInsert extends \AttachedUserInsert
             $params['TxtKtoTel']->_value
         );
         // Cég adatok mentése.
-        $this->insertCompanyData($companyId, $params['SelSzektor']->_value, '', '', $userId);
+        $this->insertCompanyData($companyId, $params['SelSzektor']->_value, $params['SelTevkor']->_value, '', '', $userId);
         return $companyId;
     }
     /**
@@ -162,17 +162,19 @@ class SiteCegEditInsert extends \AttachedUserInsert
      * Menti a cég adatait.
      * @param int $companyId Cég azonosító.
      * @param int $sectorId Szektor azonosító.
+     * @param int $tevkorId Tevékenységi kör azonosító.
      * @param string $regNumber Cégjegyzékszám.
      * @param string $taxNumber Adósázm.
      * @param int $userId Felhasználó azonosító.
      */
-    public function insertCompanyData($companyId, $sectorId, $regNumber, $taxNumber, $userId)
+    public function insertCompanyData($companyId, $sectorId, $tevkorId, $regNumber, $taxNumber, $userId)
     {
         $userId = (int)$userId;
         $this->db->prepare("INSERT INTO ceg_adatok 
             (
                 ceg_id, 
                 szektor_id, 
+                tevkor_id, 
                 cegjegyzekszam, 
                 adoszam, 
                 letrehozo_id, 
@@ -185,6 +187,7 @@ class SiteCegEditInsert extends \AttachedUserInsert
             (
                 " . (int)$companyId . ", 
                 '" . (int)$sectorId . "', 
+                '" . (int)$tevkorId . "'
                 '" . mysql_real_escape_string($regNumber) . "', 
                 '" . mysql_real_escape_string($taxNumber) ."', 
                 " . $userId . ", 

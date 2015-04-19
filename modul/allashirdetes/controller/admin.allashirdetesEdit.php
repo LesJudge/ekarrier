@@ -38,11 +38,16 @@ class AllashirdetesEdit_Admin_Controller extends Admin_Edit
         $this->_view->assign('munkakorMain', $ma->findAllMainCategory());
         //$this->_view->assign('elvarasOptions', json_encode($this->_model->findAllElvaras()));
         //$this->_view->assign('feladatOptions', json_encode($this->_model->findAllFeladat()));
+        
+        $kompetenciakSel = $this->_model->findAllCompetence();
+        $this->_view->assign('kompetenciakSel', $kompetenciakSel);
+        
         $this->_view->assign('amitKinalunkOptions', json_encode($this->_model->findAllAmitKinalunk()));
         $this->_view->assign('piTkor', AllashirdetesBaseEditModel::PI_TKOR);
         $this->_view->assign('piAmitKinalunk', AllashirdetesBaseEditModel::PI_AMIT_KINALUNK);
         $this->_view->assign('piElvarasok', AllashirdetesBaseEditModel::PI_ELVARASOK);
         $this->_view->assign('piFeladatok', AllashirdetesBaseEditModel::PI_FELADATOK);
+        $this->_view->assign('piKompetenciak', AllashirdetesBaseEditModel::PI_KOMPETENCIAK);
         $this->_view->assign('recordStatus', $this->_model->modifyID > 0);
         Rimo::$_site_frame->assign(
             'Form',

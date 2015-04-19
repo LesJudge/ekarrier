@@ -12,7 +12,7 @@ $(function() { {$FormScript}
     <div class="box_top">
         <h2 class="icon pages">Projekt</h2>
         <ul class="sorting">
-            {include file='page/admin/view/admin.list_events.tpl'} 
+            {*include file='page/admin/view/admin.list_events.tpl'*} 
         </ul>
     </div>  
     <div class="box_content">    
@@ -27,7 +27,8 @@ $(function() { {$FormScript}
             {foreach from=$Lista key=for_id item=lista}
             <tr class="data_row">
                 <th class="checkers"><input type="checkbox" class="select_row" name="{$SelRow.name}[{$lista.ID}]" value="{$lista.ID}"/></th>
-                <td class="align_left"><a href="{$APP_LINK}/edit/{$lista.ID}{$LANG_PARAM}" title="Módosítás">{$lista.elso}</a></td>
+                <!--<td class="align_left"><a href="{$APP_LINK}/edit/{$lista.ID}{$LANG_PARAM}" title="Módosítás">{$lista.elso}</a></td>-->
+                <td class="align_left">{$lista.elso}</td>
                 <td class="align_left center">{$lista.letrehozo_nev}</td>
                 <td class="align_left center">{$lista.letrehozas_timestamp}</td>
                 <td class="align_left center">

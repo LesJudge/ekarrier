@@ -10,7 +10,7 @@ $(function() {
 <form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor " enctype="multipart/form-data">
     <div class="grid_18">
         <div class="box_top">
-            <h2 class="icon time">Hova érkezett opció - [{$edit_mode}]</h2>
+            <h2 class="icon time">Karrierpont - [{$edit_mode}]</h2>
             {include file='modul/nyelv/view/admin.nyelv_editor_select.tpl'} 
         </div>
         <div class="box_content padding">

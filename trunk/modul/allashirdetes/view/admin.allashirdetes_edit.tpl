@@ -13,8 +13,9 @@
                     <li><a href="#tab-tkor">Tevékenységi kör</a></li>
                     <li><a href="#tab-elvaras">Elvárások</a></li>
                     <li><a href="#tab-feladat">Feladatok</a></li>
+                    <li><a href="#tab-kompetencia">Kompetenciák</a></li>
                     <li><a href="#tab-amit-kinalunk">Amit kínálunk</a></li>
-                    <li><a href="#tab-ismerteto">Ismertető</a></li>
+                    <!--li><a href="#tab-ismerteto">Ismertető</a></li-->
                     <li><a href="#tab-jel-mod">Jelentkezés módja</a></li>
                     <li><a href="#tab-mvegz-helye">Munkavégzés helye</a></li>
                 </ul>
@@ -22,16 +23,17 @@
                 <div id="tab-tkor">{include file="modul/allashirdetes/view/partial/tab_tkor.tpl"}</div>
                 <div id="tab-elvaras">{include file="modul/allashirdetes/view/partial/tab_elvaras.tpl"}</div>
                 <div id="tab-feladat">{include file="modul/allashirdetes/view/partial/tab_feladat.tpl"}</div>
+                <div id="tab-kompetencia">{include file="modul/allashirdetes/view/partial/tab_kompetenciak.tpl"}</div>
                 <div id="tab-amit-kinalunk">{include file="modul/allashirdetes/view/partial/tab_amit_kinalunk.tpl"}</div>
                 <div id="tab-ismerteto">
-                    <div class="field tabField">
+                    <!--div class="field tabField">
                         <div class="form_row">
                             <label for="{$TxtIsmerteto.name}">Ismertető <span class="require">*</span></label>
                             <textarea class="tinymce" id="{$TxtIsmerteto.name}" name="{$TxtIsmerteto.name}">{$TxtIsmerteto.activ}</textarea>
                             {if isset($TxtIsmerteto.error)}<p class="error small">{$TxtIsmerteto.error}</p>{/if}
                         </div>
                         <div class="clear"></div>
-                    </div>
+                    </div-->
                 </div>
                 <div id="tab-jel-mod">
                     <div class="field tabField">
@@ -41,6 +43,14 @@
                             {if isset($TxtJelMod.error)}<p class="error small">{$TxtJelMod.error}</p>{/if}
                         </div>
                         <div class="clear"></div>
+                        <div class="form_row">
+                            <label for="{$DateJelentkezesHatarideje.name}">Jelentkezés határideje <span class="require">*</span></label>
+                            <input id="{$DateJelentkezesHatarideje.name}" name="{$DateJelentkezesHatarideje.name}" type="text" value="{$DateJelentkezesHatarideje.activ}" />
+                            {if isset($DateJelentkezesHatarideje.error)}<p class="error small">{$DateJelentkezesHatarideje.error}</p>{/if}
+                        </div>
+                        <div class="clear"></div>
+                        
+                        
                     </div>
                 </div>
                 <div id="tab-mvegz-helye">{include file="modul/allashirdetes/view/partial/tab_mvegz_helye.tpl"}</div>
@@ -88,13 +98,15 @@
 <script type="text/javascript" src="{$DOMAIN}js/uniweb/plugin/jquery.uniweb.clientBaseWidget.js"></script>
 <script type="text/javascript" src="{$DOMAIN}js/uniweb/plugin/jquery.uniweb.jobSelect.js"></script>
 <script type="text/javascript" src="{$DOMAIN}js/uniweb/modul/allashirdetes/uniweb.allashirdetes.helper.js"></script>
-<link rel="stylesheet" type="text/css" href="{$DOMAIN}css/modul/sheepit-form.css" />
+<script type="text/javascript" src="{$DOMAIN}js/uniweb/helper/uniweb.helper.uniform.js"></script>
+<link rel="stylesheet" type="text/css" href="{$DOMAIN}css/uniweb/sheepit-form.css" />
 <script type="text/javascript" src="{$DOMAIN}js/jquery.sheepItPlugin.js"></script>
 <script type="text/javascript" src="../js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="../js/admin/add_tinymce.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
 var domain = "{$DOMAIN}";
+var elvarasOptions = new Array, feladatOptions = new Array;
 $(function() {
     // SEO URL
     $("#{$TxtNev.name}").removeAccents({ target: $("#{$TxtLink.name}"), bind:"change" });
@@ -121,7 +133,7 @@ $(function() {
         }
     });
     // Datepicker a lejárati dátum mezőre.
-    $("#{$DateLejar.name}").datepicker();
+    $("#{$DateLejar.name}, #{$DateKezdes.name}, #{$DateMunkakezdesIdeje.name}, #{$DateJelentkezesHatarideje.name}").datepicker();
     
     function onExists( mainId, subId ) {
         var $mainSelect = this.find(".job-select-main");
@@ -170,8 +182,8 @@ $(function() {
             });
         }
     },
-    elvarasOptions = ["Elvárás 1", "Elvárás 2"],
-    feladatOptions = ["Feladat 1", "Feladat 2"],
+    //elvarasOptions = ["Elvárás 1", "Elvárás 2"],
+    //feladatOptions = ["Feladat 1", "Feladat 2"],
     {literal}
     tkorSheepIt = $.extend({}, sheepItBase, {
     {/literal}
@@ -231,9 +243,26 @@ $(function() {
         {/if}
         afterAdd: function(source, newForm) {
             sheepItBase.afterAdd(source, newForm);
+            //console.log(feladatOptions);
             newForm.find("input[id$=\"_feladat\"]").autocomplete({
                 source: feladatOptions
             });
+        }
+    }),
+    {literal}
+    kompetenciaSheepIt = $.extend({}, sheepItBase, {
+    {/literal}
+        addSelector: "#kompetenciaFormAddBtn",
+        controlsSelector: "#kompetenciaFormControls",
+        formTemplateSelector: ".shpt-form-kompetencia",
+        noFormsTemplateSelector: "#kompetenciaFormNoTemplate",
+        removeCurrentSelector: ".shpt-form-remove-current",
+        {if $kompetenciak}
+        data: {$kompetenciak},
+        {/if}
+        afterAdd: function(source, newForm) {
+            sheepItBase.afterAdd(source, newForm);
+            newForm.find("select").change(uniformSelectChange);
         }
     }),
     {literal}
@@ -254,9 +283,24 @@ $(function() {
             });
         }
     });
+    
+     {if $kompetenciak}
+        // Ez mi ?! :D
+        /*
+        for(i = 0; i<{$kompetenciak}.length; i++)
+        {
+            var $myDiv = $('#kompetenciaForm_'+i+'_kompetencia_id');
+                if ( $myDiv.length){
+                    alert('megvan');
+                }
+     }
+     */
+    {/if}
+        
     $("#tkorForm").sheepIt(tkorSheepIt);
     $("#elvarasForm").sheepIt(elvarasokSheepIt);
     $("#feladatForm").sheepIt(feladatokSheepIt);
+    $("#kompetenciaForm").sheepIt(kompetenciaSheepIt);
     $("#amitKinalunkForm").sheepIt(amitKinalunkSheepIt);
     // Initialize sheepItForm add buttons.
     $(".shpt-form-control-add").button({
@@ -264,7 +308,11 @@ $(function() {
             primary: "ui-icon-plusthick"
         }
     });
-    {if $recordStatus}{/if}
+    $("#kompetenciaForm").find("select").trigger("change");
+    {if isset($recordStatus) and $recordStatus}
+    var updateJobIdsBy = findJobIds("input[id$=\"munkakor_id\"]");
+    updateExpectationsAndTasks(updateJobIdsBy, "input[id$=\"elvaras\"]", "input[id$=\"feladat\"]")
+    {/if}
 });
 /*]]>*/
 </script>

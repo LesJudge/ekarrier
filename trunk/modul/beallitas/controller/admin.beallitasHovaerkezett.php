@@ -29,7 +29,7 @@ class BeallitasHovaerkezett_Admin_Controller extends Admin_List
         parent::__show();
         Rimo::$_site_frame->assign(
             'Form',
-            $this->__generateForm('modul/beallitas/view/admin.beallitas_karrierpont_list.tpl')
+            $this->__generateForm('modul/beallitas/view/admin.beallitas_hova_erkezett_list.tpl')
         );
     }
     

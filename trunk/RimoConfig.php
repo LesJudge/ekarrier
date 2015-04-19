@@ -29,20 +29,14 @@ class RimoConfig
         public $APP_PATH="";
         public $PAGE_NAME="";
         public $SITE_TIPUS="";
-        //public $MYSQL_DB_NAME="uniweb_ekarrier";
-        //public $MYSQL_DB_HOST="localhost";
-        
-		public $MYSQL_DB_NAME="ekarrier_dev";
+        public $MYSQL_DB_NAME="uniweb_ekarrier";
         public $MYSQL_DB_HOST="localhost";
-		public $MYSQL_DB_USER="root";
+        public $MYSQL_DB_USER="root";
         public $MYSQL_DB_PASS="";
-		
         public $MYSQL_DB_CHARSET="utf8";
         public $PAGE_CHARSET="UTF-8";
-        //public $DOMAIN_ADMIN="http://localhost/ekarrier/admin/";
-        //public $DOMAIN="http://localhost/ekarrier/";
-		public $DOMAIN_ADMIN="http://ekarrier.local/admin/";
-        public $DOMAIN="http://ekarrier.local/";
+        public $DOMAIN_ADMIN="http://localhost/ekarrier/admin/";
+        public $DOMAIN="http://localhost/ekarrier/";
         public $DEFAULT_NYELV_ID=1;
         public $ADMIN_NYELV_ID=1;
         public $ADMIN_NYELV_VAR="hu";

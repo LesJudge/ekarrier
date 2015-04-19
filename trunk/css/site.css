@@ -350,6 +350,22 @@ background: -o-linear-gradient(#ff9354, #ff6106);
 background: linear-gradient(#ff9354, #ff6106);
 -pie-background: linear-gradient(#ff9354, #ff6106);
 }
+.btn-primary { font-weight: bold !important; text-transform:none; color:#fff; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); border:1px solid #fca16c; padding:0.5em 2em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	border-radius:5px;	
+	background:#ff9456;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ff9456), to(#ff6208));
+	background: -webkit-linear-gradient(#ff9456, #ff6208);
+	background: -moz-linear-gradient(#ff9456, #ff6208);
+	background: -ms-linear-gradient(#ff9456, #ff6208);
+	background: -o-linear-gradient(#ff9456, #ff6208);
+	background: linear-gradient(#ff9456, #ff6208);
+	-pie-background: linear-gradient(#ff9456, #ff6208);
+	-webkit-box-shadow: #d7d6d4 0px 2px 5px 0px;
+	-moz-box-shadow:  #d7d6d4 0px 2px 5px 0px;
+	box-shadow: #d7d6d4 0px 2px 5px 0px; 
+	behavior: url(../css/behavior/PIE.htc);}
 .btn-primary:hover, .btn-primary:focus  { border-color:#6d6d6d; 
 background:#b6b5b9;
 background: -webkit-gradient(linear, 0 0, 0 bottom, from(#b6b5b9), to(#636660));
@@ -713,6 +729,7 @@ font-family: 'Oswald', sans-serif; text-transform:uppercase; font-size:1.8em; co
 	box-shadow: #ccc 0px 2px 5px 0px; 
 	background:#fff;
 	behavior: url(../css/behavior/PIE.htc);  }
+.jobFindList-cont-2 { border:1px solid #ff6208; padding:0em; }	
 .jobFindList-title-cont { text-align:left; }
 .jobFindList-title-cont .jobFindList-title { margin:0em 0em 0em 0em; }
 .jobFindList-title { position:relative; z-index:10; display:inline-block; float:none; margin: 0; padding: 0.8em 3em; color: #fff;  border: 1px solid #24425e; vertical-align:top;  
@@ -1307,5 +1324,10 @@ behavior: url(../css/behavior/PIE.htc); }
 .sortedUL.sortedUL-graggable LI:before  { display:inline-block; font-size:1.1em; font-family: 'icomoon'; margin-right:0.5em; margin-top:0.25em;}
 .sortedUL.sortedUL-graggable LI:before {content: "\e682";}
 .sortedUL-right { display:inline-block; float:right; margin: 0em -0.5em 0em 0em;}
+
 .myComp, .myComp-test { display:inline-block; margin:0.2em 0em 0em 0em; }
 .myComp-bg { float:left; margin:0em 1em 0em 0.5em; padding:0.4em 0.6em;  }
+
+.myComp-btn {}
+.myComp-title { font-size:1.4em; margin:0em 0em 0.3em 0em; }
+.myComp-lead { }

@@ -111,7 +111,7 @@
 		<div class="col-lg-12">
 			<div class="jobFindList-data-2">Kiválasztott tevékenységi körhöz tartozó álláshirdetések.</div>
 			{foreach from=$offers item=offer}
-				<a href="{$DOMAIN}allashirdetes/{$offer.link}/{$offer.allashirdetes_id}/" class="btn btn-default btn-block">{$offer.megnevezes} - {$offer.munkakorNev}</a>					
+				<a href="{$DOMAIN}allashirdetes/{$offer.link}/{$offer.allashirdetes_id}/" class="btn btn-primary btn-block">{$offer.megnevezes} - {$offer.munkakorNev}</a>					
 			{foreachelse}
 				<div class="no-content">Nincs megjeleníthető álláshirdetés.</div>
 			{/foreach}
@@ -119,14 +119,14 @@
 		<div class="col-lg-12">
 			<div class="jobFindList-data-2">Erre a tevékenységi körre jelentkezettek:</div>
 			{foreach from=$markers item=marker}
-				<a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$marker.krID}/" class="btn btn-default btn-block">{$marker.uID}/{$marker.krID}</a>					
+				<a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$marker.krID}/" class="btn btn-primary btn-block">{$marker.uID}/{$marker.krID}</a>					
 			{foreachelse}
 				<div class="no-content">Még senki nem jelölte meg ezt a tevékenységi kört.</div>
 			{/foreach}
 			<div class="clear"></div>
 			
 			{if $marked == "marked"}
-				<div class="jobOffersList">
+				<div class="row">
 				<form action="" method="post" name="{$FormName}" id="{$FormName}">
 					Megjelölve ( {$markedWithCompRajz} )
 					<button  class="submit btn btn-block" name="{$BtnRemoveTevekenysegikor}" id="{$BtnRemoveTevekenysegikor}" type="submit" >Mégsem szeretnék ebben a tevékenységi körben dolgozni!</button>

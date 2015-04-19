@@ -152,7 +152,7 @@ class Ceg_Allashirdetes_SiteEdit_Model extends AllashirdetesBaseEditModel
                      kompetencia_id AS kompetencia_id,
                      kompetencia_nev AS Nev
                      FROM kompetencia
-                     WHERE kompetencia_aktiv = 1 AND kompetencia_torolt = 0
+                     WHERE kompetencia_aktiv = 1 AND kompetencia_torolt = 0 AND tipus = 'sajat'
                         ";
             
             return $this->_DB->prepare($query)->query_select()->query_result_array();

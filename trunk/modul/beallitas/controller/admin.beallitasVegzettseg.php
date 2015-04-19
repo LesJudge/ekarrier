@@ -6,6 +6,12 @@ class BeallitasVegzettseg_Admin_Controller extends Admin_List
 
         public $_name='VegzettsegList';
 
+    /**
+     * Nyelvesített-e a controller.
+     * @var boolean
+     */
+    protected $_multiple_lang = false;
+
         public function __construct()
         {
                 $this->__loadModel('_VegzettsegList');

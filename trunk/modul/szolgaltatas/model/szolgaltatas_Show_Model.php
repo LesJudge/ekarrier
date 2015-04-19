@@ -37,7 +37,7 @@ public function getFolders($companyID){
     try{
             $query = "SELECT mappa_nev AS nev, ceg_attr_mappa_id AS ID
                   FROM ceg_attr_mappa
-                  WHERE ceg_attr_mappa_torolt = 0 AND ".(int)$companyID."
+                  WHERE ceg_attr_mappa_torolt = 0 AND ceg_id = ".(int)$companyID."
                   ORDER BY mappa_nev ASC
                   ";
 

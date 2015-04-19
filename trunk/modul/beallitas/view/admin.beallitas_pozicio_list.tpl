@@ -10,7 +10,7 @@ $(function() { {$FormScript}
 
 <form action="" method="POST" name="{$FormName}" id="{$FormName}" class="form form_list" enctype="multipart/form-data">
         <div class="box_top">
-                <h2 class="icon pages">Szektor</h2>
+                <h2 class="icon pages">Pozíciók</h2>
                 <ul class="sorting">
                         {include file='page/admin/view/admin.list_events.tpl'} 
                 </ul>

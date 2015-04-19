@@ -61,6 +61,10 @@ class Ceg_SiteEdit_Model extends \AttachableUserModelAbstract
             array('' => '--Kérem, válasszon!--')
         );
         $ps = array('' => '--Kérem, válasszon!--');
+
+        $tevkor = $this->addItem('SelTevkor');
+        $tevkor->_verify['select'] = true;
+        $tevkor->_select_value = array('' => '--Kérem, válasszon!--') + $this->tevekenysegiKoroketNekem();
         // -- Székhely adatok.
         // Ország.
         $hqCountry = $this->addItem('SelSzekhelyOrszag');
@@ -109,5 +113,16 @@ class Ceg_SiteEdit_Model extends \AttachableUserModelAbstract
         $this->modifyID = $this->attached->save($this->_params, $this->getUserId(), $this->getAttachedId());
         $this->userHirlevelHelper->hirlevelUser($this->modifyID, $this->_params);
         $this->_params['Password']->_value = $this->_params['Password2']->_value = null;
+    }
+
+    protected function tevekenysegiKoroketNekem()
+    {
+        $query = "SELECT job_id, main_name FROM munkakor_view GROUP BY main_name ORDER BY main_name ASC";
+        $result = $this->_DB->prepare($query)->query_select();
+        $tkorok = array();
+        while ($tkor = $result->query_fetch_array()) {
+            $tkorok[$tkor['job_id']] = $tkor['main_name'];
+        }
+        return $tkorok;
     }
 }

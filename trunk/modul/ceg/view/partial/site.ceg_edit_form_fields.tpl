@@ -44,6 +44,12 @@
     {if isset($SelSzektor.error)}<div class="ui-state-error">{$SelSzektor.error}</div>{/if}
 </div>
 <div class="clear"></div>
+<div class="form-row">
+    <label for="{$SelTevkor.name}">Tevékenységi kör <span class="require">*</span></label>
+    {html_options id=$SelSzektor.name name=$SelTevkor.name options=$SelTevkor.values selected=$SelTevkor.activ}
+    {if isset($SelTevkor.error)}<div class="ui-state-error">{$SelTevkor.error}</div>{/if}
+</div>
+<div class="clear"></div>
 <h3>Székhely adatok</h3>
 <div class="separator"></div>
 <div class="form-row">

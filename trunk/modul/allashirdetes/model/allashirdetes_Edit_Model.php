@@ -91,16 +91,6 @@ class Allashirdetes_Edit_Model extends \AllashirdetesBaseEditModel
         $this->_DB->prepare($query)->query_insert();
     }
     /**
-     * Generál egy random .pdf fájlnevet.
-     * @param boolean $toTmp /tmp könyvtárba kerüljön-e.
-     * @return string
-     */
-    private static function generatePdfName($toTmp = true)
-    {
-        $name = uniqid() . '.pdf';
-        return $toTmp === true ? '/tmp/'. $name : $name;
-    }
-    /**
      * Generál egy .pdf-et, majd visszatér a nevével.
      * @param int $jobId
      * @return string
@@ -110,10 +100,7 @@ class Allashirdetes_Edit_Model extends \AllashirdetesBaseEditModel
     {
         try {
             /* @var $mpdf mPDF */
-            $pdfName = self::generatePdfName();
-            $mpdf = self::generatePdf($jobId);
-            $mpdf->Output($pdfName, 'F');
-            return $pdfName;
+            return self::generatePdf($jobId);
         } catch (\Exception_MYSQL_Null_Rows $emnr) {
             throw new \UnexpectedValueException('A keresett álláshirdetés nem található!');
         }
@@ -127,8 +114,12 @@ class Allashirdetes_Edit_Model extends \AllashirdetesBaseEditModel
     public static function generatePdfPreview($jobId)
     {
         try {
-            $pdfName = self::downloadPdf($jobId);
-            $im = new imagick($pdfName . '[0]');
+            $pdf = self::downloadPdf($jobId);
+            ob_start();
+            echo $pdf->Output();
+            $output = ob_get_clean();
+
+            $im = new imagick($output . '[0]');
             $im->setImageFormat('jpg');
             return $im;
         } catch (\Exception_MYSQL_Null_Rows $emnr) {
@@ -256,13 +247,34 @@ class Allashirdetes_Edit_Model extends \AllashirdetesBaseEditModel
         //$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
         $temp = '/tmp/' . time() . $format;
         $self->markAsGenerated($jobId, UserLoginOut_Admin_Controller::$_id);
-        $xmlWriter->save($temp);
-        
-        return $temp;
+        //$xmlWriter->save($temp);
+        //return $temp;
+        $name = 'output/' . time() . '.docx';
+        $xmlWriter->save($name);
+        return $name;
     }
     
     public function getUserId()
     {
         return (int)UserLoginOut_Admin_Controller::$_id;
+    }
+    
+    public function findAllCompetence()
+    {
+        try {
+            $query = "SELECT
+                     kompetencia_id AS kompetencia_id,
+                     kompetencia_nev AS Nev
+                     FROM kompetencia
+                     WHERE kompetencia_aktiv = 1 AND kompetencia_torolt = 0 AND tipus = 'sajat'
+                        ";
+            
+            return $this->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            
+        }
+        catch(Exception_MYSQL $e){
+            
+        }
     }
 }

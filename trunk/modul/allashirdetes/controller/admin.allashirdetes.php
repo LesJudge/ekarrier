@@ -119,12 +119,11 @@ class Allashirdetes_Admin_Controller extends Admin_List
         ) {
             $pathinfo = pathinfo(__DIR__);
             // Require dependencies.
-            require 'page/admin/model/admin.edit_model.php';
             require 'modul/user_cim/model/UserAddressFinder.php';
             require $pathinfo['dirname'] . '/model/AllashirdetesBaseEditModel.php';
             require $pathinfo['dirname'] . '/model/allashirdetes_Edit_Model.php';
             require $pathinfo['dirname'] . '/model/allashirdetes_Site_Show_Model.php';
-            require_once 'library/phpword/src/PhpWord/Autoloader.php';
+            require_once 'vendor/phpoffice/phpword/src/PhpWord/Autoloader.php';
             // Autoload PHPWord dependencies.
             \PhpOffice\PhpWord\Autoloader::register();
             // Fájl generálása.
@@ -158,15 +157,16 @@ class Allashirdetes_Admin_Controller extends Admin_List
             &&
             ($jobId = $this->_action_type[$eventKey]) > 0
         ) {
-            require_once('library/MPDF/mpdf.php');
             $pathinfo = pathinfo(__DIR__);
             // Require dependencies.
-            require 'page/admin/model/admin.edit_model.php';
             require 'modul/user_cim/model/UserAddressFinder.php';
             require $pathinfo['dirname'] . '/model/AllashirdetesBaseEditModel.php';
             require $pathinfo['dirname'] . '/model/allashirdetes_Edit_Model.php';
             require $pathinfo['dirname'] . '/model/allashirdetes_Site_Show_Model.php';
             $file = Allashirdetes_Edit_Model::downloadPdf($jobId);
+            $file->Output();
+            exit;
+            /*
             if (file_exists($file)) {
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/octet-stream');
@@ -181,6 +181,7 @@ class Allashirdetes_Admin_Controller extends Admin_List
                 unlink($file);
                 exit;
             }
+            */
         }
     }
 }

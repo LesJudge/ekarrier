@@ -200,7 +200,7 @@
 			}; 
 			
 			if($this.opt.checkbox==true) { 
-				$this.checkbox() 			
+				//$this.checkbox() 			
 			}; 
 			
 			if($this.opt.radio==true) { 

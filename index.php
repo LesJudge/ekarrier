@@ -168,5 +168,6 @@ if(UserLoginOut_Site_Controller::$_id > 0){
 //Rimo::$_site_frame->assignByRef('lang', $translate->translate(9999));
 Rimo::$_site_frame->assign('lang', $translate->translate(9999));
 Rimo::$_site_frame->assign('FBLike',Rimo::$_config->FB_LIKEBOX);
+
 Rimo::$_site_frame->display(Rimo::$_config->MASTER_TPL);
 ob_flush();

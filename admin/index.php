@@ -59,6 +59,7 @@ try{
 } catch(Exception_Load_error $e) {
     Rimo::$_site_frame->assign('ErrorMessage', $e->getMessage());
 }
+
 Rimo::$_site_frame->display('page/admin/view/admin.index.tpl');
 ob_flush();
 //Rimo::__addSession();

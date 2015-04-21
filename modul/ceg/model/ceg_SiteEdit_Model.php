@@ -62,9 +62,28 @@ class Ceg_SiteEdit_Model extends \AttachableUserModelAbstract
         );
         $ps = array('' => '--Kérem, válasszon!--');
 
+
         $tevkor = $this->addItem('SelTevkor');
+        
+        //$tevkor->_select_value = array('' => '--Kérem, válasszon!--') + $this->tevekenysegiKoroketNekem();
+        
+        $tevkor->_select_value = $this->getSelectValues('munkakor_kategoria',
+                        'kategoria_cim',
+                        ' AND munkakor_kategoria_aktiv = 1 AND munkakor_kategoria_torolt = 0 AND szint = 2',
+                        'ORDER BY munkakor_kategoria_id ASC',
+                        false,
+                        array('-1' => '--Válasszon tevékenységi kört!--'));
         $tevkor->_verify['select'] = true;
-        $tevkor->_select_value = array('' => '--Kérem, válasszon!--') + $this->tevekenysegiKoroketNekem();
+        
+        $tevcsop = $this->addItem('SelTevcsop');
+        $tevcsop->_select_value = $this->getSelectValues('munkakor_kategoria',
+                        'kategoria_cim',
+                        ' AND munkakor_kategoria_aktiv = 1 AND munkakor_kategoria_torolt = 0 AND szint = 1',
+                        'ORDER BY munkakor_kategoria_id ASC',
+                        false,
+                        array('-1' => '--Válasszon tevékenységi csoportot!--'));
+        
+
         // -- Székhely adatok.
         // Ország.
         $hqCountry = $this->addItem('SelSzekhelyOrszag');
@@ -115,9 +134,10 @@ class Ceg_SiteEdit_Model extends \AttachableUserModelAbstract
         $this->_params['Password']->_value = $this->_params['Password2']->_value = null;
     }
 
+
     protected function tevekenysegiKoroketNekem()
     {
-        $query = "SELECT job_id, main_name FROM munkakor_view GROUP BY main_name ORDER BY main_name ASC";
+        $query = "SELECT munkakor_kategoria_id AS job_id, kategoria_cim AS main_name FROM munkakor_kategoria WHERE munkakor_kategoria_aktiv = 1 AND munkakor_kategoria_torolt = 0 AND szint = 2 ORDER BY main_name ASC";
         $result = $this->_DB->prepare($query)->query_select();
         $tkorok = array();
         while ($tkor = $result->query_fetch_array()) {
@@ -125,4 +145,6 @@ class Ceg_SiteEdit_Model extends \AttachableUserModelAbstract
         }
         return $tkorok;
     }
+    
+
 }

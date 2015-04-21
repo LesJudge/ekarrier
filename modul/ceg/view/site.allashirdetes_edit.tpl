@@ -79,7 +79,7 @@ var domain = "{$DOMAIN}",
 $(function() {
     
     var date = new Date();
-    date.setDate(date.getDate() + 7);
+    date.setDate(date.getDate() + 0);
     
     $("#{$DateLejar.name}, #{$DateJelentkezesHatarideje.name}, #{$DateMunkakezdesIdeje.name}, #{$DateKezdes.name}").datepicker({
         dateFormat: "yy-mm-dd",

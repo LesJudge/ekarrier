@@ -123,7 +123,7 @@
                         error: function() {
                             alert("Az alkategóriák lekérdezése sikertelen volt!");
                         },
-                        method: "GET",
+						method: "GET",
                         success: function(data) {
                             self._fillSub(data);
                         },

@@ -186,7 +186,7 @@ abstract class AllashirdetesBaseListController extends Admin_List
        $wheres = array();
         
        if (!empty($filterTevKor) && (int)$filterTevKor > 0) {
-            $wheres['tevkor'] = "catk.tevkor_id = ".(int)$filterTevKor;     
+            $wheres['tevkor'] = "ca.tevkor_id = ".(int)$filterTevKor;     
         }
         
         if (!empty($filterTevCsoport) && (int)$filterTevCsoport > 0) {
@@ -224,9 +224,8 @@ abstract class AllashirdetesBaseListController extends Admin_List
         try{
             $query = "SELECT c.nev AS cegnev, c.ceg_id AS ID, c.link AS link
                       FROM ceg c
-                      LEFT JOIN ceg_attr_tevkor catk ON catk.ceg_id = c.ceg_id
                       INNER JOIN ceg_adatok ca ON ca.ceg_id = c.ceg_id
-                      LEFT JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = catk.tevkor_id
+                      LEFT JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = ca.tevkor_id
                       LEFT JOIN ceg_szekhely csz ON csz.ceg_id = c.ceg_id
                       LEFT JOIN ceg_telephely ct ON ct.ceg_id = c.ceg_id
                       LEFT JOIN cim_varos cv1 ON cv1.cim_varos_id = csz.cim_varos_id
@@ -235,7 +234,6 @@ abstract class AllashirdetesBaseListController extends Admin_List
                       LEFT JOIN cim_megye cm2 ON cm2.cim_megye_id = ct.cim_megye_id
                       WHERE c.ceg_aktiv = 1 AND c.ceg_torolt = 0 ".$whereString." GROUP BY c.ceg_id
                     ";
-            
             return $this->_model->_DB->prepare($query)->query_select()->query_result_array();
         }catch(Exception_MYSQL_Null_Rows $e){
             return array();   

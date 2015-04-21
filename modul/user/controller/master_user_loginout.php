@@ -101,7 +101,7 @@ abstract class UserLoginOut_Controller extends RimoController
                 }
                 if($_SESSION['type'] == "ma")
                 {
-                    header('Location: ' . Rimo::$_config->DOMAIN . 'profil/');
+                    header('Location: ' . Rimo::$_config->DOMAIN . 'nyito-oldal');
                 }
             }
         } catch (Exception_MYSQL_Null_Rows $e) {  	

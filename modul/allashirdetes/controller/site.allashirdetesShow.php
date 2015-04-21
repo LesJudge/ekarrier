@@ -47,6 +47,7 @@ class AllashirdetesShow_Site_Controller extends RimoController
             $aem = new Allashirdetes_Edit_Model;
             $this->_view->assign('elvarasok', $aem->findElvarasByJobId($pjId));
             $this->_view->assign('feladatok', $aem->findFeladatByJobId($pjId));
+            $this->_view->assign('munkakorok', $aem->findMunkakorByJobId($pjId));
             $this->_view->assign('kompetenciak', $this->_model->findKompetenciaByJobId($pjId));
             $this->_view->assign('amitKinalunk', $aem->findAmitKinalunkByJobId($pjId));
             $this->_view->assign('pj', $pj);

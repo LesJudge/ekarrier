@@ -66,6 +66,7 @@ class CegEdit_Site_Controller extends AttachableUserController
         parent::__show();
         $lId = Rimo::$_config->SITE_NYELV_ID; // Nyelv azonosító
         $registration = $this->_model->modifyID > 0 ? false : true; // Regisztráció
+        
         $seoKey = $registration ? 'companyRegistration' : 'companyEdit'; // SEO kulcs
         $view = $registration ? 'modul/ceg/view/site.ceg_regisztracio.tpl' : 'modul/ceg/view/site.ceg_edit.tpl'; // View
         $btnSaveLabel = $registration ? 'Regisztráció' : 'Mentés';

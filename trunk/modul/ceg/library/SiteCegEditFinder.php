@@ -12,6 +12,8 @@ class SiteCegEditFinder extends \DbInjectAbstract implements \AttachedUserFinder
         // Cég adatok beállítása.
         $params['TxtCegnev']->_value = $company['nev'];
         $params['SelSzektor']->_value = $companyData['szektor_id'];
+        $params['SelTevkor']->_value = $companyData['tevkor_id'];
+        $params['SelTevcsop']->_value = $this->getCatParent($companyData['tevkor_id']);
         $params['TxtAdoszam']->_value = $companyData['adoszam'];
         $params['TxtCegjegyzekszam']->_value = $companyData['cegjegyzekszam'];
         // Kapcsolattartó adatok beállítása.
@@ -40,7 +42,7 @@ class SiteCegEditFinder extends \DbInjectAbstract implements \AttachedUserFinder
      */
     public function findCompanyData($companyId)
     {
-        return $this->db->prepare("SELECT ceg_id, szektor_id, cegjegyzekszam, adoszam FROM ceg_adatok 
+        return $this->db->prepare("SELECT ceg_id, szektor_id, cegjegyzekszam, adoszam, tevkor_id FROM ceg_adatok 
             WHERE ceg_id = " . (int)$companyId . " LIMIT 1
         ")->query_select()->query_fetch_array();
     }
@@ -82,6 +84,30 @@ class SiteCegEditFinder extends \DbInjectAbstract implements \AttachedUserFinder
                 $jobIds[] = $data['munkakor_id'];
             }
             return $jobIds;
+        } catch (\Exception_MYSQL_Null_Rows $emnr) {
+            return array();
+        }
+    }
+    
+    private function getCatParent($mkID){
+        try {
+            $query = "SELECT munkakor_kategoria_id AS ID
+                      FROM munkakor_kategoria 
+                      WHERE szint = 1 AND baloldal < 
+                            (SELECT mk1.baloldal AS leftside
+                            FROM munkakor_kategoria AS mk1
+                            WHERE mk1.munkakor_kategoria_id = ".mysql_real_escape_string((int)$mkID).")
+
+                            AND jobboldal >
+                            
+                            (SELECT mk1.jobboldal AS rightside
+                            FROM munkakor_kategoria AS mk1
+                            WHERE mk1.munkakor_kategoria_id = ".mysql_real_escape_string((int)$mkID).")
+                            LIMIT 1
+                        "
+                    ;
+           $result = $this->db->prepare($query)->query_select()->query_fetch_array();
+            return $result['ID'];
         } catch (\Exception_MYSQL_Null_Rows $emnr) {
             return array();
         }

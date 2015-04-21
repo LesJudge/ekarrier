@@ -187,7 +187,7 @@ class SiteCegEditInsert extends \AttachedUserInsert
             (
                 " . (int)$companyId . ", 
                 '" . (int)$sectorId . "', 
-                '" . (int)$tevkorId . "'
+                '" . (int)$tevkorId . "',
                 '" . mysql_real_escape_string($regNumber) . "', 
                 '" . mysql_real_escape_string($taxNumber) ."', 
                 " . $userId . ", 

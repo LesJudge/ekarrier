@@ -45,6 +45,12 @@ class Kompetenciarajzkereso_Site_List_Model extends Admin_List_Model
                      /*LEFT JOIN ugyfel u2 ON u2.ugyfel_id = kompetenciarajz.ugyfel_id*/
                      LEFT JOIN ugyfel_attr_allashirdetes_megjelolt uaam ON uaam.kompetenciarajz_id = kompetenciarajz.kompetenciarajz_id
                      LEFT JOIN allashirdetes a ON a.allashirdetes_id = uaam.allashirdetes_id
+                     LEFT JOIN allashirdetes_attr_munkakor aam ON aam.allashirdetes_id = a.allashirdetes_id
+                     LEFT JOIN munkakor m2 ON m2.munkakor_id = aam.munkakor_id
+                     LEFT JOIN munkakor_attr_kategoria mak2 ON mak2.munkakor_id = m2.munkakor_id
+                     LEFT JOIN munkakor_kategoria mkx ON mkx.munkakor_kategoria_id = mak2.munkakor_attr_kategoria_id
+                     
+                     
                         ';
     /**
      * MySQL feltételek.

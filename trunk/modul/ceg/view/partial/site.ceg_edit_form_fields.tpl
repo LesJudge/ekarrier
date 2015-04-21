@@ -1,3 +1,102 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$('#{$SelTevcsop.name}').on('change',function(){
+        var selectedID = $(this).find('option:selected').attr('value');
+        
+        if(parseInt(selectedID) > 0){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbygroup&gid='+selectedID, 
+                dataType: 'json', 
+                success: function(data){
+                    resetCircleOpts();
+                    filterByGroup(data);
+                }, 
+                error: function(){
+                    resetCircleOpts();
+                }
+            });
+        }else{
+            resetCircleOpts();
+        }
+    });
+    
+    
+    $('#{$SelTevkor.name}').on('change',function(){
+        var selectedID = $(this).find('option:selected').attr('value');
+        
+        if(parseInt(selectedID) > 0){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=tevekenysegikor&al=ajax&todo=filterbycircle&cid='+selectedID, 
+                dataType: 'json', 
+                success: function(data){
+                    resetGroupOpts();
+                    filterByCircle(data);
+                }, 
+                error: function(){
+                    resetGroupOpts();
+                }
+            });
+        }else{
+            resetGroupOpts();
+        }
+    });
+    
+ });
+ 
+ function filterByGroup(data){
+    var IDs = new Array();
+    
+    for(i=0; i<data.length; i++){
+        IDs.push(data[i]['ID']);
+    }
+
+    $('#{$SelTevkor.name} option').each(function(){
+        if(parseInt($(this).attr('value')) != -1){
+            if($.inArray($(this).attr('value'),IDs) == -1){
+                $(this).attr('disabled',true);
+                $(this).addClass('disabledItemCircle');
+            }
+        }
+    });
+}
+
+function filterByCircle(data){
+    var IDs = new Array();
+    
+    for(i=0; i<data.length; i++){
+        IDs.push(data[i]['ID']);
+    }
+
+    $('#{$SelTevcsop.name} option').each(function(){
+        if(parseInt($(this).attr('value')) != -1){
+            $(this).removeAttr("selected");
+            if($.inArray($(this).attr('value'),IDs) == -1){
+                $(this).attr('disabled',true);
+                $(this).addClass('disabledItemGroup');
+            }else{
+                $(this).attr("selected",true);
+            }   
+        }
+    });
+}
+
+function resetCircleOpts(){
+    $('.disabledItemCircle').removeClass('disabledItemCircle');
+    $('#{$SelTevkor.name} option').attr('disabled', false);
+}
+
+function resetGroupOpts(){
+    $('.disabledItemGroup').removeClass('disabledItemGroup');
+    $('#{$SelTevcsop.name} option').attr('disabled', false);
+}
+ 
+</script>
+<style>
+.disabledItemCircle, .disabledItemGroup{
+    color: darkgrey !important;
+    //display:none;
+}
+</style>
 <h3>Belépéshez szükséges adatok</h3>
 <div class="separator"></div><!--/.separator-->
 <div class="form_row">
@@ -44,12 +143,20 @@
     {if isset($SelSzektor.error)}<div class="ui-state-error">{$SelSzektor.error}</div>{/if}
 </div>
 <div class="clear"></div>
+
+<div class="form-row">
+    <label for="{$SelTevcsop.name}">Tevékenységi csoport <span class="require">*</span></label>
+    {html_options id=$SelTevcsop.name name=$SelTevcsop.name options=$SelTevcsop.values selected=$SelTevcsop.activ}
+    {if isset($SelTevcsop.error)}<div class="ui-state-error">{$SelTevcsop.error}</div>{/if}
+</div>
+<div class="clear"></div>
 <div class="form-row">
     <label for="{$SelTevkor.name}">Tevékenységi kör <span class="require">*</span></label>
-    {html_options id=$SelSzektor.name name=$SelTevkor.name options=$SelTevkor.values selected=$SelTevkor.activ}
+    {html_options id=$SelTevkor.name name=$SelTevkor.name options=$SelTevkor.values selected=$SelTevkor.activ}
     {if isset($SelTevkor.error)}<div class="ui-state-error">{$SelTevkor.error}</div>{/if}
 </div>
 <div class="clear"></div>
+
 <h3>Székhely adatok</h3>
 <div class="separator"></div>
 <div class="form-row">

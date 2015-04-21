@@ -64,6 +64,7 @@ class Level extends ModuleBaseModel
     
     public function set_nyelvtudas_szint_id($nyelvtudas_szint_id)
     {
-        (new AssignWithoutCast)->assignAttribute('nyelvtudas_szint_id', $nyelvtudas_szint_id, $this);
+	$assignWithoutCast = new AssignWithoutCast;
+        $assignWithoutCast->assignAttribute('nyelvtudas_szint_id', $nyelvtudas_szint_id, $this);
     }
 }

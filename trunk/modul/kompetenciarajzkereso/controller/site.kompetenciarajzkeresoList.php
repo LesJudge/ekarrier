@@ -75,7 +75,15 @@ class KompetenciarajzkeresoList_Site_Controller extends Admin_List
             $this->setWhereInput(' (SELECT
                                 mk3.munkakor_kategoria_id 
                                 FROM munkakor_kategoria mk3
-                                WHERE mk3.baloldal < mk.baloldal AND mk3.jobboldal > mk.jobboldal AND mk3.munkakor_kategoria_aktiv = 1 AND mk3.munkakor_kategoria_torolt = 0 AND mk3.szint = 1) = '.(int)$filterCsoport, 'FilterCsoport');
+                                WHERE mk3.baloldal < mk.baloldal AND mk3.jobboldal > mk.jobboldal AND mk3.munkakor_kategoria_aktiv = 1 AND mk3.munkakor_kategoria_torolt = 0 AND mk3.szint = 1) = '.(int)$filterCsoport.'
+                     OR
+                     
+                            (SELECT
+                                mk4.munkakor_kategoria_id 
+                                FROM munkakor_kategoria mk4
+                                WHERE mk4.baloldal < mkx.baloldal AND mk4.jobboldal > mkx.jobboldal AND mk4.munkakor_kategoria_aktiv = 1 AND mk4.munkakor_kategoria_torolt = 0 AND mk4.szint = 1) = '.(int)$filterCsoport
+
+                    , 'FilterCsoport');
         } 
         
         //Alkat szűrő
@@ -87,7 +95,7 @@ class KompetenciarajzkeresoList_Site_Controller extends Admin_List
         }
         else
         {
-            $this->setWhereInput('mk.munkakor_kategoria_id = '.(int)$filterKor, 'FilterKor');
+            $this->setWhereInput('mk.munkakor_kategoria_id = '.(int)$filterKor.' OR mkx.munkakor_kategoria_id = '.(int)$filterKor, 'FilterKor');
         }
         
         //Szektor szűrő

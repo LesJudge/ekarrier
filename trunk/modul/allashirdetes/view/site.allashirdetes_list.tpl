@@ -64,14 +64,18 @@
         }
     });
     
+    $(".letter").on('click',function(){
+        $('.activeLetter').removeClass('activeLetter');
+        $(this).addClass('activeLetter');
+        var letter = $(this).text().toLowerCase();
+        $('#{$FilterLetter.name}').attr('value',letter);
+    
+});
+    
+    
  });
  
-$(".letter").click(function(){
-    $('.activeLetter').removeClass('activeLetter');
-    $(this).addClass('activeLetter');
-    var letter = $(this).text().toLowerCase();
-    $('#{$FilterLetter.name}').attr('value',letter);
-});
+
 
 
 function filterByGroup(data){

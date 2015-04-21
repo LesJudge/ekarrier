@@ -99,11 +99,20 @@ class Szolgaltatas_Order_Edit_Model extends Admin_Edit_Model
                 ";
         
         $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
-        $result['ugyfelek_mappakbol'] = array_unique(unserialize($result['ugyfelek_mappakbol']));
-        $result['ugyfelek_jelentkezettek'] = array_unique(unserialize($result['ugyfelek_jelentkezettek']));
         
+        if(is_array(unserialize($result['ugyfelek_mappakbol']))){
+            $result['ugyfelek_mappakbol'] = array_unique(unserialize($result['ugyfelek_mappakbol']));
+        }else{
+            $result['ugyfelek_mappakbol'] = array();
+        }
         
-        return $result;
+        if(is_array(unserialize($result['ugyfelek_jelentkezettek']))){
+            $result['ugyfelek_jelentkezettek'] = array_unique(unserialize($result['ugyfelek_jelentkezettek']));
+        }else{
+            $result['ugyfelek_jelentkezettek'] = array();
+        }
+        
+        return array_unique($result);
         }catch(Exception_MYSQL_Null_Rows $e){
             return array();
         }

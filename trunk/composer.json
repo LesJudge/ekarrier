@@ -21,13 +21,16 @@
         "psr-4": {
             "Uniweb\\Library\\": "library/uniweb/",
             "Uniweb\\Module\\Beallitas\\Model\\": "modul/beallitas/model",
+            "Uniweb\\Module\\Ceg\\": "modul/ceg",
             "Uniweb\\Module\\Cim\\": "modul/cim",
+			"Uniweb\\Module\\Cim\\Library\\": "modul/cim/library",
             "Uniweb\\Module\\Cim\\Model\\": "modul/cim/model",
             "Uniweb\\Module\\User\\Model\\": "modul/user/model",
             "Uniweb\\Module\\Projekt\\Model\\": "modul/projekt/model",
             "Uniweb\\Module\\Nyelvtudas\\Model\\": "modul/nyelvtudas/model",
             "Uniweb\\Module\\Szolgaltatas\\Model\\": "modul/szolgaltatas/model",
             "Uniweb\\Module\\Ugyfel\\": "modul/ugyfel",
+			"Uniweb\\Module\\Ugyfel\\Library\\": "modul/ugyfel/library",
             "Uniweb\\Module\\Ugyfel\\Controller\\": "modul/ugyfel/controller",
             "Uniweb\\Module\\Ugyfel\\Model\\": "modul/ugyfel/model",
             "Tests\\Uniweb\\": "tests/"

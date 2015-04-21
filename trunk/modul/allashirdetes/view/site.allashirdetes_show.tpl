@@ -40,6 +40,14 @@
             {/foreach}
         </ul>
         {/if}
+        {if not empty($munkakorok)}
+        <p class="allashirdetes-label">Munkakörök:</p>
+        <ul class="allashirdetes-ul">
+            {foreach from=$munkakorok item=munkakor}
+            <li>{$munkakor.munkakor_nev}</li>
+            {/foreach}
+        </ul>
+        {/if}
         {if not empty($feladatok)}
         <p class="allashirdetes-label">Feladatok:</p>
         <ul class="allashirdetes-ul">

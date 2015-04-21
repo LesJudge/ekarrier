@@ -29,6 +29,7 @@ class SiteCegEditUpdate extends \AttachedUserUpdate
         $this->updateCompanyData(
             $id,
             $params['SelSzektor']->_value,
+            $params['SelTevkor']->_value,
             $params['TxtCegjegyzekszam']->_value,
             $params['TxtAdoszam']->_value,
             $userId
@@ -99,10 +100,11 @@ class SiteCegEditUpdate extends \AttachedUserUpdate
      * @param string $taxNumber Adószám.
      * @param int $userId Módosító felhasználó azonosító.
      */
-    public function updateCompanyData($companyId, $sectorId, $regNumber, $taxNumber, $userId)
+    public function updateCompanyData($companyId, $sectorId, $tevkorId, $regNumber, $taxNumber, $userId)
     {
         $this->db->prepare("UPDATE ceg_adatok SET 
-            szektor_id = " . $this->modelEditHelper->idMayNull($sectorId) . ", 
+            szektor_id = " . $this->modelEditHelper->idMayNull($sectorId) . ",
+            tevkor_id = " . $this->modelEditHelper->idMayNull($tevkorId) . ", 
             cegjegyzekszam = '" . mysql_real_escape_string($regNumber) . "', 
             adoszam = '" . mysql_real_escape_string($taxNumber) . "', 
             modosito_id = " . (int)$userId . ", 

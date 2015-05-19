@@ -60,5 +60,7 @@ $('body').on('click','.position', function(){
 </script>
 
 <div id="slider-vertical" style="height:200px; float:left; margin-top: 25px;"></div>
+
+<a class="btn btn-sm btn-primary" href="{$DOMAIN}">Irány a következő lépéshez</a>
  
 

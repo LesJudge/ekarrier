@@ -33,6 +33,13 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                         $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
                         $obj = $tartalom->getTartalomByID(35);
                         $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+                        
+                        $obj = $tartalom->getTartalomByID(29);
+                        $this->_view->assign("text2",$obj[0]["tartalom_tartalom"]);
+                        
+                        $obj = $tartalom->getTartalomByID(41);
+                        $this->_view->assign("text3",$obj[0]["tartalom_tartalom"]);
+                        
                         try{
                             $this->_view->assign('userCompetences',$this->_model->findCompetencesByClientId($lId));
                         }

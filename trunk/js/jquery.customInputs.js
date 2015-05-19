@@ -67,7 +67,7 @@
 						$(this).before("<span class='styled customInput-text'>"+ $(this).find("option:selected").text() +"</span><span class='styled-arrow'></span>");
 					}					
 					$(this).css("width",$this.widestObject($(this).find("option"))+$(this).parent().find(".styled-arrow").width()+parseInt($(this).parent().find(".styled").css("padding-left")));						
-					//$(this).css("width","100%");									
+					//$(this).css("width","100%");
 				});	
 				inp.change(function () { 
 					$(this).parent().find(".styled.customInput-text").text($(this).find("option:selected").text());

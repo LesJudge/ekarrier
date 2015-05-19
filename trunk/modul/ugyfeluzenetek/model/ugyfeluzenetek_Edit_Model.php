@@ -7,7 +7,7 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
                 'uzenet'=>'TxtTartalom',
                 'uzenet_elolvasva'=>'ChkSeen',
                 'ugyfel_attr_uzenetek_aktiv'=>'ChkAktiv',
-                'ugyfel_id' => 'SelUgyfel'
+                'ugyfel_id' => 'SelUgyfel',
         );
 
         public function __addForm()
@@ -62,12 +62,12 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
 
         public function __insert()
         {
-                parent::__insert(', szerzo='.UserLoginOut_Controller::$_id.', ugyfel_id='.$this->_params['SelUgyfel']->_value);
+                parent::__insert(', szerzo='.UserLoginOut_Controller::$_id);
                 
         }
 
         
-
+/*
         
         public function getAllMessages()
         {
@@ -80,4 +80,6 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
             return $this->_DB->prepare($query)->query_select()->query_fetch_array();
             
         }
+ * 
+ */
 }

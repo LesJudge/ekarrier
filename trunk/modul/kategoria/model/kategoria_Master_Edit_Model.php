@@ -22,7 +22,7 @@ class Kategoria_Master_Edit_Model extends Admin_Edit_Model {
                                 "jobboldal" => "KategoriaRight",
                                 "szint" => "KategoriaLevel"
         );
-         $this->addItem("ChkMunkaAdo")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
+         
     }
     
     public function removeAccentsFromLink() {

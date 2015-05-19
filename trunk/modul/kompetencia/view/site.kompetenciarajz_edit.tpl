@@ -2,7 +2,7 @@
 <!--script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script-->
 {if $FormError}
  <div class="info info-error">
-    <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
+    <p>{$FormError}</p>
 </div> 
 <div class="clear"></div>
 {/if}
@@ -12,142 +12,125 @@
 </div>
 <div class="clear"></div>
 {/if}
-<div>{$text}</div>
+
 {include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
-<div><a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/">Új kompetencia rajz</a></div>
+<div class="clear"></div><br/>
+<div>{$text}</div>
 
-{if not empty($compRajzok)}
-    {foreach from=$compRajzok item=rajz}
-        <div><a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/{$rajz.ID}/">{$rajz.nev}</a></div>
-    {/foreach}
-{else}
-    Nincs még kompetenciarajz
-{/if}
-<style>
-    .compQuestion{
-    position: fixed;
-    left: 20px;
-    width: 70px;
-    height: 30px;
-    background-color: lightgrey;
-    color: red;
-    padding: 10px;
-    }
-    
-    .compQuestionDetailed{
-    position: fixed;
-    left: 100px;
-    width: auto;
-    height: 30px;
-    background-color: lightgrey;
-    color: red;
-    padding: 10px;
-    display:none;
-    }
-    
-    #q1, #q1Detailed{
-    top: 450px;
-    }
-    
-    #q2, #q2Detailed{
-    top: 490px;
-    }
-    
-    #q3, #q3Detailed{
-    top: 530px;
-    }
-    
-    #q4, #q4Detailed{
-    top: 570px;
-    }
-    
-    #questionQuestion{
-    position: fixed;
-    background-color: lightgrey;
-    color: red;
-    padding: 10px;
-    width: auto;
-    height: 30px;
-    left: 20px;
-    top: 400px;
-    display: none;
-    }
-    
-    
-</style>
+<div class="row">
+	<a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/" class="btn btn-md btn-default">Új kompetencia rajz</a>
+	{if not empty($compRajzok)}		
+		{foreach from=$compRajzok item=rajz}
+			<a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/{$rajz.ID}/" class="btn btn-md btn-primary">{$rajz.nev}</a>
+		{/foreach}		
+	{else}
+		<div class="info info-success"><p>Nincs még kompetenciarajz</p></div>
+	{/if}
+</div>	
+<br/>
 
-
-<div id="questionQuestion">Mindegyik kérdésre válaszolt?</div>
-<div id="q1" class="compQuestion">Kérdés1</div>
-<div id="q1Detailed" class="compQuestionDetailed">Melyik munkahelyen, milyen tevékenységen keresztül fejlesztette ezt a kompetenciáját?</div>
-<div id="q2" class="compQuestion">Kérdés2</div>
-<div id="q2Detailed" class="compQuestionDetailed">Milyen tanulmányok során mélyítette az ehhez kapcsolódó elméleti/szakmai tudását?</div>
-<div id="q3" class="compQuestion">Kérdés3</div>
-<div id="q3Detailed" class="compQuestionDetailed">Milyen társadalmi munka/hobbi/szabadidős tevékenységen keresztül fejlesztette?</div>
-<div id="q4" class="compQuestion">Kérdés4</div>
-<div id="q4Detailed" class="compQuestionDetailed">E kompetenciához kapcsolódó egyéb kiegészítő tudás, tapasztalat, élmény.</div>
-<form id="compRajzForm" method="post">
-<input type="text" name="CompRajzNev" value="{$compRajzNev}" style="width: 150px !important" />
-{if $mode == "modify"}
-<input type="hidden" name="CompRajzID" value="{$compRajzID}" />
-<button id='updateCompRajzSbmt' name="{$BtnUpdateCompRajz}" type="submit" class="btn btn-sm btn-primary">Felülírás</button>
-<button id='saveAsCompRajzSbmt' name="{$BtnSaveAsCompRajz}" type="submit" class="btn btn-sm btn-primary">Mentés másként</button>
-<button id='deleteCompRajzSbmt' name="{$BtnDeleteCompRajz}" type="submit" class="btn btn-sm btn-primary">Kompetenciarajz törlése</button>
-<button id='requestExpertOpinionSbmt' name="{$BtnRequestExpertOpinion}" type="submit" class="btn btn-sm btn-primary">Szakértő véleménye!</button>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$compRajzID}/">Megtekintés</a>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$compRajzID}/?forceforeign=1">Ezt látja rólam a munkáltató</a>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}tevekenysegikor-kereso/">Hasonló tevékenységi körbe postolók rajzának megtekintése</a>
-
-
-{elseif $mode == "new"}
-<button id='saveCompRajzSbmt' name="{$BtnSaveCompRajz}" type="submit" class="btn btn-sm btn-primary">Mentés</button>    
-{/if}
-
-<div class="jobFindList-cont">
-	
-	<div class="jobFindList-data">	
-		
-		<div class="jobFindList-title textAlign-center">Kompetenciáim</div>	
-		<ul id="myComps" class='sortable2 sortedUL'>
-			{foreach from=$compRajzCompetences item=val}
-			<li class='fixed'>
-				<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-				<div id='myComp_{$val['kompetencia_id']}' class='myComp {if $val['user_attr_kompetencia_tesztbol']=="1"}fromTest{/if}'>{$val['kompetencia_nev']}</div>
-				{if $val['user_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'></div>{/if}
-                                <div>{$val['kompetencia_leiras']}</div>
-				<div id='myComp_{$val['kompetencia_id']}_operations' class="sortedUL-right">						
-					<a id='delButt_{$val['kompetencia_id']}' class="delButt iconCont" title="Töröl"><i class="icomoon icomoon-remove2">&nbsp;</i></a>
-				</div>
-				<div class="clear"></div>
-				<div>
-                                <input type="hidden" name="CompRajzKompetenciak[]" value="{$val['kompetencia_id']}"/>
-                                <textarea id="myComp_{$val['kompetencia_id']}_valasz" name="CompRajzValaszok[]" class="tinymce" cols="2" rows="2">{$val['valasz']}</textarea>
-				</div>				
-			</li>
-			{/foreach}
-		</ul>	
-	</div>
+<div class="compQuestion-cont">
+	<div id="questionQuestion">Mindegyik kérdésre válaszolt?</div>
 	<div class="clear"></div>
-</div> 
+	<div id="q1" class="compQuestion">K1</div>
+	<div id="q1Detailed" class="compQuestionDetailed">Melyik munkahelyen, milyen tevékenységen keresztül fejlesztette ezt a kompetenciáját?</div>
+	<div class="clear"></div>
+	<div id="q2" class="compQuestion">K2</div>
+	<div id="q2Detailed" class="compQuestionDetailed">Milyen tanulmányok során mélyítette az ehhez kapcsolódó elméleti/szakmai tudását?</div>
+	<div class="clear"></div>
+	<div id="q3" class="compQuestion">K3</div>
+	<div id="q3Detailed" class="compQuestionDetailed">Milyen társadalmi munka/hobbi/szabadidős tevékenységen keresztül fejlesztette?</div>
+	<div class="clear"></div>
+	<div id="q4" class="compQuestion">K4</div>
+	<div id="q4Detailed" class="compQuestionDetailed">E kompetenciához kapcsolódó egyéb kiegészítő tudás, tapasztalat, élmény.</div>
+	<div class="clear"></div>
+</div>
+
+<form id="compRajzForm" method="post">
+
+	{if $mode == "modify"}
+	<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciák kezelése</div><i class="write-icon"></i></div>
+		<div class="jobDataForm-cont">
+			<div class="compControl">
+				<input type="hidden" name="CompRajzID" value="{$compRajzID}" />
+				<button id='updateCompRajzSbmt' name="{$BtnUpdateCompRajz}" type="submit" class="btn btn-sm btn-default">Felülírás</button>
+				<button id='saveAsCompRajzSbmt' name="{$BtnSaveAsCompRajz}" type="submit" class="btn btn-sm btn-default">Mentés másként</button>
+				<button id='deleteCompRajzSbmt' name="{$BtnDeleteCompRajz}" type="submit" class="btn btn-sm btn-default">Kompetenciarajz törlése</button>
+				<button id='requestExpertOpinionSbmt' name="{$BtnRequestExpertOpinion}" type="submit" class="btn btn-sm btn-default">Szakértő véleménye!</button>
+				<a class="btn btn-sm btn-default" href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$compRajzID}/">Megtekintés</a>
+				<a class="btn btn-sm btn-default" href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$compRajzID}/?forceforeign=1">Ezt látja rólam a munkáltató</a>
+				<a class="btn btn-sm btn-default" href="{$DOMAIN}tevekenysegikor-kereso/">Hasonló tevékenységi körbe postolók rajzának megtekintése</a>
+			</div>  
+		<div class="clear"></div>
+	</div>	
+	<br/>		
+	{elseif $mode == "new"}
+		<button id='saveCompRajzSbmt' name="{$BtnSaveCompRajz}" type="submit" class="btn btn-sm btn-primary">Mentés</button>    
+	{/if}	
+	
+	
+<div class="clear"></div>	
+{foreach from=$compRajzCompetences item=val}	
+	<div class='compCont'>
+        <div class="jobFindList-title-cont">
+			<div class="jobFindList-title">{$val['kompetencia_nev']}</div> 
+			<a id='delButt_{$val['kompetencia_id']}' class="delButt iconCont" title="Töröl"><i class="del-icon"></i></a>
+		</div>		
+		<div class="jobFindList-cont jobFindList-cont-3">	
+			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title">Kompetencia általános leírása</div></div>
+			<div class="jobFindList-cont jobFindList-cont-2">   
+					<div class="padding-4">{$val['kompetencia_leiras']}</div>							
+			</div>
+			
+			<div class="jobFindList-title-cont">
+				<div class="jobFindList-title jobFindList-title">Kompetencia alátámasztása</div>
+			</div>
+			<div class="jobFindList-cont jobFindList-cont-2" style="margin:0;">   
+					<!--
+					<div id='myComp_{$val['kompetencia_id']}' class='myComp {if $val['user_attr_kompetencia_tesztbol']=="1"}fromTest{/if}'>{$val['kompetencia_nev']}</div>
+					{if $val['user_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'></div>{/if}
+					-->				
+					<div class="clear"></div>
+					<div class="form-row">	
+						<input type="hidden" name="CompRajzKompetenciak[]" value="{$val['kompetencia_id']}"/>
+						<textarea id="myComp_{$val['kompetencia_id']}_valasz" name="CompRajzValaszok[]" class="tinymce">{$val['valasz']}</textarea>				
+					</div>						
+			</div>
+			
+		</div>
+   </div>
+{/foreach}
 
 </form>
 
-<div><a href="{$DOMAIN}kompetenciak/kompetenciarajz/">Kompetencia hozzáadása</a></div>                
+<div><a href="{$DOMAIN}kompetenciak/kompetenciarajz/" class="btn btn-md btn-primary">Kompetencia hozzáadása</a></div>                
 <br/>
-<h2>Szakértői vélemények</h2>
+
 {if not empty($opinions)}
+<div class="jobFindList-title-cont"><div class="jobFindList-title">Szakértői vélemények</div></div>
+<div class="jobFindList-cont"> 
     {foreach from=$opinions item=opinion} 
-    <div style="background-color: lightgray; margin-top: 2px;">
-        {$opinion.valaszolo} - {$opinion.valasz_date}
-        <br />
-        {$opinion.velemeny}
-    </div>    
-    {/foreach}
-{else}
-    Nincs még szakértői vélemény
+	<div class="jobFindList-block">
+		<span class="jobFindList-item-type-1">{$opinion.valaszolo}</span> - {$opinion.valasz_date} 
+		{$opinion.velemeny}
+		<div class="clear"></div>
+	</div>
+	{/foreach}
+</div>	
+{else}    
+	<div class="info info-success"><p>Nincs még szakértői vélemény</p></div>
 {/if}
-<br/>
-<a href="{$DOMAIN}uzeneteim/">Lépjen kapcsolatba szaktanácsadóinkkal!</a>
+<div class="clear"></div>
+
+
+<p><br/></p>	 
+<a class="btn btn-lg btn-default pull-right" href="{$DOMAIN}uzeneteim/" style="margin-right:-10px;">Lépjen kapcsolatba szaktanácsadóinkkal!
+<span class="btn-next-icon"><img src="images/site/next-bub-icon-1.png" alt="" /></span></a>
+<div class="clear"></div>	
+<p><br/><br/></p>
+
+
+
 <script type='text/javascript'>
 $(document).ready(function(){
 
@@ -156,8 +139,8 @@ jQuery.each($(".tinymce"), function() {
     	theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,link,unlink,forecolor,backcolor,cleanup,|",    	
 		theme_advanced_resizing : true,			
 		document_base_url : $("#DOMAIN").val(),			
-		width : "630",  
-		height : "300", 
+		width : "100%",  
+		height : "150", 
 		paste_auto_cleanup_on_paste : true, 
 		plugin_preview_width : "1000", 
 		theme_advanced_resize_horizontal : false,
@@ -189,7 +172,7 @@ $(".compQuestion").mouseenter(function() {
   });
     
     $(".delButt").click(function(){
-        $(this).closest('li').remove();
+        $(this).closest('.compCont').remove();
     });
 
 });

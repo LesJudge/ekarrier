@@ -53,7 +53,7 @@ $(function() { {$FormScript}
                             <a href="{$DOMAIN_ADMIN}ugyfeluzenetek" id="{$FormName}_close"><img class="tip" title="{php}echo LANG_AdminEdit_megse;{/php}" src="../images/admin/icons/cancel.png"/></a>
                         
                         </div> 
-                                <div class="field" {if $mod=="1"}style="display:none"{/if}>
+                                <div class="field">
                                 <label for="{$SelUgyfel.name}">Ügyfél</label>
                                         {html_options name=$SelUgyfel.name options=$SelUgyfel.values selected=$SelUgyfel.activ} 
 					<span class="ui-icon ui-icon-info tip" title=""></span>
@@ -69,13 +69,13 @@ $(function() { {$FormScript}
                                 
                                 
                                 
-                               {if $mod=="1"}
+                               
                                 <div class="form_row">
                                         <label>Elolvasva <span class="require">*</span></label>
                                         {html_radios name=$ChkSeen.name options=$ChkSeen.values selected=$ChkSeen.activ}
                                         {if isset($ChkSeen.error)}<p class="error small">{$ChkSeen.error}</p>{/if}
                                 </div><div class="clear"></div>
-                                 {/if}
+                                
                                 
                                 <div class="form_row">
                                         <label>Publikus <span class="require">*</span></label>

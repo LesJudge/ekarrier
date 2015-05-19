@@ -62,6 +62,13 @@
 <div class="clear"></div>
 {/if}
 
+{if $textCompany}
+    <div>{$textCompany}</div>
+{elseif $textClient}
+    <div>{$textClient}</div>
+{/if}
+
+
 {foreach from=$services item=service}
     <div onclick="$('#descCont_{$service.ID}').toggle();">{$service.nev}</div><br/>
     <div style="display: none" id="descCont_{$service.ID}">{$service.leiras}

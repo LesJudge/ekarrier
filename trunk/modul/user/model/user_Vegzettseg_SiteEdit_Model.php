@@ -39,7 +39,7 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
             'nev',
             ' AND vegzettseg_aktiv=1 AND vegzettseg_torolt=0',
             ' ORDER BY nev ASC',
-            true,
+            false,
             array('' => '--Kérem, válasszon!--')
         );
         // Iskola
@@ -47,10 +47,10 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
         //$iskola->_verify['string'] = true;
         // Kezdet
         $kezdet = $this->addItem('YearKezdet');
-        //$kezdet->_verify['pattern'] = $yearVerify;
+        $kezdet->_verify['pattern'] = $yearVerify;
         // Vég
         $veg = $this->addItem('YearVeg');
-        //$veg->_verify['pattern'] = $yearVerify;
+        $veg->_verify['pattern'] = $yearVerify;
         // Szak
         $szak = $this->addItem('TxtSzak');
         // Megnevezés.
@@ -64,7 +64,7 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
         $query = "SELECT " . Create::query_load_sets($this->_bindArray) . "
                   FROM {$this->_tableName}
                   WHERE {$this->_tableName}_id = " . (int)$this->modifyID . " AND
-                        nyelv_id = " . Rimo::$_config->SITE_NYELV_ID . " AND
+                        /*nyelv_id = " . Rimo::$_config->SITE_NYELV_ID . " AND*/
                         ugyfel_id = " . $this->clientId . "
                   LIMIT 1";
         $data = $this->_DB->prepare($query)->query_select()->query_fetch_array();
@@ -86,8 +86,8 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
         $userId = (int)UserLoginOut_Site_Controller::$_id;
         parent::__insert(
             ',ugyfel_id=' . $this->clientId . '     
-            ,ugyfel_attr_letrehozo_id = ' . $userId . '
-            ,ugyfel_attr_modosito_id = ' . $userId
+            ,letrehozo_id = ' . $userId . '
+            ,modosito_id = ' . $userId
         );
     }
     /**
@@ -96,8 +96,8 @@ class User_Vegzettseg_SiteEdit_Model extends Page_Edit_Model
     public function __update($sets = '')
     {
         parent::__update(
-            ',ugyfel_attr_modosito_id = ' . (int)UserLoginOut_Site_Controller::$_id . '
-            ,ugyfel_attr_modositas_timestamp = NOW()
+            ',modosito_id = ' . (int)UserLoginOut_Site_Controller::$_id . '
+            ,modositas_timestamp = NOW()
             ,modositas_szama = modositas_szama + 1'
         );
     }

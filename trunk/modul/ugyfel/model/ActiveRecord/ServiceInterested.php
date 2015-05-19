@@ -46,7 +46,7 @@ class ServiceInterested extends BaseResourcable
         array(
             'service',
             'class_name' => '\\Uniweb\\Module\\Szolgaltatas\\Model\\ActiveRecord\\Service',
-            'conditions' => 'szolgaltatas_aktiv = 1 AND szolgaltatas_torolt = 0',
+            'conditions' => 'szolgaltatas_aktiv = 1 AND szolgaltatas_torolt = 1',
             'foreign_key' => 'szolgaltatas_id',
             'read_only' => true
         ),

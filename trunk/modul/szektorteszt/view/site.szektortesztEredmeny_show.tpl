@@ -1,53 +1,58 @@
 {if $Error}
 {$Error}
 {else}
- <div>{$text}</div>
-<div class="jobFindList-cont">
-	<div class="jobFindList-top"><i class='icomoon icomoon-numbered-list'>&nbsp;</i></div>	
-	<div class="jobFindList-data">
-	
-		<div class="connectedSortable-cont">  			
-			<ul class="connectedSortable teszt-result">
-				<li class="active">Legjellemzőbb szektor:</li>	
-				{foreach from=$Scores key=key item=val}
-                                        <div>
-					<li onClick="$(this).next('div').toggle(); $('#comps').html('');$(this).parent().find('.resultComps').clone().prependTo($('#comps')); ">{$Scores[$key]['eredmeny']}</li>
-                                            
-                                                {if $val@iteration == 1}
-                                                <div style="" class="desc">{$Scores[$key]['leiras']|truncate:400:'...'}<a href="{$DOMAIN}szektor/{$Scores[$key]['szektor_id']}">Tovább a részletekhez</a></div>
-                                                {else}
-                                                <div style="display:none;" class="desc">{$Scores[$key]['leiras']|truncate:400:'...'}<a href="{$DOMAIN}szektor/{$Scores[$key]['szektor_id']}">Tovább a részletekhez</a></div>
-                                                {/if}
-                                                <div style="display:none;">
-                                                <div class="resultComps">
-                                                    {$Scores[$key]['eredmeny']}
-                                                    {foreach from=$Scores[$key]['kompetencia'] item=val}
-                                                        <li class="teszt-result-data">{$val}</li>
-                                                    {/foreach}
-                                                </div>
-                                                </div>
-                                        </div>
-                                        
-				{/foreach}
-			</ul>	
-			<form id="resultForm" action="{$DOMAIN}kompetenciak/kompetenciarajz/" method="post">
-			<ul class="connectedSortable teszt-result">
-				<div id="comps">
-                                    {$Scores[0]['eredmeny']}
-                                    {foreach from=$Scores[0]['kompetencia'] item=val}
-                                        <li class="teszt-result-data">{$val}</li>
-                                    {/foreach}
-                                    
-                                </div>
-			</ul>
-			</form>
-			<div class="clear"></div>
-		</div> 
-	
-	</div>	
+<div>{$text}</div>
+
+<div class="jobFindList-title-cont">
+	<div class="jobFindList-title">Szektor teszt eredménye</div> 	
 	<div class="clear"></div>
 </div>
- 
+<div class="jobFindList-cont">  
+	<div class="row"> 	
+		<div class="col-lg-9 col-lg-offset-2">
+			<div class="teszt-result-data-title">Szektor teszt kitöltése utáni szektor sorrend</div>	
+			<div class="connectedSortable teszt-result">				
+				{foreach from=$Scores key=key item=val}     
+				<div class="sortableItem-cont">             
+					<div class="sortableItem" onClick="
+					$(this).next('div').toggle(); 
+					$('#comps').html('');
+					$(this).parent().find('.resultComps').clone().prependTo($('#comps')); 
+					">{$Scores[$key]['eredmeny']}</div>										
+					{if $val@iteration == 1}
+						<div class="desc">{$Scores[$key]['leiras']|truncate:400:'...'}<br/><a href="{$DOMAIN}szektor/{$Scores[$key]['szektor_id']}" class="btn btn-primary btn-sm">Tovább a részletekhez</a></div>
+					{else}
+						<div style="display:none;" class="desc">{$Scores[$key]['leiras']|truncate:400:'...'}<br/><a href="{$DOMAIN}szektor/{$Scores[$key]['szektor_id']}" class="btn btn-primary btn-sm">Tovább a részletekhez</a></div>
+					{/if}
+					<div style="display:none;">
+						<div class="resultComps">
+							<div class="teszt-result-data-title">{$Scores[$key]['eredmeny']}</div>
+							{foreach from=$Scores[$key]['kompetencia'] item=val}
+								<div class="teszt-result-data">{$val}</div>
+							{/foreach}
+						</div>
+					</div>  
+				</div>	                                     
+				{/foreach}
+			</div>			
+		</div>
+		<div class="col-lg-9 col-lg-offset-2">
+			<form id="resultForm" action="{$DOMAIN}kompetenciak/kompetenciarajz/" method="post">
+			<div id="comps" class="teszt-result" >				
+				<div class="resultComps">					
+					{foreach from=$Scores[0]['kompetencia'] item=val}
+						<div class="teszt-result-data">{$val}</div>
+					{/foreach}						
+				</div>
+			</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>	
+</div>
+
+<a class="btn btn-sm btn-primary" href="{$DOMAIN}">Irány a következő lépéshez</a>
+
 <!--br/><br/><br/><br/><br/>
 
 <div class="jobDataForm-cont hiddenLabels">

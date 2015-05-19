@@ -27,7 +27,7 @@ class UgyfeluzenetekShow_Site_Controller extends Page_Edit
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                         
                         //Üzenetek
-                        $messages = $this->_model->getUzenetek($clientId,$lId);
+                        $messages = $this->_model->getUzenetek($clientId);
                         $this->_view->assign('messages',$messages);
                         
                         Rimo::$_site_frame->assign('PageName',"Üzeneteim");
@@ -35,6 +35,7 @@ class UgyfeluzenetekShow_Site_Controller extends Page_Edit
                         Rimo::$_site_frame->assign('site_description',"Üzeneteim");
                         Rimo::$_site_frame->assign('site_keywords',"Üzeneteim");
                         Rimo::$_site_frame->assign('Content',$this->__generateForm('modul/ugyfeluzenetek/view/site.ugyfeluzenetek_show.tpl'));
+                        $this->_model->updateMessagesStatus($clientId);
                 }
                 catch(Exception_MYSQL $e)
                 {

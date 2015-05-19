@@ -1,3 +1,4 @@
+<script type="text/javascript" src="../js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 $(function() { {$FormScript}
     $("#{$TxtCim.name}").removeAccents({ target: $("#{$TxtLink.name}"), bind:"change" });
@@ -8,6 +9,7 @@ $(function() { {$FormScript}
     $('select[name="{$SelKapcsolodo.name}[]"]').multiselect().multiselectfilter();
 }) 
 </script>
+<script type="text/javascript" src="../js/admin/add_tinymce.js"></script>
 <form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor " enctype="multipart/form-data">
 	<div class="grid_18">
     	<div class="box_top">
@@ -54,7 +56,11 @@ $(function() { {$FormScript}
 					<textarea id="{$TxtLeiras.name}" name="{$TxtLeiras.name}">{$TxtLeiras.activ}</textarea>
                 	{if isset($TxtLeiras.error)}<p class="error small">{$TxtLeiras.error}</p>{/if}
                 </div><div class="clear"></div>
-                
+                <div class="form_row">
+					<label for="{$TxtTartalom.name}">Tartalom <span class="require">*</span></label>
+					<textarea id="{$TxtTartalom.name}" class="tinymce" name="{$TxtTartalom.name}">{$TxtTartalom.activ}</textarea>
+                	{if isset($TxtTartalom.error)}<p class="error small">{$TxtTartalom.error}</p>{/if}
+                </div><div class="clear"></div>
             </div>
             <!--div class="field">
                 <div class="form_row">

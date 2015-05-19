@@ -71,7 +71,7 @@ class UserVegzettsegEdit_Site_Controller extends Page_Edit
         } catch(Exception_Mysql_Null_Rows $emnr) {
             throw new Exception_Form_Error(self::MSG_ERROR_NOT_FOUND);
         } catch(Exception_MYSQL $em) {
-            throw new Exception_Form_Error(self::MSG_ERROR_SQL);
+            throw new Exception_Form_Error(self::MSG_ERROR_SQL.$em->getMessage());
         }
     }
 

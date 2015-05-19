@@ -105,6 +105,18 @@
                     <td>{$birthdate}</td>
                 </tr>
                 {/if}
+                {if $client->anyja_neve}
+                <tr>
+                    <td class="col-label">Anyja neve:</td>
+                    <td>{$client->anyja_neve}</td>
+                </tr>
+                {/if}
+                {if $client->taj_szam}
+                <tr>
+                    <td class="col-label">TAJ szám:</td>
+                    <td>{$client->taj_szam}</td>
+                </tr>
+                {/if}
                 {if $client->email}
                 <tr>
                     <td class="col-label">E-mail cím:</td>

@@ -27,8 +27,7 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                         $lId=Rimo::$_config->SITE_NYELV_ID;
                         $title = "";
                         $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
-                        $obj = $tartalom->getTartalomByID(27);
-                        $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
+                        
                         
                         $_REQUEST['krid'] = mysql_real_escape_string($_REQUEST['krid']);
                         
@@ -46,6 +45,8 @@ class KompetenciaRajzShow_Site_Controller extends Page_Edit
                                 $rajzID = $this->_model->getCompRajzById((int)$_REQUEST['krid'],"ceg");
                                 // ha saját
                                 if($clientId == $rajzID['uID'] && $forceForeign == 0){
+                                    $obj = $tartalom->getTartalomByID(27);
+                                    $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
                                     $this->_view->assign('compRajzAuthor', $rajzID['nev']);
                                     $this->_view->assign('compRajzTitle', $rajzID['kompetenciarajz_nev']);
                                     $title = $rajzID['nev']."/".$rajzID['kompetenciarajz_nev'];

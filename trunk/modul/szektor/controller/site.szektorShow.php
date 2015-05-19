@@ -52,7 +52,7 @@ class SzektorShow_Site_Controller extends Page_Edit
                         $this->_view->assign("links",$links);
                         
                         Rimo::$_site_frame->assign('site_title',$szektor['szektor_nev']);
-                        Rimo::$_site_frame->assign('site_description',$szektor['szektor_leiras']);
+                        Rimo::$_site_frame->assign('site_description',strip_tags($szektor['szektor_leiras']));
                         Rimo::$_site_frame->assign('site_keywords',$szektor['szektor_meta_kulcsszo']);
                                                 
                         Rimo::$_site_frame->assign('Content',$this->__generateForm('modul/szektor/view/site.szektor_show.tpl'));

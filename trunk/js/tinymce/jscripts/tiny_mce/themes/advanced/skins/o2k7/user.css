@@ -13,5 +13,6 @@ TD {  font-size:12px; font-family:Arial, Helvetica, sans-serif; line-height:20px
 	zoom:1;	
 }
 
-
+.head-title-2 { display:block; margin:-0.5em 0em 1em 0em; padding:0em; text-align:center; color:#6e6e6e; font-weight:normal; font-size:1.4em; }
+.head-title-1 { display:block; margin:0.5em 0em 1em 0em; padding:0em; text-align:center; color:#6e6e6e; font-weight:normal; font-size:1.8em; }
 

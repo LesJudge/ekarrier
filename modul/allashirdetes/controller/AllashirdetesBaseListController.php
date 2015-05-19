@@ -1,4 +1,5 @@
 <?php
+require 'modul/cim/library/AddressFinder.php';
 /**
  * Álláshirdetés alap listázás controller. Erre a controllerre azért van szükség, mert megkülönböztetünk jelenleg is 
  * "élő" álláshirdetéseket, valamint lejárt, archívumban lévő álláshirdetéseket. Az absztrakt 

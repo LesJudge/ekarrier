@@ -34,11 +34,8 @@ class UgyfeluzenetekEdit_Admin_Controller extends Admin_Edit
                 Rimo::$_site_frame->assign('Form',$this->__generateForm('modul/ugyfeluzenetek/view/admin.ugyfeluzenetek_edit.tpl'));
         }
 
-        
-
         public function onLoad_Edit()
         {
-                parent::onLoad_Edit();
                 
         }
 

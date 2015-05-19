@@ -142,6 +142,13 @@
         </div>
         {ar_error model=$client property='anyja_neve' view='admin_ar_error.tpl'}
     </div>
+    <div class="uw-ugyfelkezelo-form-row">
+        <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
+            <label for="clientTAJszam" class="item-pull-left">TAJ szám</label>
+            <input id="clientTAJszam" name="client[taj_szam]" class="uw-ugyfelkezelo-form-row-input" type="text" value="{$client->taj_szam}" />
+        </div>
+        {ar_error model=$client property='taj_szam' view='admin_ar_error.tpl'}
+    </div>
     {include file="modul/ugyfel/view/Admin/Edit/Partial/SheepIt/Address.tpl"}
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamVezetekes">Vezetékes telefonszám</label>

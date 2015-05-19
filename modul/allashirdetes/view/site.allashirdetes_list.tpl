@@ -104,12 +104,12 @@ function filterByCircle(data){
 
     $('#{$FilterTevCsoport.name} option').each(function(){
         if(parseInt($(this).attr('value')) != -1){
-            $(this).removeAttr("selected");
+            $(this).prop("selected", false);
             if($.inArray($(this).attr('value'),IDs) == -1){
                 $(this).attr('disabled',true);
                 $(this).addClass('disabledItemGroup');
             }else{
-                $(this).attr("selected",true);
+                $(this).prop("selected",true);
             }   
         }
     });
@@ -132,97 +132,125 @@ function resetGroupOpts(){
 <br /-->
 {/if}
 <div>{$text}</div>
-<br/><br/>
 
 <form action="" method="POST" name="{$FormName}" id="{$FormName}" class="form form_list" enctype="multipart/form-data">
-    <div class="jobDataForm-cont hiddenLabels">
-        <div class="jobDataForm-top"><i class='icomoon icomoon-search'>&nbsp;</i></div>
-        <div class="form-cell-1">
-            <div>
-                <label>Szektor</label>
-                {html_options name=$FilterSector.name id=$FilterSector.name options=$FilterSector.values selected=$FilterSector.activ}
-            </div>
-            <div>
-                <label>Pozíció</label>
-                {html_options name=$FilterPosition.name id=$FilterPosition.name options=$FilterPosition.values selected=$FilterPosition.activ}
-            </div>
-        </div>
-        <div class="form-cell-1">
-            <!--div>
-                <label>Munkakör</label>
-                {html_options name=$FilterJob.name id=$FilterJob.name options=$FilterJob.values selected=$FilterJob.activ}
-            </div-->
-               
-            <div>
-                <label>Tevékenységi csoport</label>
-                {html_options name=$FilterTevCsoport.name id=$FilterTevCsoport.name options=$FilterTevCsoport.values selected=$FilterTevCsoport.activ}
-            </div>
-            <div>
-                <label>Tevékenységi kör</label>
-                {html_options name=$FilterTevKor.name id=$FilterTevKor.name options=$FilterTevKor.values selected=$FilterTevKor.activ}
-            </div>
-            <div>
-                <label>Megye</label>
-                {html_options name=$FilterCounty.name id=$FilterCounty.name options=$FilterCounty.values selected=$FilterCounty.activ}			
-            </div>
-        </div>
-        <div class="form-cell-1">
-            <div>
-                <label for="{$FilterCity.name}">Város</label>    
-                <input id="{$FilterCity.name}" name="{$FilterCity.name}" type="text" value="{$FilterCity.activ}" alt="" placeholder="Város" class="labelInField"  />
-            </div>
-        </div>
-        <div class="form-cell-1">
-            <div>
-                {html_options name=$FilterEllenorzott.name id=$FilterEllenorzott.name options=$FilterEllenorzott.values selected=$FilterEllenorzott.activ}	
-            </div>
-        </div>
-        <div class="form-cell-1">
-            <input type="submit" value="Keres" class="submit btn-1" />			
-        </div>
-        <div class="form-cell-1">
-            <input name="{$BtnFilterDEL}" class="submit btn-1" type="submit" value="Feltételek törlése" />
-        </div>
-        <div class="clear"></div>
-    <div class="letter">A</div>
-	<div class="letter">B</div>
-	<div class="letter">C</div>
-	<div class="letter">D</div>
-	<div class="letter">E</div>
-	<div class="letter">F</div>
-	<div class="letter">G</div>
-	<div class="letter">H</div>
-	<div class="letter">I</div>
-	<div class="letter">J</div>
-	<div class="letter">K</div>
-	<div class="letter">L</div>
-	<div class="letter">M</div>
-	<div class="letter">N</div>
-	<div class="letter">O</div>
-	<div class="letter">P</div>
-	<div class="letter">Q</div>
-	<div class="letter">R</div>
-	<div class="letter">S</div>
-	<div class="letter">T</div>
-	<div class="letter">U</div>
-	<div class="letter">V</div>
-	<div class="letter">W</div>
-	<div class="letter">X</div>
-	<div class="letter">Y</div>
-	<div class="letter">Z</div>
-	<div class="letter">1</div>
-	<div class="letter">2</div>
-	<div class="letter">3</div>
-	<div class="letter">4</div>
-	<div class="letter">5</div>
-	<div class="letter">6</div>
-	<div class="letter">7</div>
-	<div class="letter">8</div>
-	<div class="letter">9</div>
-	<div class="letter">0</div>
-        <div class="clear"></div>
-        <input id="{$FilterLetter.name}" name="{$FilterLetter.name}" type="hidden" value="{$FilterLetter.activ}" />
+<div class="jobFindList-title-cont">
+	<div class="jobFindList-title jobFindList-title-2">Keress az álláshírdetések és a munkáltatók között</div>
+	<div class="jobDataForm-cont">        
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="form-row">		
+				{html_options name=$FilterSector.name id=$FilterSector.name options=$FilterSector.values selected=$FilterSector.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+						
+				<div class="form-row">		
+				{html_options name=$FilterPosition.name id=$FilterPosition.name options=$FilterPosition.values selected=$FilterPosition.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+				
+				<!--
+				<div class="form-row">		
+				{html_options name=$FilterJob.name id=$FilterJob.name options=$FilterJob.values selected=$FilterJob.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>	
+				-->
+					   
+				<div class="form-row">		
+				{html_options name=$FilterTevCsoport.name id=$FilterTevCsoport.name options=$FilterTevCsoport.values selected=$FilterTevCsoport.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+				
+				<div class="form-row">		
+				<input type="text" name="{$FilterCity.name}" value="{$FilterCity.activ}" autocomplete="off" placeholder="Város" />
+				<div class="clear"></div> 
+				</div>
+			</div>	
+			<div class="col-lg-11 col-lg-offset-1">		
+				<div class="form-row">		
+				{html_options name=$FilterTevKor.name id=$FilterTevKor.name options=$FilterTevKor.values selected=$FilterTevKor.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+				
+				<div class="form-row">		
+				{html_options name=$FilterCounty.name id=$FilterCounty.name options=$FilterCounty.values selected=$FilterCounty.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+				
+				<div class="form-row">		
+				{html_options name=$FilterEllenorzott.name id=$FilterEllenorzott.name options=$FilterEllenorzott.values selected=$FilterEllenorzott.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+				
+				<div class="form-row" style="padding-top:0.4em;">		
+				<button class="btn btn-danger" type="submit" name="{$BtnFilterDEL}" value="Feltételek törlése">Feltételek törlése</button>                   
+				<input class="btn btn-primary" type="submit" id="{$BtnFilter}" name="{$BtnFilter}" value="Keres" />        
+				<div class="clear"></div>
+				</div>
+			</div>
+			<div class="clear"></div>				
+		</div> 
+		
+		<br/>
+		<div class="row search-letter-cont">
+			<strong>Keress ABC szerint</strong>
+			<div class="clear"></div>
+			<div class="letter">A</div>
+			<div class="letter">B</div>
+			<div class="letter">C</div>
+			<div class="letter">D</div>
+			<div class="letter">E</div>
+			<div class="letter">F</div>
+			<div class="letter">G</div>
+			<div class="letter">H</div>
+			<div class="letter">I</div>
+			<div class="letter">J</div>
+			<div class="letter">K</div>
+			<div class="letter">L</div>
+			<div class="letter">M</div>
+			<div class="letter">N</div>
+			<div class="letter">O</div>
+			<div class="letter">P</div>
+			<div class="letter">Q</div>
+			<div class="letter">R</div>
+			<div class="letter">S</div>
+			<div class="letter">T</div>
+			<div class="letter">U</div>
+			<div class="letter">V</div>
+			<div class="letter">W</div>
+			<div class="letter">X</div>
+			<div class="letter">Y</div>
+			<div class="letter">Z</div>
+			<div class="letter">1</div>
+			<div class="letter">2</div>
+			<div class="letter">3</div>
+			<div class="letter">4</div>
+			<div class="letter">5</div>
+			<div class="letter">6</div>
+			<div class="letter">7</div>
+			<div class="letter">8</div>
+			<div class="letter">9</div>
+			<div class="letter">0</div>
+        	<div class="clear"></div>
+		</div>
     </div>
+</div>
+
+
+<br/>
+{include file='page/all/view/page.message.tpl'}
+{include file='modul/allashirdetes/view/partial/site_allashirdetes_list.tpl'}
+{*include file='page/all/view/page.paging.tpl'*} 
+<input id="{$FilterLetter.name}" name="{$FilterLetter.name}" type="hidden" value="{$FilterLetter.activ}" />
+<div class="clear"></div>
+
+
+
+
+		
+    
+       
+
         
  <style>
  .letter{
@@ -246,7 +274,5 @@ function resetGroupOpts(){
         
  
         
-    {include file='page/all/view/page.message.tpl'}
-    {include file='modul/allashirdetes/view/partial/site_allashirdetes_list.tpl'}
-    {*include file='page/all/view/page.paging.tpl'*} 
+    
 </form>

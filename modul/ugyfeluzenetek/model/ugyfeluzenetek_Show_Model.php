@@ -38,9 +38,6 @@ class Ugyfeluzenetek_Show_Model extends Page_Edit_Model {
 
     }
     
-   
-
-    
     public function getUzenetek($cID)
     {
         try
@@ -64,7 +61,29 @@ class Ugyfeluzenetek_Show_Model extends Page_Edit_Model {
         }
     }
      
+    public function updateMessagesStatus($cID)
+    {
+        try
+        {
+            $query = "
+                    UPDATE ugyfel_attr_uzenetek
+                    SET ugyfel_latta = 1
+                    WHERE ugyfel_id = ".(int)$cID."
+                    AND ugyfel_attr_uzenetek_torolt = 0
+                    AND ugyfel_attr_uzenetek_aktiv = 1"   
+                    ;
+            return $this->_DB->prepare($query)->query_select()->query_result_array();
+        }
+        catch(Exception_MYSQL_Null_Rows $e)
+        {
+            return array();
+        }
+        catch(Exception_MYSQL $e)
+        {    
+        }
+    }
 
+    
     
     
 }

@@ -70,19 +70,19 @@ function filterByGroup(data){
 
 function filterByCircle(data){
     var IDs = new Array();
-    
+    console.log(data);
     for(i=0; i<data.length; i++){
         IDs.push(data[i]['ID']);
     }
 
     $('#{$FilterCsoport.name} option').each(function(){
         if(parseInt($(this).attr('value')) != -1){
-            $(this).removeAttr("selected");
+            $(this).prop("selected", false);
             if($.inArray($(this).attr('value'),IDs) == -1){
                 $(this).attr('disabled',true);
                 $(this).addClass('disabledItemGroup');
             }else{
-                $(this).attr("selected",true);
+                $(this).prop("selected",true);
             }   
         }
     });
@@ -91,12 +91,12 @@ function filterByCircle(data){
 
 function resetCircleOpts(){
     $('.disabledItemCircle').removeClass('disabledItemCircle');
-    $('#{$FilterKor.name} option').attr('disabled', false);
+    $('#{$FilterKor.name} option').prop('disabled', false);
 }
 
 function resetGroupOpts(){
     $('.disabledItemGroup').removeClass('disabledItemGroup');
-    $('#{$FilterCsoport.name} option').attr('disabled', false);
+    $('#{$FilterCsoport.name} option').prop('disabled', false);
 }
 
 </script>
@@ -118,7 +118,7 @@ function resetGroupOpts(){
 
 .disabledItemCircle, .disabledItemGroup{
     color: darkgrey !important;
-    //display:none;
+    //display: none;
 }
 </style>
 
@@ -138,7 +138,8 @@ function resetGroupOpts(){
 <div>{$text}</div>
 
 <form action="" method="POST" name="{$FormName}" id="{$FormName}" enctype="multipart/form-data">
-    <div id="anc" class="jobDataForm-cont">
+    <div class="jobFindList-title-cont"><div class="jobFindList-title">Munkakör kereső</div></div>
+	<div id="anc" class="jobDataForm-cont">
         
 		<div class="filter_row_cont">
 			<div class="filter_row">		
@@ -172,21 +173,22 @@ function resetGroupOpts(){
 </form>
 
 <br/>
-<div class="jobFindList-title-cont"><div class="jobFindList-title">Találati eredmények</div></div>
-<div class="jobFindList-cont">      
-    {include file='page/all/view/page.message.tpl'}
-    {if not empty($Lista)}
-    {foreach from=$Lista item=munkakor}
-    <div class="jobFindList-block">
-        <span class="jobFindList-item-type-1">{$munkakor.munkakor_nev}</span> - {$munkakor.korCim} - {$munkakor.csoportCim}
-        <a href="{$DOMAIN}tevekenysegikor/{$munkakor.tevkorLink}" class="btn btn-primary btn-sm">Részletek</a>
-        <div class="clear"></div>
-    </div>
-    {/foreach}
-    {/if}
-    <div class="clear"></div>
-    {include file='page/all/view/page.paging.tpl'}
-</div>
+{include file='page/all/view/page.message.tpl'}
+{if not empty($Lista)}
+<div class="jobFindList-title-cont"><div class="jobFindList-title">Találati lista</div></div>
+<div class="jobFindList-cont"> 
+	{foreach from=$Lista item=munkakor}
+	<div class="jobFindList-block">
+		<span class="jobFindList-item-type-1">{$munkakor.munkakor_nev}</span> - {$munkakor.korCim} - {$munkakor.csoportCim}
+		<a href="{$DOMAIN}tevekenysegikor/{$munkakor.tevkorLink}" class="btn btn-primary btn-sm">Részletek</a>
+		<div class="clear"></div>
+	</div>
+	{/foreach}
+</div>	
+{/if}
+<div class="clear"></div>
+{include file='page/all/view/page.paging.tpl'}
+
 
 <br />
 <a class="btn btn-sm btn-default" href="{$DOMAIN}fooldal/">Vissza a főoldalra</a>

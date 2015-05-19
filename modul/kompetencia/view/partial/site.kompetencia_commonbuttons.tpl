@@ -1,4 +1,4 @@
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciak/kompetenciarajz/">Válaszd ki</a>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/">Írd meg</a>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}allaskereses/">Használd</a>
+<a class="btn btn-md btn-primary" href="{$DOMAIN}kompetenciak/kompetenciarajz/">1. Válaszd ki</a>
+<a class="btn btn-md btn-primary" href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/">2. Írd meg</a>
+<a class="btn btn-md btn-primary" href="{$DOMAIN}allaskereses/">3. Használd</a>
 

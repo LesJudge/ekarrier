@@ -90,7 +90,9 @@ abstract class UserLoginOut_Controller extends RimoController
             if ($user['user_aktiv'] == 0 || $user['user_torolt'] == 1 || $user['user_megerositve'] == 0) {
                 throw new Exception_Form_Error($this->_translate->__('Felhasználónév és vagy a jelszó nem megfelelő'));
             }
-            $_SESSION['user_data'] = $user;            
+            $_SESSION['user_data'] = $user;
+            $_SESSION['last_logins']['messages'] = $user['user_last_login'];
+            $_SESSION['last_logins']['tevkors'] = $user['user_last_login'];
             static::$_id = $user[0];
             static::$_rights = $_SESSION['user_rights'] = $rights;
             $this->_model->modifyUser(static::$_id);

@@ -42,7 +42,8 @@ class En_Show_Model extends Page_Edit_Model {
         {
         $IDstring = implode(", ",$ids);
         
-        $llogin = $this->getLastLogin($cID);
+        //$llogin = $this->getLastLogin($cID);
+        $llogin = $_SESSION['last_logins']['tevkors'];
         
         $query = "SELECT COUNT( DISTINCT (a.allashirdetes_id)) AS ahDB,
                     (
@@ -54,8 +55,9 @@ class En_Show_Model extends Page_Edit_Model {
                     INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = aam.munkakor_id
                     INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id
                     WHERE
-                        a.lejarati_datum > '" . date('Y-m-d') . "' AND 
                         a.letrehozas_timestamp > '".mysql_real_escape_string($llogin)."' AND
+                            a.kezdes_datum <= '".date('Y-m-d')."' AND
+                            a.lejarati_datum >= '".date('Y-m-d')."' AND
                         mk.munkakor_kategoria_id IN (".$IDstring.")
                         /*mk.munkakor_kategoria_id = " . (int)$jobId . " */ AND 
                         a.allashirdetes_aktiv = 1 AND a.allashirdetes_torolt = 0
@@ -71,14 +73,13 @@ class En_Show_Model extends Page_Edit_Model {
                     INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = aam.munkakor_id
                     INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id
                     WHERE
-                        a.lejarati_datum > '" . date('Y-m-d') . "' AND 
+                        a.kezdes_datum <= '".date('Y-m-d')."' AND
+                        a.lejarati_datum >= '".date('Y-m-d')."' AND
                         mk.munkakor_kategoria_id IN (".$IDstring.")
                         /*mk.munkakor_kategoria_id = " . (int)$jobId . " */ AND 
                         a.allashirdetes_aktiv = 1 AND a.allashirdetes_torolt = 0
                     GROUP BY mk.munkakor_kategoria_id
             ";
-        
-        
         
         return $this->_DB->prepare($query)->query_select()->query_result_array();
         }catch(Exception_MYSQL_Null_Rows $e)
@@ -310,15 +311,19 @@ class En_Show_Model extends Page_Edit_Model {
     
     public function checkNewMessages($cID){
             try{
-                $query = "SELECT COUNT(uau.ugyfel_attr_uzenetek_id) AS cnt
+            $lastLogin = $_SESSION['last_logins']['messages'];
+            $query = "SELECT COUNT(uau.ugyfel_attr_uzenetek_id) AS cnt
                            FROM ugyfel_attr_uzenetek uau
                           INNER JOIN user_ugyfel uu ON uu.ugyfel_id = uau.ugyfel_id
                           INNER JOIN user u ON u.user_id = uu.user_id
                           WHERE uau.ugyfel_id = ".(int)$cID." 
+                              AND uau.szerzo <> 'ugyfel'
                               AND uau.ugyfel_attr_uzenetek_aktiv = 1
                               AND uau.ugyfel_attr_uzenetek_torolt = 0
-                              AND uau.bekuldes_datum > u.user_last_login
+                              AND ugyfel_latta = 0
+                              /*AND uau.bekuldes_datum > '".$lastLogin."'*/
                          ";
+                
                 $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
                 return $result[0]['cnt'];
             }catch(Exception_MYSQL_Null_Rows $e){

@@ -45,6 +45,7 @@ class user_Login_Model extends Model {
                    user_email,
                    user_aktiv,
                    user_torolt,
+                   user_last_login,
                    user_megerositve
             FROM user
             " . $join . "

@@ -75,11 +75,11 @@ $(function() { {$FormScript}
                 {/if}
             </div-->
             <div class="field tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
-            	<!--div class="form_row">
+            	<div class="form_row">
                     <label>Munkáltató</label>
                     {html_radios name=$ChkMunkaAdo.name options=$ChkMunkaAdo.values selected=$ChkMunkaAdo.activ}
                     {if isset($ChkMunkaAdo.error)}<p class="error small">{$ChkMunkaAdo.error}</p>{/if}
-				</div><div class="clear"></div-->  
+				</div><div class="clear"></div>  
                 <div class="form_row">
                     <label>Publikus</label>
                     {html_radios name=$ChkAktiv.name options=$ChkAktiv.values selected=$ChkAktiv.activ}

@@ -5,7 +5,7 @@ class SiteUserEditUpdate extends \AttachedUserUpdate
     public function updateAttached(array &$params, $userId, $id)
     {
         // Ügyfél címek módosítása.
-        $this->updateAddress(
+      /*  $this->updateAddress(
             $id, 
             1, //Residence::ADDRESS_TYPE_ID, 
             $params['SelLakhelyOrszag']->_value, 
@@ -15,8 +15,8 @@ class SiteUserEditUpdate extends \AttachedUserUpdate
             $params['TxtLakhelyUtca']->_value, 
             $params['TxtLakhelyHazszam']->_value,
             $userId
-        ); // Lakcím.
-        $this->updateAddress(
+        );*/ // Lakcím.
+      /*  $this->updateAddress(
             $id, 
             2, //DwellingPlace::ADDRESS_TYPE_ID, 
             $params['SelTarthelyOrszag']->_value, 
@@ -26,8 +26,8 @@ class SiteUserEditUpdate extends \AttachedUserUpdate
             $params['TxtTarthelyUtca']->_value, 
             $params['TxtTarthelyHazszam']->_value,
             $userId
-        ); // Tartózkodási hely.
-        $this->updateAddress(
+        );*/ // Tartózkodási hely.
+      /*  $this->updateAddress(
             $id, 
             3, //TemporaryResidence::ADDRESS_TYPE_ID, 
             $params['SelIdeiglenesOrszag']->_value, 
@@ -37,7 +37,7 @@ class SiteUserEditUpdate extends \AttachedUserUpdate
             $params['TxtIdeiglenesUtca']->_value, 
             $params['TxtIdeiglenesHazszam']->_value,
             $userId
-        ); // Ideiglenes lakcím.
+        ); */// Ideiglenes lakcím.
         // Módosítja az ügyfél adatokat.
         $this->updateClientData(
             $id,
@@ -54,14 +54,14 @@ class SiteUserEditUpdate extends \AttachedUserUpdate
             $userId
         );
         // Születési adatok módosítása.
-        $this->updateBirthData(
+       /* $this->updateBirthData(
             $id, 
             $params['TxtSzulVezeteknev']->_value, 
             $params['TxtSzulKeresztnev']->_value, 
             $params['SelSzulhelyOrszag']->_value, 
             $params['SelSzulhelyVaros']->_value, 
             $params['DateSzulIdo']->_value
-        );
+        );*/
     }
     /**
      * Módosítja a felhasználó cím adatait.

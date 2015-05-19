@@ -29,6 +29,7 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
                 parent::__show();
                 try
                 {        
+                        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
                         if($this->visitType == 'company'){
                             $services = $this->_model->getSzolgaltatasok('company');
                             $this->_view->assign('services', $services);
@@ -45,9 +46,13 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
                             $this->_view->assign("pendingOrders", $pendingOrders);
                             $this->_view->assign("loggedInAs", "company");
                             $this->_view->assign("loggedIn", "1");
+                            
+                            $obj = $tartalom->getTartalomByID(38);
+                            $this->_view->assign("textCompany",$obj[0]["tartalom_tartalom"]);
                         }
                         
                         if($this->visitType == 'client'){
+                            
                             $services = $this->_model->getSzolgaltatasok('client');
                             $clientID = Rimo::getClientWebUser()->findByUserId(UserLoginOut_Site_Controller::$_id);
                             $pendingOrders = $this->_model->getPendingOrders($clientID,'client');
@@ -55,15 +60,20 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
                             $this->_view->assign('services', $services);
                             $this->_view->assign("loggedInAs", "client");
                             $this->_view->assign("loggedIn", "1");
-                            
+                            $obj = $tartalom->getTartalomByID(37);
+                            $this->_view->assign("textClient",$obj[0]["tartalom_tartalom"]);
                         }
                         
                         if($this->visitType == 'neutral'){
                             if($_SESSION['type']=='ma'){
                                 $services = $this->_model->getSzolgaltatasok('company');
+                                $obj = $tartalom->getTartalomByID(38);
+                                $this->_view->assign("textCompany",$obj[0]["tartalom_tartalom"]);
                                 $this->_view->assign('regLink', 'ceg/regisztracio/');
                             }
                             if($_SESSION['type']=='mv'){
+                                $obj = $tartalom->getTartalomByID(37);
+                                $this->_view->assign("textClient",$obj[0]["tartalom_tartalom"]);
                                 $services = $this->_model->getSzolgaltatasok('client');
                                 $this->_view->assign('regLink', 'munkavallalo/regisztracio/');
                             }
@@ -161,7 +171,6 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
             throw new Exception_Form_Message('Sikeres megrendelés!');
         }
         catch(Exception_MYSQL $e){
-            throw new Exception_Form_Error($e->getMessage());
             throw new Exception_Form_Error("Hiba történt!");
         }
     }

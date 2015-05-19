@@ -69,12 +69,12 @@ function filterByCircle(data){
 
     $('#{$SelTevcsop.name} option').each(function(){
         if(parseInt($(this).attr('value')) != -1){
-            $(this).removeAttr("selected");
+            $(this).prop("selected", false);
             if($.inArray($(this).attr('value'),IDs) == -1){
                 $(this).attr('disabled',true);
                 $(this).addClass('disabledItemGroup');
             }else{
-                $(this).attr("selected",true);
+                $(this).prop("selected",true);
             }   
         }
     });

@@ -9,7 +9,7 @@
 		
 			<form action="" method="post" name="{$FormName}" id="{$FormName}">
 				<div class="form-row">	
-					<textarea id="compComment" name="compComment" class="tinymce">{$content}</textarea>				
+					<textarea id="compComment" name="tasksComment" class="tinymce">{$content}</textarea>				
 				</div>
 				<div class="form-row textAlign-center" style="margin:0.5em 0;">					
 					<button class="btn btn-md btn-primary" name="{$BtnAddTasksComment}" id="{$BtnAddTasksComment}" type="submit">Beküld</button>

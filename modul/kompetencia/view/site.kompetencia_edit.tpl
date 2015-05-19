@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{$DOAMAIN}js/admin/add_tinymce_mini.js" ></script>
 {if $FormError}
  <div class="info info-error">
-    <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
+    <p>{$FormError}</p>
 </div> 
 <div class="clear"></div>
 {/if}
@@ -14,7 +14,9 @@
 {/if}
 
 <div>{$text}</div>
-{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}
+<div>{$text2}</div>
+<div>{$text3}</div>
+<div>{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}</div>
 <form id="newCompForm" action="" method="post" hidden='hidden'>
 <div class="dialog-form">
     <input type="text" id='newCompId' name="newCompId" value="" hidden="hidden" />
@@ -24,51 +26,59 @@
 </div>	
 </form>
 
-
-
-<div class="jobFindList-cont">
-	<div class="jobFindList-top"><i class='icomoon icomoon-tab'>&nbsp;</i></div>	
-	<div class="jobFindList-title textAlign-center">Összes</div>	
-	<div class="jobFindList-data">	
-				
-			<form id="newCompForm" action="" method="post">
+<br />
+<div class="row">	
+	<div class="col-lg-12" style="z-index:20;">
+		<div class="padding-2">
+			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Összes</div></div>
+			<div class="jobFindList-cont"> 			
+				<form id="newCompForm" action="" method="post">
 				<ul id="allCompSelect" class='sortable1 sortedUL sortedUL-graggable'>
 					{foreach from=$allCompetences item=val}
 					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
 						{if $val['tipus'] != 'ugyfel'}
-                                                <div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-						<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
-                                                {else}
-                                                {$val['kompetencia_nev']}
-                                                {/if}
+							<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
+							<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
+						{else}
+							{$val['kompetencia_nev']}
+						{/if}
 					</li>
 					{/foreach}
 				</ul>
-			</form>			
-		
-		<div class="jobFindList-title textAlign-center">Kompetenciáim</div>	
-		<ul id="myComps" class='sortable2 sortedUL' style="height: 50px;">
-			{foreach from=$userCompetences item=val}
-			<li class='fixed'>
-				<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-				<div id='myComp_{$val['kompetencia_id']}' class='myComp {if $val['ugyfel_attr_kompetencia_tesztbol']=="1"}fromTest{/if}'><a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a></div>
-				{if $val['ugyfel_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'><font color="red">Tesztből</font></div>{/if}	
-				<div id='myComp_{$val['kompetencia_id']}_operations' class="sortedUL-right">						
-					<a id='delButt_{$val['kompetencia_id']}' class="delButt iconCont" title="Töröl"><i class="icomoon icomoon-remove2">&nbsp;</i></a>
-				</div>
-				<div class="clear"></div>
-				<div class="display-none">
-					<textarea id="myComp_{$val['kompetencia_id']}_valasz" cols="2" rows="2" readonly="readonly" hidden="hidden">{$val['user_attr_kompetencia_valasz']}</textarea>
-					<input type="text" name="deleteCompId" value="{$val['kompetencia_id']}" hidden="hidden" />	
-				</div>				
-			</li>
-			{/foreach}
-		</ul>	
+				</form>			
+			</div>	
+		</div>	
 	</div>
-	<div class="clear"></div>
-</div> 
-
-
+	<div class="col-lg-12">	
+		<div class="padding-3">
+			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciáim</div></div>
+			<div class="jobFindList-cont"> 			
+				<ul id="myComps" class='sortable2 sortedUL'>
+					{foreach from=$userCompetences item=val}
+					<li class='fixed'>
+						<!--
+						<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
+						<div id='myComp_{$val['kompetencia_id']}' class='myComp {if $val['ugyfel_attr_kompetencia_tesztbol']=="1"}fromTest{/if}'></div>
+						-->
+						<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
+						<!-- {if $val['ugyfel_attr_kompetencia_tesztbol']=="1"}<div class='myComp-test'><font color="red">Tesztből</font></div>{/if} -->	
+						<div id='myComp_{$val['kompetencia_id']}_operations' class="sortedUL-right">						
+							<a id='delButt_{$val['kompetencia_id']}' class="delButt iconCont" title="Töröl"><i class="icomoon icomoon-remove2">&nbsp;</i></a>
+						</div>
+						<div class="clear"></div>
+						<div class="display-none">
+							<textarea id="myComp_{$val['kompetencia_id']}_valasz" cols="2" rows="2" readonly hidden="hidden">{$val['user_attr_kompetencia_valasz']}</textarea>
+							<input type="text" name="deleteCompId" value="{$val['kompetencia_id']}" hidden="hidden" />	
+						</div>				
+					</li>
+					{/foreach}
+				</ul>	
+			</div>
+		</div>	
+	</div>	
+	<div class="clear"></div>	
+</div>
+	
 <div class="display-none">
 	<form id="{$FormName}" name="{$FormName}" method="post">
 	<div class="dialog-form">
@@ -80,18 +90,24 @@
 	</form>
 </div>
                 
-<div>
+<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciák hozzáadása</div></div>
+<div class="jobFindList-cont"> 
 	<form id="{$FormName}" name="{$FormName}" method="post">
 	<div class="dialog-form">
-		<input type="text" id='addOwnComp' name="addOwnComp" value="" style="width: 200px; float:right"/>
-		<div class="btn-nav-row">
-		<button id='addOwnCompSbmt' name="{$BtnAddOwnComp}" type="submit" class="btn btn-sm btn-primary" style="float:right">Saját kompetencia hozzáadása</button>
-		</div>
+		 <input type="text" id='addOwnComp' name="addOwnComp" value="" />	
+		<button id='addOwnCompSbmt' name="{$BtnAddOwnComp}" type="submit" class="btn btn-md btn-primary">Saját kompetencia hozzáadása</button>		
 	</div>	
 	</form>
-</div>
+</div>	
+	
 
-<a href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/">Irány a következő lépéshez</a>
+
+<p><br/></p>	 
+<a class="btn btn-lg btn-default pull-right" href="{$DOMAIN}kompetenciak/kompetenciarajz-keszites/" style="margin-right:-10px;">Irány a következő lépéshez
+<span class="btn-next-icon"><img src="images/site/next-bub-icon-1.png" alt="" /></span></a>
+<div class="clear"></div>	
+<p><br/><br/></p>
+
 
 <script type='text/javascript'>
 $(document).ready(function(){

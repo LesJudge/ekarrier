@@ -4,6 +4,7 @@
 <input type="text" id="firstWordsResult" value="0" readonly hidden='hidden'>
 <input type="text" id="firstWordsResultRemaining" value="0" readonly hidden='hidden'>
 
+<div id="errorMsg" style="display: none"></div>
 <div id='pointsZeroAlert'class="infobox" style='display: none'>
       <div class="alert-box"> {$pointsZero.infobox_tartalom} </div> 
 </div>
@@ -21,67 +22,70 @@
 </form>
 
 <div>{$text}</div>
-<div class="jobFindList-cont">
-	<div class="jobFindList-top"><i class='icomoon icomoon-tree'>&nbsp;</i></div>	
-	<div class="jobFindList-title textAlign-center">{$pointsRemaining.infobox_tartalom}: <span id='remainingShow'></span></div>	
-	<div class="jobFindList-data">	
-		
-			<div id="firstWords" class="firstWords-cont">   
-				{foreach from=$FirstKat key=key item=val}           
-				<div class="firstWords-item">
-					   <div class='firstWords' id='firstWord_{$key}'>{$val}</div>		
-					   <input type='text' class='firstWordsValues' value='0' onChange="calcScore()" id='firstWordValue_{$key}' />		
-					{foreach from=$MainResKat key=key1 item=val1}		
-					   <input type='hidden' class='firstWordsScores res{$key1}' value='0' id='first_{$key}_{$key1}' />		
-					{/foreach}
-				  </div>	
-				{/foreach}
-				<div class="clear"></div>
-			</div>
-	
-	</div>	
+
+<div class="jobFindList-title-cont">
+	<div class="jobFindList-title">{$pointsRemaining.infobox_tartalom}</div> 
+	<div class="jobFindList-title-right">Szétosztandó pontjaim: <span id='remainingShow'></span></div>
 	<div class="clear"></div>
-</div> 
-
-
-<div class="clear"></div>
-<div class="jobFindList-cont noselect">
-	<div class="jobFindList-top"><i class='icomoon icomoon-tab'>&nbsp;</i></div>	
-        <div class="jobFindList-title textAlign-center">Negatív tulajdonságot rangsoroló teszt</div>
-	<div class="jobFindList-data">
-	
-		<div class="connectedSortable-cont">
-                    Teljes tulajdonság lista<br/>
-                            {$allAttr.infobox_tartalom}<br/>
-                          Negatív rangsor<br/> 
-                          {$negativeOrder.infobox_tartalom}  
-                            
-			<ul id="sortable1" class="connectedSortable">
-                            
-				{foreach from=$SecondKat key=key item=val name=total}
-					<li id="secondWord_{$key}" class="secondWords" value="">{$val}
-						{foreach from=$MainResKat key=key1 item=val1}
-						<input type="hidden" class='secondWordsScores res{$key1}' value='0' id='second_{$key}_{$key1}' />
-						{/foreach}
-					</li>
-				{/foreach}
-			</ul>	
-                        <ul id="sortable2" class="connectedSortable">
-
-                        </ul>
-			<div class="clear"></div>
-		</div>
-	
-	</div>	
-	<div class="clear"></div>
-</div> 
-
-<br/>
-
-<div class="btn-nav-row">
-<button type="submit" onClick="eval();" class="btn btn-lg btn-primary">Teszt mentése</button>
-
 </div>
+<div class="jobFindList-cont">   
+	 <div id="firstWords" class="firstWords-cont">   
+			{foreach from=$FirstKat key=key item=val}           
+			<div class="firstWords-item">
+				   <div class='firstWords' id='firstWord_{$key}'>{$val}</div>		
+				   <input type='text' class='firstWordsValues' value='0' onChange="" id='firstWordValue_{$key}' />		
+				{foreach from=$MainResKat key=key1 item=val1}		
+				   <input type='hidden' class='firstWordsScores res{$key1}' value='0' id='first_{$key}_{$key1}' />		
+				{/foreach}
+			  </div>	
+			{/foreach}
+			<div class="clear"></div>
+		</div>	
+</div>
+
+<!--p class="head-title-1">Negatív tulajdonságot rangsoroló teszt</p-->
+<div>{$text2}</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="sortable1">
+			<div class="jobFindList-title-cont">
+				<div class="jobFindList-title">Teljes tulajdonság lista</div> 
+			</div>		
+			<div class="jobFindList-cont noselect">	
+				{*$allAttr.infobox_tartalom*}
+				<ul id="sortable1" class="connectedSortable">									
+					{foreach from=$SecondKat key=key item=val name=total}
+						<li id="secondWord_{$key}" class="secondWords" value="">{$val}
+							{foreach from=$MainResKat key=key1 item=val1}
+							<input type="hidden" class='secondWordsScores res{$key1}' value='0' id='second_{$key}_{$key1}' />
+							{/foreach}
+						</li>
+					{/foreach}
+				</ul>									
+				<div class="clear"></div>
+			</div> 
+		</div>	
+	</div>
+	<div class="col-lg-12">
+		<div class="sortable2">
+			<div class="jobFindList-title-cont">
+				<div class="jobFindList-title">Negatív rangsor</div> 
+			</div>		
+			<div class="jobFindList-cont noselect">	
+				{*$negativeOrder.infobox_tartalom*}  
+				<ul id="sortable2" class="connectedSortable">
+			
+				</ul>						
+				<div class="clear"></div>
+			</div> 		
+		</div>
+	</div>
+	<div class="clear"></div>	
+</div>		
+
+
+<button type="submit" onClick="eval();" class="btn btn-lg btn-primary">Teszt mentése</button>
 
 <style>
 .noselect {
@@ -96,10 +100,11 @@
 
 <script type=text/javascript>
 $(function() {  
+	/*
 	var renderBoxHeightTimer = setTimeout(function(){
 		renderBoxHeight("connectedSortable");
 	},500);
-	
+	*/
     $( "#sortable1, #sortable2" ).sortable({
         connectWith: ".connectedSortable",
         cursor: "move"
@@ -152,40 +157,29 @@ var multipArr=[];
     multipArr["{$key}"]="{$val}";
 {/foreach}    
 
-function calcPoints(){                                        
-    var result=parseFloat(0);
+function calcPoints(){          
+    
+    var result=parseInt(0);
     $('.firstWordsValues').each(function(index){
-        result=result+parseFloat(this.value);
+        result=result+parseInt(this.value);
     });
     $('#firstWordsResult').val(result);
     $('#firstWordsResultRemaining').val(100-result);
     $('#remainingShow').text(100-result);
-    
+
     if(result==100){
         $('#pointsZeroAlert').show();
         setTimeout(function() { $("#pointsZeroAlert").fadeOut("slow"); }, 3000);
     }else{
         $('#pointsZeroAlert').hide();
     }
+    
 }
 
+
+
 function calcScore(){                                          
-    var multip;
-    var result;
-    var ossz=0;
-    var max=parseFloat($('#firstWordsResultRemaining').val())+parseFloat($('#firstWordsResult').val());
     
-    $(".firstWordsValues").each(function(index){
-        if($(this).val()=="" || $(this).val()<0 || isNaN($(this).val())){
-            $(this).val(0);
-        }
-        ossz=ossz+parseFloat($(this).val());
-        if(ossz > max){
-            //if($('#validation').is(':checked')){
-                $(this).val(0);
-            //}
-        }    
-    });
     
     $('.firstWordsScores').each(function(index){
         var arr=this.id.split("_");
@@ -205,8 +199,8 @@ getFullScores();
 
 var finalResults=""; 
 
-function eval(){                                
-    
+function eval(){ 
+    event.preventDefault();
     if($('#firstWordsResultRemaining').val()!=0){
         $('#pointsZeroAlert').show();
         setTimeout(function() { $("#pointsZeroAlert").fadeOut("slow"); }, 3000);
@@ -291,10 +285,38 @@ $('.firstWordsValues').click(function(){
 });
 
 $('.firstWordsValues').on('blur',function(){
+    var multip;
+    var result;
+    var ossz=0;
+    var max = parseInt($('#firstWordsResultRemaining').val())+parseInt($('#firstWordsResult').val());
+    
     if(parseInt($(this).val())<=0 || parseInt($(this).val())>100 || isNaN($(this).val()) || $(this).val()=='') 
     {
-        //$(this).attr('value',0);
+        window.scrollTo(0,0);
+        $('#errorMsg').html('<div>0 és 100 közötti számot adjon meg!</div>');
+        $('#errorMsg').show();
+        setTimeout(function() { $("#errorMsg").fadeOut("slow"); }, 3000);
         $(this).val(0);
+        return false;
+    }
+    
+    var givenValue = $(this).val();
+    $(this).val(0);
+    
+    $(".firstWordsValues").each(function(index){
+        ossz = ossz+parseInt($(this).val());
+   
+    });
+    
+    if(ossz+parseInt(givenValue) > max){
+        window.scrollTo(0,0);
+        $('#errorMsg').html('<div>Túllépted!</div>');
+        $('#errorMsg').show();
+        setTimeout(function() { $("#errorMsg").fadeOut("slow"); }, 3000);
+        $(this).val(0);
+        return false;
+    }else{
+        $(this).val(givenValue);
     }
     calcScore();
 });

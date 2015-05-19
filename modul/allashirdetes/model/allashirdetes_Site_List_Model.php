@@ -11,6 +11,13 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
      * @var string
      */
     public $_tableName = 'allashirdetes';
+    
+    public function __construct()
+    {
+        parent::__construct();
+       
+        $this->addressFinder = new \AddressFinder($this->_DB);
+    }
     /**
      * Kiválasztott mezők.
      * @var string
@@ -99,6 +106,7 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
             array('' => '--Válasszon munkakört!--')
         );*/
         // Megyék lekérdezése.
+        /*
         try {
             $countyQuery = "SELECT cim_megye_id, cim_megye_nev FROM cim_megye ORDER BY cim_megye_nev ASC";
             $countyResult = $this->_DB->prepare($countyQuery)->query_select();
@@ -109,6 +117,10 @@ class Allashirdetes_Site_List_Model extends Admin_List_Model
         } catch (Exception_MYSQL_Null_Rows $emnr) {
             $counties = array();
         }
+        */
+        
+        $counties = $this->addressFinder->findCountiesByCountryId();
+        
         // Megye szűrő elem.
         $this->addItem('FilterCounty')->_select_value = array('' => '--Válasszon megyét!--') + $counties;
         // Város szűrő elem.

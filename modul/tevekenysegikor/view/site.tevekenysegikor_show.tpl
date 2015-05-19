@@ -14,12 +14,13 @@
 <div class="clear"></div>
 {/if}
 
+<!--
 {if $marked == "marked"}
    <button type="button" class="btn btn-default btn-md" onClick="$('#{$BtnRemoveTevekenysegikor}').click();">Mégsem szeretnék ebben a tevékenységi körben dolgozni!</button> 
 {elseif $marked == "unmarked"}
    <button type="button" class="btn btn-default btn-md" onClick="$('#{$BtnAddTevekenysegikor}').click();">Én is dolgozni szeretnék ebben a tevékenységi körben!</button>
 {/if} 
-
+-->
 <br /><br />
 <div>{$text}</div>
 

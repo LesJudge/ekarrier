@@ -85,6 +85,9 @@ class SzektortesztShow_Site_Controller extends RimoController {
                         $obj = $tartalom->getTartalomByID(30);
                         $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
                         
+                        $obj = $tartalom->getTartalomByID(39);
+                        $this->_view->assign("text2",$obj[0]["tartalom_tartalom"]);
+                        
                         $allAttr = infobox_Site_Model::model()->findInfoboxItemByKey('szektorTesztTulajdonsagLista',$lId);
                         $this->_view->assign('allAttr',$allAttr);
                         

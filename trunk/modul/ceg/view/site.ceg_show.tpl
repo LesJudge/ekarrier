@@ -1,21 +1,35 @@
-{if $FormError}
- <div class="info info-error">
-    <p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
-</div> 
-<div class="clear"></div>
-{/if}
-{if $FormMessage}
-<div id="form_info" class="info info-success">
-    <p>{$FormMessage}</p>
-</div>
-<div class="clear"></div>
-{/if}
-<div class="jobDataForm-cont">
-	<div class="jobDataForm-top"><i id='jobSearchForm_icon--document_1--50--50--S1.5:1.5:0:0--fff--fff' class='svgIcon'>&nbsp;</i></div>	
-	<div class="jobDataForm-content">{$companyData.nev}</div>	
-        <img src="{$DOMAIN}pic/enceg/{$companyData.ceg_kep}_380x265_2"/>
-        <div class="jobDataForm-content">{$companyData.tartalom}</div>
-        <!--
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="h1-table">
+	<tbody>
+	<tr>
+	<td class="h1-td">&nbsp;</td>
+	<td class="h1-td-center"><h1>{$companyData.nev}</h1></td>
+	<td class="h1-td">&nbsp;</td>
+	</tr>
+	</tbody>
+</table>
+
+<div class="content clearfix">
+
+	{if $FormError}
+	 <div class="info info-error">
+		<p><img src="images/site/form-error.png" style="float:left; margin:5px;"/>{$FormError}</p>
+	</div> 
+	<div class="clear"></div>
+	{/if}
+	{if $FormMessage}
+	<div id="form_info" class="info info-success">
+		<p>{$FormMessage}</p>
+	</div>
+	<div class="clear"></div>
+	{/if}
+	
+    <img src="{$DOMAIN}pic/enceg/{$companyData.ceg_kep}_380x265_2" class="pull-left" style="margin:0em 1em 0.5em 0em; width:25%;" />
+    {$companyData.tartalom}
+	
+	<div class="clear"></div>
+	
+    <!--
         <div class="jobDataForm-content">{$companyData.nev} - {$companyData.szhely}</div>	
         {if not empty($sites)}
         Telephelyek
@@ -24,31 +38,27 @@
         {/foreach}
         {/if}
         <div class="jobDataForm-content">{$companyData.tartalom}</div>		
-	<div class="clear"></div>	
-        -->
+		<div class="clear"></div>	
+    -->
 </div>
 
  {if $jobs}
-<div class="jobFindList-cont">
-	<div class="jobFindList-top"><i id='jobFindList_icon--factory--48--48--S1.4:1.4:0:0--fff--fff' class='svgIcon'>&nbsp;</i></div>	
-	<br />
-	{foreach from=$jobs item=job name=job}
-	<div class="jobFindList-block">
-		<div class="jobFindList-name">
-			<a class="dataLink" href="{$DOMAIN}allashirdetes/{$job.link}/{$job.ahID}/">{$job.munkakor} - {$job.subCat} - {$job.mainCat}</a>
-                        <!--
-                        <a class="dataLink" href="{$DOMAIN}munkakorok/{$job.munkakor_link}">{$job.munkakor_nev}</a>
-			<a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.allashirdetes_id}/" class="iconCont" title="Megtekintés">
-				<i id='jobFindListEditBtn_{$smarty.foreach.job.index}--document_1--24--24--S0.7:0.7:0:0--000--000' class='svgIcon'>&nbsp;</i>
-			</a>
-                        -->
+
+	{foreach from=$jobs item=job name=job}	
+	<div class="row box-block-1">
+		<div class="col-lg-20">
+			<div class="designedText-1">{$job.munkakor} - {$job.subCat} - {$job.mainCat}</div>
+           <div class="data-">{$job.ismerteto}</div>		 
+			<!--
+				<a class="dataLink" href="{$DOMAIN}munkakorok/{$job.munkakor_link}">{$job.munkakor_nev}</a>
+				<a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.allashirdetes_id}/" class="iconCont" title="Megtekintés"></a>
+			-->
 			<div class="clear"></div>
 		</div>
-		<div class="jobFindList-content">{$job.ismerteto}</div>			
-		<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
-        {/foreach}
+		<div class="col-lg-4"><a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.ahID}/" class="btn btn-primary btn-sm pull-right">Megtekintés</a><div class="clear"></div></div>
+		<div class="clear"></div>		
+	</div>	
+   {/foreach}
 	
 </div>
 {else}
@@ -57,9 +67,11 @@
 <br />
 <!--a href="{$DOMAIN}munkaltato/" class="bigBtn-link">Vissza a munkáltatókhoz!</a-->
 {if $loggedInAs === 'client'}
-    <a class="btn btn-sm btn-primary" href="{$DOMAIN}allaskereses/">Vissza a keresőhöz</a>
+    <a class="btn btn-md btn-default btn-pull-left " href="{$DOMAIN}allaskereses/">Vissza a keresőhöz</a>
 {/if}
 
 {if $loggedInAs === 'company'}
-    <a class="btn btn-sm btn-primary" href="{$DOMAIN}enprofil/">Szerkeszt</a>
+    <a class="btn btn-md btn-default btn-pull-left " href="{$DOMAIN}enprofil/">Szerkeszt</a>
 {/if}
+<br/><br/>
+<div class="clear"></div>

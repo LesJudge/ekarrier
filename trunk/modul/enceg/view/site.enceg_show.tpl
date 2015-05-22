@@ -15,6 +15,21 @@ $(function() { {$FormScript}
         theme_advanced_path : false,theme_advanced_statusbar_location : 0,
 		});
     });
+	
+	
+	tabPager=new siteTabPager();
+	tabPager.start();
+	
+	$(".siteTabNext").click(function(){
+	  tabPager.next($(this));
+	});
+	$(".siteTabBack").click(function(){
+	  tabPager.prev($(this));
+	});
+	$(".siteTab-bredcrumb").click(function(){
+	  tabPager.toSlide($(this));
+	});	 
+
 });
 </script>
 {if $FormError}
@@ -30,80 +45,131 @@ $(function() { {$FormScript}
 <div class="clear"></div>
 {/if}
 
-<div onclick="$('#picFormCont').toggle();">Munkáltatói PROFILKÉP feltöltése</div>
-<div id="picFormCont" style="display:none">
-    <form name="" action="" method="post" enctype="multipart/form-data">              
-        <div class="form_row">
-            <label for="{$File.name}">Kép:&nbsp;</label>
-            <input type="file" name="{$File.name}" id="{$File.name}" value="" style="width:300px;"/>
-            {if isset($File.error)}
-                <p class="error small">{$File.error}</p>
-            {/if} 
-            <br />
-        </div>
-        <button class="submit btn" name="{$BtnUploadPic}" type="submit">Kép feltöltése</button>
-    </form>
-</div>
-<img src="{$DOMAIN}pic/{$APP_PATH}/{$companyData.ceg_kep}_380x265_2"/>  
-
-<div onclick="$('#descriptionFormCont').toggle();">Cég leírásának szerkesztése</div>
-<div id="descriptionFormCont" style="display:none">
-    <form name="" action="" method="post">              
-        <div class="form_row">
-            <textarea name="companyDescription" id="companyDescription" class="tinymce">{$companyData.tartalom}</textarea>
-        </div>
-        <button class="submit btn" name="{$BtnUpdateDescription}" type="submit">Kész</button>
-    </form>
-</div>
 
 
-    
-{foreach from=$myJobs item=job}
-    <a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.ahID}/">{$job.munkakor} - {$job.subCat} - {$job.mainCat}</a><br/>
-{/foreach}
-
-{*foreach from=$myJobs item=job key=key}
-    {$job.munkakor} - {$job.markerCnt} fő<br/>
-{/foreach*}
-
-{foreach from=$myJobs item=job key=key}
-    <div id="folder1_{$key}" onclick="$('#clientsCont1_{$key}').toggle();">{$job.munkakor} - {$job.markerCnt} fő</div>
-    <div id="clientsCont1_{$key}" style="display:none">
-    {foreach from=$job.ugyfelek item=ugyfel}
-            {if $ugyfel}
-                <a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$ugyfel.krID}/">{$ugyfel.uID}/{$ugyfel.krID}</a>
-                <br/>
-            {/if}
-    {/foreach}
-    </div>
-    <br/>
-{/foreach}
-
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/profil/">Regisztrációs adatok módosítása</a>
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}munkaltato/{$companyData.link}">Ezt látja rólam az álláskereső</a>
-
+<div class="tabBreadcrumb-cont">	
+	<br/><br/>	 			
+	<div class="tabBreadcrumb_cover"></div>
+	<div class="tabBreadcrumb">
+		<img src="{$DOMAIN}pic/{$APP_PATH}/{$companyData.ceg_kep}_380x265_2" class="tabBreadcrumb-profilImg"/>
+	</div>		
+</div>	      
+<div class="contentDataCont">	
+	<div class="siteTabNext"><a href="javascript:;" class="btn btn-default">Tovább</a></div><div class="siteTabNext_cover"></div>                   
+	<div class="siteTabBack"><a href="javascript:;" class="btn btn-default">Vissza</a></div><div class="siteTabBack_cover"></div>   
+	<div class="contentData-bg">                                     
+		<div class="contentData">
+			<div class="siteTabContainer">					
+				<div class="siteTab" siteTab-bredcrumb="Cégleírás">
+					<form name="" action="" method="post">              
+						<div class="form-row">
+							<textarea name="companyDescription" id="companyDescription" class="tinymce">{$companyData.tartalom}</textarea>
+						</div>
+						<div class="form-row">
+							<br/>
+							<button class="btn btn-primary btn-md" name="{$BtnUpdateDescription}" type="submit">Mentés</button>
+						</div>
+					</form>
+				</div>
+				<div class="siteTab" siteTab-bredcrumb="Cégprofil" siteTab-bredCumbHref="{$DOMAIN}ceg/profil/"></div>
+				<div class="siteTab" siteTab-bredcrumb="Adatok" siteTab-bredCumbHref="{$DOMAIN}munkaltato/{$companyData.link}"></div>							
+				<div class="siteTab" siteTab-bredcrumb="Profilkép">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="col-data-3">
+								<img src="{$DOMAIN}pic/{$APP_PATH}/{$companyData.ceg_kep}_380x265_2" class="img-responsive"/> 			
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="col-data-3">		
+								<form name="" action="" method="post" enctype="multipart/form-data">              
+									<div class="form-row">
+										<div class="text-type-2" for="{$File.name}">Kép:&nbsp;</div>
+										<input type="file" name="{$File.name}" id="{$File.name}" value="" />
+										{if isset($File.error)}
+											<p class="error small">{$File.error}</p>
+										{/if} 
+										<br />
+									</div>
+									<div class="form-row">
+										<button class="btn btn-primary btn-md" name="{$BtnUploadPic}" type="submit">Kép feltöltése</button>
+									</div>
+								</form>							
+							</div>
+						</div>	
+						<div class="clear"></div>
+					</div>	
+				</div>
+				<div class="siteTab" siteTab-bredcrumb="Álláshírdetéseim">					
+					{foreach from=$myJobs item=job}
+					   {*$activ = true}	{$helyseg = 'Debrecen'*} 
+						<div class="row box-block-1">
+							<div class="col-lg-20">
+								<a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.ahID}/" class="designedText-1">{$job.munkakor} - {$job.subCat} - {$job.mainCat} </a><br/>
+                                                                {$job.varos}
+							</div>
+							<div class="col-lg-4"><a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.ahID}/" class="btn btn-primary btn-sm pull-right">Megtekintés</a>
+								<div class="clear"></div>
+								<span class="itemActive-{if $job.aktiv=='true'}1{else}0{/if}"><i class="itemActive-i"></i>{if $job.aktiv=='true'}Aktív{else}Passzív{/if}</span>								
+							</div>
+							<div class="clear"></div>		
+						</div>	
+					{/foreach}
+				</div>
+				<div class="siteTab" siteTab-bredcrumb="Mappáim">
+					{foreach from=$myFolders item=folder key=key}						
+						<div id="folder_{$key}" class="folderItem" onclick="$('#clientsCont_{$key}').toggle();">
+							<div class="folderItem-label">{$folder.mappaNev}</div>		
+							<div class="clear"></div>									
+						</div>						
+						<div id="clientsCont_{$key}" style="display:none" class="folderItem-content">
+						{foreach from=$folder.ugyfelek item=ugyfel}
+								{if $ugyfel}
+									<div class="folderItem-sub">		
+										<a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$ugyfel.krID}/" class="folderItem-sub-map">{$ugyfel.uID}/{$ugyfel.krID}</a>
+									</div>
+								{/if}
+						{/foreach}
+						</div>
+						<br/>
+					{/foreach}
+					<!-- Majd, ha kell kivesszük
+					<form id="compDraws" name="compDraws" action="" method="post">        
+							<input type="text" name="folderName">
+							<button class="submit btn" name="{$BtnCreateFolder}" type="submit">Mappa létrehozása</button>
+					</form>
+					-->
+				</div>
+			    <div class="siteTab" siteTab-bredcrumb="Mentett kereséseim">					
+					{*foreach from=$myJobs item=job key=key}
+						{$job.munkakor} - {$job.markerCnt} fő<br/>
+					{/foreach*}					
+					{foreach from=$myJobs item=job key=key}
+						<div id="folder1_{$key}" onclick="$('#clientsCont1_{$key}').toggle();" class="folderItem">
+							<div class="folderItem-label">{$job.munkakor} - {$job.markerCnt} fő</div>		
+							<div class="clear"></div>									
+						</div>
+						<div id="clientsCont1_{$key}" style="display:none" class="folderItem-content">
+						{foreach from=$job.ugyfelek item=ugyfel}
+								{if $ugyfel}
+									<div class="folderItem-sub">
+										<a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$ugyfel.krID}/" class="folderItem-sub-map">{$ugyfel.uID}/{$ugyfel.krID}</a>
+									</div>
+								{/if}
+						{/foreach}
+						</div>
+						<br/>
+					{/foreach}
+				</div>	
+								
+			</div>
+		</div>
+	</div>	
+</div>			
+<div class="clear"></div>
 <br/>
 
-{foreach from=$myFolders item=folder key=key}
-    <div id="folder_{$key}" onclick="$('#clientsCont_{$key}').toggle();">{$folder.mappaNev}</div>
-    <div id="clientsCont_{$key}" style="display:none">
-    {foreach from=$folder.ugyfelek item=ugyfel}
-            {if $ugyfel}
-                <a href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$ugyfel.krID}/">{$ugyfel.uID}/{$ugyfel.krID}</a>
-                <br/>
-            {/if}
-    {/foreach}
-    </div>
-    <br/>
-{/foreach}
-
-
-<!-- Majd, ha kell kivesszük
-<form id="compDraws" name="compDraws" action="" method="post">        
-        <input type="text" name="folderName">
-        <button class="submit btn" name="{$BtnCreateFolder}" type="submit">Mappa létrehozása</button>
-</form>
--->
+<!--
 {if $stat|is_array || $activeClientsSum > 0}
     <div id="slider-vertical" style="height:400px; float:left; margin-top: 25px;"></div>
 {/if}
@@ -148,3 +214,4 @@ $(document).ready(function(){
     
 });
 </script>
+-->

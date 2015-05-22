@@ -5,9 +5,10 @@
 <div id="elvarasForm">
     <div id="elvarasForm_template">
         <div>
-            <label for="elvarasForm_#index#_elvaras">Elvárás</label>
+            <h3>Elvárás</h3>
             <div class="sheepIt-form-block">
-				<input id="elvarasForm_#index#_elvaras" name="{$piElvarasok}[#index#]" type="text"/>				
+				<input id="elvarasForm_#index#_elvaras" name="{$piElvarasok}[#index#]" type="text" class="form-control"/>	
+				<div class="clear"></div>			
 			</div>
 			<a id="elvarasForm_remove_current"> <button type="button" class="remove-btn btn btn-sm btn-default" title="Elem eltávolítása!"></button> </a>
 			 <div class="clear"></div>

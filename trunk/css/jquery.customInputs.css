@@ -39,7 +39,7 @@
 
 /*	Select Méretek TYPE-1	**********************************************************/
 .select-cont.select-type-1 .styled, .select-cont.select-type-1 .styled-arrow { background-image: url(customInputs/select_bg.png) !important; color:#525252 !important; }
-.select-cont.select-type-1 .styled, .select-cont.select-type-1 .styled-arrow, .select-cont.select-type-1 SELECT, .select-cont.select-type-1 { line-height:39px !important; height:39px !important; }
+.select-cont.select-type-1 .styled, .select-cont.select-type-1 .styled-arrow, .select-cont.select-type-1 SELECT, .select-cont.select-type-1 { line-height:37px !important; height:37px !important; }
 .select-cont.select-type-1 .styled-arrow {	width:36px !important; }
 .styled { padding-left:1em;}
 

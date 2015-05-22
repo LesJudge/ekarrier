@@ -25,14 +25,19 @@ $(document).ready(function(){
 });
 
 </script>
-<form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor regisztracio" enctype="multipart/form-data">
+<form action="" method="post" name="{$FormName}" id="{$FormName}" class="form form_editor" enctype="multipart/form-data">
         {include file='page/all/view/page.message.tpl'}
         {*if $FormError*}
         <!--<a href="{$DOMAIN}ceg/allashirdetes/">Vissza az álláshirdetésekhez!</a>-->
-        {*else*}        
+        {*else*}  
+			<div class="tabBreadcrumb-cont">
+				<div class="tabBreadcrumb-title">Beküldés lépései</div>	
+				<div class="tabBreadcrumb_cover"></div>
+				<div class="tabBreadcrumb"></div>		
+			</div>	      
 			<div class="contentDataCont">
 				<div class="siteTab-title">Alap adatok</div>					
-				<button class="submit btn siteTab-save" name="{$BtnSave}" id="{$BtnSave}" value="submit" type="submit">Mentés</button>
+				<button class="btn btn-primary siteTab-save" name="{$BtnSave}" id="{$BtnSave}" value="submit" type="submit">Mentés</button>
 				<div class="siteTabNext"><a href="javascript:;" class="btn btn-default">Tovább</a></div><div class="siteTabNext_cover"></div>                   
 				<div class="siteTabBack"><a href="javascript:;" class="btn btn-default">Vissza</a></div><div class="siteTabBack_cover"></div>   
 				<div class="contentData-bg">                                     
@@ -42,7 +47,7 @@ $(document).ready(function(){
 							<div class="siteTab" siteTab-bredcrumb="Tevékenységi körök">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_tevekenysegi_kor.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Elvárások">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_elvarasok.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Feladatok">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_feladatok.tpl"}</div>
-                                                        <div class="siteTab" siteTab-bredcrumb="Kompetenciák">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_kompetenciak.tpl"}</div>
+                          <div class="siteTab" siteTab-bredcrumb="Kompetenciák">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_kompetenciak.tpl"}</div>
 							<div class="siteTab" siteTab-bredcrumb="Amit kínálunk">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_amit_kinalunk.tpl"}</div>
 							<!--div class="siteTab" siteTab-bredcrumb="Ismertető">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_ismerteto.tpl"}</div-->
 							<div class="siteTab" siteTab-bredcrumb="Jelentkezés módja">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_jelentkezes_modja.tpl"}</div>
@@ -50,16 +55,12 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>	
-			</div>	
-			<div class="tabBreadcrumb-cont">
-				<div class="tabBreadcrumb-title">Beküldés lépései</div>	
-				<div class="tabBreadcrumb_cover"></div>
-				<div class="tabBreadcrumb"></div>		
-			</div>	
+			</div>			
 			<div class="clear" style="margin-bottom: 50px;"></div>
 			
         {*/if*}
-        <a href="{$DOMAIN}ceg/allashirdetes/" class="bigBtn-link" style="display: block; margin: 0 auto; text-align: center; width: 200px;">Vissza az álláshirdetésekhez!</a>
+        
+		<br/><br/>
     </form>
 </div><!--/.content.clearfix-->
 {if not $FormError}

@@ -18,12 +18,14 @@ class Enceg_Show_Model extends Page_Edit_Model {
     {
         try
         {
-        
+        $date = date("Y-m-d");
             $query = "SELECT ah.allashirdetes_id AS ahID,
                         ah.link AS link,
                         mk.baloldal AS leftSide,
                         mk.jobboldal AS rightSide,
                         mk.kategoria_cim AS subCat,
+                        IF(ah.kezdes_datum <= '".$date."' AND ah.lejarati_datum >= '".$date."' AND ah.allashirdetes_aktiv = 1,'true','false') AS aktiv,
+                        cv.cim_varos_nev AS varos,
                         m.munkakor_nev AS munkakor,
                         (
                          SELECT kategoria_cim
@@ -40,7 +42,8 @@ class Enceg_Show_Model extends Page_Edit_Model {
                   INNER JOIN munkakor m ON m.munkakor_id = aam.munkakor_id
                   INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = m.munkakor_id
                   INNER JOIN munkakor_kategoria mk ON mk.munkakor_kategoria_id = mak.munkakor_attr_kategoria_id AND mk.szint = 2
-                  WHERE ah.ceg_id = ".(int)$id." AND ah.allashirdetes_aktiv = 1 AND ah.allashirdetes_torolt = 0
+                  LEFT JOIN cim_varos cv ON ah.cim_varos_id = cv.cim_varos_id
+                  WHERE ah.ceg_id = ".(int)$id." AND ah.allashirdetes_torolt = 0
                   ORDER BY ah.letrehozas_timestamp DESC
                   ";
             $result = $this->_DB->prepare($query)->query_select()->query_result_array();
@@ -65,6 +68,8 @@ class Enceg_Show_Model extends Page_Edit_Model {
                 }
                 
                 $returnArray["".$value['ahID'].""]['ahID'] = $value['ahID'];
+                $returnArray["".$value['ahID'].""]['aktiv'] = $value['aktiv'];
+                $returnArray["".$value['ahID'].""]['varos'] = $value['varos'];
                 $returnArray["".$value['ahID'].""]['link'] = $value['link'];
                 $returnArray["".$value['ahID'].""]['subCat'] = $value['subCat'];
                 $returnArray["".$value['ahID'].""]['munkakor'] = $value['munkakor'];

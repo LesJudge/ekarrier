@@ -44,9 +44,9 @@
 <div id="tkorForm">
     <div id="tkorForm_template">
         <div class="job-select">
-            <label>Tevékenységi kör</label>            
+            <h3>Tevékenységi kör</h3>            
             <div class="sheepIt-form-block">
-				<select class="job-select-main" name="fake" id="tkorForm_#index#_munkakor_fo_id">
+				<select class="job-select-main select-type-1" name="fake" id="tkorForm_#index#_munkakor_fo_id">
 					<option value="">--Kérem, válasszon!--</option>
 					{foreach from=$munkakorMain key=id item=value}
 					<option value="{$id}">{$value}</option>
@@ -54,7 +54,7 @@
 				</select>
 				<div class="clear"></div>
 				
-				<select class="job-select-sub munkakor_al_id" name="fake" id="tkorForm_#index#_munkakor_al_id">
+				<select class="job-select-sub munkakor_al_id select-type-1" name="fake" id="tkorForm_#index#_munkakor_al_id">
 					<option value="">-- Kérem, válasszon!--</option>
 				</select>
 				<div class="clear"></div>
@@ -62,11 +62,11 @@
 				<input id="tkorForm_#index#_munkakor_nev" name="fake" class="job-select-name fakeName" type="text" />
 				<div class="clear"></div>
                                
-                                <div onclick="$(this).next().toggle()">Új munkakör</div>
+                                <div onclick="$(this).next().toggle()" class="btn btn-default btn-sm">Új munkakör</div>
 				<div id="newMkCont" style="display:none">
                                     <input id="ujnev" name="fake" type="text" value="" />  
                                     <div class="clear"></div>
-                                    <button id="tkorForm_munkakor_btn" onClick="addNewMunkakor(this)" class="job-select-name">Hozzáadás</button>
+                                    <button id="tkorForm_munkakor_btn" onClick="addNewMunkakor(this)" class="job-select-name btn btn-default btn-sm">Hozzáadás</button>
                                 </div>
 				<input id="tkorForm_#index#_munkakor_id" name="{$piTkor}[#index#][munkakor_id]" class="job-select-id" type="hidden" />
 				<div class="clear"></div>

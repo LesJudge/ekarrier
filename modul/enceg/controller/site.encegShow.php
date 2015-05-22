@@ -29,6 +29,7 @@ class EncegShow_Site_Controller extends Page_Edit
                         
                         // Álláshirdetések
                         $myJobs = $this->_model->getJobsByCompanyId($companyId);
+                        
                         $this->_view->assign('myJobs',$myJobs);
                         
                         $myFolders = $this->_model->getFoldersByCompanyId($companyId);

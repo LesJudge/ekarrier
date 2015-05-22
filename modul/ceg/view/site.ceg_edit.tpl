@@ -19,7 +19,8 @@ $(function() { {$FormScript}
                 {include file='page/all/view/page.message.tpl'} 
                 
                 {include file='modul/ceg/view/partial/site.ceg_edit_form_fields.tpl'}
-                
-                <button class="submit btn" name="{$BtnSave}" id="{$BtnSave}" value="reg" type="submit">Módosít</button>
+                <div class="form-row">	
+                	<button class="btn btn-lg btn-primary" name="{$BtnSave}" id="{$BtnSave}" value="reg" type="submit">Módosít</button>
+				 </div><div class="clear"></div>
         </form>
 </div>

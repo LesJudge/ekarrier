@@ -5,9 +5,10 @@
 <div id="feladatForm">
     <div id="feladatForm_template">
         <div>
-            <label for="feladatForm_#index#_feladat">Feladat</label>
+            <h3>Feladat</h3>
 			<div class="sheepIt-form-block">
             	<input id="feladatForm_#index#_feladat" name="{$piFeladatok}[#index#]" type="text"/>
+				<div class="clear"></div> 
 			</div>
 			<a id="feladatForm_remove_current"> <button type="button" class="remove-btn btn btn-sm btn-default" title="Elem eltávolítása!"></button> </a>
 			<div class="clear"></div>           

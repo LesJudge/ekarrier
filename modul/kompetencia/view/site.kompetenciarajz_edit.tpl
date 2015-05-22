@@ -30,7 +30,7 @@
 <br/>
 
 <div class="compQuestion-cont">
-	<div id="questionQuestion">Mindegyik kérdésre válaszolt?</div>
+	<div id="questionQuestion"><i class="icomoon icomoon-arrow-up"></i>Mindegyik kérdésre válaszolt?</div>
 	<div class="clear"></div>
 	<div id="q1" class="compQuestion">K1</div>
 	<div id="q1Detailed" class="compQuestionDetailed">Melyik munkahelyen, milyen tevékenységen keresztül fejlesztette ezt a kompetenciáját?</div>
@@ -153,8 +153,20 @@ jQuery.each($(".tinymce"), function() {
 
         tinymce.dom.Event.add(doc, 'focusout', function(e) {
             // Do something when the editor window is blured.
-            $("#questionQuestion").fadeIn("slow");
-            setTimeout(function() { $("#questionQuestion").fadeOut("slow"); }, 3000);
+			//console.log($("#"+$(ed).attr('id')).offset().top);
+           $("#questionQuestion").css( { 'top':parseInt($("#"+$(ed).attr('id')).offset().top)+"px","display":"block" } );			
+			$("#questionQuestion").animate(
+				{ top:  parseInt($("#"+$(ed).attr('id')).offset().top-50)+"px" }, 
+				{
+					duration: 500, 
+					easing: 'easeInOutBounce',
+					complete: function() { 							
+						setTimeout(function() { $("#questionQuestion").fadeOut("slow"); }, 3000);					
+					}
+				}
+			);
+
+            
         });
     });
 },

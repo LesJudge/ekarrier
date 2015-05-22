@@ -116,16 +116,43 @@
 							</tr>
 						</table>
 						{/if}
-									
-						<a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/allashirdetes/szerkesztes/">Álláshirdetés feltöltése</a><br/>
-						<a class="btn btn-sm btn-primary" href="{$DOMAIN}kompetenciarajz-kereso/">Kompetenciarajz böngésző</a><br/>
-						{if $loggedIn}
-							<a class="btn btn-sm btn-primary" href="{$DOMAIN}enprofil/">Én profil</a><br/>
-						{else}
-							<a class="btn btn-sm btn-primary" href="{$DOMAIN}ceg/regisztracio/">Regisztrálok saját oldal kialakításáért</a><br/>
-						{/if}
-						<a class="btn btn-sm btn-primary" href="{$DOMAIN}szolgaltatasok/">Szolgáltatásaink</a>
+						
+						
+						
+						
+						<div class="jobCircle-cont">
+							<a href="{$DOMAIN}ceg/allashirdetes/szerkesztes/" class="jobCircle jobCircle-7">
+								<span class="jobCircle-content">								
+									<span class="jobCircle-text-1">Álláshirdetés feltöltése</span>
+								</span>							
+							</a>	
+							<a href="{$DOMAIN}kompetenciarajz-kereso/" class="jobCircle jobCircle-8">									
+								<span class="jobCircle-content">
+									<span class="jobCircle-text-1">Kompetenciarajz böngésző</span>
+								</span>						
+							</a>
+							<a href="{$DOMAIN}szolgaltatasok/" class="jobCircle jobCircle-9">						
+								<span class="jobCircle-content">								
+									<span class="jobCircle-text-1">Szolgáltatásaink</span>
+								</span>							
+							</a>							
+							{if $loggedIn}			
+							<a href="{$DOMAIN}enprofil/" class="jobCircle jobCircle-10">						
+								<span class="jobCircle-content">
+									<span class="jobCircle-text-1">ÉN<br/>Profil</span>								
+								</span>							
+							</a>
+							{else}
+							<a href="{$DOMAIN}ceg/regisztracio/" class="jobCircle jobCircle-10">						
+								<span class="jobCircle-content">
+									<span class="jobCircle-text-2">Regisztrálok <br/> saját oldal <br/> kialakításáért</span>								
+								</span>							
+							</a>
+							{/if}
+						</div>	
 						<div class="clear"></div>
+						
+						
 						
 					</div>					
 				

@@ -5,9 +5,10 @@
 <div id="amitKinalunkForm">
     <div id="amitKinalunkForm_template">
         <div>
-            <label for="amitKinalunkForm_#index#_amit_kinalunk">Amit kínálunk</label>
+            <h3>Amit kínálunk</h3>
 			<div class="sheepIt-form-block">
-            	<input id="amitKinalunkForm_#index#_amit_kinalunk" name="{$piAmitKinalunk}[#index#]" type="text"/>
+            	<input id="amitKinalunkForm_#index#_amit_kinalunk" name="{$piAmitKinalunk}[#index#]" type="text" class="form-control"/>
+				<div class="clear"></div> 
 			</div>           
 			<a id="amitKinalunkForm_remove_current"> <button type="button" class="remove-btn btn btn-sm btn-default" title="Elem eltávolítása!"></button> </a>
 			<div class="clear"></div>

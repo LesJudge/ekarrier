@@ -1,18 +1,16 @@
 <div id="kompetenciaForm">
     <div id="kompetenciaForm_template">
         
-            <label for="kompetenciaForm_#index#_kompetencia">Kompetencia</label>
+           <h3>Kompetencia</h3>
 			<div class="sheepIt-form-block">
             	<!--input id="kompetenciaForm_#index#_kompetencia_id" name="{$piKompetenciak}[#index#]" type="text"/-->
-                          
-                            <select class="" name="kompetenciak[#index#][kompetencia_id]" id="kompetenciaForm_#index#_kompetencia_id">
+                 <select class="select-type-1" name="kompetenciak[#index#][kompetencia_id]" id="kompetenciaForm_#index#_kompetencia_id">
 					<option value="">--Kérem, válasszon!--</option>
 					{foreach from=$kompetenciakSel item=value}
 					<option value="{$value.kompetencia_id}">{$value.Nev}</option>
 					{/foreach}
-                            </select>
-                         
-                                
+                 </select>
+                 <div class="clear"></div>                                 
 			</div>
 			<a id="kompetenciaForm_remove_current"> <button type="button" class="remove-btn btn btn-sm btn-default" title="Elem eltávolítása!"></button> </a>
 			<div class="clear"></div>           

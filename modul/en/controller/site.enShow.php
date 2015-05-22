@@ -23,6 +23,10 @@ class EnShow_Site_Controller extends Page_Edit
                         $lId = Rimo::$_config->SITE_NYELV_ID;
                         $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                         
+                        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+                        $obj = $tartalom->getTartalomByID(42);
+                        $this->_view->assign("text1",$obj[0]["tartalom_tartalom"]);
+   
                         // Új üzenetek
                         $newMessage = $this->_model->checkNewMessages($clientId);
                         $this->_view->assign('newMessage',$newMessage);

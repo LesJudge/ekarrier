@@ -34,7 +34,7 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                         $obj = $tartalom->getTartalomByID(35);
                         $this->_view->assign("text",$obj[0]["tartalom_tartalom"]);
                         
-                        $obj = $tartalom->getTartalomByID(29);
+                        $obj = $tartalom->getTartalomByID(40);
                         $this->_view->assign("text2",$obj[0]["tartalom_tartalom"]);
                         
                         $obj = $tartalom->getTartalomByID(41);

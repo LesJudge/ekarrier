@@ -547,7 +547,7 @@ class timthumb
 		$align   = $this->cropTop?'t':$this->param('a','c');
 		$filters = $this->param('f','');
 		$sharpen = (bool)$this->param('s',0);
-		$canvas_color = $this->param('cc','000000');
+		$canvas_color = $this->param('cc','ffffff');
 		$this->setMemoryLimit();
 		$image        = $this->openImage($mimeType,$localImage);
 		if($image === false)
@@ -592,7 +592,7 @@ class timthumb
 		imagealphablending($canvas,false);
 		if(strlen($canvas_color) < 6)
 		{
-			$canvas_color = '000000';
+			$canvas_color = 'ffffff';
 		}
 		$canvas_color_R = hexdec(substr($canvas_color,0,2));
 		$canvas_color_G = hexdec(substr($canvas_color,2,2));

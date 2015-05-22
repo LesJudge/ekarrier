@@ -43,7 +43,7 @@
 		</div>	
 </div>
 
-<!--p class="head-title-1">Negatív tulajdonságot rangsoroló teszt</p-->
+<p class="head-title-1">Negatív tulajdonságot rangsoroló teszt</p>
 <div>{$text2}</div>
 
 <div class="row">

@@ -1,0 +1,6 @@
+@import url("user.css");
+
+
+.gMapCont { display:block; border:1px solid red; height:100px; width:100%; padding:1em 0em; text-align:center; background:#eee; font-weight:bold; text-transform:uppercase; text-align:center;   }
+
+

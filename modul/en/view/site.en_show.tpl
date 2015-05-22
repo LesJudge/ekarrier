@@ -27,6 +27,8 @@ $(document).ready(function(){
 <div class="clear"></div>
 {/if}
 
+<div>{$text1}</div>
+
 <style>
 .fromTest{
     float:left;

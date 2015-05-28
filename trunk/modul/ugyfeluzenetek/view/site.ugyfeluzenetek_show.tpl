@@ -7,7 +7,7 @@ $(function() { {$FormScript}
     	theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,link,unlink,forecolor,backcolor,cleanup,|",    	
 		theme_advanced_resizing : true,			
 		document_base_url : $("#DOMAIN").val(),			
-		width : "630",  
+		width : "100%",  
 		height : "300", 
 		paste_auto_cleanup_on_paste : true, 
 		plugin_preview_width : "1000", 
@@ -32,32 +32,38 @@ $(function() { {$FormScript}
 {/if}
 
 {if not empty($messages)}
-{foreach from=$messages item=message}    
-<div style="background-color: lightgray; margin-top: 2px;">
-    <div>{$message.datum} - {$message.szerzo}</div>
-    <div>{$message.uzenet}</div>
-    <form action="" method="post" name="{$FormName}" id="{$FormName}">
-        <input type="hidden" name="delMessageID" value="{$message.ID}">
-        <button class="submit btn" name="{$BtnDelUzenet}" id="{$BtnDelUzenet}" type="submit">Törlés</button>
-    </form>
-</div>
-
-{/foreach}
-
+	{foreach from=$messages item=message} 
+		<div class="commentItem">
+			<div class="commentItem-name">{$message.szerzo}</div>
+			<div class="commentItem-date">{$message.datum}</div>
+			<div class="commentItem-text">
+				<div class="pull-right">
+					<form action="" method="post" name="{$FormName}" id="{$FormName}">
+						<input type="hidden" name="delMessageID" value="{$message.ID}">
+						<button class="commentItem-next btn" name="{$BtnDelUzenet}" id="{$BtnDelUzenet}" type="submit">Törlés <i class="glyphicon glyphicon-chevron-right"></i></button>
+						<div class="clear"></div>
+					</form>		
+				</div>
+				{$message.uzenet}
+				<div class="clear"></div>
+			</div>
+		</div>
+	{/foreach}
 {else}
-Még senki nem írt hozzá!
+<div class="alert alert-info">Még senki nem írt hozzá!</div>
 {/if}
 
 
-
+<div class="btn-nav-row">
 <form action="" method="post" name="{$FormName}" id="{$FormName}">
-    <div class="form-row">
-				<label for="message">Tartalom <span class="require">*</span></label>
-				<textarea id="message" name="message" class="tinymce"></textarea>
-		</div><div class="clear"></div>
-		
-		<div class="form-row">
-				<label>&nbsp;</label>
-				<button class="submit btn" name="{$BtnAddUzenet}" id="{$BtnAddUzenet}" type="submit">Elküld</button>
-            </div><div class="clear"></div>
+	<div class="form-row">
+		<div class="text-type-3">Hozzászólás <span class="require">*</span></div>
+		<textarea id="message" name="message" class="tinymce"></textarea>
+	</div>
+	<div class="clear"></div>
+	<div class="form-row" style="margin-top:5px;">		
+		<button class="btn btn-primary btn-md pull-right" name="{$BtnAddUzenet}" id="{$BtnAddUzenet}" type="submit">Elküld</button>
+	</div>
+	<div class="clear"></div>
 </form>  
+</div>

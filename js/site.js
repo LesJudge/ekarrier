@@ -159,7 +159,7 @@ function siteTabPager(){
 		slideHeightRenderTimer = setInterval(function(){
 			$(".siteTabContainer").css({"height":$("#tabSection_"+itemCnt).height()});
 			//console.log(itemCnt);
-		},100);	
+		},200);	
 				
 	 }
 	 	 

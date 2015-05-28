@@ -7,7 +7,7 @@ $(function() { {$FormScript}
     	theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,link,unlink,forecolor,backcolor,cleanup,|",    	
 		theme_advanced_resizing : true,			
 		document_base_url : $("#DOMAIN").val(),			
-		width : "630",  
+		width : "100%",  
 		height : "300", 
 		paste_auto_cleanup_on_paste : true, 
 		plugin_preview_width : "1000", 
@@ -30,50 +30,52 @@ $(function() { {$FormScript}
 </div>
 <div class="clear"></div>
 {/if}
-<div class="jobFindList-cont">
-	<div class="jobFindList-top"><i class='icomoon icomoon-star3'>&nbsp;</i></div>
-	<div class="jobFindList-title">{$szektor.szektor_nev} <span class="jobFindList-small"></span></div>	
-	<div class="jobFindList-data">{$szektor.szektor_leiras}</div>	
-	<div class="clear"></div>
-</div>
 
+
+<style type="text/css">
+.h1-table { display:none; }
+.h1-table.visible { display:table;}
+</style>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="h1-table visible">
+	<tr>
+	<td class="h1-td">&nbsp;</td>
+	<td class="h1-td-center"><h1>{$szektor.szektor_nev}</h1></td>
+	<td class="h1-td">&nbsp;</td>
+	</tr>
+</table>	
 <br />
+{$szektor.szektor_leiras}
 
 <div class="btn-nav-row">
+	<div class="btn btn-primary btn-md" onClick="$('#EditorCont').toggle();">Írj hozzá!</div>
+	<div id="EditorCont" style="display:none">
+        <form action="" method="post" name="{$FormName}" id="{$FormName}">
+            <div class="form-row">
+				<label for="comment">Tartalom <span class="require">*</span></label>
+				<textarea id="comment" name="comment" class="tinymce"></textarea>
+			</div><div class="clear"></div>
+			
+			<div class="form-row" style="margin-top:5px;">					
+				<button class="btn btn-primary btn-md pull-right" name="{$BtnAddComment}" id="{$BtnAddComment}" type="submit">Beküld</button>
+			</div><div class="clear"></div>
+        </form>  
+	</div>    
+</div>      
 
-<div onClick="$('#EditorCont').toggle();">Írj hozzá!</div>
-<div id="EditorCont" style="display:none">
-    <form action="" method="post" name="{$FormName}" id="{$FormName}">
-        <div class="form-row">
-                                    <label for="comment">Tartalom <span class="require">*</span></label>
-                                    <textarea id="comment" name="comment" class="tinymce"></textarea>
-                    </div><div class="clear"></div>
-
-                    <div class="form-row">
-                                    <label>&nbsp;</label>
-                                    <button class="submit btn" name="{$BtnAddComment}" id="{$BtnAddComment}" type="submit">Beküld</button>
-                </div><div class="clear"></div>
-    </form>  
-</div>
-    
-    
-    
-    
+ 
 {if not empty($comments)}
-{foreach from=$comments item=comment}    
-<div style="background-color: lightgray; margin-top: 2px;">
-    <div>{$comment.bekuldve} - {$comment.nev}</div>
-    <div>{$comment.text}</div>
+{foreach from=$comments item=comment} 
+<div class="commentItem">
+	<div class="commentItem-name">{$comment.nev}</div>
+	<div class="commentItem-date">{$comment.bekuldve}</div>
+	<div class="commentItem-text">{$comment.text}</div>
 </div>
 {/foreach}
 
 {else}
-Még senki nem írt hozzá!
+<div class="alert alert-info">Még senki nem írt hozzá!</div>
 {/if}
 
-
-
-    
+  
 {include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}
     
-</div>

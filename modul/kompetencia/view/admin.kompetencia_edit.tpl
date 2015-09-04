@@ -63,11 +63,11 @@ $(function() { {$FormScript}
                                         {if isset($TxtLeiras.error)}<p class="error small">{$TxtLeiras.error}</p>{/if} 
                                 </div><div class="clear"></div>
                                 
-                                <div class="form_row"{if $ugyf == '1'} style='display:none'{/if}>
+                                <!--div class="form_row"{if $ugyf == '1'} style='display:none'{/if}>
                                         <label for="{$TxtSzinkod.name}">Színkód <span class="require">*</span></label>
                                         <input type='text' id="{$TxtSzinkod.name}" name="{$TxtSzinkod.name}" value='{$TxtSzinkod.activ}'>
                                         {if isset($TxtSzinkod.error)}<p class="error small">{$TxtSzinkod.error}</p>{/if} 
-                                </div><div class="clear"></div>
+                                </div><div class="clear"></div-->
                                 
                         </div>
                         

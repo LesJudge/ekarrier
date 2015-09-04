@@ -47,13 +47,14 @@
 </div>
 
 <form id="compRajzForm" method="post">
-
+<input type="text" name="CompRajzNev" id="CompRajzNev" value="{$compRajzNev}" style="width: 150px !important" />
+<div id="ui-state-error"></div>
 	{if $mode == "modify"}
 	<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciák kezelése</div><i class="write-icon"></i></div>
 		<div class="jobDataForm-cont">
 			<div class="compControl">
 				<input type="hidden" name="CompRajzID" value="{$compRajzID}" />
-				<button id='updateCompRajzSbmt' name="{$BtnUpdateCompRajz}" type="submit" class="btn btn-sm btn-default">Felülírás</button>
+				<button id='updateCompRajzSbmt' name="{$BtnUpdateCompRajz}" type="submit" class="btn btn-sm btn-default">Mentés</button>
 				<button id='saveAsCompRajzSbmt' name="{$BtnSaveAsCompRajz}" type="submit" class="btn btn-sm btn-default">Mentés másként</button>
 				<button id='deleteCompRajzSbmt' name="{$BtnDeleteCompRajz}" type="submit" class="btn btn-sm btn-default">Kompetenciarajz törlése</button>
 				<button id='requestExpertOpinionSbmt' name="{$BtnRequestExpertOpinion}" type="submit" class="btn btn-sm btn-default">Szakértő véleménye!</button>
@@ -105,20 +106,21 @@
 
 <div><a href="{$DOMAIN}kompetenciak/kompetenciarajz/" class="btn btn-md btn-primary">Kompetencia hozzáadása</a></div>                
 <br/>
-
-{if not empty($opinions)}
-<div class="jobFindList-title-cont"><div class="jobFindList-title">Szakértői vélemények</div></div>
-<div class="jobFindList-cont"> 
-    {foreach from=$opinions item=opinion} 
-	<div class="jobFindList-block">
-		<span class="jobFindList-item-type-1">{$opinion.valaszolo}</span> - {$opinion.valasz_date} 
-		{$opinion.velemeny}
-		<div class="clear"></div>
-	</div>
-	{/foreach}
-</div>	
-{else}    
-	<div class="info info-success"><p>Nincs még szakértői vélemény</p></div>
+{if $mode == "modify"}
+    {if not empty($opinions)}
+    <div class="jobFindList-title-cont"><div class="jobFindList-title">Szakértői vélemények</div></div>
+    <div class="jobFindList-cont"> 
+        {foreach from=$opinions item=opinion} 
+            <div class="jobFindList-block">
+                    <span class="jobFindList-item-type-1">{$opinion.valaszolo}</span> - {$opinion.valasz_date} 
+                    {$opinion.velemeny}
+                    <div class="clear"></div>
+            </div>
+            {/foreach}
+    </div>	
+    {else}    
+            <div class="info info-success"><p>Nincs még szakértői vélemény</p></div>
+    {/if}
 {/if}
 <div class="clear"></div>
 
@@ -152,8 +154,6 @@ jQuery.each($(".tinymce"), function() {
         var doc = ed.getDoc();
 
         tinymce.dom.Event.add(doc, 'focusout', function(e) {
-            // Do something when the editor window is blured.
-			//console.log($("#"+$(ed).attr('id')).offset().top);
            $("#questionQuestion").css( { 'top':parseInt($("#"+$(ed).attr('id')).offset().top)+"px","display":"block" } );			
 			$("#questionQuestion").animate(
 				{ top:  parseInt($("#"+$(ed).attr('id')).offset().top-50)+"px" }, 
@@ -165,8 +165,6 @@ jQuery.each($(".tinymce"), function() {
 					}
 				}
 			);
-
-            
         });
     });
 },
@@ -185,6 +183,21 @@ $(".compQuestion").mouseenter(function() {
     
     $(".delButt").click(function(){
         $(this).closest('.compCont').remove();
+    });
+
+
+$("#saveCompRajzSbmt").click(function (){
+     
+          
+			$("#compRajzForm").validate( { rules: {
+                'CompRajzNev': { required: 1 }
+                },
+                errorPlacement: function(error, element) {
+                    error.appendTo(element.next('#ui-state-error'));					
+            }
+			
+        });
+        	
     });
 
 });

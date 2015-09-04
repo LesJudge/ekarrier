@@ -28,11 +28,11 @@ class CegAllashirdetesList_Site_Controller extends Page_List
         $this->__loadModel('_Allashirdetes_SiteList');
         $this->_model->listWhere['cegIdWhere'] = 'ceg_id=' . (int) $companyId;
         
-        if($_GET['t']){
+       
             $this->_model->_fields.=", COUNT(ugyfel_attr_allashirdetes_megjelolt.ugyfel_id) AS megjelolesDB";
             $this->_model->_join.=" LEFT JOIN ugyfel_attr_allashirdetes_megjelolt ON ugyfel_attr_allashirdetes_megjelolt.allashirdetes_id = allashirdetes.allashirdetes_id";
             //$this->_model->listWhere[]='';
-        }
+        
         
         
         parent::__construct(Rimo::$_config->SITE_NYELV_ID);
@@ -54,11 +54,7 @@ class CegAllashirdetesList_Site_Controller extends Page_List
             2 => array('nev' => 'Álláshirdetések')
         ));
         
-        if($_GET['t']){
-            $this->_view->assign('editMode',"0");
-        }else{
-            $this->_view->assign('editMode',"1");
-        }
+        
         
         Rimo::$_site_frame->assign('PageName', 'Álláshirdetések');
         Rimo::$_site_frame->assign('site_title', 'Álláshirdetések');

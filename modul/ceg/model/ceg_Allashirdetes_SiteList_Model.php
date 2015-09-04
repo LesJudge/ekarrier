@@ -14,7 +14,7 @@ class Ceg_Allashirdetes_SiteList_Model extends Page_List_Model
      * Mezők nevei.
      * @var string
      */
-    public $_fields = 'allashirdetes.allashirdetes_id, allashirdetes.megnevezes, allashirdetes.num_megtekintve, 
+    public $_fields = 'allashirdetes.allashirdetes_id, allashirdetes.megnevezes, allashirdetes.num_megtekintve, allashirdetes.link,
         sz.szektor_nev, p.pozicio_nev';
     /**
      * JOIN

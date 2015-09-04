@@ -8,6 +8,7 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
                 'uzenet_elolvasva'=>'ChkSeen',
                 'ugyfel_attr_uzenetek_aktiv'=>'ChkAktiv',
                 'ugyfel_id' => 'SelUgyfel',
+                'ugyfel_latta' => 'ChkSeenByClient'
         );
 
         public function __addForm()
@@ -30,6 +31,7 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
                 $ugyfelSel->_verify['select']=true;
                 
                 $this->addItem("ChkSeen")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
+                $this->addItem("ChkSeenByClient")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
 
         }
 
@@ -38,11 +40,15 @@ class Ugyfeluzenetek_Edit_Model extends Admin_Edit_Model
         public function __newData()
         {
                 parent::__newData();
+                $this->_params['SelUgyfel']->_value = $_GET['answerTo'];
+                $this->_params['ChkSeenByClient']->_value = 0;
+                $this->_params['ChkSeen']->_value = 1;
         }
 
         public function __editData()
         {
                 parent::__editData();
+                $this->_params['ChkSeen']->_value = 1;
                 
         }
 

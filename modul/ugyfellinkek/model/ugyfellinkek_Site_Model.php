@@ -1,5 +1,5 @@
 <?php
-
+require "modul/email/site.email.php";
 class ugyfellinkek_Site_Model extends Model
 {
     const USE_DEFAULT_LANG_ID = 0;
@@ -40,6 +40,8 @@ class ugyfellinkek_Site_Model extends Model
                          letrehozas_timestamp = NOW(), checked=0, ugyfel_attr_linkek_aktiv = 0, ugyfel_attr_linkek_torolt = 0, tipus = 'ugyfel', letrehozo_id = ".(int)$uID."
                     ";
             $this->_DB->prepare($query)->query_insert();
+            
+            $this->sendEmail();
             throw new Exception_Form_Message("Sikeresen hozzáadva!");
         } catch(Exception_MYSQL $e){
             throw new Exception_Form_Error("Hiba történt!");
@@ -99,6 +101,22 @@ class ugyfellinkek_Site_Model extends Model
         }
     }
     
+    private function sendEmail()
+	{
+            try{
+                $mailer = new RimoMailerFromDB($this->_DB);
+
+		//$mailer->BodyTPL->assign("cegnev",$this->_params["TxtNev"]->_value);
+		//$mailer->BodyTPL->assign("email",$this->_params["TxtEmail"]->_value);
+		
+		$mailer->emailFromDB(6);
+		$mailer->AddAddress(Rimo::$_config->ADMIN_EMAIL);
+		
+		$mailer->Send();
+            }catch(Exception $e){
+                
+            }
+	}
     
     /*
     public function validateDeleteLink($uID,$url)

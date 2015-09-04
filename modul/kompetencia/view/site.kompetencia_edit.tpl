@@ -34,14 +34,18 @@
 			<div class="jobFindList-cont"> 			
 				<form id="newCompForm" action="" method="post">
 				<ul id="allCompSelect" class='sortable1 sortedUL sortedUL-graggable'>
-					{foreach from=$allCompetences item=val}
+					{foreach from=$allCompetences['sajat'] item=val}
 					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
-						{if $val['tipus'] != 'ugyfel'}
-							<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-							<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
-						{else}
 							{$val['kompetencia_nev']}
-						{/if}
+					</li>
+					{/foreach}
+				</ul>
+                                <br>
+                                <div>Álláskeresők által felvitt kompetenciák</div>
+                                <ul id="allCompSelect" class='sortable2 sortedUL sortedUL-graggable'>
+					{foreach from=$allCompetences['ugyfel'] item=val}
+					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
+							{$val['kompetencia_nev']}
 					</li>
 					{/foreach}
 				</ul>
@@ -119,7 +123,7 @@ $(document).ready(function(){
 
    
     
-    $( ".sortable1" ).sortable({
+    $( ".sortable1, .sortable2" ).sortable({
         connectWith: ".sortedUL",
         cursor: "move"
     });

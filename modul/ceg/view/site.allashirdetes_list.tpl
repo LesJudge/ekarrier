@@ -16,18 +16,16 @@
 					<th class="textAlign-center">Megnevezés</th>
 					<th class="textAlign-center">Szektor</th>
 					<th class="textAlign-center">Pozíció</th>					
-					{if $editMode == "1"}<th class="textAlign-center">Szerkeszt</th>{/if}
-                                        {if $editMode == "0"}<th class="textAlign-center">Megjelölve</th>{/if}
+					<th class="textAlign-center">Szerkeszt</th>
+                                        <th class="textAlign-center">Megjelölve</th>
 				</tr>				
 				{foreach from=$Lista item=job name=job}				
 				<tr class="DTable-tr {if $job.allashirdetes_tartalom} DTable-tr-noBottomBorder {/if}">
-					<td class="textHighlighting-1"> {$job.megnevezes}</td>
+					<td class="textHighlighting-1"><a href="{$DOMAIN}allashirdetes/{$job.link}/{$job.allashirdetes_id}/" target="_blank">{$job.megnevezes}</a></td>
 					<td class="textAlign-center"> {$job.szektor_nev}</td>					
 					<td class="textAlign-center">{$job.pozicio_nev}</td>
-					{if $editMode == "1"}<td class="textAlign-center"><a href="{$DOMAIN}ceg/allashirdetes/szerkesztes/{$job.allashirdetes_id}" class="iconCont" title="Szerkesztés"><i class='icomoon icomoon-pencil'>&nbsp;</i></a></td>	
-                                        {/if}
-                                        {if $editMode == "0"}<td class="textAlign-center"><a href="" class="iconCont" title="Szerkesztés">{$job.megjelolesDB}</a></td>	
-                                        {/if}
+					<td class="textAlign-center"><a href="{$DOMAIN}ceg/allashirdetes/szerkesztes/{$job.allashirdetes_id}" class="iconCont" title="Szerkesztés"><i class='icomoon icomoon-pencil'>&nbsp;</i></a></td>
+                                        <td class="textAlign-center"><a href="" class="iconCont" title="Szerkesztés">{$job.megjelolesDB}</a></td>	
                                 </tr>	
 				{if $job.allashirdetes_tartalom}			
 				<tr class="DTable-tr">

@@ -7,6 +7,7 @@ ini_set("display_errors",0);
 include_once "site.config.php";
 
 // Gergő egy büdös buncow!
+// És Gergő szerint az ég kék!
 
 //require_once 'RimoConfig.php';
 //require_once 'Rimo.php';

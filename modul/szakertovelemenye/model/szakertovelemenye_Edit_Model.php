@@ -1,4 +1,6 @@
 <?php
+require "modul/email/site.email.php";
+
 class Szakertovelemenye_Edit_Model extends Admin_Edit_Model
 {
 
@@ -43,6 +45,9 @@ class Szakertovelemenye_Edit_Model extends Admin_Edit_Model
                                               ,megvalaszolva=1
                                               ,valaszolo_id='.UserLoginOut_Controller::$_id
                 );
+                
+                $this->sendEmailToClient();
+                
         }
 
         public function __insert()
@@ -83,6 +88,47 @@ class Szakertovelemenye_Edit_Model extends Admin_Edit_Model
             } 
             
         }
+        
+        private function sendEmailToClient()
+	{
+            try{
+                $query = "SELECT u.email, u.ugyfel_id
+                          FROM szakertovelemenye sz
+                          INNER JOIN ugyfel u ON u.ugyfel_id = sz.ugyfel_id
+                          WHERE sz.szakertovelemenye_id = ".$this->modifyID."
+                         LIMIT 1
+                            ";
+                $result = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+                $email = $result['email'];
+                
+		$mailer = new RimoMailerFromDB($this->_DB);
+
+		//$mailer->BodyTPL->assign("cegnev",$this->_params["TxtNev"]->_value);
+		//$mailer->BodyTPL->assign("email",$this->_params["TxtEmail"]->_value);
+		
+		$mailer->emailFromDB(5);
+		$mailer->AddAddress($email);
+		
+		$mailer->Send();
+                
+            }catch(Exception $e){
+                echo $e->getMessage();
+                throw new Exception_Form_Error("Sikertelen e-mail küldés!");
+            }
+            
+            try{
+                $query = "INSERT INTO ugyfel_attr_uzenetek SET nyelv_id = 1, ugyfel_id = ".(int)$result['ugyfel_id'].", uzenet = '<p>Szakértői vélemény érkezett!</p>',
+                            szerzo = ".(int)UserLoginOut_Controller::$_id.", bekuldes_datum = NOW(), uzenet_elolvasva = 1, ugyfel_latta = 0, ugyfel_attr_uzenetek_aktiv =1, ugyfel_attr_uzenetek_torolt =0
+                            ";
+                $this->_DB->prepare($query)->query_insert();
+                
+            }catch(Exception $e){
+                throw new Exception_Form_Error("Sikertelen üzenet küldés!");
+            }
+            
+            
+            
+	}
         
 
 }

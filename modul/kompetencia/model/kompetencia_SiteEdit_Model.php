@@ -32,28 +32,54 @@ class Kompetencia_SiteEdit_Model extends Page_Edit_Model
                 
                 return $this->_DB->prepare($query)->query_select()->query_result_array();
                 }catch(Exception_MYSQL_Null_Rows $e){
-            
-            }
+                    return array();
+                }
             catch(Exception_MYSQL $e){
-            
+                return array();
             }
         }
         
         public function getAllCompetences($lId)
         {
             try{    
-            $query="SELECT kompetencia_nev, kompetencia_id, kompetencia_szinkod, kompetencia_link, tipus
+                $query="SELECT kompetencia_nev, kompetencia_id, kompetencia_szinkod, kompetencia_link, tipus
                                FROM kompetencia
                                WHERE kompetencia_aktiv=1
                                AND kompetencia_torolt=0
-                               AND nyelv_id=".(int)$lId;
-                return $this->_DB->prepare($query)->query_select()->query_result_array();
+                               AND nyelv_id=".(int)$lId."
+                               AND tipus = 'sajat'
+                               AND kompetencia_id NOT IN (SELECT ugyfel_attr_kompetencia_kompetencia_id
+                               FROM ugyfel_attr_kompetencia
+                               LEFT JOIN kompetencia ON kompetencia.kompetencia_id = ugyfel_attr_kompetencia.ugyfel_attr_kompetencia_kompetencia_id
+                               WHERE ugyfel_attr_kompetencia_ugyfel_id= ".(int)$this->clientId." AND kompetencia.kompetencia_aktiv = 1 AND kompetencia.kompetencia_torolt = 0
+                               AND nyelv_id=".(int)$lId.")
+                                ";
+              $return['sajat'] = $this->_DB->prepare($query)->query_select()->query_result_array();
+               }catch(Exception_MYSQL_Null_Rows $e){
+                 $return['sajat'];
+                }
+              try{
+              $query="SELECT kompetencia_nev, kompetencia_id, kompetencia_szinkod, kompetencia_link, tipus
+                               FROM kompetencia
+                               WHERE kompetencia_aktiv=1
+                               AND kompetencia_torolt=0
+                               AND nyelv_id=".(int)$lId."
+                               AND tipus = 'ugyfel'
+                               AND kompetencia_id NOT IN (SELECT ugyfel_attr_kompetencia_kompetencia_id
+                               FROM ugyfel_attr_kompetencia
+                               LEFT JOIN kompetencia ON kompetencia.kompetencia_id = ugyfel_attr_kompetencia.ugyfel_attr_kompetencia_kompetencia_id
+                               WHERE ugyfel_attr_kompetencia_ugyfel_id= ".(int)$this->clientId." AND kompetencia.kompetencia_aktiv = 1 AND kompetencia.kompetencia_torolt = 0
+                               AND nyelv_id=".(int)$lId.")
+                                ";
+                
+              $return['ugyfel'] = $this->_DB->prepare($query)->query_select()->query_result_array();
+              
+              
                 }catch(Exception_MYSQL_Null_Rows $e){
+                 $return['ugyfel'];
+                }
+                return $return;
             
-            }
-            catch(Exception_MYSQL $e){
-            
-            }
         }
         
        

@@ -21,9 +21,17 @@ class UgyfellinkekEdit_Admin_Controller extends Admin_Edit
                 parent::__show();
                 
                 if($this->_model->modifyID && $this->_model->_params['TxtTipus']->_value == 'ugyfel'){
+                    $this->_view->assign('tipus','ugyfel');
+                }elseif($this->_model->modifyID && $this->_model->_params['TxtTipus']->_value == 'sajat'){
+                    $this->_view->assign('tipus','sajat');
+                }
+                
+                if(!$this->_model->modifyID){
+                    $this->_view->assign('mode','new');
+                }else{
                     $content = $this->getContent($this->_model->modifyID, $this->_model->_params['SelKat']->_value);
                     $this->_view->assign('content',$content);
-                    $this->_view->assign('ugyf','1');
+                    $this->_view->assign('mode','modify');
                 }
                 
                 Rimo::$_site_frame->assign('Form',$this->__generateForm('modul/ugyfellinkek/view/admin.ugyfellinkek_edit.tpl'));

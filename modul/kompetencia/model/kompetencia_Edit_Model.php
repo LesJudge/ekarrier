@@ -10,7 +10,7 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
                 'kompetencia_leiras'=>'TxtLeiras',
                 'kompetencia_meta_kulcsszo'=>'TxtKulcsszo',
                 'kompetencia_tartalom'=>'TxtTartalom',
-                'kompetencia_szinkod'=>'TxtSzinkod',
+                //'kompetencia_szinkod'=>'TxtSzinkod',
                 'kompetencia_aktiv'=>'ChkAktiv',
                 'checked'=>'ChkChecked',
                 'tipus' =>'TxtTipus'
@@ -42,7 +42,7 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
                 // Tartalom
                 $this->addItem('TxtTartalom')->_verify['string']=true;
                 //Színkód
-                $this->addItem('TxtSzinkod');
+                //$this->addItem('TxtSzinkod');
                 // Kapcsolódó munkakörök
                 /*
                 $this->addItem('SelKapcsolodo')->_select_value=$this->getSelectValues(
@@ -154,7 +154,7 @@ class Kompetencia_Edit_Model extends MkAdminEditBaseModel
                 $this->_params['TxtLeiras']->_value = "sajat";
                 $this->_params['TxtKulcsszo']->_value = ",sajat,";
                 $this->_params['TxtTartalom']->_value = "sajat";
-                $this->_params['TxtSzinkod']->_value = "";
+                //$this->_params['TxtSzinkod']->_value = "";
             
                     parent::__update(',kompetencia_modositas_datum=now()
                                                   ,kompetencia_javitas_szama=kompetencia_javitas_szama+1

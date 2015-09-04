@@ -106,6 +106,11 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
                     throw new Exception_Form_Error("A kompetenciarajznak legalább egy kompetenciát tartalmaznia kell!");
                 }
                 
+                if($this->_model->checkIfCompRajzExistsByName($_REQUEST['CompRajzNev']))
+                {
+                throw new Exception_Form_Error("Már létezik ilyen nevű kompetenciarajz!");
+                }
+                
                 $compRajzok = $this->_model->getAllCompRajz();
                 if(count($compRajzok) >= '5')
                 {
@@ -228,7 +233,7 @@ class KompetenciaRajzEdit_Site_Controller extends Page_Edit
 		//$mailer->BodyTPL->assign("email",$this->_params["TxtEmail"]->_value);
 		
 		$mailer->emailFromDB(4);
-		$mailer->AddAddress("gazdag.gergo@uniweb.hu");
+		$mailer->AddAddress(Rimo::$_config->ADMIN_EMAIL);
 		
 		$mailer->Send();
                 throw new Exception_Form_Message("Kérését elküldtük!");

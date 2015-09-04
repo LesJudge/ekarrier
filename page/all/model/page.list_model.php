@@ -68,12 +68,7 @@ abstract class Page_List_Model extends Page_Model {
             $order = " ORDER BY {$this->sortBY}";
         } 
         $query =  "SELECT {$this->_fields} FROM `{$this->_tableName}` {$this->_join} {$this->listWhere} GROUP BY `{$this->_tableName}`.{$this->_tableName}_id {$order} {$this->limit}";
-      /*
-        echo '<pre>';
-       echo htmlspecialchars($query);
-       echo '</pre>'; 
-       //exit;
-       */
+       
         return $this->_DB->prepare($query)->query_select()->query_result_array();
     }
     

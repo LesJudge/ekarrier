@@ -85,7 +85,7 @@
 </div>		
 
 
-<button type="submit" onClick="eval();" class="btn btn-lg btn-primary">Teszt mentése</button>
+<button type="submit" onClick="eval();" class="btn btn-lg btn-primary" id="submitBtn">Teszt mentése</button>
 
 <style>
 .noselect {
@@ -199,8 +199,12 @@ getFullScores();
 
 var finalResults=""; 
 
-function eval(){ 
+$('#submitBtn').click(function(event){
     event.preventDefault();
+});
+
+function eval(){ 
+    
     if($('#firstWordsResultRemaining').val()!=0){
         $('#pointsZeroAlert').show();
         setTimeout(function() { $("#pointsZeroAlert").fadeOut("slow"); }, 3000);

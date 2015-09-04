@@ -46,6 +46,7 @@ class TevekenysegikorShow_Site_Controller extends Page_Edit
             
             // Lekérdezi a tevkör adatait.
             $jobData = $this->_model->findTevkorByUrl($_GET['link'], $lId);
+            
             $this->_view->assign('jobData', $jobData);
             
             // Munkakörök
@@ -135,7 +136,6 @@ class TevekenysegikorShow_Site_Controller extends Page_Edit
             Rimo::$_site_frame->assign('site_keywords', $jobData['kategoria_meta_kulcsszo']);
             Rimo::$_site_frame->assign('Content', $this->__generateForm('modul/tevekenysegikor/view/site.tevekenysegikor_show.tpl'));
         } catch (Exception_MYSQL $em) {
-            //echo $em->getMessage();exit;
             throw new Exception_404;
         }  catch (Exception_MYSQL_Null_Rows $emnr) {
             throw new Exception_404;

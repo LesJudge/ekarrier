@@ -23,8 +23,9 @@
 	</div>
 	<div class="clear"></div>
 	{/if}
-	
-    <img src="{$DOMAIN}pic/enceg/{$companyData.ceg_kep}_380x265_2" class="pull-left" style="margin:0em 1em 0.5em 0em; width:25%;" />
+    {if $companyData.ceg_kep}
+        <img src="{$DOMAIN}pic/enceg/{$companyData.ceg_kep}_380x265_2" class="pull-left" style="margin:0em 1em 0.5em 0em; width:25%;" />
+    {/if}
     {$companyData.tartalom}
 	
 	<div class="clear"></div>

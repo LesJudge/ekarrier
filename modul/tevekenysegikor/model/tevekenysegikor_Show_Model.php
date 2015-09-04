@@ -28,6 +28,7 @@ class Tevekenysegikor_Show_Model extends Page_Edit_Model
     
     public function findTevkorByUrl($url, $lId)
     {
+        try{
         $query = "SELECT mk.munkakor_kategoria_id AS ID,
                          mk.kategoria_full_link AS Link,
                          mk.kategoria_cim AS Cim,
@@ -40,7 +41,27 @@ class Tevekenysegikor_Show_Model extends Page_Edit_Model
                        mk.munkakor_kategoria_torolt = 0
                  LIMIT 1";
         
-        return $this->_DB->prepare($query)->query_select()->query_fetch_array();
+        $return = $this->_DB->prepare($query)->query_select()->query_fetch_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            $return = array();
+        }catch(Exception_MYSQL $e){
+            $return = array();
+        }
+        
+        try{
+                $query = "SELECT m.munkakor_tartalom AS tartalom
+                 FROM munkakor m
+                 INNER JOIN munkakor_attr_kategoria mak ON mak.munkakor_id = m.munkakor_id
+                 WHERE mak.munkakor_attr_kategoria_id = ".(int)$return['ID']."
+                            
+                        ";
+        $return['leirasok'] = $this->_DB->prepare($query)->query_select()->query_result_array();
+        }catch(Exception_MYSQL_Null_Rows $e){
+            $return['leirasok'] = array();
+        }catch(Exception_MYSQL $e){
+            $return['leirasok'] = array();
+        }
+        return $return;
     }
     
     public function findMunkakorokByID($id)

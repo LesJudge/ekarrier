@@ -24,7 +24,41 @@ $(function() { {$FormScript}
         }); 
 
 
+$('#{$SelKat.name}').change(function(){
+        var selected = $(this).find('option:selected').attr('value');
+        if(selected){
+            $.ajax({
+                url: '{$DOMAIN}ajax.php?m=ugyfellinkek&al=ajax&todo=filtergroup&category='+selected, 
+                dataType: 'json', 
+                success: function(data){
+                    $('#SelIdInKat').html("");
+                    $('#SelIdInKat').prev().html("--Válasszon--");
+                    $('#SelIdInKat').append("<option value=''>--Válasszon--</option>");
+                    $.each(data, function(k, v) {                        
+                       $('#SelIdInKat').append("<option value='"+v.ID+"'>"+v.nev+"</option>");
+                    });
+                }, 
+                error: function(){
+                    $('#SelIdInKat').prev().html("--Válasszon--");
+                    $('#SelIdInKat').html("");
+                }
+            });
+        }else{
+            $('#SelIdInKat').prev().html("--Válasszon--");
+            $('#SelIdInKat').html("");
+        }
+    });
+    
+$('#SelIdInKat').change(function(){
+        var selected = $(this).attr('value');
+        $('#{$TxtIdInKat.name}').attr('value',selected);
+    });
+
+
 });
+
+
+
 
 /*]]>*/
 </script>
@@ -55,15 +89,30 @@ $(function() { {$FormScript}
                                 
                                 <div class="form_row">
                                         <label for="{$SelKat.name}">Kategória <span class="require">*</span></label>
-                                        {if $ugyf == '1'}
+                                        {if $mode == 'modify'}
                                             <input type="text" id="{$SelKat.name}" name="{$SelKat.name}" value="{$SelKat.activ}" readonly />
                                         {else}
-                                            {html_options name=$SelKat.name options=$SelKat.values selected=$SelKat.activ}
+                                            {html_options name=$SelKat.name id=$SelKat.name options=$SelKat.values selected=$SelKat.activ}
                                         {/if}
                                         {if isset($SelKat.error)}<p class="error small">{$SelKat.error}</p>{/if}
+                                </div>
+                                <div class="form_row">
+                                {if $mode == 'new'}
+                                    <label for="SelIdInKat">Azonosító <span class="require">*</span></label>
+                                    <select id="SelIdInKat" name="SelIdInKat">                                    
+                                    </select>
+                                {/if}
+                                {if isset($TxtIdInKat.error)}<p class="error small">{$TxtIdInKat.error}</p>{/if}
+                                 </div>
+                                 
+                                 <div class="form_row">
+                                        <label for="{$TxtIdInKat.name}" style="display:none">Név <span class="require">*</span></label>
+                                        <input type="text" id="{$TxtIdInKat.name}" name="{$TxtIdInKat.name}" value="{$TxtIdInKat.activ}" style="display:none"/>
                                 </div><div class="clear"></div>
+                                 
+                                <div class="clear"></div>
                                  <br/>
-                                {if $ugyf == '1'}
+                                {if $mode == 'modify'}
                                     <label>{$content.nev|ucfirst}: </label>
                                     <br/>
                                     <textarea id='relContent' class='mceNonEditable'>{$content.leiras}</textarea>
@@ -73,7 +122,7 @@ $(function() { {$FormScript}
                         
                         <div class="field">
                                
-                                    <div class="form_row" style="{if $ugyf != '1'}display:none{/if}">
+                                    <div class="form_row">
                                             <label>Ellenőrizve <span class="require">*</span></label>
                                             {html_radios name=$ChkChecked.name options=$ChkChecked.values selected=$ChkChecked.activ}
                                             {if isset($ChkChecked.error)}<p class="error small">{$ChkChecked.error}</p>{/if}

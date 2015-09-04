@@ -32,11 +32,11 @@ class KompetenciaEdit_Admin_Controller extends Admin_Edit
                 parent::__show();
                 
                 if($this->_model->modifyID && $this->_model->_params['TxtTipus']->_value == 'ugyfel'){
-                    $this->_model->_params['TxtLink']->_value = "sajat";
+                    $this->_model->_params['TxtLink']->_value = "sajat".$this->_model->modifyID;
                     $this->_model->_params['TxtLeiras']->_value = "sajat";
                     $this->_model->_params['TxtKulcsszo']->_value = ",sajat,";
                     $this->_model->_params['TxtTartalom']->_value = "sajat";
-                    $this->_model->_params['TxtSzinkod']->_value = "";
+                    //$this->_model->_params['TxtSzinkod']->_value = "";
                     $this->_view->assign('ugyf','1');
                     
                 }

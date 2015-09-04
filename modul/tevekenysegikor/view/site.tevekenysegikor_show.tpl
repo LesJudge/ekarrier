@@ -26,7 +26,11 @@
 
 <div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Tevékenységi kör leírása</div><i class="write-icon"></i></div>
 <div class="jobFindList-cont">    
-    <div class="jobFindList-data-1">{$jobData.Leiras}</div>
+    <div class="jobFindList-data-1">
+        {foreach from=$jobData.leirasok item=leiras}
+            {$leiras.tartalom}
+        {/foreach}
+    </div>
 	{if $descriptionDetails != '1'}
 		<a class="btn-default btn-sm" href="{$DOMAIN}tevekenysegikor/{$jobData.Link}?descriptiondetails">Részletek</a>
 	{else}

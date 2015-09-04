@@ -40,18 +40,14 @@ class KompetenciaEdit_Site_Controller extends Page_Edit
                         $obj = $tartalom->getTartalomByID(41);
                         $this->_view->assign("text3",$obj[0]["tartalom_tartalom"]);
                         
-                        try{
-                            $this->_view->assign('userCompetences',$this->_model->findCompetencesByClientId($lId));
-                        }
-                        catch(Exception_MYSQL_Null_Rows $e){
-                        }
-                        try{
-                            $this->_view->assign('allCompetences',$this->_model->getAllCompetences($lId));
-                        }catch(Exception_MYSQL_Null_Rows $e){
-                        }
                         
-                        $question = infobox_Site_Model::model()->findInfoboxItemByKey('competenceEditInfobox',$lId);
-                        $this->_view->assign('question',$question);
+                        $userCompetences = $this->_model->findCompetencesByClientId($lId);
+                        $this->_view->assign('userCompetences',$userCompetences);
+                        
+
+                        $this->_view->assign('allCompetences',$this->_model->getAllCompetences($lId));
+                        
+                        
                                                
                         $seo=seo_Site_Model::model()->getSeoItemByKey('competenceEdit',$lId);
                         Rimo::$_site_frame->assign('PageName',$obj[0]["tartalom_cim"]);

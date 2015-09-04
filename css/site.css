@@ -964,6 +964,17 @@ box-shadow: #d7d6d4 2px 2px 1px 0;
 behavior: url(../css/behavior/PIE.htc);  }
 #questionQuestion I.icomoon { position: absolute; left:25%; top:-25px; z-index:10; color:#000; margin:0em auto 0 auto; font-size:2.5em;    }
 
+#linksCont { 
+position: absolute; z-index:10; width: auto; background:#000; margin:0.9em 0em 0em 0em; color: #fff; padding: 10px; text-align:center;  
+-webkit-border-radius: 7px;
+-moz-border-radius:7px;
+border-radius:7px;	
+-webkit-box-shadow: #d7d6d4 2px 2px 1px 0;
+-moz-box-shadow:  #d7d6d4 2px 2px 1px 0;
+box-shadow: #d7d6d4 2px 2px 1px 0; 	
+behavior: url(../css/behavior/PIE.htc); 
+}
+
 
 /* Álláshírdetés tulajdonságai
 -------------------------------------------------------------- */

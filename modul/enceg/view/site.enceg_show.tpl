@@ -1,7 +1,6 @@
 <script type="text/javascript" src="js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 $(function() { {$FormScript}
-
 	jQuery.each($(".tinymce"), function() {
         tinyMCE.init({ mode : "exact", elements : this.id, theme : "advanced", skin : "o2k7", skin_variant : "silver", language : "hu", theme_advanced_toolbar_location : "top", theme_advanced_toolbar_align : "left", theme_advanced_statusbar_location : "bottom", gecko_spellcheck : "true", plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,preview,example",
     	theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,link,unlink,forecolor,backcolor,cleanup,|",    	
@@ -51,7 +50,9 @@ $(function() { {$FormScript}
 	<br/><br/>	 			
 	<div class="tabBreadcrumb_cover"></div>
 	<div class="tabBreadcrumb">
+            {if $companyData.ceg_kep}
 		<img src="{$DOMAIN}pic/{$APP_PATH}/{$companyData.ceg_kep}_380x265_2" class="tabBreadcrumb-profilImg"/>
+            {/if}    
 	</div>		
 </div>	      
 <div class="contentDataCont">	
@@ -77,7 +78,11 @@ $(function() { {$FormScript}
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="col-data-3">
-								<img src="{$DOMAIN}pic/{$APP_PATH}/{$companyData.ceg_kep}_380x265_2" class="img-responsive"/> 			
+                                                            {if $companyData.ceg_kep}
+								<img src="{$DOMAIN}pic/{$APP_PATH}/{$companyData.ceg_kep}_380x265_2" class="img-responsive"/>
+                                                            {else}
+                                                                Nincs kép feltöltve
+                                                            {/if}
 							</div>
 						</div>
 						<div class="col-lg-12">

@@ -13,7 +13,7 @@ class TevekenysegikorList_Site_Controller extends Admin_List
     
     public function __construct()
     {   
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+//        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         $this->__loadModel('_Site_List');
         
         parent::__construct();
@@ -26,7 +26,6 @@ class TevekenysegikorList_Site_Controller extends Admin_List
         parent::__show();
         
         $lId = Rimo::$_config->SITE_NYELV_ID;
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
         
         $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
         
@@ -40,6 +39,10 @@ class TevekenysegikorList_Site_Controller extends Admin_List
         {
             $this->_view->assign("jumpToAnc","1");
         }
+        if($_REQUEST["extra"]=== '1'){
+            $this->_view->assign('extra','extra');
+        }
+        
         
         //SEO
         $seo = seo_Site_Model::model()->getSeoItemByKey('tevkorkereso',$lId);
@@ -99,6 +102,7 @@ class TevekenysegikorList_Site_Controller extends Admin_List
         else
         {
             $this->setWhereInput('ah.szektor_id IN('.(int)$filterSzektor.')', 'FilterSzektor');
+            $_REQUEST['extra'] = '1';
         }
         
         //Poz szűrő
@@ -111,6 +115,7 @@ class TevekenysegikorList_Site_Controller extends Admin_List
         else
         {
             $this->setWhereInput('ah.pozicio_id IN('.(int)$filterPozicio.')', 'FilterPozicio');
+            $_REQUEST['extra'] = '1';
         }     
     }
    

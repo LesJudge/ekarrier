@@ -1,5 +1,6 @@
 {if $linkMode}
 <style>
+
 #linksCont{
 position: fixed;
 right: 20px;
@@ -12,7 +13,7 @@ z-index: 99999;
 </style>
 <div id="linksCont">
 
-    <h3>Linkjeim</h3>
+    <h3>Hasznos linkek</h3>
 
     {if not empty($links)}
         {foreach from=$links item=link}    
@@ -29,7 +30,7 @@ z-index: 99999;
     {/if}
 
     {if $addLinkOption}
-        <div onClick="$('#linkFormCont').toggle();">Adja hozzá az oldalt</div>
+        <div onClick="$('#linkFormCont').toggle();">Link hozzáadása</div>
         <div id="linkFormCont" style="display:none">
             <form name="{$FormName}" method="post" action="">
                 <label for="linkName">Név <span class="require">*</span></label>

@@ -6,6 +6,8 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 ini_set("display_errors",0);
 include_once "site.config.php";
 
+// Gergő egy büdös buncow!
+
 //require_once 'RimoConfig.php';
 //require_once 'Rimo.php';
 Rimo::init();

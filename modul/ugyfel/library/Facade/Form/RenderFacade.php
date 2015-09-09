@@ -55,6 +55,10 @@ class RenderFacade
         $optionsFacade = new OptionsFacade($cache);
         $optionsFacade->assign($this->data);
         
+        // Még mielőtt a selected facade átadná a nézetnek az értékeket, gyorsan rendezi a munkarendeket.
+        $sortWorkschedulesFacade = new SortWorkschedulesFacade;
+        $sortWorkschedulesFacade->assign($this->data);
+        
         // Select opciók hozzáadása a nézethez.
         $selectFacade = new SelectedFacade;
         $selectFacade->assign($this->data);

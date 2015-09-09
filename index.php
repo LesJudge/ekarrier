@@ -64,7 +64,9 @@ try {
                       'kompetenciarajzkereso'=>'',
                       'szolgaltatas'=>'',
                       'allashirdetes'=>'',
-                      'munkakor'=>''
+                      'munkakor'=>'',
+                      'tevekenysegikor'=>'list',
+                      'kompetencia'=>'show'
                        );
     
     if($_REQUEST['m']) {

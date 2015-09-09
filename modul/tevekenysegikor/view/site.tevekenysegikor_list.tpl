@@ -115,11 +115,6 @@ function resetGroupOpts(){
 .ek-job-sub {
     
 }
-
-.disabledItemCircle, .disabledItemGroup{
-    color: darkgrey !important;
-    //display: none;
-}
 </style>
 
 {if $FormError}
@@ -151,16 +146,23 @@ function resetGroupOpts(){
 			{html_options id={$FilterKor.name} name=$FilterKor.name options=$FilterKor.values selected=$FilterKor.activ class='select-type-1'}
 			<div class="clear"></div> 
 			</div>
-				   
-			<div class="filter_row">		
-			{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ class='select-type-1'}
-			<div class="clear"></div> 
+			
+			<div class="clear"></div> 	
+			<a id="extraOpener" onclick="$('#extraCont').toggle()" href="javascript:;" class="btn btn-default" style="text-align:center;"><i class="icomoon icomoon-plus"></i></a>
+			<div class="clear"></div>
+			  
+			<div id="extraCont" {if !$extra}style="display:none"{/if}>
+				<div class="filter_row">		
+				{html_options name=$FilterSzektor.name options=$FilterSzektor.values selected=$FilterSzektor.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
+
+				<div class="filter_row">		
+				{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ class='select-type-1'}
+				<div class="clear"></div> 
+				</div>
 			</div>
-					
-			<div class="filter_row">		
-			{html_options name=$FilterPozicio.name options=$FilterPozicio.values selected=$FilterPozicio.activ class='select-type-1'}
-			<div class="clear"></div> 
-			</div>
+		
     	</div>  
 		 
         <span class="size-1"><input type="text" name="{$TxtSearchByName.name}" value="{$TxtSearchByName.activ}" autocomplete="off" placeholder="Keress konkrét tevékenységi kört..." /></span>

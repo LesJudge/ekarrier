@@ -1,5 +1,4 @@
 <script type="text/javascript" src="../js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-<!--script type="text/javascript" src="../js/admin/add_tinymce.js"></script-->
 <script type="text/javascript">
 /*<![CDATA[*/
 $(function() { {$FormScript}
@@ -49,7 +48,7 @@ $(function() { {$FormScript}
                         {include file='page/admin/view/admin.message.tpl'}
                         <div class="form_muvelet">
                             <a><button class="submit tip" name="{$BtnSave}" id="{$BtnSave}" value="{php}echo LANG_AdminEdit_mentes;{/php}" title="{php}echo LANG_AdminEdit_mentes;{/php}"><img src="../images/admin/icons/save.png"></button></a>
-                        
+                            <a href="{$DOMAIN_ADMIN}ugyfeluzenetek/edit?answerTo={$SelUgyfel.activ}"><img class="tip" title="Válasz" src="../images/admin/icons/send.png"/></a>
                             <a href="{$DOMAIN_ADMIN}ugyfeluzenetek" id="{$FormName}_close"><img class="tip" title="{php}echo LANG_AdminEdit_megse;{/php}" src="../images/admin/icons/cancel.png"/></a>
                         
                         </div> 
@@ -67,13 +66,17 @@ $(function() { {$FormScript}
                                     {if isset($TxtTartalom.error)}<p class="error small">{$TxtTartalom.error}</p>{/if}
 				</div><div class="clear"></div>
                                 
-                                
-                                
-                               
+
                                 <div class="form_row">
                                         <label>Elolvasva <span class="require">*</span></label>
                                         {html_radios name=$ChkSeen.name options=$ChkSeen.values selected=$ChkSeen.activ}
                                         {if isset($ChkSeen.error)}<p class="error small">{$ChkSeen.error}</p>{/if}
+                                </div><div class="clear"></div>
+                                
+                                <div class="form_row">
+                                        <label>Ügyfél elolvasta <span class="require">*</span></label>
+                                        {html_radios name=$ChkSeenByClient.name options=$ChkSeenByClient.values selected=$ChkSeenByClient.activ disabled=true}
+                                        {if isset($ChkSeenByClient.error)}<p class="error small">{$ChkSeenByClient.error}</p>{/if}
                                 </div><div class="clear"></div>
                                 
                                 

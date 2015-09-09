@@ -12,7 +12,7 @@ class KompetenciaShow_Site_Controller extends Page_Edit
         
     public function __construct()
     {       
-        $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
+
         $this->__loadModel('_Show');
         parent::__construct();
         $this->__addParams($this->_model->_params);
@@ -28,6 +28,7 @@ class KompetenciaShow_Site_Controller extends Page_Edit
                         $lId=Rimo::$_config->SITE_NYELV_ID;
                         
                         if($_REQUEST['link']!='tesztek'){
+                            $clientId = (int)Rimo::getClientWebUser()->verify(UserLoginOut_Site_Controller::$_id);
                             // Kompetencia adatainak lekérdezése.
                             $competence=$this->_model->findCompetenceByUrl($_GET['link'],$lId);
                             $this->_view->assign('competence',$competence);
@@ -51,7 +52,7 @@ class KompetenciaShow_Site_Controller extends Page_Edit
                             $this->_view->assign("addLinkOption","on");
                             $this->_view->assign("links",$links);
 
-                            Rimo::$_site_frame->assign('site_title','Munkáltatók - '.$competence['kompetencia_nev']);
+                            Rimo::$_site_frame->assign('site_title','Kompetenciák - '.$competence['kompetencia_nev']);
                             Rimo::$_site_frame->assign('site_description',$competence['kompetencia_leiras']);
                             Rimo::$_site_frame->assign('site_keywords',$competence['kompetencia_meta_kulcsszo']);
 

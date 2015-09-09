@@ -85,7 +85,7 @@
 </div>		
 
 
-<button type="submit" onClick="eval();" class="btn btn-lg btn-primary">Teszt mentése</button>
+<button type="submit" onClick="eval();" class="btn btn-lg btn-primary" id="submitBtn">Teszt mentése</button>
 
 <style>
 .noselect {
@@ -105,6 +105,7 @@ $(function() {
 		renderBoxHeight("connectedSortable");
 	},500);
 	*/
+		
     $( "#sortable1, #sortable2" ).sortable({
         connectWith: ".connectedSortable",
         cursor: "move"
@@ -128,6 +129,10 @@ $(function() {
     $( "#sortable2" ).on( "sortupdate", function( event, ui ) {
         calcOrder();
     });
+	
+	$(".sortable1 .jobFindList-cont .connectedSortable, .sortable2 .jobFindList-cont .connectedSortable").css("height", $(".sortable1 .jobFindList-cont .connectedSortable").height()+"px");
+	
+
 });
 
 var rulesArr=[];                                    
@@ -199,8 +204,12 @@ getFullScores();
 
 var finalResults=""; 
 
-function eval(){ 
+$('#submitBtn').click(function(event){
     event.preventDefault();
+});
+
+function eval(){ 
+    
     if($('#firstWordsResultRemaining').val()!=0){
         $('#pointsZeroAlert').show();
         setTimeout(function() { $("#pointsZeroAlert").fadeOut("slow"); }, 3000);

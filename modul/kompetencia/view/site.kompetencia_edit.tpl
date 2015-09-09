@@ -27,21 +27,25 @@
 </form>
 
 <br />
-<div class="row">	
+<div class="row komtetenciaSzerkesztes">	
 	<div class="col-lg-12" style="z-index:20;">
 		<div class="padding-2">
 			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Összes</div></div>
-			<div class="jobFindList-cont"> 			
+			<div class="jobFindList-cont jobFindList-cont-1"> 			
 				<form id="newCompForm" action="" method="post">
 				<ul id="allCompSelect" class='sortable1 sortedUL sortedUL-graggable'>
-					{foreach from=$allCompetences item=val}
+					{foreach from=$allCompetences['sajat'] item=val}
 					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
-						{if $val['tipus'] != 'ugyfel'}
-							<div class="myComp-bg" style="background:{$val['kompetencia_szinkod']}">&nbsp;</div>
-							<a href="{$DOMAIN}kompetenciak/{$val['kompetencia_link']}">{$val['kompetencia_nev']}</a>
-						{else}
 							{$val['kompetencia_nev']}
-						{/if}
+					</li>
+					{/foreach}
+				</ul>
+				<br>
+				<h3 style="font-size:1.4em;">Álláskeresők által felvitt kompetenciák</h3>
+				<ul id="allCompSelect" class='sortable2 sortedUL sortedUL-graggable'>
+					{foreach from=$allCompetences['ugyfel'] item=val}
+					<li id='allComp_{$val['kompetencia_id']}' class='allComp'>
+							{$val['kompetencia_nev']}
 					</li>
 					{/foreach}
 				</ul>
@@ -52,7 +56,7 @@
 	<div class="col-lg-12">	
 		<div class="padding-3">
 			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciáim</div></div>
-			<div class="jobFindList-cont"> 			
+			<div class="jobFindList-cont jobFindList-cont-4"> 			
 				<ul id="myComps" class='sortable2 sortedUL'>
 					{foreach from=$userCompetences item=val}
 					<li class='fixed'>
@@ -119,7 +123,7 @@ $(document).ready(function(){
 
    
     
-    $( ".sortable1" ).sortable({
+    $( ".sortable1, .sortable2" ).sortable({
         connectWith: ".sortedUL",
         cursor: "move"
     });
@@ -142,6 +146,8 @@ $(document).ready(function(){
         $("#deleteCompId").val(a[1]);
         $("#deleteCompSbmt").trigger("click");
     });
+
+	setTimeout(function(){ $(".jobFindList-cont-1, .jobFindList-cont-4").css("height", parseInt($(".jobFindList-cont-1").height()+38.5)+"px"); },300);
 
 });
 </script>

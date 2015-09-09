@@ -10,6 +10,7 @@ class Ugyfellinkek_Edit_Model extends Admin_Edit_Model
                 'tipus'=>'TxtTipus',
                 'checked'=>'ChkChecked',
                 'ugyfel_attr_linkek_aktiv'=>'ChkAktiv',
+                'id_in_category' => 'TxtIdInKat'
         );
 
         public function __addForm()
@@ -27,7 +28,15 @@ class Ugyfellinkek_Edit_Model extends Admin_Edit_Model
                 $this->addItem('TxtTipus');
                 $this->addItem("ChkChecked")->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
 
+                $this->addItem('TxtIdInKat')->_verify['string']=true;
         }
+        
+        public function __newData() {
+            parent::__newData();
+            $this->_params["ChkAktiv"]->_value = 1;
+            $this->_params["ChkChecked"]->_value = 1;
+        }
+        
 
         public function __editData()
         {

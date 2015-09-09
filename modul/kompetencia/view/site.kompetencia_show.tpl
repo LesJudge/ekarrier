@@ -59,5 +59,4 @@
 <div class="alert alert-info">Még senki nem írt hozzá!</div>
 {/if}
 
-    
 {include file = "modul/ugyfellinkek/view/site.ugyfellinkek.tpl"}

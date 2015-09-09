@@ -49,14 +49,13 @@ class Client
         $optionsFacade->assign($options);
         // Végzettség típusok.
         $smarty->assign('educationTypes', $options->offsetGet('beallitasEducations'));
-        
-        
+        // Végzettségek tömb.
         $educationsList = array();
         /* @var $educations \Uniweb\Module\Beallitas\Model\ActiveRecord\Education */
         $educations = $options->offsetGet('beallitasEducations');
         /* @var $clientEducations \Uniweb\Module\Ugyfel\Model\ActiveRecord\Education */
         $clientEducations = $this->client->educations;
-        
+        // Végzettségek tömb elkészítése.
         foreach ($educations as $education) {
             foreach ($clientEducations as $clientEducation) {
                 
@@ -76,8 +75,11 @@ class Client
                 'selected' => $isSelected,
             ];
         }
-        
+        // Végzettségek.
         $smarty->assign('educations', $educationsList);
+        // Munkakörök.
+        $jobs = $this->client->jobs;
+        $smarty->assign('jobs', is_array($jobs) ? $jobs : array());
         // Szolgáltatások.
         $mapServices = new MapServices($options->offsetGet('szolgaltatasServices'), $this->client->services);
         $smarty->assign('services', $mapServices->map());

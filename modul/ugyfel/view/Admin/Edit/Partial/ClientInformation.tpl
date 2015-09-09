@@ -77,8 +77,6 @@
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label>Megjegyzés</label>
-        <textarea name="relationships[commentclientinformation][megjegyzes]" class="uw-ugyfelkezelo-input-textarea-megjegyzes">{$client->commentclientinformation->megjegyzes}</textarea>
-        {ar_error model=$client->commentclientinformation property='megjegyzes' view='admin_ar_error.tpl'}
-        <input name="relationships[commentclientinformation][ugyfel_attr_tab_megjegyzes_id]" value="{$client->commentclientinformation->ugyfel_attr_tab_megjegyzes_id}" type="hidden" />
+        <textarea id="client-information-comments-textarea" name="relationships[commentclientinformation][megjegyzes]" class="uw-ugyfelkezelo-input-textarea-megjegyzes" disabled="disabled"></textarea>
     </div>
 </div>

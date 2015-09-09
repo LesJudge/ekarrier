@@ -442,6 +442,15 @@ class Client extends Behaviorable implements ResourceInterface
         $assign->assignAttribute('ugyfel_munkaba_allas_allapot_id', $ugyfel_munkaba_allas_allapot_id, $this);
     }
     
+    public function set_tanacsado_id($tanacsado_id)
+    {
+        $assign = new AssignWithoutCast;
+        if (empty($tanacsado_id)) {
+            $tanacsado_id = null;
+        }
+        $assign->assignAttribute('tanacsado_id', $tanacsado_id, $this);
+    }
+    
     public function set_vegzettseg_id($vegzettseg_id)
     {
         $assign = new AssignWithoutCast;

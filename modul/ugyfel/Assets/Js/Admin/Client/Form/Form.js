@@ -14,7 +14,6 @@ $(function() {
     });
     var currentYear = new Date().getUTCFullYear(), // Aktuális év.
         datepickers = [ // Selectorokat tartalmazó tömb, amikre datepicker kell.
-            "#labor-market-mikor-regisztralt", 
             "#labor-market-gyes-gyed-lejar-datum", 
             "#labor-market-kov-felulv-date", 
             ".uw-ugyfelkezelo-service-mikor"

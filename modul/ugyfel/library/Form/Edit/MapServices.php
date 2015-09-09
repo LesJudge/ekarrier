@@ -12,9 +12,9 @@ class MapServices extends AbstractMap
         foreach ($this->options as $option) {
             $selected = null;
             /* @var $selectedOption \Uniweb\Module\Ugyfel\Model\ActiveRecord\ServiceInterested */
-            foreach ($this->selectedOptions as $selectedOption) {
-                $programInformation = $selectedOption->service;
-                if ($programInformation && $programInformation == $option) {
+            foreach ($this->selectedOptions as $selectedOption) {                
+                $service = $selectedOption->service;
+                if ($service && $service->id == $option->id) {
                     $selected = $selectedOption;
                     break;
                 }

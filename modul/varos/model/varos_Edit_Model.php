@@ -1,12 +1,12 @@
 <?php
 
-class Orszag_Edit_Model extends Admin_Edit_Model
+class Varos_Edit_Model extends Admin_Edit_Model
 {
-    public $_tableName = 'cim_orszag';
+    public $_tableName = 'cim_varos';
     
     public $_bindArray = array(
         'kod' => 'TxtRovidites',
-        'nev' => 'TxtNev'
+        'cim_varos_nev' => 'TxtNev'
     );
 
     public function __addForm()
@@ -14,7 +14,7 @@ class Orszag_Edit_Model extends Admin_Edit_Model
         $rovidites = $this->addItem('TxtRovidites');
         $rovidites->_verify['string'] = true;
         $rovidites->_verify['unique'] = array(
-            'table' => 'cim_orszag', 
+            'table' => 'cim_varos', 
             'field' => 'kod', 
             'modify' => $this->modifyID, 
             'DB' => $this->_DB

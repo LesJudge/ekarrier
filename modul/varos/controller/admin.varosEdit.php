@@ -2,9 +2,9 @@
 include_once 'page/admin/controller/admin.edit.php';
 include_once 'page/admin/model/admin.edit_model.php';
 
-class OrszagEdit_Admin_Controller extends Admin_Edit
+class VarosEdit_Admin_Controller extends Admin_Edit
 {
-    public $_name = 'OrszagEdit';
+    public $_name = 'VarosEdit';
 
     public function __construct()
     {
@@ -18,6 +18,6 @@ class OrszagEdit_Admin_Controller extends Admin_Edit
     public function __show()
     {
         parent::__show();
-        Rimo::$_site_frame->assign('Form', $this->__generateForm('modul/orszag/view/admin.orszag_edit.tpl'));
+        Rimo::$_site_frame->assign('Form', $this->__generateForm('modul/varos/view/admin.varos_edit.tpl'));
     }
 }

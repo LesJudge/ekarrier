@@ -1,9 +1,9 @@
 <?php
 include_once 'page/admin/controller/admin.list.php';
 
-class Orszag_Admin_Controller extends Admin_List
+class Varos_Admin_Controller extends Admin_List
 {
-    public $_name = 'OrszagList';
+    public $_name = 'VarosList';
     
     protected $_multiple_lang = false;
     
@@ -18,11 +18,11 @@ class Orszag_Admin_Controller extends Admin_List
     public function __show()
     {
         parent::__show();
-        Rimo::$_site_frame->assign('Form', $this->__generateForm('modul/orszag/view/admin.orszag_list.tpl'));
+        Rimo::$_site_frame->assign('Form', $this->__generateForm('modul/varos/view/admin.varos_list.tpl'));
     }
 
     public function onClick_Filter()
     {
-        $this->setWhereInput('nev LIKE \'%:item%\' OR kod LIKE \'%:item%\' ', 'FilterSzuro');
+        $this->setWhereInput('cim_varos_nev LIKE \'%:item%\'', 'FilterSzuro');
     }
 }

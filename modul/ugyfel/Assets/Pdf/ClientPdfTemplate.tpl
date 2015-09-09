@@ -283,6 +283,22 @@
             <div></div>
             <strong>Iskolai végzettség</strong>
             <ul>
+                {foreach from=$educations item=education}
+                <li>
+                    {if $education['selected']}
+                    <span style="font-weight: bold;">x&nbsp;&nbsp;</span>
+                    {else}
+                    <span style="width: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    {/if}
+                    <span>
+                        {if $education['selected']}<span style="font-weight: bold; text-decoration: underline;">{else}<span>{/if}
+                        {$education['name']}
+                        </span>
+                        {if $education['selected']}({$education['denomination']}){/if}                        
+                    </span>
+                </li>
+                {/foreach}
+                
                 {foreach from=$educationTypes item=educationType}
                 <li>
                     {if in_array($educationType->vegzettseg_id, $educations)}
@@ -347,9 +363,19 @@
                     {/foreach}
                 </ul>
             </div>
+            <div style="display: block; clear:both;">
+                <strong>Munkakörök</strong>
+                <ul>
+                    {foreach from=$jobs item=job}
+                    <li>{$job->munkakor_nev}</li>
+                    {/foreach}
+                </ul>
+            </div>
         </div>
+                
+        <pagebreak />
         
-        <div class="page" style="padding-top: 1cm;">
+        <div class="page" style="padding-top: 4cm;">
             <p>A programról az információkat megkaptam, szándékomat fejezem ki az abban való részvételre! Kérem a programról történő további tájékoztatást!</p>
             <p style="padding-top: 20px;">Dátum: {$date}</p>
             <div style="width: 30%; padding-top: 6px; margin-top: 100px; float: right; text-align: center; border-top: 1px solid;">aláírás</div>

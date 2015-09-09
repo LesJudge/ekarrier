@@ -12,7 +12,9 @@ use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
  * @property int $ugyfel_id Felhasználó azonosító, akihez tartoznak az adatok.
  * @property int $palyakezdo Pályakezdő-e.
  * @property int $regisztralt_munkanelkuli Regisztrált munkanélküli-e.
- * @property null|\ActiveRecord\DateTime $mikor_regisztralt Mikor regisztrált.
+ * @property int|null $mikor_regisztralt_ev Mikor regisztrált (év).
+ * @property int|null $mikor_regisztralt_honap Mikor regisztrált (hónap).
+ * @property int|null $mikor_regisztralt_nap Mikor regisztrált (nap).
  * @property int $gyes_gyed_visszatero GYES-ről, GYED-ről visszatérő?
  * @property null|\ActiveRecord\DateTime $gyes_gyed_lejarati_datum Mikor jár le a GYES, GYED?
  * @property int $megvaltozott_munkakepessegu Megváltozott munkaképességű-e?
@@ -153,12 +155,6 @@ class LaborMarket extends BaseResourcable
     {
         $bit = new ReadBit;
         return $bit->readAttribute('dolgozik', $this);
-    }
-    
-    public function get_mikor_regisztralt($format = 'Y-m-d')
-    {
-        $dateTime = new ReadDateTime($format);
-        return $dateTime->readAttribute('mikor_regisztralt', $this);
     }
     
     public function get_gyes_gyed_lejarati_datum($format = 'Y-m-d')

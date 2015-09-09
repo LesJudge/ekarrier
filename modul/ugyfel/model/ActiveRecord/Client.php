@@ -35,6 +35,7 @@ use Uniweb\Library\Resource\Interfaces\ResourceInterface;
  * @property \Uniweb\Module\Ugyfel\Model\ActiveRecord\Comment\ClientInformation $commentclientinformation Ügyfélhez tartozó ügyfél információ megjegyzés.
  * @property \Uniweb\Module\Ugyfel\Model\ActiveRecord\Comment\Contact $commentcontact Ügyfélhez tartozó esetnapló megjegyzés.
  * @property \Uniweb\Module\Ugyfel\Model\ActiveRecord\Comment\Document $commentdocument Ügyfélhez tartozó dokumentum megjegyzés.
+ * @property \Uniweb\Module\User\Model\ActiveRecord\User $consultant Tanácsadó.
  * 
  * @property \Uniweb\Module\Ugyfel\Model\ActiveRecord\LaborMarket $labormarket Munkaerő piaci helyzet kapcsolat.
  * @property \Uniweb\Module\Ugyfel\Model\ActiveRecord\ProjectInformation $projectinformation Projekt információs adatok.
@@ -178,6 +179,13 @@ class Client extends Behaviorable implements ResourceInterface
             'class_name' => '\\Uniweb\\Module\\Beallitas\\Model\\ActiveRecord\\Education',
             'foreign_key' => 'vegzettseg_id',
             'primary_key' => 'vegzettseg_id',
+            'read_only' => true
+        ),
+        array(
+            'consultant',
+            'class_name' => '\\Uniweb\\Module\\User\\Model\\ActiveRecord\\User',
+            'foreign_key' => 'user_id',
+            'primary_key' => 'tanacsado_id',
             'read_only' => true
         )
     );

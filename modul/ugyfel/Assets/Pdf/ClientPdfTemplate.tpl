@@ -283,6 +283,22 @@
             <div></div>
             <strong>Iskolai végzettség</strong>
             <ul>
+                {foreach from=$educations item=education}
+                <li>
+                    {if $education['selected']}
+                    <span style="font-weight: bold;">x&nbsp;&nbsp;</span>
+                    {else}
+                    <span style="width: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    {/if}
+                    <span>
+                        {if $education['selected']}<span style="font-weight: bold; text-decoration: underline;">{else}<span>{/if}
+                        {$education['name']}
+                        </span>
+                        {if $education['selected']}({$education['denomination']}){/if}                        
+                    </span>
+                </li>
+                {/foreach}
+                
                 {foreach from=$educationTypes item=educationType}
                 <li>
                     {if in_array($educationType->vegzettseg_id, $educations)}

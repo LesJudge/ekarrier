@@ -511,3 +511,8 @@ label.uw-ugyfelkezelo-label {
 .shpt-address-info-row {
     display: block !important;
 }
+
+#client-information-comments-textarea {
+    height: 600px;
+    width: 98%;
+}

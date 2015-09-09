@@ -18,7 +18,8 @@ class BaseAdminUserEditModel extends Admin_Edit_Model
         'user_email' => 'TxtEmail',
         'user_hirlevel' => 'ChkHirlevel',
         'user_aktiv' => 'ChkAktiv',
-        'nyelv_id' => 'SelNyelv'
+        'nyelv_id' => 'SelNyelv',
+        'tanacsado' => 'SelTanacsado'
     );
     
     public function __addForm()

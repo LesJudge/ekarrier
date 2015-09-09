@@ -59,12 +59,14 @@
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
-            <label for="tanacsadoja" class="item-pull-left">Tanácsadója</label>
-            <select>
-                <option>Tanácsadó</option>
-                <option>Tanácsadó</option>
-                <option>Tanácsadó</option>
+            <label for="tanacsadoja" class="item-pull-left">Tanácsadója</label>            
+            <select name="client[tanacsado_id]">
+                <option value="">--Kérem, válasszon!--</option>
+                {foreach from=$consultants item=consultant}
+                <option value="{$consultant->getId()}" {if $consultant->getId() eq $client->tanacsado_id}selected="selected"{/if}>{$consultant->getFullname()}</option>
+                {/foreach}
             </select>
+            {ar_error model=$client property='tanacsado_id' view='admin_ar_error.tpl'}
         </div>
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
             <label>Neme</label>

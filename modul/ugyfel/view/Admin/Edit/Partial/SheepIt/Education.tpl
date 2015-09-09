@@ -11,7 +11,7 @@
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
             <div class="shpt-form-row">
-                <label>Végzettség</label>
+                <label>Végzettség <span class="require">*</span></label>
                 <select id="educationForm_#index#_vegzettseg_id" name="relationships[educations][#index#][vegzettseg_id]">
                     <option value="">--Kérem, válasszon!--</option>
                     {foreach from=$beallitasEducations item=beallitasEducation}

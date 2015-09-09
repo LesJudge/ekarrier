@@ -40,6 +40,13 @@ $(function() { {$FormScript}
                             {/if} </div>
                         <div class="clear"></div>
                         <div class="form_row">
+                            <label for="{$SelTanacsado.name}">Tanácsadó <span class="require">*</span></label>
+                            {html_options name=$SelTanacsado.name options=$SelTanacsado.values selected=$SelTanacsado.activ}
+                            {if isset($SelTanacsado.error)}
+                            <p class="error small">{$SelTanacsado.error}</p>
+                            {/if} 
+                        </div><div class="clear"></div>
+                        <div class="form_row">
                             <label for="{$SelGroup.name}">Jogosultsági csoport <span class="require">*</span></label>
                             {html_options multiple name=$SelGroup.name options=$SelGroup.values selected=$SelGroup.activ}
                             {if isset($SelGroup.error)}

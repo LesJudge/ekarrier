@@ -12,7 +12,7 @@
     <div class="uw-ugyfelkezelo-form-row">
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
             <label for="tanacsadoja" class="item-pull-left">Tanácsadója</label>
-            <input id="tanacsadoja" class="uw-ugyfelkezelo-form-row-input" type="text" readonly="readonly" value="" />
+            <input id="tanacsadoja" class="uw-ugyfelkezelo-form-row-input" type="text" readonly="readonly" value="{$consultant}" />
         </div>
     </div>
     <div class="uw-ugyfelkezelo-form-row">
@@ -77,8 +77,6 @@
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label>Megjegyzés</label>
-        <textarea name="relationships[commentclientinformation][megjegyzes]" class="uw-ugyfelkezelo-input-textarea-megjegyzes">{$client->commentclientinformation->megjegyzes}</textarea>
-        {ar_error model=$client->commentclientinformation property='megjegyzes' view='admin_ar_error.tpl'}
-        <input name="relationships[commentclientinformation][ugyfel_attr_tab_megjegyzes_id]" value="{$client->commentclientinformation->ugyfel_attr_tab_megjegyzes_id}" type="hidden" />
+        <textarea id="client-information-comments-textarea" name="relationships[commentclientinformation][megjegyzes]" class="uw-ugyfelkezelo-input-textarea-megjegyzes" disabled="disabled">{$collectedComments}</textarea>
     </div>
 </div>

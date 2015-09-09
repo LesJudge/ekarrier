@@ -24,7 +24,25 @@ class LaborMarket extends AbstractClientDataDecorator
     
     public function getMikorRegisztralt($default = '')
     {
-        return $this->getValue($this->laborMarket->get_mikor_regisztralt(), $default);
+        $year = $this->laborMarket->mikor_regisztralt_ev;
+        $month = $this->laborMarket->mikor_regisztralt_honap;
+        $day = $this->laborMarket->mikor_regisztralt_nap;
+        
+        $date = '';
+        
+        if (!is_null($year)) {
+            $date .= $year;
+        }
+        
+        if (!is_null($month)) {
+            $date .= '-' . ($month >= 10 ?: '0' . $month);
+        }
+        
+        if (!is_null($day)) {
+            $date .= '-' . ($day >= 10 ?: '0' . $day);
+        }
+        
+        return $date != '' ?: $default;
     }
     
     public function getGyesGyedVisszatero($default = '')

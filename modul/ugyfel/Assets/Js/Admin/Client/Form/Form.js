@@ -55,4 +55,39 @@ $(function() {
             $item.next(".shpt-form-error").html(errorMessage).show();
         }
     });
+
+    // Hibás tabok megjelölése.
+    var $clientTabs = $('#ugyfel-edit-tabs');
+    var tabs = $clientTabs.find('div[id^="tab"]');
+
+    $.each(tabs, function(index, item) {
+            // Kiválasztja a jelenlegi tab-ot.
+            var $tab = $(item);
+
+            // Ha van bármilyen div ui-state-error class-szal, az azt jelenti, hogy van hibás adat.
+            var hasError = $tab.find('div.ui-state-error').length > 0;
+
+            // Kiválvasztja az összes sheep it form sort.
+            var sheepItRows = $tab.find('.shpt-form-row');
+
+            // Ha eddig nicns hiba, akkor bejárja a sheepit form sorokat hibaüzenet után kutatva.
+            if (!hasError) {
+                $.each(sheepItRows, function(index, item) {
+                    // Hibaüzenetet tartalmazó hidden input.
+                    var $item = $(item).find("input[id$=\"_error\"][type=\"hidden\"]");
+                    // Hibaüzenet.
+                    var errorMessage = $item.val();
+
+                    // Van hiba, kilép a ciklusból.
+                    if (errorMessage !== undefined && errorMessage.length > 0) {
+                        hasError = true;
+                        return false;
+                    }
+                });
+            }
+
+        if (hasError) {
+            $clientTabs.find('li a[href=#' + $tab.attr('id') + ']').css({'color': 'red'});
+        }
+    });
 });

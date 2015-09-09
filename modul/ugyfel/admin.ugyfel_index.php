@@ -1,23 +1,33 @@
 <?php
+
+use Slim\Slim;
+use Uniweb\Module\Ugyfel\Controller\AddressController;
+use Uniweb\Module\Ugyfel\Controller\ClientController;
+use Uniweb\Module\Ugyfel\Controller\ContactController;
+use Uniweb\Module\Ugyfel\Controller\DocumentController;
+use Uniweb\Module\Ugyfel\Controller\ErrorController;
+use Uniweb\Module\Ugyfel\Controller\FilterController;
+use Uniweb\Module\Ugyfel\Controller\StatisticsController;
+
 // Modul előkészítése.
 require 'modul/ugyfel/admin.moduleStartup.php';
 // Slim példányosítása.
 $app = Rimo::$pimple['slim'];
 // Ügyfél URL-ek.
-/* @var $app \Slim\Slim */
+/* @var $app Slim */
 $app->group('/ugyfel', function() use ($app) {
-    /* @var $clientController \Uniweb\Module\Ugyfel\Controller\ClientController */
+    /* @var $clientController ClientController */
     $clientController = Rimo::$pimple['clientController'];
-    /* @var $filterController \Uniweb\Module\Ugyfel\Controller\FilterController */
+    /* @var $filterController FilterController */
     $filterController = Rimo::$pimple['clientFilterController'];
-    /* @var $documentController \Uniweb\Module\Ugyfel\Controller\DocumentController */
-    $documentController = new \Uniweb\Module\Ugyfel\Controller\DocumentController($app);
-    /* @var $addressController \Uniweb\Module\Ugyfel\Controller\AddressController */
-    $addressController = new \Uniweb\Module\Ugyfel\Controller\AddressController($app);
-    /* @var $statisticsController \Uniweb\Module\Ugyfel\Controller\StatisticsController */
-    $statisticController = new \Uniweb\Module\Ugyfel\Controller\StatisticsController($app);
-    /* @var $contactController \Uniweb\Module\Ugyfel\Controller\ContactController */
-    $contactController = new \Uniweb\Module\Ugyfel\Controller\ContactController($app);
+    /* @var $documentController DocumentController */
+    $documentController = new DocumentController($app);
+    /* @var $addressController AddressController */
+    $addressController = new AddressController($app);
+    /* @var $statisticsController StatisticsController */
+    $statisticController = new StatisticsController($app);
+    /* @var $contactController ContactController */
+    $contactController = new ContactController($app);
     
     $verifyAccess = function($functionName) use ($app) {
         if (!isset(UserLoginOut_Controller::$_rights['__loadController']['ugyfel'][$functionName])) {
@@ -70,7 +80,7 @@ $app->group('/ugyfel', function() use ($app) {
     // Ügyfelek exportálása .xls-be.
     $app->post('/xlsexport', array(Rimo::$pimple['clientXlsExportController'], 'export'));
     // Bármilyen felmerülő hiba kezelése.
-    $app->any('/error', array(new \Uniweb\Module\Ugyfel\Controller\ErrorController($app), 'index'));
+    $app->any('/error', array(new ErrorController($app), 'index'));
     // Hozzáférés megtagadva.
     $app->any('/permission-denied', function() use ($app) {
         $view = Rimo::$pimple['smarty'];
@@ -86,7 +96,7 @@ $app->notFound(function() {
     Rimo::$_site_frame->assign('Form', $view->fetch('modul/ugyfel/view/Admin/NotFound.tpl'));
 });
 // Nem várt hiba.
-$app->error(function (\Exception $e) use ($app) {
+$app->error(function (Exception $ex) use ($app) {
     $app->redirect(Rimo::$_config->DOMAIN_ADMIN . 'ugyfel/error', 500);
 });
 // Run!

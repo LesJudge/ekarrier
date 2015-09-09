@@ -63,6 +63,10 @@ class RenderFacade
         $consultantsFacade = new ConsultantsFacade($cache);
         $consultantsFacade->assign($this->data);
         
+        // Összegyűjtött kommentek hozzáadása a nézethez.
+        $collectedCommentsFacade = new CollectedCommentsFacade($this->client);
+        $collectedCommentsFacade->assign($this->data);
+        
         /* @var $smarty Smarty */
         $smarty = Rimo::$pimple['smarty'];
         

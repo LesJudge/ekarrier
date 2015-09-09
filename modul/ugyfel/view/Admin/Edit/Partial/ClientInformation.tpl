@@ -77,6 +77,6 @@
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label>Megjegyzés</label>
-        <textarea id="client-information-comments-textarea" name="relationships[commentclientinformation][megjegyzes]" class="uw-ugyfelkezelo-input-textarea-megjegyzes" disabled="disabled"></textarea>
+        <textarea id="client-information-comments-textarea" name="relationships[commentclientinformation][megjegyzes]" class="uw-ugyfelkezelo-input-textarea-megjegyzes" disabled="disabled">{$collectedComments}</textarea>
     </div>
 </div>

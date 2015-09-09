@@ -12,7 +12,7 @@
     <div class="uw-ugyfelkezelo-form-row">
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
             <label for="tanacsadoja" class="item-pull-left">Tanácsadója</label>
-            <input id="tanacsadoja" class="uw-ugyfelkezelo-form-row-input" type="text" readonly="readonly" value="" />
+            <input id="tanacsadoja" class="uw-ugyfelkezelo-form-row-input" type="text" readonly="readonly" value="{$consultant}" />
         </div>
     </div>
     <div class="uw-ugyfelkezelo-form-row">

@@ -5,13 +5,13 @@
             <button class="shpt-form-button shpt-form-remove-current" type="button"></button>
         </div>
         <div class="shpt-form-body">
+            <!--
             <div class="shpt-form-row">
-                <!--
                 <input id="jobForm_#index#_key" type="hidden" value="" />
                 <input id="jobForm_#index#_key_error" type="hidden" value="" />
-                -->
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
+            -->
             <div class="shpt-form-row">
                 <div class="job-select">
                     <input 
@@ -24,10 +24,12 @@
                         name="" 
                         type="hidden" 
                     />
-                    <input id="jobForm_#index#_munkakor_nev" name="relationships[jobs][#index#][munkakor_nev]" type="text" />
-                    <input id="jobForm_#index#_munkakor_nev_error" name="" type="hidden" />
-                    <div class="clear"></div>
                 </div>
+            </div>
+            <div class="shpt-form-row">
+                <input id="jobForm_#index#_munkakor_nev" name="relationships[jobs][#index#][munkakor_nev]" type="text" />
+                <input id="jobForm_#index#_munkakor_nev_error" name="" type="hidden"  />
+                <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
         </div>
     </div>

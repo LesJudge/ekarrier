@@ -1,5 +1,6 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
+
 use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
 use Uniweb\Module\Ugyfel\Library\Request\Post\Validator as PostValidator;
 use Uniweb\Module\Ugyfel\Library\Facade\Form\RenderFacade;
@@ -25,19 +26,23 @@ class ClientController
      * @var \Uniweb\Module\Ugyfel\Library\DynamicFilter\Client
      */
     protected $filter;
+    
     /**
      * Szűrő beállítások.
      * @var array
      */
     protected $filterConfig;
+    
     /**
      * @var \Uniweb\Library\Flash\Flash;
      */
     protected $flash;
+    
     /**
      * @var \Uniweb\Module\Ugyfel\Library\Repository\ClientRepository
      */
     protected $repository;
+    
     /**
      * @param ClientFilter $filter Ügyfél szűrő objektum.
      * @param Flash $flash Flash objektum.
@@ -49,6 +54,7 @@ class ClientController
         $this->flash = $flash;
         $this->repository = $repository;
     }
+    
     /**
      * Ügyfelek listázása.
      */
@@ -139,6 +145,7 @@ class ClientController
         Rimo::$_site_frame->assign('head', $head);
         Rimo::$_site_frame->assign('Form', $view->fetch('modul/ugyfel/view/Admin/List/Form.tpl'));
     }
+    
     /**
      * Ügyfél form megjelenítése.
      */
@@ -261,6 +268,7 @@ class ClientController
             $this->handleFormError($e);
         }
     }
+    
     /**
      * Törli az ügyfelet.
      * @param int $id Ügyfél azonosító.
@@ -329,6 +337,7 @@ class ClientController
         }
         Rimo::$_site_frame->assign('Form', sprintf('<div class="notice error"><p>%s</p></div>', $e->getMessage()));
     }
+    
     /**
      * Visszatér az ügyfél szűrő objektummal.
      * @return ClientFilter
@@ -342,6 +351,7 @@ class ClientController
     {
         return $this->filterConfig;
     }
+    
     /**
      * Visszatér a flash objektummal.
      * @return Flash
@@ -350,6 +360,7 @@ class ClientController
     {
         return $this->flash;
     }
+    
     /**
      * Visszatér az ügyfél repository objektummal.
      * @return ClientRepository
@@ -358,6 +369,7 @@ class ClientController
     {
         return $this->repository;
     }
+    
     /**
      * Beállítja az ügyfél szűrő objektumot.
      * @param ClientFilter $filter Ügyfél szűrő objektum.
@@ -375,6 +387,7 @@ class ClientController
     {
         $this->flash = $flash;
     }
+    
     /**
      * Beállítja az ügyfél repository-t.
      * @param ClientRepository $repository Repository objektum.

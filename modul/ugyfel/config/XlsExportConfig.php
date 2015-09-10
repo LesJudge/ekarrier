@@ -1,4 +1,5 @@
 <?php
+
 return array(
     'status' => array(
         'reader' => '\\Uniweb\\Module\\Ugyfel\\Library\\Xls\\Reader\\Status',

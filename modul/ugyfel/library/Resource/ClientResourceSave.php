@@ -1,5 +1,8 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Resource;
+
+use Exception;
+use Uniweb\Library\Resource\Interfaces\ResourceInterface;
 use Uniweb\Library\Resource\Interfaces\ResourceSaveInterface;
 use Uniweb\Library\Resource\Observer\SaveObserver;
 use Uniweb\Library\Resource\Observer\StatefulResourceSubject;
@@ -10,7 +13,7 @@ use Uniweb\Library\Utilities\ActiveRecord\Observer\ValidateAdapter;
 class ClientResourceSave implements ResourceSaveInterface
 {
     public function save(
-        \Uniweb\Library\Resource\Interfaces\ResourceInterface $resource, 
+        ResourceInterface $resource, 
         array $relatedModels = array(), 
         array $deletablesByResource = array()
     ) {

@@ -1,16 +1,18 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Facade\Form;
+
+use ArrayObject;
 use Uniweb\Library\Cache\CacheInterface;
 use Uniweb\Library\Form\Interfaces\AssignableInterface;
 
 class OptionsFacade implements AssignableInterface
 {
     /**
-     * @var \Uniweb\Library\Cache\CacheInterface
+     * @var CacheInterface
      */
-    protected $cache;
+    private $cache;
     
-    protected $ttl = 900;
+    private $ttl = 900;
     
     public function __construct(CacheInterface $cache, $ttl = 900)
     {
@@ -18,7 +20,7 @@ class OptionsFacade implements AssignableInterface
         $this->setTtl($ttl);
     }
     
-    public function assign(\ArrayObject $data)
+    public function assign(ArrayObject $data)
     {
         $models = array(
             'beallitasHovaErkezett' => '\\Uniweb\\Module\\Beallitas\\Model\\ActiveRecord\\CameTo',

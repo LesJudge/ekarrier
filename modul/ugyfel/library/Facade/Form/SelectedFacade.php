@@ -1,10 +1,11 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Facade\Form;
-use Uniweb\Module\Ugyfel\Library\Form\Edit\MapProgramInformations;
-use Uniweb\Module\Ugyfel\Library\Form\Edit\MapWorkSchedules;
-use Uniweb\Module\Ugyfel\Library\Form\Edit\MapServices;
-use Uniweb\Library\Form\Interfaces\AssignableInterface;
+
 use ArrayObject;
+use Uniweb\Library\Form\Interfaces\AssignableInterface;
+use Uniweb\Module\Ugyfel\Library\Form\Edit\MapProgramInformations;
+use Uniweb\Module\Ugyfel\Library\Form\Edit\MapServices;
+use Uniweb\Module\Ugyfel\Library\Form\Edit\MapWorkSchedules;
 
 class SelectedFacade implements AssignableInterface
 {

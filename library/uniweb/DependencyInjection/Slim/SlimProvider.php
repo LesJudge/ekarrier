@@ -1,11 +1,13 @@
 <?php
 namespace Uniweb\Library\DependencyInjection\Slim;
+
+use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Slim\Slim;
 
 class SlimProvider implements ServiceProviderInterface
 {
-    public function register(\Pimple\Container $pimple)
+    public function register(Container $pimple)
     {
         $pimple['slim'] = $pimple->factory(function($c) {
             return new Slim(array(

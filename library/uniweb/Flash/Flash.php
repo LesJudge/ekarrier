@@ -1,6 +1,8 @@
 <?php
 namespace Uniweb\Library\Flash;
+
 use Uniweb\Library\Flash\Interfaces\FlashInterface;
+
 /**
  * Flash kezelő osztály.
  * @author Balázs Máté Petró <balazs@uniweb.hu>
@@ -11,13 +13,15 @@ class Flash implements FlashInterface
      * Flash üzeneteket tároló tömb.
      * @var array 
      */
-    protected $flashes;
+    private $flashes;
+    
     /**
      * Flash üzeneteket tároló tömb kulcsa. (Ha örököltetjük az osztályt, a kulcs felülírásával az üzenetek más index
      * alá kerülhetnek.)
      * @var string
      */
-    protected $key = 'flashes';
+    private $key = 'flashes';
+    
     /**
      * Konstruktor.
      * @param array $flashes Flash-eket tároló tömb. (Leginkább $_SESSION szuperglobális. :))
@@ -33,6 +37,7 @@ class Flash implements FlashInterface
         }
         $this->flashes = &$flashes[$this->key];
     }
+    
     /**
      * Megvizsgálja, hogy létezik-e a paraméterül adott flash.
      * @param string $id A flash azonosítója.
@@ -42,6 +47,7 @@ class Flash implements FlashInterface
     {
         return isset($this->flashes[$id]);
     }
+    
     /**
      * Törli a paraméterül adott flash-t.
      * @param string $id A flash azonosítója.
@@ -52,15 +58,17 @@ class Flash implements FlashInterface
             unset($this->flashes[$id]);
         }
     }
+    
     /**
      * Megvizsgálja a flash kulcs értékét. Ha megfelelő, true-val tér vissza, ha nem, akkor pedig kivételt dob.
      * @param string $id A flash kulcsa.
      * @return boolean
      */
-    protected function validateFlashId($id)
+    private function validateFlashId($id)
     {
         return is_string($id) && preg_match('/^[a-zA-Z0-9]*$/', $id);
     }
+    
     /**
      * Visszatér a paraméterül adott flash értékével, majd törli azt, ha a $remove paraméter értéke true.
      * @param string $id A flash azonosítója.
@@ -79,6 +87,7 @@ class Flash implements FlashInterface
             return null;
         }
     }
+    
     /**
      * Beállít egy flash-t a paraméterül adott értékekkel.
      * @param string $id A flash kulcsa.
@@ -93,6 +102,7 @@ class Flash implements FlashInterface
             }
         }
     }
+    
     /**
      * Visszatér az azonosító kulccsal.
      * @return string
@@ -101,6 +111,7 @@ class Flash implements FlashInterface
     {
         return $this->key;
     }
+    
     /**
      * Beállítja a Flash-eket tároló kulcsot.
      * @param string $key

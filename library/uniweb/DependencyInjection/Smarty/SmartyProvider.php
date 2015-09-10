@@ -1,11 +1,13 @@
 <?php
 namespace Uniweb\Library\DependencyInjection\Smarty;
+
+use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Smarty;
 
 class SmartyProvider implements ServiceProviderInterface
 {
-    public function register(\Pimple\Container $pimple)
+    public function register(Container $pimple)
     {
         $pimple['smarty'] = $pimple->factory(function($c) {
             /* @var $smarty Smarty */

@@ -1,29 +1,32 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
 
-use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
-use Uniweb\Module\Ugyfel\Library\Request\Post\Validator as PostValidator;
-use Uniweb\Module\Ugyfel\Library\Facade\Form\RenderFacade;
-use Uniweb\Module\Ugyfel\Library\Facade\Form\OptionsFacade;
+use ActiveRecord\RecordNotFound;
+use ArrayObject;
+use Exception;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
+use Rimo;
+use Smarty;
+use Uniweb\Library\DynamicFilter\Factory;
+use Uniweb\Library\DynamicFilter\FilterSetup;
+use Uniweb\Library\Flash\Flash;
+use Uniweb\Library\Utilities\ActiveRecord\Relation\Fixer as RelationFixer;
 use Uniweb\Module\Ugyfel\Library\ActiveRecord\Relation\ClientRelationCreator;
 use Uniweb\Module\Ugyfel\Library\ActiveRecord\Relation\EditConfig;
 use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
+use Uniweb\Module\Ugyfel\Library\Facade\Form\OptionsFacade;
+use Uniweb\Module\Ugyfel\Library\Facade\Form\RenderFacade;
+use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
+use Uniweb\Module\Ugyfel\Library\Request\Post\Validator as PostValidator;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\Decorator\BirthData as BirthDataDecorator;
-use Uniweb\Library\Utilities\ActiveRecord\Relation\Fixer as RelationFixer;
-use Uniweb\Library\Flash\Flash;
-use Uniweb\Library\DynamicFilter\FilterSetup;
-use Uniweb\Library\DynamicFilter\Factory;
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\ArrayAdapter;
-use Exception;
-use ArrayObject;
-use Rimo;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource;
 
 class ClientController
 {
     /**
-     * @var \Uniweb\Module\Ugyfel\Library\DynamicFilter\Client
+     * @var ClientFilter
      */
     protected $filter;
     
@@ -34,12 +37,12 @@ class ClientController
     protected $filterConfig;
     
     /**
-     * @var \Uniweb\Library\Flash\Flash;
+     * @var Flash
      */
     protected $flash;
     
     /**
-     * @var \Uniweb\Module\Ugyfel\Library\Repository\ClientRepository
+     * @var ClientRepository
      */
     protected $repository;
     
@@ -122,7 +125,7 @@ class ClientController
         $options = new ArrayObject;
         $optionsFacade = new OptionsFacade(Rimo::$pimple['gregwarCacheAdapter']);
         $optionsFacade->assign($options);        
-        /* @var $view \Smarty */
+        /* @var $view Smarty */
         $view = Rimo::$pimple['smarty'];
         $view->assign('DOMAIN', Rimo::$_config->DOMAIN);
         $view->assign('DOMAIN_ADMIN', Rimo::$_config->DOMAIN_ADMIN);
@@ -219,7 +222,7 @@ class ClientController
                 'formUrl' => '/admin/ugyfel/' . $client->ugyfel_id,
                 'requestMethod' => 'PUT'
             )), $client);
-        } catch (\ActiveRecord\RecordNotFound $rnf) {
+        } catch (RecordNotFound $rnf) {
             $this->flash->setFlash('error', 'A keresett ügyfél nem található!');
             header('Location: ' . Rimo::$_config->DOMAIN_ADMIN . 'ugyfel');
             exit;
@@ -282,7 +285,7 @@ class ClientController
         } catch (Exception $e) { // Ha a törlés sikertelen...
             // ... akkor beállítja a sikertelen üzenet flash-t.
             $this->flash->setFlash('error', 'Az ügyfél törlése sikertelen volt!');
-            if ($e instanceof \ActiveRecord\RecordNotFound) {
+            if ($e instanceof RecordNotFound) {
                 // Ha az ügyfél nem található, akkor 404-es HTTP kóddal irányít át.
                 header('HTTP/1.0 404 Not Found');
             } else {
@@ -297,23 +300,23 @@ class ClientController
     private function deletables()
     {
         return array(
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\Address,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\ComputerKnowledge,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\Education,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\Job,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\Knowledge,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\ProgramInformation,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\ServiceInterested,
-            new \Uniweb\Module\Ugyfel\Model\ActiveRecord\DeleteByResource\WorkSchedule
+            new DeleteByResource\Address,
+            new DeleteByResource\ComputerKnowledge,
+            new DeleteByResource\Education,
+            new DeleteByResource\Job,
+            new DeleteByResource\Knowledge,
+            new DeleteByResource\ProgramInformation,
+            new DeleteByResource\ServiceInterested,
+            new DeleteByResource\WorkSchedule
         );
     }
     
     /**
      * Ügyfél szerkesztés form renderelése.
      * @param ArrayObject $data Rendereléshez tartozó adatok.
-     * @param \Uniweb\Module\Ugyfel\Controller\Client $client Ügyfél, akinek az adatait rendereli.
+     * @param ClientModel $client Ügyfél, akinek az adatait rendereli.
      */
-    protected function renderForm(ArrayObject $data, Client $client)
+    protected function renderForm(ArrayObject $data, ClientModel $client)
     {
         if (!$data->offsetExists('formError')) {
             $data->offsetSet('formError', false);

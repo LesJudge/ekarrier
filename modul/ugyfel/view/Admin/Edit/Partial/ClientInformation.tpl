@@ -34,7 +34,6 @@
             <label for="clientUserKnev">Keresztnév</label>
             <input id="clientUserKnev" class="uw-ugyfelkezelo-form-row-input" type="text" readonly="readonly" value="{$client->keresztnev}" />
         </div>
-        <!--<button class="tab-ugyfel-informacio-btn-tab-edit" type="button">Szerkeszt</button>-->
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">

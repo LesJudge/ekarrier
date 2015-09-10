@@ -18,7 +18,7 @@ class Varos_Edit_Model extends Admin_Edit_Model
         $orszag->_select_value = $this->getSelectValues(
             'cim_orszag', 
             'nev', 
-            ' AND cim_orszag_aktiv = 1 AND cim_orszag_torolt = 0', 
+            ' AND cim_orszag_torolt = 0', 
             ' ORDER BY nev ASC', 
             false, 
             array('' => '--Kérem, válasszon!--')

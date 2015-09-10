@@ -28,23 +28,23 @@ class ClientController
     /**
      * @var ClientFilter
      */
-    protected $filter;
+    private $filter;
     
     /**
      * Szűrő beállítások.
      * @var array
      */
-    protected $filterConfig;
+    private $filterConfig;
     
     /**
      * @var Flash
      */
-    protected $flash;
+    private $flash;
     
     /**
      * @var ClientRepository
      */
-    protected $repository;
+    private $repository;
     
     /**
      * @param ClientFilter $filter Ügyfél szűrő objektum.
@@ -316,7 +316,7 @@ class ClientController
      * @param ArrayObject $data Rendereléshez tartozó adatok.
      * @param ClientModel $client Ügyfél, akinek az adatait rendereli.
      */
-    protected function renderForm(ArrayObject $data, ClientModel $client)
+    private function renderForm(ArrayObject $data, ClientModel $client)
     {
         if (!$data->offsetExists('formError')) {
             $data->offsetSet('formError', false);
@@ -327,7 +327,7 @@ class ClientController
         $renderFacade->render();
     }
     
-    protected function handleFormError(Exception $e)
+    private function handleFormError(Exception $e)
     {
         $whitelist = array(
             'Uniweb\\Library\\Utilities\\Request\\Exception\\ValidateException',

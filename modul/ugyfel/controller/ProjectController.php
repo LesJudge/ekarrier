@@ -1,28 +1,31 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
-use Uniweb\Module\Ugyfel\Model\ProjectCreator;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
-use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
-use Uniweb\Module\Ugyfel\Library\Exceptions\ProjectCreatorException;
-use Uniweb\Module\Projekt\Model\ActiveRecord\Project;
-use Uniweb\Library\DynamicFilter\FilterSetup;
-use Uniweb\Library\DynamicFilter\Factory;
+
+use Rimo;
 use Uniweb\Library\DynamicFilter\Exceptions\DynamicFilterException;
 use Uniweb\Library\DynamicFilter\Exceptions\EmptyResultException;
 use Uniweb\Library\DynamicFilter\Exceptions\FactoryException;
+use Uniweb\Library\DynamicFilter\Factory;
+use Uniweb\Library\DynamicFilter\FilterSetup;
 use Uniweb\Library\Flash\Flash;
-use Rimo;
+use Uniweb\Module\Projekt\Model\ActiveRecord\Project;
+use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
+use Uniweb\Module\Ugyfel\Library\Exceptions\ProjectCreatorException;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
+use Uniweb\Module\Ugyfel\Model\ProjectCreator;
 
 class ProjectController
 {
     /**
      * @var ClientFilter
      */
-    protected $filter;
+    private $filter;
+    
     /**
      * @var Flash
      */
-    protected $flash;
+    private $flash;
+    
     /**
      * @param ClientFilter $filter Ügyfél szűrő objektum.
      * @param Flash $flash Flash objektum.
@@ -32,6 +35,7 @@ class ProjectController
         $this->filter = $filter;
         $this->flash = $flash;
     }
+    
     /**
      * Projekt létrehozása.
      */
@@ -73,6 +77,7 @@ class ProjectController
         } else {
             $this->flash->setFlash('error', 'Szűrés nélkül nem hozhat létre projektet!');
         }
+        
         header('Location: ' . Rimo::$_config->DOMAIN_ADMIN . 'ugyfel');
         exit;
     }

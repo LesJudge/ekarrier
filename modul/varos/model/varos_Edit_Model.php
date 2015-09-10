@@ -5,21 +5,24 @@ class Varos_Edit_Model extends Admin_Edit_Model
     public $_tableName = 'cim_varos';
     
     public $_bindArray = array(
-        'kod' => 'TxtRovidites',
-        'cim_varos_nev' => 'TxtNev'
+        'cim_varos_nev' => 'TxtNev',
+        'cim_orszag_id' => 'SelOrszag'
     );
 
     public function __addForm()
     {
-        $rovidites = $this->addItem('TxtRovidites');
-        $rovidites->_verify['string'] = true;
-        $rovidites->_verify['unique'] = array(
-            'table' => 'cim_varos', 
-            'field' => 'kod', 
-            'modify' => $this->modifyID, 
-            'DB' => $this->_DB
-        );
         $this->addItem('TxtNev')->_verify['string'] = true;
+        
+        $orszag = $this->addItem('SelOrszag');
+        $orszag->_verify['select'] = true;
+        $orszag->_select_value = $this->getSelectValues(
+            'cim_orszag', 
+            'nev', 
+            ' AND cim_orszag_aktiv = 1 AND cim_orszag_torolt = 0', 
+            ' ORDER BY nev ASC', 
+            false, 
+            array('' => '--Kérem, válasszon!--')
+        );
     }
     
     public function verifyRow($nyelv = "")

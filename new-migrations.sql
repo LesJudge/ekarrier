@@ -73,8 +73,20 @@ CHANGE COLUMN `mikor_regisztralt_nap` `mikor_regisztralt_nap` TINYINT(2) UNSIGNE
 
 ------------------------------------------------------------------
 
+# A város táblában lehet NULL is a megye azonosító.
 
+ALTER TABLE `uniweb_ekarrier`.`cim_varos` 
+DROP FOREIGN KEY `cim_varos_cim_megye_id_fk`;
+ALTER TABLE `uniweb_ekarrier`.`cim_varos` 
+CHANGE COLUMN `cim_megye_id` `cim_megye_id` SMALLINT(5) UNSIGNED NULL ;
+ALTER TABLE `uniweb_ekarrier`.`cim_varos` 
+ADD CONSTRAINT `cim_varos_cim_megye_id_fk`
+  FOREIGN KEY (`cim_megye_id`)
+  REFERENCES `uniweb_ekarrier`.`cim_megye` (`cim_megye_id`)
+  ON DELETE NO ACTION
+  ON UPDATE CASCADE;
 
+------------------------------------------------------------------
 
 
 

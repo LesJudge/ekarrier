@@ -1,22 +1,26 @@
 <?php
 namespace Uniweb\Library\Cache\Adapter;
-use Uniweb\Library\Cache\CacheInterface;
+
 use Gregwar\Cache\Cache;
 use Gregwar\Cache\GarbageCollect;
+use Uniweb\Library\Cache\CacheInterface;
 
 class GregwarCacheAdapter implements CacheInterface
 {
     /**
      *
-     * @var \Gregwar\Cache\Cache
+     * @var Cache
      */
-    protected $cache;
+    private $cache;
     
     public function __construct(Cache $cache)
     {
         $this->cache = $cache;
     }
     
+    /**
+     * {@inheritdoc}
+     */
     public function delete($key)
     {
         $gc = new GarbageCollect;
@@ -24,6 +28,9 @@ class GregwarCacheAdapter implements CacheInterface
         $gc->drop($filename);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($key, $default = null)
     {
         $item = $this->cache->get($key);
@@ -38,11 +45,17 @@ class GregwarCacheAdapter implements CacheInterface
         return $this->processDefault($default);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function has($key)
     {
         return !is_null($this->get($key));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function set($key, $value, $ttl = 0)
     {
         $lifetime = $ttl === 0 ? 0 : time() + (int)$ttl;
@@ -50,6 +63,9 @@ class GregwarCacheAdapter implements CacheInterface
         $this->cache->set($key, serialize($cacheItem));
     }
     
+    /**
+     * {@inheritdoc}
+     */
     public function remember($key, $value, $ttl = 0)
     {
         $item = $this->get($key);
@@ -61,7 +77,7 @@ class GregwarCacheAdapter implements CacheInterface
         return $item;
     }
     
-    protected function processDefault($default)
+    private function processDefault($default)
     {
         if (is_callable($default)) {
             return call_user_func($default, $this);

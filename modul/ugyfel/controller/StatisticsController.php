@@ -1,9 +1,12 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
-use Uniweb\Module\Ugyfel\Model\Statistics;
-use Uniweb\Library\Mvc\Controller\SlimBasedController;
-use Slim\Slim;
+
+use ActiveRecord\ConnectionManager;
 use Rimo;
+use Slim\Slim;
+use Smarty;
+use Uniweb\Library\Mvc\Controller\SlimBasedController;
+use Uniweb\Module\Ugyfel\Model\Statistics;
 
 class StatisticsController extends SlimBasedController
 {
@@ -14,9 +17,9 @@ class StatisticsController extends SlimBasedController
     
     public function index()
     {
-        $connectionManager = new \ActiveRecord\ConnectionManager;
+        $connectionManager = new ConnectionManager;
         $statistics = new Statistics($connectionManager->get_connection()->connection);
-        /* @var $view \Smarty */
+        /* @var $view Smarty */
         $view = Rimo::$pimple['smarty'];
         $view->assign('countClients', $statistics->countClients());
         $view->assign('programInformations', $statistics->programInformations());

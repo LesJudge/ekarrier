@@ -1,27 +1,30 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
-use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
-use Uniweb\Module\Ugyfel\Library\Xls\XlsExport;
-use Uniweb\Module\Ugyfel\Library\Xls\XlsExportException;
-use Uniweb\Library\DynamicFilter\FilterSetup;
-use Uniweb\Library\DynamicFilter\Factory;
+
+use Rimo;
 use Uniweb\Library\DynamicFilter\Exceptions\DynamicFilterException;
 use Uniweb\Library\DynamicFilter\Exceptions\EmptyResultException;
 use Uniweb\Library\DynamicFilter\Exceptions\FactoryException;
+use Uniweb\Library\DynamicFilter\Factory;
+use Uniweb\Library\DynamicFilter\FilterSetup;
 use Uniweb\Library\Flash\Flash;
-use Rimo;
+use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
+use Uniweb\Module\Ugyfel\Library\Xls\XlsExport;
+use Uniweb\Module\Ugyfel\Library\Xls\XlsExportException;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
 
 class XlsExportController
 {
     /**
      * @var ClientFilter
      */
-    protected $filter;
+    private $filter;
+    
     /**
      * @var Flash
      */
-    protected $flash;
+    private $flash;
+    
     /**
      * @param ClientFilter $filter Ügyfél szűrő objektum.
      * @param Flash $flash Flash objektum.
@@ -31,6 +34,7 @@ class XlsExportController
         $this->filter = $filter;
         $this->flash = $flash;
     }
+    
     /**
      * Export
      */
@@ -84,6 +88,7 @@ class XlsExportController
         } else {
             $this->flash->setFlash('error', 'Szűrés nélkül nem exportálhat!');
         }
+        
         header('Location: ' . Rimo::$_config->DOMAIN_ADMIN . 'ugyfel');
         exit;
     }

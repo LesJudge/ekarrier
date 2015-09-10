@@ -1,45 +1,77 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Form\Edit\IntermediateObjects;
+
 use Uniweb\Library\Form\Interfaces\IntermediateObjectInterface;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\ServiceInterested;
 
 class Service implements IntermediateObjectInterface
 {
-    protected $recordId;
     /**
-     * Szolgáltatás azonosító.
+     * Rekord azonosító.
+     * 
      * @var int
      */
-    protected $id;
+    private $recordId;
+    
+    /**
+     * Szolgáltatás azonosító.
+     * 
+     * @var int
+     */
+    private $id;
+    
     /**
      * Szolgáltatás neve.
+     * 
      * @var string
      */
-    protected $name;
+    private $name;
+    
     /**
      * Kiválasztott-e az ügyfél.
+     * 
      * @var boolean
      */
-    protected $checked;
+    private $checked;
+    
     /**
      * Részt akar-e venni a szolgáltatáson.
+     * 
      * @var boolean
      */
-    protected $wantToParticipate;
+    private $wantToParticipate;
+    
     /**
      * Részt vett a szolgáltatáson.
+     * 
      * @var boolean
      */
-    protected $attended;
+    private $attended;
+    
     /**
      * Mikor vett részt a szolgáltatáson.
+     * 
      * @var mixed
      */
-    protected $when;
+    private $when;
     
-    protected $object;
+    /**
+     * Ügyfél által érdekelt szolgáltatás objektum.
+     * 
+     * @var ServiceInterested
+     */
+    private $object;
     
-    public function __construct($recordId, $id, $name, $checked, $wantToParticipate, $attended, $when, $object)
-    {
+    public function __construct(
+        $recordId, 
+        $id, 
+        $name, 
+        $checked, 
+        $wantToParticipate, 
+        $attended, 
+        $when, 
+        ServiceInterested $object
+    ) {
         $this->recordId = $recordId;
         $this->id = $id;
         $this->name = $name;

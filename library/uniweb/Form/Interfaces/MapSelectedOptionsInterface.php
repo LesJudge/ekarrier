@@ -4,7 +4,7 @@ namespace Uniweb\Library\Form\Interfaces;
 interface MapSelectedOptionsInterface
 {
     /**
-     * @return \Uniweb\Library\Form\Interfaces\IntermediateObjectInterface[] IntermediateObjectInterface collection.
+     * @return IntermediateObjectInterface[] IntermediateObjectInterface collection.
      */
     public function map();
     

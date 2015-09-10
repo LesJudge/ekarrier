@@ -1,19 +1,21 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Decorator;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Address as AddressModel;
+
 use ReflectionObject;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Address as AddressModel;
 
 class SheepItAddress
 {
     /**
-     * @var \Uniweb\Module\Ugyfel\Model\ActiveRecord\Address
+     * @var AddressModel
      */
-    protected $address;
+    private $address;
+    
     /**
      * SheepIt prefix.
      * @var string
      */
-    protected $prefix;
+    private $prefix;
     
     public function __construct(AddressModel $address, $prefix)
     {
@@ -31,13 +33,14 @@ class SheepItAddress
         $this->address->__get($name);
     }
     
-    protected function getError($attribute)
+    private function getError($attribute)
     {
         if (is_object($this->address->errors)) {
             return $this->address->errors->on($attribute);
         }
         return null;
     }
+    
     /**
      * Visszatér az ország nevével.
      * @return array
@@ -49,6 +52,7 @@ class SheepItAddress
             $this->prefix . '_country_error' => $this->getError('cim_orszag_id')
         );
     }
+    
     /**
      * Visszatér a megye nevével.
      * @return array
@@ -60,6 +64,7 @@ class SheepItAddress
             $this->prefix . '_county_error' => $this->getError('cim_megye_id')
         );
     }
+    
     /**
      * Visszatér a város nevével.
      * @return array
@@ -71,6 +76,7 @@ class SheepItAddress
             $this->prefix . '_city_error' => $this->getError('cim_varos_id')
         );
     }
+    
     /**
      * Visszatér az irányítószámmal.
      * @return array
@@ -82,14 +88,16 @@ class SheepItAddress
             $this->prefix . '_zipcode_error' => $this->getError('cim_iranyitoszam_id')
         );
     }
+    
     /**
      * Visszatér a cím objektummal.
-     * @return \Uniweb\Module\Ugyfel\Model\ActiveRecord\Address
+     * @return AddressModel
      */
     public function getAddress()
     {
         return $this->address;
     }
+    
     /**
      * Visszatér a form prefixével.
      * @return string
@@ -98,6 +106,7 @@ class SheepItAddress
     {
         return $this->prefix;
     }
+    
     /**
      * Beállítja a cím objektumot.
      * @param AddressModel $address
@@ -106,6 +115,7 @@ class SheepItAddress
     {
         $this->address = $address;
     }
+    
     /**
      * Beállítja a form prefixét.
      * @param string $prefix Form prefixe.

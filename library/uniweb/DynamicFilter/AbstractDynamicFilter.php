@@ -1,8 +1,10 @@
 <?php
 namespace Uniweb\Library\DynamicFilter;
-use Uniweb\Library\DynamicFilter\Interfaces\DynamicFilterInterface;
-use Uniweb\Library\DynamicFilter\Interfaces\PersistenceInterface;
+
 use Uniweb\Library\DynamicFilter\Exceptions\DynamicFilterException;
+use Uniweb\Library\DynamicFilter\Interfaces\DynamicFilterInterface;
+use Uniweb\Library\DynamicFilter\Interfaces\FilterInterface;
+use Uniweb\Library\DynamicFilter\Interfaces\PersistenceInterface;
 
 abstract class AbstractDynamicFilter implements DynamicFilterInterface
 {
@@ -11,14 +13,16 @@ abstract class AbstractDynamicFilter implements DynamicFilterInterface
      * @var string
      */
     protected $name;
+    
     /**
      * Szűrő példányok.
-     * @var \Uniweb\Library\DynamicFilter\Interfaces\FilterInterface
+     * @var FilterInterface
      */
     protected $filters = array();
+    
     /**
      * Perzisztencia objektum.
-     * @var \Uniweb\Library\DynamicFilter\Interfaces\PersistenceInterface
+     * @var PersistenceInterface
      */
     protected $persistence;
     
@@ -27,7 +31,10 @@ abstract class AbstractDynamicFilter implements DynamicFilterInterface
         $this->persistence = $persistence;
     }
     
-    public function addFilter($alias, Interfaces\FilterInterface $filter)
+    /**
+     * {@inheritdoc}
+     */
+    public function addFilter($alias, FilterInterface $filter)
     {
         if (!isset($this->filters[$alias])) {
             $this->filters[$alias] = $filter;
@@ -36,21 +43,33 @@ abstract class AbstractDynamicFilter implements DynamicFilterInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return $this->filters;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPersistence()
     {
         return $this->persistence;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function removeFilter($alias)
     {
         if (isset($this->filters[$alias])) {
@@ -60,21 +79,33 @@ abstract class AbstractDynamicFilter implements DynamicFilterInterface
         }
     }
 
-    public function setPersistence(Interfaces\PersistenceInterface $persistence)
+    /**
+     * {@inheritdoc}
+     */
+    public function setPersistence(PersistenceInterface $persistence)
     {
         $this->persistence = $persistence;
     }
     
+    /**
+     * {@inheritdoc}
+     */
     public function create()
     {
         $this->persistence->create($this);
     }
     
+    /**
+     * {@inheritdoc}
+     */
     public function read()
     {
         return $this->persistence->read($this);
     }
     
+    /**
+     * {@inheritdoc}
+     */
     public function destroy()
     {
         $this->persistence->destroy($this);

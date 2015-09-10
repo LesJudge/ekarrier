@@ -1,8 +1,13 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Repository;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client;
-use Uniweb\Module\Ugyfel\Library\Resource\ClientResourceSave;
+
+use ActiveRecord\RecordNotFound;
+use Uniweb\Library\Resource\Interfaces\DeletableByResourceInterface;
+use Uniweb\Library\Resource\Interfaces\ResourcableInterface;
+use Uniweb\Library\Resource\Interfaces\ResourceInterface;
 use Uniweb\Library\Resource\Interfaces\ResourceRepositoryInterface;
+use Uniweb\Module\Ugyfel\Library\Resource\ClientResourceSave;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client;
 
 class ClientRepository implements ResourceRepositoryInterface
 {
@@ -21,20 +26,22 @@ class ClientRepository implements ResourceRepositoryInterface
         }
         return $client;
     }
+    
     /**
      * Összes ügyfél lekérdezése.
-     * @return \Uniweb\Module\Ugyfel\Model\ActiveRecord\Client[]
+     * @return Client[]
      */
     public function findAll()
     {
         return Client::find('all', array('conditions' => array('ugyfel_torolt' => 0)));
     }
+    
     /**
      * Lekérdezi az ügyfelet.
      * @param int $id Ügyfél azonosító.
      * @param boolean $withRelations Kapcsolatokkal együtt kérdezze-e le az ügyfelet.
-     * @return \Uniweb\Module\Ugyfel\Model\ActiveRecord\Client
-     * @throws \ActiveRecord\RecordNotFound
+     * @return Client
+     * @throws RecordNotFound
      */
     public function findById($id, $withRelations = false)
     {
@@ -73,18 +80,19 @@ class ClientRepository implements ResourceRepositoryInterface
         }
         $client = Client::find_by_pk($id, array('conditions' => array('ugyfel_torolt' => 0) + $include));
         if ($client->ugyfel_torolt == 1) {
-            throw new \ActiveRecord\RecordNotFound;
+            throw new RecordNotFound;
         }
         return $client;
     }
+    
     /**
      * Ügyfél mentése.
-     * @param \Uniweb\Library\Resource\Interfaces\ResourceInterface $resource Ügyfél objektum.
-     * @param \Uniweb\Library\Resource\Interfaces\ResourcableInterface[] $relatedModels Kapcsolódó modellek.
+     * @param ResourceInterface $resource Ügyfél objektum.
+     * @param ResourcableInterface[] $relatedModels Kapcsolódó modellek.
      * @return boolean
      */
     public function create(
-        \Uniweb\Library\Resource\Interfaces\ResourceInterface $resource, 
+        ResourceInterface $resource, 
         array $relatedModels = array()
     ) {
         $clientResourceSave = new ClientResourceSave;
@@ -92,19 +100,20 @@ class ClientRepository implements ResourceRepositoryInterface
     }
     
     public function update(
-        \Uniweb\Library\Resource\Interfaces\ResourceInterface $resource, 
+        ResourceInterface $resource, 
         array $relatedModels = array(), 
         array $deletablesByResource = array()
     ) {
         $clientResourceSave = new ClientResourceSave;
         return $clientResourceSave->save($resource, $relatedModels, $deletablesByResource);
     }
+    
     /**
      * Ügyfél törlése azonosító alapján.
      * @param int $id Ügyfél azonosító.
-     * @param \Uniweb\Library\Resource\Interfaces\DeletableByResourceInterface[] $deletablesByResource
+     * @param DeletableByResourceInterface[] $deletablesByResource
      * @return boolean
-     * @throws \ActiveRecord\RecordNotFound
+     * @throws RecordNotFound
      */
     public function delete($id, array $deletablesByResource = array())
     {

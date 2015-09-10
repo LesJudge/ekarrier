@@ -13,7 +13,7 @@ class MapServices extends AbstractMap
     {
         $intermediates = array();
         
-        if (is_array($this->options) || $this->options instanceof Traversable) {
+        if (is_array($this->options) || (is_object($this->options) && $this->options instanceof Traversable)) {
             /* @var $option ServiceModel */
             foreach ($this->options as $option) {
                 $selected = null;

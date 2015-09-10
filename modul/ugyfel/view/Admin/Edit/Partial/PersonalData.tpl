@@ -155,16 +155,19 @@
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamVezetekes">Vezetékes telefonszám</label>
         <input id="clientTelefonszamVezetekes" name="client[telefonszam_vezetekes]" type="text" value="{$client->telefonszam_vezetekes}" />
+        <span class="phone-number-example">pl. 3650123456</span>
         {ar_error model=$client property='telefonszam_vezetekes' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamMobil1">Elsődleges mobilszám</label>
         <input id="clientTelefonszamMobil1" name="client[telefonszam_mobil1]" type="text" value="{$client->telefonszam_mobil1}" />
+        <span class="phone-number-example">pl. 36501234567</span>
         {ar_error model=$client property='telefonszam_mobil1' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamMobil2">Másodlagos mobilszám</label>
         <input id="clientTelefonszamMobil2" name="client[telefonszam_mobil2]" type="text" value="{$client->telefonszam_mobil2}" />
+        <span class="phone-number-example">pl. 36501234567</span>
         {ar_error model=$client property='telefonszam_mobil2' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">

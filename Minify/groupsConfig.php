@@ -50,6 +50,7 @@ return array(
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/form.css',
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_contact.css',
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_document.css',
+        $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_personal_data.css',
         $domain . 'modul/ugyfel/Assets/Css/Admin/Client/Form/tab_project.css',
     ),
     'admin_ugyfelkezelo_list_css' => array(

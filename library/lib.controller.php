@@ -420,7 +420,7 @@ abstract class RimoController {
         
         $appLink = '';
         
-        if (array_key_exists($al, Rimo::$_config->APP_LINK)) {
+        if (is_array($al) && array_key_exists($al, Rimo::$_config->APP_LINK)) {
             $appLink = Rimo::$_config->APP_LINK[$al];
         }
         

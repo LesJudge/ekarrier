@@ -382,7 +382,7 @@
         </div>
             
         <htmlpagefooter name="MyFooter1">
-            <table cellspacing="0" tyle="width: 100%;">
+            <table cellspacing="0" style="width: 100%;">
                 <tr>
                     <td style="font-size: 12px; padding-left: 40px; padding-top: 40px;">
                         <strong>CSAT Egyesület</strong><br />
@@ -393,6 +393,11 @@
                         e-mail: info@csat.hu<br />
                         <a href="http://www.csat.hu/">www.csat.hu</a><br />
                         <a href="http://www.szechenyi2020.hu/">www.ujszechenyiterv.gov.hu</a>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div style="display: block; text-align: right; width: 100%;">{literal}{PAGENO}/{nb}{/literal}</div>
                     </td>
                     <td style="text-align: right; width: 50%;">
                         <img src="{$domain}resources/szechenyilogo.png" border="0" style="width: 400px;" />

@@ -1,5 +1,6 @@
 <?php
 namespace Uniweb\Library\Mvc\Controller;
+
 use Slim\Slim;
 
 abstract class SlimBasedController
@@ -8,6 +9,7 @@ abstract class SlimBasedController
      * @var Slim
      */
     protected $slim;
+    
     /**
      * Megállítja az alkalmazást.
      */
@@ -17,6 +19,7 @@ abstract class SlimBasedController
             exit;
         });
     }
+    
     /**
      * Visszatér a Slim objektummal.
      * @return Slim
@@ -25,6 +28,7 @@ abstract class SlimBasedController
     {
         return $this->slim;
     }
+    
     /**
      * Beállítja a Slim objektumot.
      * @param Slim $slim Slim objektum.

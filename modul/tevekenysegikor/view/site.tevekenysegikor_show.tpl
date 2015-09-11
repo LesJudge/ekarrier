@@ -26,9 +26,9 @@
 
 <div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Tevékenységi kör leírása</div><i class="write-icon"></i></div>
 <div class="jobFindList-cont">    
-    <div class="jobFindList-data-1">
+    <div class="jobFindList-data-1 noFormat">
         {foreach from=$jobData.leirasok item=leiras}
-            {$leiras.tartalom}
+           {$leiras.tartalom}
         {/foreach}
     </div>
 	{if $descriptionDetails != '1'}

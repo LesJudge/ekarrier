@@ -1,7 +1,9 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\DynamicFilter\Filter;
-use Uniweb\Library\DynamicFilter\Filter\FieldFilter;
+
+use PDO;
 use Uniweb\Library\DynamicFilter\Exceptions\FilterException;
+use Uniweb\Library\DynamicFilter\Filter\FieldFilter;
 use Uniweb\Library\Validator\NaturalNumber;
 
 class HighestEducation extends FieldFilter
@@ -18,7 +20,7 @@ class HighestEducation extends FieldFilter
             $statement = $this->pdo->prepare($query);
             $statement->bindValue('educationId', $this->data['educationId']);
             $statement->execute();
-            return $statement->fetchAll(\PDO::FETCH_COLUMN);
+            return $statement->fetchAll(PDO::FETCH_COLUMN);
         } else {
             throw new FilterException('Nem megfelelő szűrő paraméterek!');
         }

@@ -21,6 +21,7 @@
                 </select>
                 <input id="addressForm_#index#_ugyfel_cim_tipus_id_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
+                <div class="clearfix"></div>
             </div>
                 <!--
             <div class="shpt-form-row shpt-address-edit-row">
@@ -47,21 +48,21 @@
                 <input id="addressForm_#index#_cim_iranyitoszam_id_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
-                -->
+            -->
             <div class="shpt-form-row shpt-address-info-row">
-                <label for="addressForm_#index#_orszag">Ország <span class="require">*</span></label>
+                <label for="addressForm_#index#_orszag">Ország</label>
                 <input id="addressForm_#index#_orszag" name="relationships[addresses][#index#][orszag]" type="text" />
                 <input id="addressForm_#index#_orszag_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
             <div class="shpt-form-row shpt-address-info-row">
-                <label for="addressForm_#index#_megye">Megye <span class="require">*</span></label>
+                <label for="addressForm_#index#_megye">Megye</label>
                 <input id="addressForm_#index#_megye" name="relationships[addresses][#index#][megye]" type="text" />
                 <input id="addressForm_#index#_megye_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
             <div class="shpt-form-row shpt-address-info-row">
-                <label for="addressForm_#index#_varos">Város <span class="require">*</span></label>
+                <label for="addressForm_#index#_varos">Város</label>
                 <input id="addressForm_#index#_varos" name="relationships[addresses][#index#][varos]" type="text" />
                 <input id="addressForm_#index#_varos_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
@@ -73,13 +74,13 @@
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
             <div class="shpt-form-row">
-                <label for="addressForm_#index#_utca">Utca <span class="require">*</span></label>
+                <label for="addressForm_#index#_utca">Utca</label>
                 <input id="addressForm_#index#_utca" name="relationships[addresses][#index#][utca]" type="text" />
                 <input id="addressForm_#index#_utca_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>
             </div>
             <div class="shpt-form-row">
-                <label for="addressForm_#index#_hazszam">Házszám <span class="require">*</span></label>
+                <label for="addressForm_#index#_hazszam">Házszám</label>
                 <input id="addressForm_#index#_hazszam" name="relationships[addresses][#index#][hazszam]" type="text" />
                 <input id="addressForm_#index#_hazszam_error" type="hidden" value="" />
                 <div class="shpt-form-error">shpt-form-error-dummy</div>

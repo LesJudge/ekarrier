@@ -1,15 +1,55 @@
 <?php
-class Orszag_Edit_Model extends Admin_Edit_Model {
-    public $_tableName = "orszag";
-    public $_bindArray = array("orszag_rovidites" => "TxtRovidites",
-                               "orszag_nev" => "TxtNev"
+
+class Orszag_Edit_Model extends Admin_Edit_Model
+{
+    public $_tableName = 'cim_orszag';
+    
+    public $_bindArray = array(
+        'kod' => 'TxtRovidites',
+        'nev' => 'TxtNev'
     );
 
-    public function __addForm(){
-        $rovidites = $this->addItem("TxtRovidites");
-        $rovidites->_verify["string"] = true;
-        $rovidites->_verify["unique"] = array("table" => "orszag", "field" => "orszag_rovidites", "modify" => $this->modifyID, "DB" => $this->_DB);
-        $this->addItem("TxtNev")->_verify["string"] = true; 
+    public function __addForm()
+    {
+        $rovidites = $this->addItem('TxtRovidites');
+        $rovidites->_verify['string'] = true;
+        $rovidites->_verify['unique'] = array(
+            'table' => 'cim_orszag', 
+            'field' => 'kod', 
+            'modify' => $this->modifyID, 
+            'DB' => $this->_DB
+        );
+        $this->addItem('TxtNev')->_verify['string'] = true;
+    }
+    
+    public function verifyRow($nyelv = "")
+    {
+        return true;
+    }
+    
+    public function __insert($sets = '')
+    {
+        $userId = (int)UserLoginOut_Controller::$_id;
+        
+        $sets = sprintf(
+            ', letrehozo_id = %d, modosito_id = %d, modositas_szama = modositas_szama + 1',
+            $userId,
+            $userId
+        );
+        
+        return parent::__insert($sets);
+    }
+
+    public function __update($sets = '')
+    {
+        $userId = (int)UserLoginOut_Controller::$_id;
+        
+        $sets = sprintf(
+            ', modosito_id = %d, modositas_szama = modositas_szama + 1',
+            $userId,
+            $userId
+        );
+        
+        parent::__update($sets);
     }
 }
-?>

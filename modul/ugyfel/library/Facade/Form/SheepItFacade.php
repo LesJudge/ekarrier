@@ -1,13 +1,13 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Facade\Form;
-use Uniweb\Module\Ugyfel\Library\Decorator\SheepItAddress;
-use Uniweb\Library\Utilities\ActiveRecord\SheepIt\CollectionSerializer;
-use Uniweb\Library\Utilities\ActiveRecord\SheepIt\JsonSerializeModel;
+
+use ArrayObject;
 use Uniweb\Library\Form\Interfaces\AssignableInterface;
+use Uniweb\Library\Utilities\ActiveRecord\SheepIt\CollectionSerializer;
 
 class SheepItFacade implements AssignableInterface
 {
-    public function assign(\ArrayObject $data)
+    public function assign(ArrayObject $data)
     {
         // Iskolai végzettségek.
         $educations = new CollectionSerializer($data->offsetGet('client')->educations, array(
@@ -48,7 +48,6 @@ class SheepItFacade implements AssignableInterface
             'jobForm_#index#', array('ugyfel_attr_munkakor_id', 'munkakor_nev')
         ));
         //$addresses = array();
-        /* @var $clientAddresses \Uniweb\Module\Ugyfel\Model\ActiveRecord\Address */
         /*
         $clientAddresses = $data->offsetGet('client')->addresses;
         if (is_array($clientAddresses) && !empty($clientAddresses)) {

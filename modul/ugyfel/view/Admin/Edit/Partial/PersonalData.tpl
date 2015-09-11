@@ -59,12 +59,14 @@
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
-            <label for="tanacsadoja" class="item-pull-left">Tanácsadója</label>
-            <select>
-                <option>Tanácsadó</option>
-                <option>Tanácsadó</option>
-                <option>Tanácsadó</option>
+            <label for="tanacsadoja" class="item-pull-left">Tanácsadója</label>            
+            <select name="client[tanacsado_id]">
+                <option value="">--Kérem, válasszon!--</option>
+                {foreach from=$consultants item=consultant}
+                <option value="{$consultant->getId()}" {if $consultant->getId() eq $client->tanacsado_id}selected="selected"{/if}>{$consultant->getFullname()}</option>
+                {/foreach}
             </select>
+            {ar_error model=$client property='tanacsado_id' view='admin_ar_error.tpl'}
         </div>
         <div class="uw-ugyfelkezelo-form-row uw-ugyfelkezelo-form-row-inline tab-ugyfel-informacio-input-inline">
             <label>Neme</label>
@@ -153,16 +155,19 @@
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamVezetekes">Vezetékes telefonszám</label>
         <input id="clientTelefonszamVezetekes" name="client[telefonszam_vezetekes]" type="text" value="{$client->telefonszam_vezetekes}" />
+        <span class="phone-number-example">pl. 3650123456</span>
         {ar_error model=$client property='telefonszam_vezetekes' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamMobil1">Elsődleges mobilszám</label>
         <input id="clientTelefonszamMobil1" name="client[telefonszam_mobil1]" type="text" value="{$client->telefonszam_mobil1}" />
+        <span class="phone-number-example">pl. 36501234567</span>
         {ar_error model=$client property='telefonszam_mobil1' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label for="clientTelefonszamMobil2">Másodlagos mobilszám</label>
         <input id="clientTelefonszamMobil2" name="client[telefonszam_mobil2]" type="text" value="{$client->telefonszam_mobil2}" />
+        <span class="phone-number-example">pl. 36501234567</span>
         {ar_error model=$client property='telefonszam_mobil2' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">

@@ -37,9 +37,6 @@ class CreateByData extends AbstractCreator
             }
             return $model;
         } else {
-            var_dump($pkName);
-            var_dump($data);
-            exit;
             throw new CreatorException('A kapcsolat létrehozás sikertelen volt, mert hiányzik az elsődleges kulcs!');
         }
     }

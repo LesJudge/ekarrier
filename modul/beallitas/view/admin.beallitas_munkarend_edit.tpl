@@ -26,6 +26,14 @@ $(function() {
             </div>
             <div class="field">
                 <div class="form_row">
+                    <label for="{$NumberSorrend.name}">Sorrend <span class="require">*</span></label>
+                    <input type="text" id="{$NumberSorrend.name}" name="{$NumberSorrend.name}" value="{$NumberSorrend.activ}"/>
+                    {if isset($NumberSorrend.error)}<p class="error small">{$NumberSorrend.error}</p>{/if}
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="field">
+                <div class="form_row">
                     <label>Publikus <span class="require">*</span></label>
                     {html_radios name=$ChkAktiv.name options=$ChkAktiv.values selected=$ChkAktiv.activ}
                     {if isset($ChkAktiv.error)}<p class="error small">{$ChkAktiv.error}</p>{/if}

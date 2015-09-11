@@ -1,8 +1,10 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\DynamicFilter\Filter;
-use Uniweb\Library\DynamicFilter\Filter\FieldFilter;
-use Uniweb\Library\DynamicFilter\Exceptions\FilterException;
+
+use PDO;
 use Uniweb\Library\DynamicFilter\ConditionsEnum;
+use Uniweb\Library\DynamicFilter\Exceptions\FilterException;
+use Uniweb\Library\DynamicFilter\Filter\FieldFilter;
 use Uniweb\Library\Validator\Date as DateValidator;
 
 class Service extends FieldFilter
@@ -69,7 +71,7 @@ class Service extends FieldFilter
             $query .= ' AND ugyfel_attr_szolgaltatas_erdekelt_torolt = 0';
             $statement = $this->pdo->prepare($query);
             $statement->execute();
-            return $statement->fetchAll(\PDO::FETCH_COLUMN);
+            return $statement->fetchAll(PDO::FETCH_COLUMN);
         } else {
             throw new FilterException('A szűrő paraméterei hiányosak!');
         }

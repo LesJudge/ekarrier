@@ -246,6 +246,27 @@ class User extends ArBase
             $this->assign_attribute('user_jelszo', Create::passwordGenerator($password, Rimo::$_config->SALT));
         }
     }
+    
+    /**
+     * Visszatér a felhasználó azonosítóval.
+     * 
+     * @return int
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+    
+    /**
+     * <b>getUserId()</b> alias.
+     * 
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->getUserId();
+    }
+    
     /**
      * Visszatér a felhasználó teljes nevével.
      * @return string

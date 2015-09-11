@@ -4,7 +4,6 @@ require 'library/uniweb/AttachableUserController.php';
 include_once "page/admin/model/admin.edit_model.php";
 include_once "modul/email/site.email.php";
 require 'modul/seo/model/seo_Site_Model.php';
-require 'library/uniweb/AuthRedirecter.php';
 require 'modul/user/library/model/BaseAdminUserEditModel.php';
 require 'library/uniweb/modul/ModelEditHelper.php';
 require 'library/uniweb/AttachedUserInterface.php';
@@ -40,11 +39,6 @@ class CegEdit_Site_Controller extends AttachableUserController
     
     public function __construct()
     {
-        //$currentUri = $_SERVER['REQUEST_URI']; // Aktuális URI
-        //$authorizedUri = '/ceg/profil/';
-        //$unauthorizedUri = '/ceg/regisztracio/';
-        //$authRedirecter = new \AuthRedirecter($userId > 0, $currentUri, $authorizedUri, $unauthorizedUri);
-        //$authRedirecter->correctUri();
         $this->__loadModel('_SiteEdit');
         if (UserLoginOut_Controller::$_id) {
             $this->_model->setAttachedId(Rimo::getCompanyWebUser()->verify(UserLoginOut_Site_Controller::$_id));

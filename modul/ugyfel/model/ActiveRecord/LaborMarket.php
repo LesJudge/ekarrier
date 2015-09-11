@@ -12,7 +12,9 @@ use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
  * @property int $ugyfel_id Felhasználó azonosító, akihez tartoznak az adatok.
  * @property int $palyakezdo Pályakezdő-e.
  * @property int $regisztralt_munkanelkuli Regisztrált munkanélküli-e.
- * @property null|\ActiveRecord\DateTime $mikor_regisztralt Mikor regisztrált.
+ * @property int|null $mikor_regisztralt_ev Mikor regisztrált (év).
+ * @property int|null $mikor_regisztralt_honap Mikor regisztrált (hónap).
+ * @property int|null $mikor_regisztralt_nap Mikor regisztrált (nap).
  * @property int $gyes_gyed_visszatero GYES-ről, GYED-ről visszatérő?
  * @property null|\ActiveRecord\DateTime $gyes_gyed_lejarati_datum Mikor jár le a GYES, GYED?
  * @property int $megvaltozott_munkakepessegu Megváltozott munkaképességű-e?
@@ -155,12 +157,6 @@ class LaborMarket extends BaseResourcable
         return $bit->readAttribute('dolgozik', $this);
     }
     
-    public function get_mikor_regisztralt($format = 'Y-m-d')
-    {
-        $dateTime = new ReadDateTime($format);
-        return $dateTime->readAttribute('mikor_regisztralt', $this);
-    }
-    
     public function get_gyes_gyed_lejarati_datum($format = 'Y-m-d')
     {
         $dateTime = new ReadDateTime($format);
@@ -227,10 +223,19 @@ class LaborMarket extends BaseResourcable
         $this->assign_attribute('munkavegzest_korlatozo_egyeb_okok', trim($value));
     }
     
-    public function set_mikor_regisztralt($mikor_regisztralt)
+    public function set_mikor_regisztralt_ev($mikor_regisztralt_ev)
     {
-        $dateTime = new AssignDateTime('Y-m-d');
-        $dateTime->assignAttribute('mikor_regisztralt', $mikor_regisztralt, $this);
+        $this->setMikorRegisztralt('mikor_regisztralt_ev', $mikor_regisztralt_ev);
+    }
+    
+    public function set_mikor_regisztralt_honap($mikor_regisztralt_honap)
+    {
+        $this->setMikorRegisztralt('mikor_regisztralt_honap', $mikor_regisztralt_honap);
+    }
+    
+    public function set_mikor_regisztralt_nap($mikor_regisztralt_nap)
+    {
+        $this->setMikorRegisztralt('mikor_regisztralt_nap', $mikor_regisztralt_nap);
     }
     
     public function set_gyes_gyed_lejarati_datum($gyes_gyed_lejarati_datum)
@@ -243,5 +248,16 @@ class LaborMarket extends BaseResourcable
     {
         $dateTime = new AssignDateTime('Y-m-d');
         $dateTime->assignAttribute('kovetkezo_felulvizsgalat_ideje', $kovetkezo_felulvizsgalat_ideje, $this);
+    }
+    
+    private function setMikorRegisztralt($attribute, $value)
+    {
+        if ($value != '') {
+            $value = (int)$value;
+        } else {
+            $value = null;
+        }
+        
+        $this->assign_attribute($attribute, $value);
     }
 }

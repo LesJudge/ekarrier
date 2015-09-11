@@ -29,11 +29,19 @@
         {ar_error model=$client->labormarket property='regisztralt_munkanelkuli' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">
-        <label for="labor-market-mikor-regisztralt" class="item-pull-left">Mikor regisztrált</label>
-        <div class="uw-datepicker-container">
-            <input id="labor-market-mikor-regisztralt" name="relationships[labormarket][mikor_regisztralt]" type="text" value="{$client->labormarket->mikor_regisztralt}" />
-        </div>
-        {ar_error model=$client->labormarket property='mikor_regisztralt' view='admin_ar_error.tpl'}
+        <label for="labor-market-mikor-regisztralt" class="item-pull-left">Mikor regisztrált (év)</label>
+        <input name="relationships[labormarket][mikor_regisztralt_ev]" type="text" value="{$client->labormarket->mikor_regisztralt_ev}" />
+        {ar_error model=$client->labormarket property='mikor_regisztralt_ev' view='admin_ar_error.tpl'}
+    </div>
+    <div class="uw-ugyfelkezelo-form-row">
+        <label for="labor-market-mikor-regisztralt" class="item-pull-left">Mikor regisztrált (hónap)</label>
+        <input name="relationships[labormarket][mikor_regisztralt_honap]" type="text" value="{$client->labormarket->mikor_regisztralt_honap}" />
+        {ar_error model=$client->labormarket property='mikor_regisztralt_honap' view='admin_ar_error.tpl'}
+    </div>
+    <div class="uw-ugyfelkezelo-form-row">
+        <label for="labor-market-mikor-regisztralt" class="item-pull-left">Mikor regisztrált (nap)</label>
+        <input name="relationships[labormarket][mikor_regisztralt_nap]" type="text" value="{$client->labormarket->mikor_regisztralt_nap}" />
+        {ar_error model=$client->labormarket property='mikor_regisztralt_nap' view='admin_ar_error.tpl'}
     </div>
     <div class="uw-ugyfelkezelo-form-row">
         <label class="item-pull-left">GYES-GYED visszatérő</label>

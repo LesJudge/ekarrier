@@ -398,46 +398,51 @@ abstract class RimoController {
         //$this->_view->compile_dir = 'cache/smarty';
         
         $this->_view = Rimo::$pimple['smarty'];
-        $this->_view->assign("APP_PATH", Rimo::$_config->APP_PATH);
-        
-        //var_dump(Rimo::$_config->APP_PATH);
-        //var_dump($_REQUEST['al']);
-        //echo '<br />';
+        $this->_view->assign('APP_PATH', Rimo::$_config->APP_PATH);
+
         /**
          * Undefined index.
          * Módosítva: 2015-01-30
+         * Ismét módosítva: 2015-09-10
          */
         //$this->_view->assign("APP_LINK", Rimo::$_config->APP_LINK[$_REQUEST["al"]]);
-        $appLink = array();
-        if (isset(Rimo::$_config->APP_LINK) && isset($_REQUEST['al']) && isset(Rimo::$_config->APP_LINK[$_REQUEST['al']])) {
-            $appLink = Rimo::$_config->APP_LINK[$_REQUEST['al']];
-        }
-//        $this->_view->assign("APP_LINK", $appLink);
+                
+        // Al request, vagy tudja a fene, hogy mit akart ebből kihozni...
+        $al = isset($_REQUEST['al']) ? $_REQUEST['al'] : '';
+        // APP_LINK... :)
+        $appLinks = Rimo::$_config->APP_LINK;
+        $appLink = '';
         
-        $this->_view->assign("APP_LINK", Rimo::$_config->APP_LINK[$_REQUEST["al"]]);
-        $this->_view->assign("DOMAIN_ADMIN", Rimo::$_config->DOMAIN_ADMIN);
-        $this->_view->assign("DOMAIN", Rimo::$_config->DOMAIN);
+        // Megvizsgálja, hogy létezik-e egyáltalán ez az APP_LINK, hogy ne kapjunk orrba-szájba undefined index 
+        // notice-t.
+        if (is_array($appLinks) && isset($appLinks[$al])) {
+            $appLink = $appLinks[$al];
+        }
+        
+        $this->_view->assign('APP_LINK', $appLink);
+        $this->_view->assign('DOMAIN_ADMIN', Rimo::$_config->DOMAIN_ADMIN);
+        $this->_view->assign('DOMAIN', Rimo::$_config->DOMAIN);
         $this->_translate = Rimo::getTranslate();
-        //$this->_view->assignByRef("lang", $this->_translate->translate(get_class($this)));
-        $this->_view->assign("lang", $this->_translate->translate(get_class($this)));
+        //$this->_view->assignByRef('lang', $this->_translate->translate(get_class($this)));
+        $this->_view->assign('lang', $this->_translate->translate(get_class($this)));
         try {
             $this->__runParams();
             $this->__runEvents();
         }
         catch (Exception_Action_error $e) {
-            $this->_view->assign("FormError", $e->getMessage());
+            $this->_view->assign('FormError', $e->getMessage());
         }
         catch (Exception_Item_error $e) {
-            $this->_view->assign("FormError", $e->getMessage());
+            $this->_view->assign('FormError', $e->getMessage());
         }
         catch (Exception_Form_Error $e) {
-            $this->_view->assign("FormError", $e->getMessage());
+            $this->_view->assign('FormError', $e->getMessage());
         }
         catch (Exception_Form_Message $e) {
-            $this->_view->assign("FormMessage", $e->getMessage());
+            $this->_view->assign('FormMessage', $e->getMessage());
         }
         catch (Exception $e) {
-            $this->_view->assign("FormError", $e->getMessage());
+            $this->_view->assign('FormError', $e->getMessage());
         }
         $this->__show();
     }

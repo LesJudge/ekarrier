@@ -1,7 +1,9 @@
 <?php
 namespace Uniweb\Library\Observer;
+
 use SplObserver;
 use SplSubject;
+
 /**
  * Observer subject. Implementálja az \SplSubject interface-t, azoknak a metódusai definiálva vannak az 
  * osztályban. Ez az osztály azt a célt szolgálja, hogy a kód többi része minél inkább alkalmazkodjon a DRY elvekhez, 
@@ -14,6 +16,7 @@ class Subject implements SplSubject
      * @var SplObserver[]
      */
     protected $observers = array();
+    
     /**
      * Új observer hozzáadása.
      * @param SplObserver $observer Observer.
@@ -22,6 +25,7 @@ class Subject implements SplSubject
     {
         $this->observers[] = $observer;
     }
+    
     /**
      * Observer eltávolítása.
      * @param SplObserver $observer Observer.
@@ -33,6 +37,7 @@ class Subject implements SplSubject
             unset($this->observers[$key]);
         }
     }
+    
     /**
      * Observerek "értesítése".
      * @return void
@@ -43,6 +48,7 @@ class Subject implements SplSubject
             $observer->update($this);
         }
     }
+    
     /**
      * Visszatér a subject-hez tartozó observerekkel.
      * @return SplObserver[]

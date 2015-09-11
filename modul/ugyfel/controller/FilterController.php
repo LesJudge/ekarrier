@@ -1,17 +1,18 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
-use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
-use Uniweb\Library\DynamicFilter\FilterSetup;
-use Uniweb\Library\DynamicFilter\Factory;
-use Uniweb\Library\DynamicFilter\Interfaces\ControllerInterface;
-use Uniweb\Library\DynamicFilter\Exceptions\PersistenceException;
-use Uniweb\Library\DynamicFilter\Exceptions\FilterException;
-use Uniweb\Library\DynamicFilter\Exceptions\DynamicFilterException;
-use Uniweb\Library\DynamicFilter\Exceptions\FactoryException;
-use Uniweb\Library\Flash\Flash;
+
 use Exception;
 use Rimo;
+use Uniweb\Library\DynamicFilter\Exceptions\DynamicFilterException;
+use Uniweb\Library\DynamicFilter\Exceptions\FactoryException;
+use Uniweb\Library\DynamicFilter\Exceptions\FilterException;
+use Uniweb\Library\DynamicFilter\Exceptions\PersistenceException;
+use Uniweb\Library\DynamicFilter\Factory;
+use Uniweb\Library\DynamicFilter\FilterSetup;
+use Uniweb\Library\DynamicFilter\Interfaces\ControllerInterface;
+use Uniweb\Library\Flash\Flash;
+use Uniweb\Module\Ugyfel\Library\DynamicFilter\Client as ClientFilter;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Client as ClientModel;
 
 class FilterController implements ControllerInterface
 {
@@ -19,10 +20,12 @@ class FilterController implements ControllerInterface
      * @var ClientFilter
      */
     protected $filter;
+    
     /**
      * @var Flash
      */
     protected $flash;
+    
     /**
      * @param ClientFilter $filter Ügyfél szűrő objektum.
      * @param Flash $flash Flash objektum.
@@ -32,6 +35,7 @@ class FilterController implements ControllerInterface
         $this->filter = $filter;
         $this->flash = $flash;
     }
+    
     /**
      * Szűrő létrehozása.
      */
@@ -67,6 +71,7 @@ class FilterController implements ControllerInterface
         header('Location: ' . Rimo::$_config->DOMAIN_ADMIN . 'ugyfel');
         exit;
     }
+    
     /**
      * Szűrő törlése.
      */
@@ -81,6 +86,7 @@ class FilterController implements ControllerInterface
         header('Location: ' . Rimo::$_config->DOMAIN_ADMIN . 'ugyfel');
         exit;
     }
+    
     /**
      * Visszatér a dinamikus szűrő objektummal.
      * @return ClientFilter
@@ -89,6 +95,7 @@ class FilterController implements ControllerInterface
     {
         return $this->filter;
     }
+    
     /**
      * Visszatér a flash objektummal.
      * @return Flash
@@ -97,6 +104,7 @@ class FilterController implements ControllerInterface
     {
         return $this->flash;
     }
+    
     /**
      * Beállítja a dinamikus szűrő objektumot.
      * @param ClientFilter $filter Dinamikus szűrő objektum.
@@ -105,6 +113,7 @@ class FilterController implements ControllerInterface
     {
         $this->filter = $filter;
     }
+    
     /**
      * Beállítja a flash objektumot.
      * @param Flash $flash Flash objektum.

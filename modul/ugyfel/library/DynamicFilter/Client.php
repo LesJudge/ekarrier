@@ -1,7 +1,9 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\DynamicFilter;
-use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
+
+use ActiveRecord\RecordNotFound;
 use Uniweb\Library\DynamicFilter\AbstractDynamicFilter;
+use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
 
 class Client extends AbstractDynamicFilter
 {
@@ -37,7 +39,7 @@ class Client extends AbstractDynamicFilter
         foreach ($ids as $clientId) {
             try {
                 $clients[] = $clientRepository->findById($clientId);
-            } catch (\ActiveRecord\RecordNotFound $rnf) {
+            } catch (RecordNotFound $rnf) {
                 
             }
         }

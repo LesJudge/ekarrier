@@ -41,6 +41,8 @@ class User_Edit_Model extends BaseAdminUserEditModel
         $jogcsoport->_verify['multiSelect'] = true;
         /* Hírlevél */
         $this->addItem('ChkHirlevel')->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
+        // Tanácsadó-e.
+        $this->addItem('SelTanacsado')->_select_value = Rimo::$_config->AktivSelectValues[Rimo::$_config->ADMIN_NYELV_ID];
     }
 
     public function __editData()

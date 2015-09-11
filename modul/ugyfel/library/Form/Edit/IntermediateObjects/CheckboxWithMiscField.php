@@ -1,22 +1,23 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Library\Form\Edit\IntermediateObjects;
+
 use Uniweb\Library\Form\Interfaces\IntermediateObjectInterface;
 
 class CheckboxWithMiscField implements IntermediateObjectInterface
 {
-    protected $recordId;
+    private $recordId;
     
-    protected $id;
+    private $id;
     
-    protected $name;
+    private $name;
     
-    protected $hasField;
+    private $hasField;
     
-    protected $checked;
+    private $checked;
     
-    protected $misc;
+    private $misc;
     
-    protected $object;
+    private $object;
     
     public function __construct($recordId, $id, $name, $hasField, $checked, $misc, $object)
     {

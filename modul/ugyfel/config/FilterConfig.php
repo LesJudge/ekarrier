@@ -1,4 +1,5 @@
 <?php
+
 return array(
     'firstname' => array(
         'Uniweb\\Library\\DynamicFilter\\Filter\\String', array(

@@ -2,7 +2,7 @@
     <div id="tab-munkakorokmunkarend-munkarend" class="uw-ugyfelkezelo-form-row">
         <label>Munkarend</label>
         {foreach from=$workschedules item=workschedule}
-        <div class="uw-ugyfelkezelo-form-client-info-chkbox {if $workschedule->getHasField()}uw-ugyfelkezelo-form-client-info-chkbox-with-text{/if} parent-item">
+        <div class="uw-ugyfelkezelo-form-client-info-chkbox {if $workschedule->getHasField()}uw-ugyfelkezelo-form-client-info-chkbox-with-text{/if} parent-item" style="width: 50%;">
             <label>
                 <input id="project-information-program-information-{$workschedule->getId()}" class="workschedule-checkbox" name="relationships[workschedules][{$workschedule->getId()}][munkarend_id]" value="{$workschedule->getId()}" type="checkbox" {if $workschedule->getChecked()} checked="checked" {/if} /> {$workschedule->getName()}
             </label>

@@ -1,9 +1,10 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
-use Uniweb\Module\Ugyfel\Model\Document;
-use Uniweb\Library\Mvc\Controller\SlimBasedController;
-use Slim\Slim;
+
 use Exception;
+use Slim\Slim;
+use Uniweb\Library\Mvc\Controller\SlimBasedController;
+use Uniweb\Module\Ugyfel\Model\Document;
 
 class DocumentController extends SlimBasedController
 {
@@ -14,6 +15,7 @@ class DocumentController extends SlimBasedController
     {
         $this->slim = $slim;
     }
+    
     /**
      * Ügyfélhez tartozó dokumentumok lekérdezése.
      * @param int $id Ügyfél azonosító.
@@ -31,6 +33,7 @@ class DocumentController extends SlimBasedController
         }
         $this->stop();
     }
+    
     /**
      * Dokumentum letöltése.
      * @param string $filename Dokumentum neve.
@@ -53,6 +56,7 @@ class DocumentController extends SlimBasedController
         }
         $this->stop();
     }
+    
     /**
      * Dokumentum feltöltése az ügyfélhez.
      * @param int $clientId Ügyfél azonosító.
@@ -73,6 +77,7 @@ class DocumentController extends SlimBasedController
         }
         $this->stop();
     }
+    
     /**
      * Dokumentum törlése.
      * @param string $filename Dokumentum neve.

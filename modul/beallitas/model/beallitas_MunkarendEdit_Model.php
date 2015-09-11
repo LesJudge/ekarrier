@@ -6,14 +6,17 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
      * @var string
      */
     public $_tableName = 'munkarend';
+    
     /**
      * Értékek, melyeket az itemekhez rendel.
      * @var array
      */
     public $_bindArray=array(
         'nev' => 'TxtNev',
+        'sorrend' => 'NumberSorrend',
         'munkarend_aktiv' => 'ChkAktiv',
     );
+    
     /**
      * Nyelv ellenőrzés felülírása, kikerülése. Erre azért van szükség, mert a táblában nincs nyelv_id mező.
      * @param string $nyelv
@@ -23,6 +26,7 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
     {
         return true;
     }
+    
     /**
      * Form elemek létrehozása.
      */
@@ -32,14 +36,18 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
         // Név
         $name = $this->addItem('TxtNev');
         $name->_verify['string']=true;
-        $name->_verify['string']=true;
         $name->_verify['unique']=array(
             'table' => 'munkarend',
             'field' => 'nev',
             'modify' => $this->modifyID,
             'DB' => $this->_DB
         );
+        // Sorrend
+        $sorrend = $this->addItem('NumberSorrend');
+        $sorrend->_verify['required'] = true;
+        $sorrend->_verify['number'] = true;
     }
+    
     /**
      * Egyéb adatok lekérdezése.
      * @return array
@@ -64,6 +72,7 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
         $data = $this->_DB->prepare($query)->query_select()->query_fetch_array();
         return $data;
     }
+    
     /**
      * Rekord módosítása.
      */
@@ -73,6 +82,7 @@ class Beallitas_MunkarendEdit_Model extends Admin_Edit_Model
                           ,modositas_szama = modositas_szama + 1
                           ,modosito_id = ' . UserLoginOut_Controller::$_id);
     }
+    
     /**
      * Rekord létrehozása.
      */

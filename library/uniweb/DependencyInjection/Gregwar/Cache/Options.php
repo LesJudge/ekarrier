@@ -1,11 +1,13 @@
 <?php
 namespace Uniweb\Library\DependencyInjection\Gregwar\Cache;
-use Pimple\ServiceProviderInterface;
+
 use ArrayObject;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 
 class Options implements ServiceProviderInterface
 {
-    public function register(\Pimple\Container $pimple)
+    public function register(Container $pimple)
     {
         $pimple['gregwarCacheOptions'] = $pimple->factory(function($c) {
             $options = new ArrayObject;

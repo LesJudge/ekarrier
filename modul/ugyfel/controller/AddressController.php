@@ -1,12 +1,12 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
-use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
-use Uniweb\Module\Cim\Library\Repository\CountryRepository;
-use Uniweb\Module\Cim\Library\Repository\CityRepository;
-use Uniweb\Module\Cim\Model\ActiveRecord\AddressView;
-use Uniweb\Library\Mvc\Controller\SlimBasedController;
-use Slim\Slim;
+
 use Exception;
+use Slim\Slim;
+use Uniweb\Library\Mvc\Controller\SlimBasedController;
+use Uniweb\Module\Cim\Library\Repository\CityRepository;
+use Uniweb\Module\Cim\Library\Repository\CountryRepository;
+use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
 
 class AddressController extends SlimBasedController
 {
@@ -21,11 +21,14 @@ class AddressController extends SlimBasedController
     public function birthplace($clientId)
     {
         try {
-            $addressFinder = new AddressView;
+            // Ügyfél repository.
             $clientRepo = new ClientRepository;
+            
+            // Ügyfél lekérdezése.
             $client = $clientRepo->findById($clientId, array('include' => array('birthdata')));
-            $countryRepo = new CountryRepository($addressFinder);
-            $cityRepository = new CityRepository($addressFinder);
+            
+            $countryRepo = new CountryRepository();
+            $cityRepository = new CityRepository();
             $countryId = 124;
             $birthdata = $client->birthdata;
             if ($birthdata->country) {

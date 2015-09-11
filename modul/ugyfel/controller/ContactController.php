@@ -1,11 +1,13 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Controller;
+
+use ActiveRecord\RecordNotFound;
+use Exception;
+use Slim\Slim;
+use Uniweb\Library\Mvc\Controller\SlimBasedController;
 use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\Contact;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\Mediation;
-use Uniweb\Library\Mvc\Controller\SlimBasedController;
-use Slim\Slim;
-use Exception;
 
 class ContactController extends SlimBasedController
 {
@@ -18,7 +20,7 @@ class ContactController extends SlimBasedController
     {
         $this->slim->response->headers->set('Content-Type', 'application/json');
         try {
-            /* @var $contacts \Uniweb\Module\Ugyfel\Model\ActiveRecord\Contact */
+            /* @var $contacts Contact */
             $clientRepo = new ClientRepository;
             $contacts = $clientRepo->findById($id, false)->contacts;
             $responseBody = array();
@@ -43,7 +45,7 @@ class ContactController extends SlimBasedController
                 }
             }
             echo json_encode($responseBody);
-        } catch (\ActiveRecord\RecordNotFound $rnf) {
+        } catch (RecordNotFound $rnf) {
             $this->slim->response->setStatus(404);
         }
         $this->stop();

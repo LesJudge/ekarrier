@@ -1,8 +1,9 @@
-.uw-ugyfelkezelo-client-contact-table tfoot tr td button {
+#client-contact-add-btn {
     border: 1px solid !important;
     border-color: #999999 !important;
     height: 32px !important;
-    width: 100px !important;
+    margin-top: 20px;
+    width: 130px;
 }
 
 #client-contact-error,

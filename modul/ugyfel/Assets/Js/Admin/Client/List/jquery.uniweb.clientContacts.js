@@ -19,7 +19,9 @@
          * Plugin inicializálása.
          */
         _init: function() {
-            var self = this;
+            var self = this, 
+                $formContainer = $('#contact-form-container');
+        
             $(this.options.selectors.createBtn).button({
                 create: function(ui, event) {
                     $(ui.target).click(function() {
@@ -30,6 +32,7 @@
                     primary: "ui-icon-plusthick"
                 }
             });
+            
             // Létrehozás dialógusablak inicializálása.
             $(this.options.selectors.dialogCreate).dialog($.extend({}, this.options.dialogCreate, {
                 buttons: {
@@ -42,11 +45,17 @@
                 }
             }));
             
-            $("#contact-is-mediation").change(function() {
-                if (this.value == 1) {
-                    $("#contact-mediation-data").show();
+            $('#contact-type-select').change(function() {
+                if (this.value != '') {
+                    var $form = $('#contact-form-' + this.value);
+
+                    if ($form.length > 0) {
+                        $formContainer.html($form.html());
+                    } else {
+                        console.log('nincs form!');
+                    }
                 } else {
-                    $("#contact-mediation-data").hide();
+                    $formContainer.html('');
                 }
             });
             
@@ -136,18 +145,16 @@
                         if (data.length > 0) {
                             $.each(data, function(index, contact) {
                                 var html = "<tr>";
-                                html += "<td>" + contact.megjegyzes + "</td>";
-                                html += "<td>" + contact.datum + "</td>";
+                                html += "<td>" + contact.tipus + "</td>";
                                 html += "<td>" + contact.nev + "</td>";
-                                html += "<td>" + (contact.kozvetites ? "Igen": "Nem") + "</td>";
-                                html += "<td>" + (contact.kozvetites ? contact.hova: "-") + "</td>";
-                                html += "<td>" + (contact.kozvetites ? (contact.hova ? "Igen" : "Nem") : "-") + "</td>";
-                                html += "<td>" + (contact.kozvetites ? (contact.mikor ? contact.mikor : "") : "-") + "</td>";
+                                html += "<td>" + contact.datum + "</td>";
+                                html += '<td><button type="button"></button></td>';
+                                html += '<td><button type="button"></button></td>';
                                 html += "</tr>";
                                 $(html).appendTo($tbody);
                             });
                         } else {
-                            $tbody.append("<tr><td colspan=\"7\">Nincs megjeleníthető bejegyzés!</td></tr>");
+                            $tbody.append('<tr><td colspan="5">Nincs megjeleníthető bejegyzés!</td></tr>');
                         }
                         
                         if (data.result === true) {
@@ -157,7 +164,7 @@
                                     self._addFile(file);
                                 });
                             } else {
-                                $tbody.append("<tr><td colspan=\"7\">Nincs megjeleníthető bejegyzés!</td></tr>");
+                                $tbody.append('<tr><td colspan="5">Nincs megjeleníthető bejegyzés!</td></tr>');
                             }
                         }
                         $table.show();

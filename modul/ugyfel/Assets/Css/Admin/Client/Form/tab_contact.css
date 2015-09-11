@@ -1,16 +1,35 @@
-#client-contact-table tr td:first-child {
-    width: 15% !important;
+.uw-ugyfelkezelo-client-contact-table tfoot tr td button {
+    border: 1px solid !important;
+    border-color: #999999 !important;
+    height: 32px !important;
+    width: 100px !important;
 }
+
 #client-contact-error,
 #client-contact-success,
 #client-contact-fatal-error {
     display: none;
-    /*
-    background: pink;
-    border: 1px solid red;
-    width: 90%;
-    margin: 0 auto;
-    min-height: 100px;
-    line-height: 100px;
-    */
+}
+
+#client-contact-dialog-create div.row-contact-dialog {
+    margin-bottom: 20px;
+}
+
+#client-contact-dialog-create div.row-contact-dialog input[type="text"], 
+#client-contact-dialog-create div.row-contact-dialog textarea {
+    background: #fff;
+    border: 1px solid #bfbfbf;
+    color: #666;
+    font-size: 14px;
+    height: 34px;
+    text-shadow: none;
+    width: 100%;
+    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+    
+#client-contact-dialog-create div.row-contact-dialog textarea {
+    min-height: 120px;
 }

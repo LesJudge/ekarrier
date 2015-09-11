@@ -3,6 +3,7 @@ $(function() {
     $("#flash-error, #flash-info, #flash-success").click(function() {
         $(this).fadeOut(1000);
     });
+    
     // Betöltés dialógus ablak.
     $("#dialog-loading").dialog({
         autoOpen: false,
@@ -12,6 +13,7 @@ $(function() {
         resizable: false,
         width: 500
     });
+    
     var currentYear = new Date().getUTCFullYear(), // Aktuális év.
         datepickers = [ // Selectorokat tartalmazó tömb, amikre datepicker kell.
             "#labor-market-gyes-gyed-lejar-datum", 
@@ -21,16 +23,20 @@ $(function() {
         datepickerSettings = { // Datepicker alapértelmezett beállítása a formon.
             yearRange: (currentYear - 100) + ":" + currentYear
         };
+        
     // Születési idő datepicker inicializálása, érték változásakor írja át az ügyfél korát a szomszédos input mezőben.
     var $birthDate = $("#clientBirthDataSzuletesiIdo").datepicker($.extend({}, datepickerSettings, {
         onClose: function() {
             setClientAgeByDate(this.value);
         }
     }));
+    
     // Ügyfél korának megjelenítése.
     setClientAgeByDate($birthDate.val());
+    
     // Datepicker-ek inicializálása.
     $(datepickers.join()).datepicker(datepickerSettings);
+    
     // Nem engedélyezett szolgáltatás input-ok engedélyezése, ha a user kiválaszt egy szolgáltatást.
     $(".uw-ugyfelkezelo-service-option-checkbox").click(function() {
         var $self = $(this), 
@@ -39,14 +45,17 @@ $(function() {
         $parent.find(".disable-on-unchecked").attr("disabled", checked === 0);
         $self.val($self.attr("checked") ? 1 : 0);
     });
+    
     // Nem engedélyezett program információ, munkarend input-ok engedélyezése, ha a user kiválasztja valamelyiket.
     $(".program-information-checkbox, .workschedule-checkbox").click(function() {
         var $self = $(this), 
             $items = $self.parents(".parent-item").find(".disable-on-unchecked");
         $items.attr("disabled", !$self.attr("checked"));
     });
+    
     // "Dummy" hibaüzenet elrejtése.
     $(".shpt-form-error:contains('shpt-form-error-dummy')").hide();
+    
     // SheepIt hibaüzenetek megjelenítése, ha vannak.
     $.each($(".shpt-form-row"), function(index, item) {
         var $item = $(item).find("input[id$=\"_error\"][type=\"hidden\"]"),

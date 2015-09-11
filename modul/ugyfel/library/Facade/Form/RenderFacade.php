@@ -47,11 +47,11 @@ class RenderFacade
         /* @var $cache GregwarCacheAdapter */
         $cache = Rimo::$pimple['gregwarCacheAdapter'];
         
-        // SheepIt cuccok hozzáadása a nézethez.
+        // SheepIt cuccok hozzáadása a nézet változókhoz.
         $sheepItFacade = new SheepItFacade;
         $sheepItFacade->assign($this->data);
         
-        // Opciók hozzáadása a nézethez.
+        // Opciók hozzáadása a nézet változókhoz.
         $optionsFacade = new OptionsFacade($cache);
         $optionsFacade->assign($this->data);
         
@@ -59,15 +59,19 @@ class RenderFacade
         $sortWorkschedulesFacade = new SortWorkschedulesFacade;
         $sortWorkschedulesFacade->assign($this->data);
         
-        // Select opciók hozzáadása a nézethez.
+        // Hozzáadja a szolgáltatásokat a nézet adatokhoz.
+        $servicesFacade = new ServicesFacade($cache, 900);
+        $servicesFacade->assign($this->data);
+        
+        // Select opciók hozzáadása a nézet változókhoz.
         $selectFacade = new SelectedFacade;
         $selectFacade->assign($this->data);
         
-        // Tancsadók hozzáadása a nézethez.
+        // Tancsadók hozzáadása a nézet változókhoz.
         $consultantsFacade = new ConsultantsFacade($cache);
         $consultantsFacade->assign($this->data);
         
-        // Összegyűjtött kommentek hozzáadása a nézethez.
+        // Összegyűjtött kommentek hozzáadása a nézet változókhoz.
         $collectedCommentsFacade = new CollectedCommentsFacade($this->client);
         $collectedCommentsFacade->assign($this->data);
         

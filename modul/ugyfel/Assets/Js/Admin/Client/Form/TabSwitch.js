@@ -14,10 +14,10 @@ $(function() {
                         dialogCreate: {
                             autoOpen: false,
                             draggable: false,
-                            height: 400,
+                            height: 500,
                             modal: true,
                             resizable: false,
-                            width: 600
+                            width: 700
                         },
                         selectors: {
                             createBtn: "#client-contact-add-btn",

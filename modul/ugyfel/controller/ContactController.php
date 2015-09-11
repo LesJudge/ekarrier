@@ -7,7 +7,6 @@ use Slim\Slim;
 use Uniweb\Library\Mvc\Controller\SlimBasedController;
 use Uniweb\Module\Ugyfel\Library\Repository\ClientRepository;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\Contact;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Mediation;
 
 class ContactController extends SlimBasedController
 {
@@ -19,40 +18,42 @@ class ContactController extends SlimBasedController
     public function contacts($id)
     {
         $this->slim->response->headers->set('Content-Type', 'application/json');
+        
         try {
-            /* @var $contacts Contact */
             $clientRepo = new ClientRepository;
-            $contacts = $clientRepo->findById($id, false)->contacts;
+            
+            // Lekérdezi az ügyfelet elsődleges kulcs alapján, majd veszi az esetnapló kapcsolatot.
+            $client = $clientRepo->findById($id, false);
+            $contacts = $client->contacts;
+            
             $responseBody = array();
+            
+            // Megvizsgálja, hogy tartoznak-e az ügyfélhez esetnapló bejegyzések.
             if (is_array($contacts) && !empty($contacts)) {
+                // Esetnapló bejegyzés típusok.
+                $types = Contact::getTypes();
+                
                 foreach ($contacts as $contact) {
-                    $mediation = $contact->mediation;
-                    $data = array(
-                        'megjegyzes' => $contact->megjegyzes,
-                        'datum' => $contact->datum,
+                    $responseBody[] = array(
+                        'id' => $contact->ugyfel_attr_esetnaplo_id,
+                        'tipus' => array_key_exists($contact->tipus, $types) ? $types[$contact->tipus] : null,
                         'nev' => $contact->nev,
-                        'kozvetites' => is_object($mediation),
-                        'hova' => null,
-                        'megjelent' => null,
-                        'mikor' => null
+                        'datum' => $contact->tipus == 1 ? $contact->letrehozas_timestamp->format('Y.m.d') : $contact->datum
                     );
-                    if (is_object($mediation)) {
-                        $data['hova'] = $mediation->hova;
-                        $data['megjelent'] = $mediation->megjelent;
-                        $data['mikor'] = $mediation->mikor;
-                    }
-                    $responseBody[] = $data;
                 }
             }
             echo json_encode($responseBody);
         } catch (RecordNotFound $rnf) {
             $this->slim->response->setStatus(404);
+        } catch (Exception $ex) {
+            $this->slim->response->setStatus(500);
         }
         $this->stop();
     }
     
     public function create($id)
     {
+        /*
         $this->slim->response->headers->set('Content-Type', 'application/json');
         if ($this->slim->request->post('contact', null) != null) {
             $contactData = $this->slim->request->post('contact');
@@ -108,5 +109,6 @@ class ContactController extends SlimBasedController
             }
         }
         $this->stop();
+        */
     }
 }

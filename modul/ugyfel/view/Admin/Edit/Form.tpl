@@ -69,6 +69,9 @@
     <input name="_METHOD" type="hidden" value="{$requestMethod}" />
 </form>
 <div id="dialog-loading" title="Betöltés"></div>
+{include file="modul/ugyfel/view/Admin/Edit/Partial/Contact/Contact.tpl"}
+{include file="modul/ugyfel/view/Admin/Edit/Partial/Contact/Mediation.tpl"}
+{include file="modul/ugyfel/view/Admin/Edit/Partial/Contact/Other.tpl"}
 <script type="text/javascript">
 //<![CDATA[
 var domain = "{$DOMAIN}", clientId = {$clientId}, educations = {$educations}, knowledges = {$knowledges},

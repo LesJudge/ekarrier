@@ -1,10 +1,12 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Model\ActiveRecord;
-use Uniweb\Module\Ugyfel\Model\ActiveRecord\Abstracts\BaseResourcable;
-use Uniweb\Library\Utilities\ActiveRecord\Assign\WithoutCast as AssignWithoutCast;
-use Uniweb\Library\Utilities\ActiveRecord\Assign\String as AssignString;
+
+use ActiveRecord\DateTime;
 use Uniweb\Library\Utilities\ActiveRecord\Assign\DateTime as AssignDateTime;
+use Uniweb\Library\Utilities\ActiveRecord\Assign\String as AssignString;
+use Uniweb\Library\Utilities\ActiveRecord\Assign\WithoutCast as AssignWithoutCast;
 use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
+use Uniweb\Module\Ugyfel\Model\ActiveRecord\Abstracts\BaseResourcable;
 /**
  * @property int $ugyfel_attr_esetnaplo_id Esetnapló azonosító.
  * @property int $ugyfel_id Ügyfél azonosító.
@@ -12,12 +14,12 @@ use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
  * @property string $nev Név.
  * @property string $pozicio Pozíció.
  * @property int $megjelent Megjelent-e.
- * @property null|\ActiveRecord\DateTime $datum Dátum.
+ * @property null|DateTime $datum Dátum.
  * @property string $megjegyzes Megjegyzés.
  * @property int $letrehozo_id Létrehozó felhasználó azonosítója.
  * @property int $modosito_id Módosító felhasználó azonosítója.
- * @property \ActiveRecord\DateTime $letrehozas_timestamp Létrehozás ideje.
- * @property null|\ActiveRecord\DateTime $modositas_timestamp Módosítás ideje.
+ * @property DateTime $letrehozas_timestamp Létrehozás ideje.
+ * @property null|DateTime $modositas_timestamp Módosítás ideje.
  * @property int $modositas_szama Módosítás száma.
  * @property int $aktiv Megjelenik-e a rekord.
  * @property int $torolt Törölt-e a rekord.
@@ -25,7 +27,7 @@ use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
  * <b>Kapcsolatok:</b>
  * @property \Uniweb\Module\User\Model\ActiveRecord\User $creator Létrehozó felhasználó adatai.
  * @property \Uniweb\Module\User\Model\ActiveRecord\User $modificatory Módosító felhasználó adatai.
- * @property \Uniweb\Module\Ugyfel\Model\ActiveRecord\Client $client Ügyfél adatai.
+ * @property Client $client Ügyfél adatai.
  */
 class Contact extends BaseResourcable
 {
@@ -34,23 +36,13 @@ class Contact extends BaseResourcable
      * @var string
      */
     public static $table_name = 'ugyfel_attr_esetnaplo';
+    
     /**
      * Tábla elsődleges kulcsa.
      * @var string
      */
     public static $primary_key = 'ugyfel_attr_esetnaplo_id';
-    
-    public static $has_one = array(
-        // Közvetítés kapcsolat.
-        array(
-            'mediation',
-            'class_name' => '\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\Mediation',
-            'conditions' => 'ugyfel_attr_kozvetites_torolt = 0',
-            'foreign_key' => 'ugyfel_attr_esetnaplo_id',
-            'primary_key' => 'ugyfel_attr_esetnaplo_id',
-            'read_only' => true
-        )
-    );
+
     /**
      * 1:1 kapcsolatok.
      * @var array
@@ -90,6 +82,7 @@ class Contact extends BaseResourcable
             'message' => 'Kötelező mező!'
         )
     );
+    
     /**
      * Mezőkre vonatkozó string hossz validációs szabályok.
      * @var array

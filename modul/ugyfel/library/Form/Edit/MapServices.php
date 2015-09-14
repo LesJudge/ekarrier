@@ -27,18 +27,8 @@ class MapServices extends AbstractMap
                         $selected = null;
                     }
                 }
-                /* @var $selected ServiceInterested */
-                $isSelected = !is_null($selected);
-                $intermediates[] = new Service(
-                    $isSelected ? $selected->ugyfel_attr_szolgaltatas_erdekelt_id : null,
-                    $option->szolgaltatas_id, 
-                    $option->nev, 
-                    $isSelected, 
-                    $isSelected ? $selected->reszt_akar_venni : null, 
-                    $isSelected ? $selected->reszt_vett : null, 
-                    $isSelected ? $selected->mikor : null,
-                    $selected
-                );
+                
+                $intermediates[] = new Service($option, $selected);
             }
         }
         

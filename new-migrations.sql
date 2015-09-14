@@ -88,7 +88,35 @@ ADD CONSTRAINT `cim_varos_cim_megye_id_fk`
 
 ------------------------------------------------------------------
 
+# Esetnapló tábla.
 
+CREATE TABLE `ugyfel_attr_esetnaplo` (
+  `ugyfel_attr_esetnaplo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ugyfel_id` int(10) unsigned NOT NULL,
+  `tipus` tinyint(3) unsigned DEFAULT NULL,
+  `nev` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `datum` date DEFAULT NULL,
+  `megjegyzes` text COLLATE utf8_hungarian_ci NOT NULL,
+  `hova` varchar(120) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `megjelent` tinyint(3) unsigned DEFAULT NULL,
+  `mikor` date DEFAULT NULL,
+  `letrehozo_id` int(10) unsigned NOT NULL,
+  `modosito_id` int(10) unsigned NOT NULL,
+  `letrehozas_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modositas_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modositas_szama` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `ugyfel_attr_esetnaplo_aktiv` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `ugyfel_attr_esetnaplo_torolt` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ugyfel_attr_esetnaplo_id`),
+  KEY `ugyfel_id_INDEX` (`ugyfel_id`),
+  KEY `letrehozo_id_INDEX` (`letrehozo_id`),
+  KEY `modosito_id_INDEX` (`modosito_id`),
+  KEY `record_status_INDEX` (`ugyfel_attr_esetnaplo_aktiv`,`ugyfel_attr_esetnaplo_torolt`),
+  CONSTRAINT `ugyfel_attr_esetnaplo_letrehozo_id_fk` FOREIGN KEY (`letrehozo_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `ugyfel_attr_esetnaplo_modosito_id_fk` FOREIGN KEY (`modosito_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `ugyfel_attr_esetnaplo_ugyfel_id_fk` FOREIGN KEY (`ugyfel_id`) REFERENCES `ugyfel` (`ugyfel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci COMMENT='Ügyfélhez tartozó kapcsolattartási adatok.';
 
+------------------------------------------------------------------
 
 

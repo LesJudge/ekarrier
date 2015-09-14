@@ -421,32 +421,6 @@ label.uw-ugyfelkezelo-label {
   margin: 0 auto;
   width: 94%;
 }
-.uw-ugyfelkezelo-client-contact-table tbody tr td:nth-child(1) {
-  font-size: 10px;
-  width: 35% !important;
-}
-.uw-ugyfelkezelo-client-contact-table tbody tr td:nth-child(1) * {
-  margin: 0px;
-  padding: 0px;
-}
-.uw-ugyfelkezelo-client-contact-table tbody tr td:nth-child(2) {
-  width: 12%;
-}
-.uw-ugyfelkezelo-client-contact-table tbody tr td:nth-child(4) {
-  width: 18%;
-}
-.uw-ugyfelkezelo-client-contact-table tbody tr td:last-child button {
-  border: 1px solid;
-  border-color: #999999;
-  height: 32px;
-  width: 32px;
-}
-.uw-ugyfelkezelo-client-contact-table tfoot tr td button {
-  border: 1px solid !important;
-  border-color: #999999 !important;
-  height: 32px !important;
-  width: 100px !important;
-}
 .uw-ugyfelkezelo-service-option {
   padding-bottom: 10px;
   padding-top: 10px;

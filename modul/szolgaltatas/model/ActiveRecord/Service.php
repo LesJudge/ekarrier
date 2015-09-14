@@ -23,6 +23,16 @@ use Uniweb\Library\Utilities\ActiveRecord\Assign\String as AssignString;
 class Service extends Behaviorable
 {
     /**
+     * Ügyfél szolgáltatás típus.
+     */
+    const TYPE_CLIENT = 'ugyfel';
+    
+    /**
+     * Cég szolgáltatás típus.
+     */
+    const TYPE_COMPANY = 'ceg';
+    
+    /**
      * Tábla neve.
      * @var string
      */

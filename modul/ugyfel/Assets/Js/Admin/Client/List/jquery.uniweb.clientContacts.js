@@ -12,14 +12,18 @@
             readUrl: "",
             createUrl: ""
         },
+        
         _addMessage: function(selector, message) {
             $(selector).html("<p>" + message + "</p>").show();
         },
+        
         /**
          * Plugin inicializálása.
          */
         _init: function() {
-            var self = this;
+            var self = this, 
+                $formContainer = $('#contact-form-container');
+        
             $(this.options.selectors.createBtn).button({
                 create: function(ui, event) {
                     $(ui.target).click(function() {
@@ -30,6 +34,7 @@
                     primary: "ui-icon-plusthick"
                 }
             });
+            
             // Létrehozás dialógusablak inicializálása.
             $(this.options.selectors.dialogCreate).dialog($.extend({}, this.options.dialogCreate, {
                 buttons: {
@@ -42,22 +47,30 @@
                 }
             }));
             
-            $("#contact-is-mediation").change(function() {
-                if (this.value == 1) {
-                    $("#contact-mediation-data").show();
+            $('#contact-type-select').change(function() {
+                if (this.value != '') {
+                    var $form = $('#contact-form-' + this.value);
+
+                    if ($form.length > 0) {
+                        $formContainer.html($form.html());
+                    } else {
+                        console.log('nincs form!');
+                    }
                 } else {
-                    $("#contact-mediation-data").hide();
+                    $formContainer.html('');
                 }
             });
             
-        var currentYear = new Date().getUTCFullYear(), // Aktuális év.
-            datepickerSettings = { // Datepicker alapértelmezett beállítása a formon.
-                yearRange: (currentYear - 100) + ":" + currentYear
-            };
-            $("#contact-datum, #contact-mediation-mikor").datepicker(datepickerSettings);
+            var currentYear = new Date().getUTCFullYear(), // Aktuális év.
+                datepickerSettings = { // Datepicker alapértelmezett beállítása a formon.
+                    yearRange: (currentYear - 100) + ":" + currentYear
+                };
+                $("#contact-datum, #contact-mediation-mikor").datepicker(datepickerSettings);
         },
+        
         _create: function() {
             var self = this;
+            
             // Esetnapló bejegyzés mentése.
             self.element.bind("create", function() {
                 $.ajax({
@@ -110,6 +123,7 @@
                     type: "POST"
                 });
             });
+            
             self.element.bind("afterCreate", function(e, data) {
                 if (data.result === true) {
                     self._addMessage(self.options.selectors.feedbackSuccess, data.message);
@@ -121,33 +135,43 @@
                     self.element.trigger("refresh");
                 }
             });
+            
             // Refresh esemény.
-            self.element.bind("refresh", function(e) {
+            self.element.bind('refresh', function(e) {
                 var $table = $(self.options.selectors.table),
-                    $tbody = $table.find("tbody");
+                    $tbody = $table.find('tbody');
+                    
                 $tbody.html(null);
+                
                 $.ajax({
-                    dataType: "json",
+                    dataType: 'json',
                     error: function (xhr) {
-                        var message = xhr.responseText && xhr.responseText.length > 0 ? xhr.responseText : "Végzetes hiba történt!";
+                        var message = xhr.responseText && xhr.responseText.length > 0 ? xhr.responseText : 'Végzetes hiba történt!';
                         $table.hide();
+                    },
+                    beforeSend: function() {
+                        $table.hide();
+                    },
+                    
+                    complete: function() {
+                        $('#client-contact-loading').fadeOut(500, function() {
+                            $table.fadeIn(1000);
+                        });
                     },
                     success: function(data) {
                         if (data.length > 0) {
                             $.each(data, function(index, contact) {
-                                var html = "<tr>";
-                                html += "<td>" + contact.megjegyzes + "</td>";
-                                html += "<td>" + contact.datum + "</td>";
-                                html += "<td>" + contact.nev + "</td>";
-                                html += "<td>" + (contact.kozvetites ? "Igen": "Nem") + "</td>";
-                                html += "<td>" + (contact.kozvetites ? contact.hova: "-") + "</td>";
-                                html += "<td>" + (contact.kozvetites ? (contact.hova ? "Igen" : "Nem") : "-") + "</td>";
-                                html += "<td>" + (contact.kozvetites ? (contact.mikor ? contact.mikor : "") : "-") + "</td>";
-                                html += "</tr>";
+                                var html = '<tr>';
+                                html += '<td>' + contact.tipus + '</td>';
+                                html += '<td>' + contact.nev + '</td>';
+                                html += '<td>' + contact.datum + '</td>';
+                                html += '<td><button type="button"></button></td>';
+                                html += '<td><button type="button"></button></td>';
+                                html += '</tr>';
                                 $(html).appendTo($tbody);
                             });
                         } else {
-                            $tbody.append("<tr><td colspan=\"7\">Nincs megjeleníthető bejegyzés!</td></tr>");
+                            $tbody.append('<tr><td colspan="5">Nincs megjeleníthető bejegyzés!</td></tr>');
                         }
                         
                         if (data.result === true) {
@@ -157,13 +181,13 @@
                                     self._addFile(file);
                                 });
                             } else {
-                                $tbody.append("<tr><td colspan=\"7\">Nincs megjeleníthető bejegyzés!</td></tr>");
+                                $tbody.append('<tr><td colspan="5">Nincs megjeleníthető bejegyzés!</td></tr>');
                             }
                         }
-                        $table.show();
+                        //$table.show();
                     },
                     url: self.options.readUrl,
-                    type: "GET"
+                    type: 'GET'
                 });
             });
         }

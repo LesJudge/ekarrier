@@ -2,126 +2,145 @@
 namespace Uniweb\Module\Ugyfel\Library\Form\Edit\IntermediateObjects;
 
 use Uniweb\Library\Form\Interfaces\IntermediateObjectInterface;
+use Uniweb\Module\Szolgaltatas\Model\ActiveRecord\Service as ServiceModel;
 use Uniweb\Module\Ugyfel\Model\ActiveRecord\ServiceInterested;
 
+/**
+ * Description of Service
+ *
+ * @author Balázs Máté Petró <balazs@uniweb.hu>
+ */
 class Service implements IntermediateObjectInterface
 {
     /**
-     * Rekord azonosító.
-     * 
-     * @var int
+     * @var ServiceModel
      */
-    private $recordId;
+    private $service;
     
     /**
-     * Szolgáltatás azonosító.
-     * 
-     * @var int
+     * @var ServiceInterested|null
      */
-    private $id;
+    private $selected;
+    
+    public function __construct(ServiceModel $service, ServiceInterested $selected = null)
+    {
+        $this->service = $service;
+        $this->selected = $selected;
+    }
     
     /**
-     * Szolgáltatás neve.
+     * Visszatér az érdekelt szolgáltatás azonosítójával.
      * 
-     * @var string
+     * @return int
      */
-    private $name;
+    public function getRecordId()
+    {
+        if ($this->isSelected()) {
+            return $this->selected->ugyfel_attr_szolgaltatas_erdekelt_id;
+        }
+        
+        return null;
+    }
     
     /**
-     * Kiválasztott-e az ügyfél.
+     * Visszatér a szolgáltatás azonosítójával.
      * 
-     * @var boolean
+     * @return int
      */
-    private $checked;
+    public function getId()
+    {
+        return $this->service->szolgaltatas_id;
+    }
+
+    /**
+     * Visszatér a szolgáltatás nevével.
+     * 
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->service->nev;
+    }
     
+    /**
+     * Kiválasztotta-e a szolgáltatást.
+     * 
+     * @return bool
+     */
+    public function getChecked()
+    {
+        return $this->isSelected();
+    }
+
     /**
      * Részt akar-e venni a szolgáltatáson.
      * 
-     * @var boolean
+     * @return int|null
      */
-    private $wantToParticipate;
-    
+    public function getWantToParticipate()
+    {
+        if ($this->isSelected()) {
+            return $this->selected->reszt_akar_venni;
+        }
+        
+        return null;
+    }
+
     /**
-     * Részt vett a szolgáltatáson.
+     * Részt vett-e a szolgáltatáson.
      * 
-     * @var boolean
+     * @return int|null
      */
-    private $attended;
+    public function getAttended()
+    {
+        if ($this->isSelected()) {
+            return $this->selected->reszt_vett;
+        }
+        
+        return null;
+    }
     
     /**
      * Mikor vett részt a szolgáltatáson.
      * 
-     * @var mixed
-     */
-    private $when;
-    
-    /**
-     * Ügyfél által érdekelt szolgáltatás objektum.
-     * 
-     * @var ServiceInterested
-     */
-    private $object;
-    
-    public function __construct(
-        $recordId, 
-        $id, 
-        $name, 
-        $checked, 
-        $wantToParticipate, 
-        $attended, 
-        $when, 
-        ServiceInterested $object
-    ) {
-        $this->recordId = $recordId;
-        $this->id = $id;
-        $this->name = $name;
-        $this->checked = $checked;
-        $this->wantToParticipate = $wantToParticipate;
-        $this->attended = $attended;
-        $this->when = $when;
-        $this->object = $object;
-    }
-    
-    public function getRecordId()
-    {
-        return $this->recordId;
-    }
-    
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-    
-    public function getChecked()
-    {
-        return $this->checked;
-    }
-
-    public function getWantToParticipate()
-    {
-        return $this->wantToParticipate;
-    }
-
-    public function getAttended()
-    {
-        return $this->attended;
-    }
-    /**
-     * 
-     * @return mixed
+     * @return string|null
      */
     public function getWhen()
     {
-        return $this->when;
+        if ($this->isSelected()) {
+            return $this->selected->mikor;
+        }
+        
+        return null;
     }
     
-    public function getObject()
+    /**
+     * Visszatér a szolgáltatás objektummal.
+     * 
+     * @return ServiceModel
+     */
+    public function getService()
     {
-        return $this->object;
+        return $this->service;
+    }
+    
+    /**
+     * Visszatér a kiválasztott szolgáltatás objektummal.
+     * 
+     * @return ServiceInterested
+     */
+    public function getSelected()
+    {
+        return $this->selected;
+    }
+    
+    /**
+     * Ki van-e választva a szolgáltatás.
+     * 
+     * @return bool
+     */
+    private function isSelected()
+    {
+        return !is_null($this->selected);
     }
 }

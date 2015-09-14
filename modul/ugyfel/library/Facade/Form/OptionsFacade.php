@@ -30,7 +30,6 @@ class OptionsFacade implements AssignableInterface
             'beallitasClientStatus' => '\\Uniweb\\Module\\Beallitas\\Model\\ActiveRecord\\ClientStatus',
             'nyelvtudasLanguages' => '\\Uniweb\\Module\\Nyelvtudas\\Model\\ActiveRecord\\Language',
             'nyelvtudasLevels' => '\\Uniweb\\Module\\Nyelvtudas\\Model\\ActiveRecord\\Level',
-            'szolgaltatasServices' => '\\Uniweb\\Module\\Szolgaltatas\\Model\\ActiveRecord\\Service',
             'ugyfelAddressTypes' => '\\Uniweb\\Module\\Beallitas\\Model\\ActiveRecord\\AddressType',
             'ugyfelEmploymentStatus' => '\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\EmploymentStatus',
             'ugyfelJobCategory' => '\\Uniweb\\Module\\Ugyfel\\Model\\ActiveRecord\\JobCategory'

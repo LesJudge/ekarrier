@@ -59,7 +59,10 @@ fjs.parentNode.insertBefore(js, fjs);
 					{/if}
 				</div>
 				<div class="col-lg-6 site_logo_cont">
-					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" />{$logoIndicator}</a>	
+					<div class="site_logo-inner">
+					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" /></a>	
+					</div>
+					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" />{$logoIndicator}</a>
 				</div>
 				<div class="col-lg-8">
 					{if $LogoutForm}								

@@ -335,6 +335,7 @@ $(function() {
   
   $("A[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'facebook',slideshow:6000, default_width: 700, autoplay_slideshow: false, social_tools:false,deeplinking: false, show_title:false, allow_resize: true });
   
+  $("[data-toggle='tooltip'][title]").tooltip();
   
     //$labelInField=new labelInFieldFn();				
     //$labelInField.start($('.labelInField'), $('.labelInFieldPwd'));	

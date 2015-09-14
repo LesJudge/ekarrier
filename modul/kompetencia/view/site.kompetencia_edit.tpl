@@ -154,7 +154,7 @@ $(document).ready(function(){
 		setTimeout(function(){ 
 			var o_1 = ".jobFindList-cont-1";
 			var o_4 = ".jobFindList-cont-4";	
-				
+			$(o_1+", "+o_4).css("min-height","10");		
 			if ( $(o_1).height() >= $(o_4).height() ) {
 				$(o_1+", "+o_4).css("min-height", parseInt($(o_1).height()+38.5)+"px"); 
 			}else {			

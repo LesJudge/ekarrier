@@ -29,7 +29,6 @@
 <br />
 {$competence.kompetencia_tartalom}
 
-
 <div class="btn-nav-row">
 	<div class="btn btn-primary btn-md" onClick="$('#EditorCont').toggle();">Írj hozzá!</div>
 	<div id="EditorCont" style="display:none">

@@ -105,6 +105,7 @@ $(function() {
 		renderBoxHeight("connectedSortable");
 	},500);
 	*/
+		
     $( "#sortable1, #sortable2" ).sortable({
         connectWith: ".connectedSortable",
         cursor: "move"
@@ -128,6 +129,10 @@ $(function() {
     $( "#sortable2" ).on( "sortupdate", function( event, ui ) {
         calcOrder();
     });
+	
+	$(".sortable1 .jobFindList-cont .connectedSortable, .sortable2 .jobFindList-cont .connectedSortable").css("height", $(".sortable1 .jobFindList-cont .connectedSortable").height()+"px");
+	
+
 });
 
 var rulesArr=[];                                    

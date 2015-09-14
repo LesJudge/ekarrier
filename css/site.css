@@ -840,7 +840,7 @@ text-align:center;  font-weight:bold; color:#fff; text-indent:4px; font-size:2em
 
 
 
-.jobFindList-cont {  position:relative; z-index:10; background:#fff; padding:1em 1.5em 1.5em 1.5em; margin:0 0 2em 0;  
+.jobFindList-cont {  position:relative; z-index:10; background:#fff; padding:1em 1.5em 1.5em 1.5em; margin:0 0 2em 0;
 	-webkit-border-radius: 0 0 0.5em 0.5em;
 	-moz-border-radius: 0 0 0.5em 0.5em;
 	border-radius: 0 0 0.5em 0.5em;
@@ -1065,6 +1065,7 @@ font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size:2em; line-height:
 .page-select-link { position:relative; display:block; width:41px; height:37px; margin-top:2.2em; z-index:10; background: url(../images/site/page-select-bg.png) no-repeat left top; text-indent:-9999em;}
 .akadalymentes-logo { margin:2.4em auto 0 auto; }
 
+.disabledItemCircle[disabled='disabled'], .disabledItemGroup[disabled='disabled'] { display: none !important; }
 
 
 /* SEARCH 
@@ -1613,6 +1614,18 @@ position:relative; z-index:10; display:block; float:none; margin: 0.4em 0em; pad
 	-pie-background: linear-gradient(#f5f5f5, #d5d5d5);	
 	behavior: url(../css/behavior/PIE.htc); 
  }
+.komtetenciaSzerkesztes .sortedUL LI:nth-child(2n+1) { 
+	background:#ff9456; color:#fff;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ff9456), to(#ff6208));
+	background: -webkit-linear-gradient(#ff9456, #ff6208);
+	background: -moz-linear-gradient(#ff9456, #ff6208);
+	background: -ms-linear-gradient(#ff9456, #ff6208);
+	background: -o-linear-gradient(#ff9456, #ff6208);
+	background: linear-gradient(#ff9456, #ff6208);
+	-pie-background: linear-gradient(#ff9456, #ff6208);
+} 
+.komtetenciaSzerkesztes .sortedUL LI:nth-child(2n+1) * { color:#fff;}
+
 .sortedUL LI .icomoon, .myComp-bg { position:relative; display:inline-block; background:#6d6d6d; color:#fff; font-size:0.8em; padding:0.6em 0.1em; margin:0em 1em; height:22px; text-indent:0.5em; cursor:pointer;  
 -webkit-border-radius: 50%;
 -moz-border-radius: 50%;

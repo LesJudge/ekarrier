@@ -478,6 +478,24 @@ H3 .badge 				{ background:#6e6e6e; font-size:1em; vertical-align:inherit; paddi
 .site_center 			{ position:relative; margin:0px auto; width:960px;  }
 .site_logo 				{ position:relative; z-index:22; width:170px; margin:0 auto;  }
 .site_logo_cont		{ text-align:center;}
+.site_logo-inner		{ position:relative; width:170px; }
+.site_logo-inner .site-breadcrumbs { display:block; position:absolute; left:20; top:20; z-index:100; font-size:1.5em; padding:0.4em; background:#fff; cursor:pointer; 
+-webkit-border-radius: 50%;
+-moz-border-radius:50%;
+border-radius:50%; 
+-webkit-box-shadow: #999 0px 2px 5px 0px;
+-moz-box-shadow:  #999 0px 2px 5px 0px;
+box-shadow: #999 0px 2px 5px 0px;  
+behavior: url(../css/behavior/PIE.htc);  
+}
+.site_logo-inner .site-breadcrumbs:hover { background:#555; color:#fff; }
+.site_logo-inner .site-breadcrumbs-1 { left:71px; top:-9px;  }
+.site_logo-inner .site-breadcrumbs-2 { left:141px; top:28px;  }
+.site_logo-inner .site-breadcrumbs-3 { left:141px; top:116px;  }
+.site_logo-inner .site-breadcrumbs-4 { left:71px; top:157px;  }
+.site_logo-inner .site-breadcrumbs-5 { left:-6px; top:116px;  }
+.site_logo-inner .site-breadcrumbs-0 { left:-6px; top:28px;  }
+
 .headSlogen				{ position:absolute; left:245px; top:20px; z-index:21; display:block; width:234px; height:59px; overflow:hidden; background:url(../images/site/slogen.png) no-repeat left top; }	
 .designedText			{ cursor: pointer;  font-size: 1.2em; font-weight: normal;line-height: 100%; text-transform:uppercase;  
 				   		   margin: 0; padding: 3px 10px; color: #fff; text-shadow: 1px 1px 1px rgba(000, 000, 000, 0.5); }	

@@ -137,7 +137,7 @@ $(function() {
 		setTimeout(function(){ 
 			var o_1 = ".sortable1 .jobFindList-cont .connectedSortable";
 			var o_2 = ".sortable2 .jobFindList-cont .connectedSortable";	
-				
+			$(o_1+", "+o_2).css("min-height","10");	
 			if ( $(o_1).height() >= $(o_2).height() ) {
 				$(o_1+", "+o_2).css("min-height", parseInt($(o_1).height()+38.5)+"px"); 
 			}else {			

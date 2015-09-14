@@ -146,13 +146,15 @@ $(document).ready(function(){
 						{if not empty($myComps)}
 							{foreach from=$myComps item=comp} 
 								<div class="row box-block-1">
-									<div class="col-lg-20">
+									<div class="col-lg-16">
 										<div class="designedText-1">{$comp.kompetencia_nev}</div>
 									</div>
 									<div class="col-lg-4">
 										<a href="{$DOMAIN}kompetenciak/{$comp.kompetencia_link}" class="btn btn-primary btn-sm pull-right">Megtekintés</a>
-										<div class="clear"></div>			
-										<span class="itemActive-{if $comp.ugyfel_attr_kompetencia_tesztbol=="1"}1{else}0{/if}"><i class="itemActive-i"></i>{if $comp.ugyfel_attr_kompetencia_tesztbol=="1"}Tesztből{else}Programból{/if}</span>															
+										<div class="clear"></div>		
+									</div>
+									<div class="col-lg-4">
+										<span class="itemActive-{if $comp.ugyfel_attr_kompetencia_tesztbol=="1"}1{else}0{/if}"><i class="itemActive-i"></i>{if $comp.ugyfel_attr_kompetencia_tesztbol=="1"}Tesztből{else}Programból{/if}</span>										
 									</div>
 									<div class="clear"></div>		
 								</div>	

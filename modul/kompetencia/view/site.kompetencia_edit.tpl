@@ -122,10 +122,13 @@ $(document).ready(function(){
     });
 
    
-    
+    renderDraggable();
     $( ".sortable1, .sortable2" ).sortable({
         connectWith: ".sortedUL",
-        cursor: "move"
+        cursor: "move",
+		change: function( event, ui ) {
+			renderDraggable();
+		}
     });
     
     $( " .sortable2" ).sortable({
@@ -147,7 +150,18 @@ $(document).ready(function(){
         $("#deleteCompSbmt").trigger("click");
     });
 
-	setTimeout(function(){ $(".jobFindList-cont-1, .jobFindList-cont-4").css("height", parseInt($(".jobFindList-cont-1").height()+38.5)+"px"); },300);
+	function renderDraggable(){
+		setTimeout(function(){ 
+			var o_1 = ".jobFindList-cont-1";
+			var o_4 = ".jobFindList-cont-4";	
+				
+			if ( $(o_1).height() >= $(o_4).height() ) {
+				$(o_1+", "+o_4).css("min-height", parseInt($(o_1).height()+38.5)+"px"); 
+			}else {			
+				$(o_1+", "+o_4).css("min-height", parseInt($(o_4).height()+38.5)+"px"); 
+			}
+		},300);
+	}
 
 });
 </script>

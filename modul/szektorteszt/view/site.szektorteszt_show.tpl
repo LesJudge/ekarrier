@@ -105,10 +105,13 @@ $(function() {
 		renderBoxHeight("connectedSortable");
 	},500);
 	*/
-		
+	renderDraggable();	
     $( "#sortable1, #sortable2" ).sortable({
         connectWith: ".connectedSortable",
-        cursor: "move"
+        cursor: "move",
+		change: function( event, ui ) {
+			renderDraggable();
+		}
     });
   
     $( "#sortable2" ).on( "sortover", function( event, ui ) {
@@ -129,10 +132,19 @@ $(function() {
     $( "#sortable2" ).on( "sortupdate", function( event, ui ) {
         calcOrder();
     });
-	
-	$(".sortable1 .jobFindList-cont .connectedSortable, .sortable2 .jobFindList-cont .connectedSortable").css("height", $(".sortable1 .jobFindList-cont .connectedSortable").height()+"px");
-	
-
+		
+	 function renderDraggable(){
+		setTimeout(function(){ 
+			var o_1 = ".sortable1 .jobFindList-cont .connectedSortable";
+			var o_2 = ".sortable2 .jobFindList-cont .connectedSortable";	
+				
+			if ( $(o_1).height() >= $(o_2).height() ) {
+				$(o_1+", "+o_2).css("min-height", parseInt($(o_1).height()+38.5)+"px"); 
+			}else {			
+				$(o_1+", "+o_2).css("min-height", parseInt($(o_2).height()+38.5)+"px"); 
+			}
+		},300);
+	}
 });
 
 var rulesArr=[];                                    

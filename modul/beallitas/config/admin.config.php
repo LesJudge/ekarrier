@@ -16,6 +16,7 @@ return array(
         'poziciocommentedit'=>'beallitas/poziciocomment',
         'iparag' => 'beallitas/iparag',
         'iparagedit' => 'beallitas/iparag',
+        'alapemailedit' => 'beallitas/alapemail',
         'alkalmazottiviszony' => 'beallitas/alkalmazottiviszony',
         'alkalmazottiviszonyedit' => 'beallitas/alkalmazottiviszony',
         'elony' => 'beallitas/elony',

@@ -112,7 +112,6 @@ class Szakertovelemenye_Edit_Model extends Admin_Edit_Model
 		$mailer->Send();
                 
             }catch(Exception $e){
-                echo $e->getMessage();
                 throw new Exception_Form_Error("Sikertelen e-mail küldés!");
             }
             

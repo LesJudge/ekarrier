@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    function addNewMunkakor(o){
+    function addNewMunkakor(o,event){
         event.preventDefault();
         var name = $(o).parent().find('#ujnev').val();
         var subcatID = $(o).parent().parent().find('.munkakor_al_id').val();
@@ -19,7 +19,6 @@
             dataType: 'json', 
             contentType:"application/x-www-form-urlencoded; charset=UTF-8",
             success: function(data){
-                console.log(data);
                 if(data['message'] === 'OK'){
                     alert('Sikeres felvitel!');
                     $(o).parent().parent().find('.fakeName').attr('value',data['nev']);
@@ -27,11 +26,11 @@
                     $(o).parent().parent().find('.munkakor_al_id').trigger('change');
                     $(o).parent().hide();
                 }else{
-                    alert(data['message']);
+                    alert("Hiba történt! Próbálja meg később!");
                 }
             }, 
             error: function(){
-                alert('Hiba!');
+                alert('Hiba történt! Próbálja meg később!');
                 return false;
             }
         });
@@ -62,7 +61,7 @@
 				<input id="tkorForm_#index#_munkakor_nev" name="fake" class="job-select-name fakeName" type="text" />
 				<div class="clear"></div>
                                
-                                <div onclick="$(this).next().toggle()" class="btn btn-default btn-sm">Új munkakör</div>
+                                <div onclick="$(this).next().toggle()" class="btn btn-default btn-sm">Új munkakör felvétele</div>
 				<div id="newMkCont" style="display:none">
                                     <input id="ujnev" name="fake" type="text" value="" />  
                                     <div class="clear"></div>

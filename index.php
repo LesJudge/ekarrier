@@ -32,10 +32,10 @@ try {
     //    echo '<pre>', print_r($e->getTrace(), true), '</pre>';
     //    echo $e->getMessage();
     //}
-
     $menu=Rimo::__loadPublic('model','menu','menu');
-    $footerMenu=$menu->loadTree(3, UserLoginOut_Site_Controller::$_rights['jogcsoport_where']);
-    Rimo::$_site_frame->assign('footerMenu',$footerMenu);
+    
+    
+    
     /**
      * @todo Gergő - Kérlek, ellenőrizd, hogy így is jó-e!
      */
@@ -51,6 +51,14 @@ try {
        
     }
     
+    $footer = 3;
+    
+    if(isset($_SESSION['type']) && $_SESSION['type'] == 'ma'){
+        $footer = 60;
+    }
+    
+    $footerMenu=$menu->loadTree($footer, UserLoginOut_Site_Controller::$_rights['jogcsoport_where']);
+    Rimo::$_site_frame->assign('footerMenu',$footerMenu);
     
     //Nem akartam minden modellbe berakni a vizsgálatot, ezért van ez itt
     //Itt vannak felsorolva, hogy milyen modulok érhetők el login nélkül
@@ -168,6 +176,16 @@ if(UserLoginOut_Site_Controller::$_id > 0){
 // Változók átadása a site frame-nek, site renderelése.
 // Strict standars error.
 //Rimo::$_site_frame->assignByRef('lang', $translate->translate(9999));
+
+//if(isset( Rimo::$_config->logoIndacators[$_REQUEST['m']] )){
+  //  $logoIndicator = Rimo::$_config->logoIndacators[$_REQUEST['m']][$_REQUEST['al']];
+    
+    $value = (int)Rimo::$_config->logoIndacators[$_REQUEST['m']][$_REQUEST['al']] > 0 ? (int)Rimo::$_config->logoIndacators[$_REQUEST['m']][$_REQUEST['al']] : 0;
+    Rimo::$_site_frame->assign('logoIndicator', $value);
+    
+//}
+
+
 Rimo::$_site_frame->assign('lang', $translate->translate(9999));
 Rimo::$_site_frame->assign('FBLike',Rimo::$_config->FB_LIKEBOX);
 

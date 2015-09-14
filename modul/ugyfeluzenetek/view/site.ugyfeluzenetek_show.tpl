@@ -50,7 +50,7 @@ $(function() { {$FormScript}
 		</div>
 	{/foreach}
 {else}
-<div class="alert alert-info">Még senki nem írt hozzá!</div>
+<!--div class="alert alert-info">Nincs üzenet!</div-->
 {/if}
 
 

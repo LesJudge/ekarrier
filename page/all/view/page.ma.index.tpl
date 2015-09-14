@@ -76,7 +76,7 @@ fjs.parentNode.insertBefore(js, fjs);
 							<div id="popUploginForm" title="Bejelentkezés" style="display:none;">
 								{$LoginForm}
 							</div>					
-							<a class="btn btn-default" href="regisztracio/" role="button" >
+							<a class="btn btn-default" href="ceg/regisztracio/" role="button" >
 							Regisztráció
 							</a>
 						</div>	

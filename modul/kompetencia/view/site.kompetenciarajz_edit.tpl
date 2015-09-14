@@ -57,7 +57,7 @@
 				<button id='updateCompRajzSbmt' name="{$BtnUpdateCompRajz}" type="submit" class="btn btn-sm btn-default">Mentés</button>
 				<button id='saveAsCompRajzSbmt' name="{$BtnSaveAsCompRajz}" type="submit" class="btn btn-sm btn-default">Mentés másként</button>
 				<button id='deleteCompRajzSbmt' name="{$BtnDeleteCompRajz}" type="submit" class="btn btn-sm btn-default">Kompetenciarajz törlése</button>
-				<button id='requestExpertOpinionSbmt' name="{$BtnRequestExpertOpinion}" type="submit" class="btn btn-sm btn-default">Szakértő véleménye!</button>
+				<button id='requestExpertOpinionSbmt' name="{$BtnRequestExpertOpinion}" type="submit" class="btn btn-sm btn-default">Szakértői vélemény kérése!</button>
 				<a class="btn btn-sm btn-default" href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$compRajzID}/">Megtekintés</a>
 				<a class="btn btn-sm btn-default" href="{$DOMAIN}kompetenciak/kompetenciarajz-nezet/{$compRajzID}/?forceforeign=1">Ezt látja rólam a munkáltató</a>
 				<a class="btn btn-sm btn-default" href="{$DOMAIN}tevekenysegikor-kereso/">Hasonló tevékenységi körbe postolók rajzának megtekintése</a>

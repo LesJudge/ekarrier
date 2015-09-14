@@ -63,7 +63,7 @@ class UserReg_Site_Controller extends AttachableUserController
         $this->_view->assign('kep_max_size', Create::byte_converter($this->_params['File']->_verify['maxsize']));
         $tartalom_show_model = $this->__loadPublicModel('tartalom', '_Show');
         if (!$this->_model->modifyID) {
-            $data = $tartalom_show_model->getTartalomFromID(4);
+            $data = $tartalom_show_model->getTartalomByID(4);
             $this->_view->assign('altalanos_szerzodesi_feltetelek', $data[0]['tartalom_tartalom']);
             $data = $tartalom_show_model->getTartalomFromID(5);
             $this->_view->assign('regcontent',$tartalom_show_model->getTartalomFromID(14));

@@ -73,7 +73,9 @@ class CegEdit_Site_Controller extends AttachableUserController
         ));
         
         $tartalom_show_model = $this->__loadPublicModel('tartalom', '_Show');
-        //$this->_view->assign('regcontent',$tartalom_show_model->getTartalomFromID(21));
+        $data = $tartalom_show_model->getTartalomByID(37);
+        $this->_view->assign('altalanos_szerzodesi_feltetelek', $data[0]['tartalom_tartalom']);
+        //$this->_view->assign('regcontent',$tartalom_show_model->getTartalomByID(21));
         Rimo::$_site_frame->assign('PageName', $seo['seo_nev']);
         Rimo::$_site_frame->assign('site_title', $seo['seo_nev']);
         Rimo::$_site_frame->assign('site_description', $seo['seo_leiras']);

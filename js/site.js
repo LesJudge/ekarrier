@@ -335,6 +335,7 @@ $(function() {
   
   $("A[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'facebook',slideshow:6000, default_width: 700, autoplay_slideshow: false, social_tools:false,deeplinking: false, show_title:false, allow_resize: true });
   
+  $("[data-toggle='tooltip'][title]").tooltip();
   
     //$labelInField=new labelInFieldFn();				
     //$labelInField.start($('.labelInField'), $('.labelInFieldPwd'));	
@@ -363,6 +364,9 @@ $(function() {
 		return false;
 	});
 	
+	
+	$('.compQuestion-cont').css('left', ( $(window).width()-$('.site_center').width())/2-27+'px' );
+	
   
     $("form input").keypress(function (e) {
 		if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
@@ -373,3 +377,7 @@ $(function() {
 		}
 	});
 } );
+
+$(window).resize(function(){
+	$('.compQuestion-cont').css('left', ( $(window).width()-$('.site_center').width())/2-27+'px' );
+});

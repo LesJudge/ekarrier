@@ -46,6 +46,22 @@ $(function() { {$FormScript}
 <br />
 {$pozicio.pozicio_leiras}
 
+<br />
+<div class="folderItem-controls">				
+	 {if not empty($links)}
+		{foreach from=$links item=link}    
+			<form name="{$FormName}" method="post" action="">
+				<input type="hidden" id="delLink" name="delLink" value="{$link.link}"/>
+				<a href="{$link.link}" target="_blank" class="btn btn-default btn-md btn-block" style="text-align:left;"><i class="icomoon icomoon-play3"></i> {$link.nev}</a>							
+			</form>
+			<br/>
+		{/foreach}				
+	{else}
+		<div class="well">Nincs még link hozzáadva!</div>
+	{/if}			
+</div>	
+
+
 <div class="btn-nav-row">
 	<div class="btn btn-primary btn-md" onClick="$('#EditorCont').toggle();">Írj hozzá!</div>
 	<div id="EditorCont" style="display:none">

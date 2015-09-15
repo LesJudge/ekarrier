@@ -32,10 +32,12 @@
 <br/>
 
 <div id="allashirdetes-cols">
+	<br />
+	
     <div class="allashirdetes-col">
         {if not empty($elvarasok)}
         <p class="allashirdetes-label">Elvárások:</p>
-        <ul class="allashirdetes-ul">
+        <ul class="allashirdetes-ul" style="border-top:1px solid #ddd;">
             {foreach from=$elvarasok item=elvaras}
             <li>{$elvaras.elvaras}</li>
             {/foreach}
@@ -94,12 +96,13 @@
             <p class="allashirdetes-label">Pozíció:</p>
             <p class="allashirdetes-content">{$pj.pozicio_nev}</p>
         {/if}
+		<div class="clear"></div>
+		
     </div>
     <div class="allashirdetes-col">
         {if not empty($pj.cim_varos_nev) && not empty($pj.cim_megye_nev)}
             <p class="allashirdetes-label">Munkavégzés helye:</p>
-            <p class="allashirdetes-content">{$pj.cim_megye_nev}</p>
-            <p class="allashirdetes-content">{$pj.cim_varos_nev}</p>
+            <p class="allashirdetes-content"  style="border-top:1px solid #ddd;">{$pj.cim_megye_nev}, {$pj.cim_varos_nev}</p>           
         {/if}
         {if not empty($pj.jelentkezes_modja)}
             <p class="allashirdetes-label">Jelentkezés módja:</p>
@@ -129,8 +132,10 @@
             <p class="allashirdetes-label">Hirdetés feladásának dátuma:</p>
             <p class="allashirdetes-content">{$pj.letrehozas_timestamp}</p>
         {/if}
-        
+        <div class="clear"></div>
     </div>
+	
+	<br />
     <div class="clear"></div>
 </div>
 <!--div>{$pj.elvarasok}</div-->

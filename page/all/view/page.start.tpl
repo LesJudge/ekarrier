@@ -57,7 +57,15 @@
 					{/if}
 				</div>
 				<div class="col-lg-6 site_logo_cont">
-					<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="" class="site_logo" />{$logoIndicator}</a>	
+					<div class="site_logo-inner">
+						<a href="{$DOMAIN}"><img src="images/site/site_logo_2.png" alt="{$logoIndicator}" class="site_logo"  /></a>					
+						{if $logoIndicator eq '1'}	<i class="icomoon icomoon-location site-breadcrumbs site-breadcrumbs-1" data-toggle="tooltip" data-placement="bottom" title="{$logoIndicatorText}"></i>
+						{elseif $logoIndicator eq '2'}<i class="icomoon icomoon-location site-breadcrumbs site-breadcrumbs-2" data-toggle="tooltip" data-placement="bottom" title="{$logoIndicatorText}"></i>
+						{elseif $logoIndicator eq '3'}<i class="icomoon icomoon-location site-breadcrumbs site-breadcrumbs-3" data-toggle="tooltip" data-placement="bottom" title="{$logoIndicatorText}"></i>
+						{elseif $logoIndicator eq '4'}<i class="icomoon icomoon-location site-breadcrumbs site-breadcrumbs-4" data-toggle="tooltip" data-placement="bottom" title="{$logoIndicatorText}"></i>
+						{elseif $logoIndicator eq '5'}<i class="icomoon icomoon-location site-breadcrumbs site-breadcrumbs-5" data-toggle="tooltip" data-placement="bottom" title="{$logoIndicatorText}"></i>
+						{elseif $logoIndicator eq '6'}<i class="icomoon icomoon-location site-breadcrumbs site-breadcrumbs-6" data-toggle="tooltip" data-placement="bottom" title="{$logoIndicatorText}"></i>{/if}
+					</div>				
 				</div>
 				<div class="col-lg-8">					
 					{if $LogoutForm}								

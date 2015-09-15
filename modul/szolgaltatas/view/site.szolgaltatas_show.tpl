@@ -84,8 +84,7 @@
 		 
         {if $loggedIn === '1'}
             {if $loggedInAs == 'company'}
-                <form name="form_{$service.ID}" action="" method="post">
-                    <input type="hidden" value="{$service.ID}" name="serviceID">
+               
                        
 					   <div class="row">
 							<div class="col-lg-4"></div>
@@ -98,6 +97,9 @@
 						<div class="modal fade" id="mentettKereseseim-content" tabindex="-1" role="dialog" aria-labelledby="popUpLoginForm" aria-hidden="true">
 							<div class="modal-dialog default-modal-dialog">
 								<div class="modal-content">
+								 <form name="form_{$service.ID}" action="" method="post">
+                    				<input type="hidden" value="{$service.ID}" name="serviceID">
+								
 									<div class="modal-header">
 									  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			
 									  <h4>Mappáim</h4>						 
@@ -130,7 +132,8 @@
 												<button type="submit" name="{$BtnOrderService}" class="btn btn-primary btn-md">Megrendelem a szolgáltatást</button>
 											{/if} 
 										</div>
-									</div>										
+									</div>	
+								</form>										
 								</div>
 							</div>
 						</div>
@@ -138,6 +141,8 @@
 						<div class="modal fade" id="mentettMappaim-content" tabindex="-1" role="dialog" aria-labelledby="popUpLoginForm" aria-hidden="true">
 							<div class="modal-dialog default-modal-dialog">
 								<div class="modal-content">
+								 <form name="form_{$service.ID}" action="" method="post">
+                   				 <input type="hidden" value="{$service.ID}" name="serviceID">	
 									<div class="modal-header">
 									  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			
 									  <h4>Mappáim</h4>						 
@@ -170,11 +175,12 @@
 												<button type="submit" name="{$BtnOrderService}" class="btn btn-primary btn-md">Megrendelem a szolgáltatást</button>
 											{/if} 
 										</div>	
-									</div>										
+									</div>	
+								</form>										
 								</div>
 							</div>
 						</div>                    
-                </form>
+                
              {/if}
              {if $loggedInAs == 'client'}
                 <form name="form_{$service.ID}" action="" method="post">

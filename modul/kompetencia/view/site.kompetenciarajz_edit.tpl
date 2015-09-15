@@ -154,12 +154,13 @@ jQuery.each($(".tinymce"), function() {
         var doc = ed.getDoc();
 
         tinymce.dom.Event.add(doc, 'focusout', function(e) {
-           $("#questionQuestion").css( { 'top':parseInt($("#"+$(ed).attr('id')+"_parent").offset().top)+"px","display":"block" } );		
 			
 			var scrollTop     = $(window).scrollTop(),
 			elementOffset = $(".compQuestion-cont").offset().top,
 			distance      = (elementOffset - scrollTop);
-			//console.log(distance);			
+			//console.log(distance);	
+			
+           $("#questionQuestion").css( { 'top':distance + 100+"px","display":"block" } );	
 		  
 			$("#questionQuestion").animate(
 				{ top: parseInt( distance + 80)+"px" }, 

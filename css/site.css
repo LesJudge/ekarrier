@@ -142,6 +142,7 @@ FORM.inline { line-height:3; }
 FORM.inline p { margin-bottom:0; }
 FORM H2 { margin: 0px 0px 8px 0px; padding:0px 0px 5px 0px; }
 FORM .require { color:#C00;}
+.ui-tooltip { position:absolute; }
 
 .submit 					{ position:relative; z-index:10; display:block;  margin: 0;   padding: 8px 6px; color: #fff;  border: 1px solid #24425e; 
 	line-height: 100%; cursor: pointer;  font-size: 14px; font-weight: bold !important; text-transform:none;color:#fff; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); border:1px solid #fca16c;
@@ -478,7 +479,7 @@ H3 .badge 				{ background:#6e6e6e; font-size:1em; vertical-align:inherit; paddi
 .site_center 			{ position:relative; margin:0px auto; width:960px;  }
 .site_logo 				{ position:relative; z-index:22; width:170px; margin:0 auto;  }
 .site_logo_cont		{ text-align:center;}
-.site_logo-inner		{ position:relative; width:170px; }
+.site_logo-inner		{ position:relative; width:170px; margin:0 auto; }
 .site_logo-inner .site-breadcrumbs { display:block; position:absolute; left:20; top:20; z-index:100; font-size:1.5em; padding:0.4em; background:#fff; cursor:pointer; 
 -webkit-border-radius: 50%;
 -moz-border-radius:50%;
@@ -966,7 +967,7 @@ behavior: url(../css/behavior/PIE.htc);  }
 .compQuestion { position: reltive; float:left;  width: 54px; height: 60px; background:url(../images/site/floater-out.png) no-repeat left top; color:#fff; 
 font-size:1.8em; font-weight:normal; padding:19px 0px; text-align:center; cursor:pointer; }  
 .compQuestion:hover { background:url(../images/site/floater-over.png) no-repeat left top; }  
-.compQuestionDetailed {  position: relative; z-index:999; float:left; width: auto; background:#000; margin:0.9em 0em 0em -1em; color: #fff; padding: 10px; display:none; 
+.compQuestionDetailed {  position: relative; z-index:999; float:left; width: auto; background:#000; margin:0.9em 0em 0em 0.5em; color: #fff; padding: 10px; display:none; 
 -webkit-border-radius: 7px;
 -moz-border-radius:7px;
 border-radius:7px;	
@@ -978,7 +979,7 @@ behavior: url(../css/behavior/PIE.htc); }
 #q2, #q2Detailed{ }    
 #q3, #q3Detailed{  }    
 #q4, #q4Detailed{ }    
-#questionQuestion{ position: absolute; z-index:10; width: auto; background:#000; margin:0.9em 0em 0em 0em; color: #fff; padding: 10px; left:-6px; display:none; text-align:center;  
+#questionQuestion{ position: absolute; z-index:10; width: auto; background:#000; margin:0.9em 0em 0em 0em; color: #fff; padding: 10px; width:70px; left:-6px; display:none; text-align:center;  
 -webkit-border-radius: 7px;
 -moz-border-radius:7px;
 border-radius:7px;	

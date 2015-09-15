@@ -47,7 +47,8 @@
 </div>
 
 <form id="compRajzForm" method="post">
-<input type="text" name="CompRajzNev" id="CompRajzNev" value="{$compRajzNev}" style="width: 150px !important" />
+<label for="CompRajzNev">Kompetenciarajz elnevezése</label>
+<input type="text" name="CompRajzNev" id="CompRajzNev" value="{$compRajzNev}"/>
 <div id="ui-state-error"></div>
 	{if $mode == "modify"}
 	<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciák kezelése</div><i class="write-icon"></i></div>

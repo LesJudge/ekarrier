@@ -14,9 +14,8 @@
 {/if}
 
 <div>{$text}</div>
-<div>{$text2}</div>
-<div>{$text3}</div>
-<br />
+
+<!--br />
 <a href="javascript:;" class="btn btn-primary addUsefullLinks">További hasznos linkek hozzáadása</a>
 <br /><br />
 <div class="folderItem-controls">				
@@ -31,7 +30,7 @@
 	{else}
 		<div class="well">Nincs még link hozzáadva!</div>
 	{/if}			
-</div>	
+</div-->	
 
 
 <div>{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}</div>
@@ -47,6 +46,7 @@
 <br />
 <div class="row komtetenciaSzerkesztes">	
 	<div class="col-lg-12" style="z-index:20;">
+            <div style="padding-right: 35px; height: 80px;">{$text2}</div>
 		<div class="padding-2">
 			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Összes</div></div>
 			<div class="jobFindList-cont jobFindList-cont-1"> 			
@@ -72,6 +72,7 @@
 		</div>	
 	</div>
 	<div class="col-lg-12">	
+            <div style="height: 80px;">{$text3}</div>
 		<div class="padding-3">
 			<div class="jobFindList-title-cont"><div class="jobFindList-title jobFindList-title-2">Kompetenciáim</div></div>
 			<div class="jobFindList-cont jobFindList-cont-4"> 			

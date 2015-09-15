@@ -34,11 +34,17 @@ class ContactController extends SlimBasedController
                 $types = Contact::getTypes();
                 
                 foreach ($contacts as $contact) {
+                    if ($contact->tipus == 1) {
+                        $date = $contact->letrehozas_timestamp;
+                    } else {
+                        $date = $contact->datum;
+                    }
+                    
                     $responseBody[] = array(
                         'id' => $contact->ugyfel_attr_esetnaplo_id,
                         'tipus' => array_key_exists($contact->tipus, $types) ? $types[$contact->tipus] : null,
                         'nev' => $contact->nev,
-                        'datum' => $contact->tipus == 1 ? $contact->letrehozas_timestamp->format('Y.m.d') : $contact->datum
+                        'datum' => is_object($date) && $date instanceof \DateTime ? $date->format('Y.m.d') : 'Ismeretlen'
                     );
                 }
             }
@@ -53,62 +59,31 @@ class ContactController extends SlimBasedController
     
     public function create($id)
     {
-        /*
         $this->slim->response->headers->set('Content-Type', 'application/json');
-        if ($this->slim->request->post('contact', null) != null) {
-            $contactData = $this->slim->request->post('contact');
-            if (is_array($contactData)) {
-                $getIndex = function($data, $index) {
-                    return isset($data[$index]) ? $data[$index] : '';
-                };
-                $isMediation = false;
-                $mediation = null;
-                // Esetnapló
-                $contact = new Contact;
-                $contact->ugyfel_id = $id;
-                $contact->nev = $getIndex($contactData, 'nev');
-                $contact->datum = $getIndex($contactData, 'datum');
-                $contact->megjegyzes = $getIndex($contactData, 'megjegyzes');
-                // Ha közvetítés.
-                if ($getIndex($contactData, 'isMediation') == 1 && is_array($getIndex($contactData, 'mediation'))) {
-                    $mediation = new Mediation;
-                    $mediation->hova = $getIndex($contactData['mediation'], 'hova');
-                    $mediation->megjelent = $getIndex($contactData['mediation'], 'megjelent');
-                    $mediation->mikor = $getIndex($contactData['mediation'], 'mikor');
-                    $isMediation = true;
-                }
-                // Validálás, mentés.
-                $connection = $contact->connection();
-                $connection->transaction();
-                try {
-                    $contactIsValid = $contact->is_valid();
-                    $mediationIsValid = $isMediation ? $mediation->is_valid() : true;
-                    if ($contactIsValid && $mediationIsValid) {
-                        $contactSaved = $contact->save(false);
-                        $mediationSaved = true;
-                        if ($isMediation) {
-                            $mediation->ugyfel_attr_esetnaplo_id = $contact->ugyfel_attr_esetnaplo_id;
-                            $mediationSaved = $mediation->save(false);
-                        }
-                        if ($contactSaved && $mediationSaved) {
-                            $connection->commit();
-                            $this->slim->status(200);
-                        } else {
-                            throw new Exception;
-                        }
-                    } else {
-                        $this->slim->status(400);
-                        $connection->rollback();
+        
+        try {
+            // POST-olt adatok.
+            $attributes = $this->slim->request->post('contact');
+            
+            if (is_array($attributes)) {
+                // Ügyfél azonosító hozzáadása az attribútumokhoz.
+                $attributes += ['ugyfel_id' => $id];
+
+                $contact = new Contact($attributes);
+                
+                if (!$contact->is_valid()) {
+                    $this->slim->response->setStatus(400);
+                    echo json_encode($contact->errors->get_raw_errors());
+                } else {
+                    if (!$contact->save()) {
+                        $this->slim->response->setStatus(500);
                     }
-                } catch (Exception $ex) {
-                    $connection->rollback();
-                    $this->slim->status(500);
                 }
-            } else {
-                $this->slim->status(400);
             }
+        } catch (Exception $ex) {
+            $this->slim->response->setStatus(500);
         }
+        
         $this->stop();
-        */
     }
 }

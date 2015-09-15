@@ -1,5 +1,6 @@
 <?php
 namespace Uniweb\Module\Ugyfel\Model\ActiveRecord;
+
 use Uniweb\Library\Utilities\ActiveRecord\Model\Behaviorable;
 use Uniweb\Library\Utilities\ActiveRecord\Assign\WithoutCast as AssignWithoutCast;
 use Uniweb\Library\Utilities\ActiveRecord\Behavior\Author;
@@ -8,6 +9,7 @@ use Uniweb\Library\Utilities\ActiveRecord\Behavior\RecordStatus;
 use Uniweb\Library\Utilities\ActiveRecord\Behavior\Timestamp;
 use Uniweb\Library\Utilities\ActiveRecord\Read\DateTime as ReadDateTime;
 use Uniweb\Library\Resource\Interfaces\ResourceInterface;
+
 /**
  * @property int $ugyfel_id Ügyfél azonosító.
  * @property int $ugyfel_munkakor_kategoria_id Munkakör kategória.
@@ -62,25 +64,12 @@ class Client extends Behaviorable implements ResourceInterface
      * @var string
      */
     public static $table_name = 'ugyfel';
+    
     /**
      * Tábla elsődleges kulcsa.
      * @var string
      */
     public static $primary_key = 'ugyfel_id';
-    /**
-     * Mezők, amelyek nem "mass-assignolhatóak". (Konstruktorban hiába van átadva, NULL értéket vesz fel az attribútum.)
-     * @var array
-     */
-    /*
-    public static $attr_protected = array(
-        'ugyfel_id',
-        'letrehozo_id',
-        'modosito_id',
-        'modositas_szama',
-        'ugyfel_aktiv',
-        'ugyfel_torolt'
-    );
-    */
     
     public static $has_one = array(
         array(
@@ -189,6 +178,7 @@ class Client extends Behaviorable implements ResourceInterface
             'read_only' => true
         )
     );
+    
     /**
      * Modelhez tartozó 1:1 kapcsolatok.
      * @var array
@@ -219,11 +209,11 @@ class Client extends Behaviorable implements ResourceInterface
             'read_only' => true
         )
     );
+    
     /**
      * Modelhez tartozó 1:n kapcsolatok.
      * @var array
      */
-    
     public static $has_many = array(
         array(
             'addresses',
@@ -313,6 +303,7 @@ class Client extends Behaviorable implements ResourceInterface
             'read_only' => true
         )
     );
+    
     /**
      * Kötelező mezők validációs szabályai.
      * @var array
@@ -327,6 +318,7 @@ class Client extends Behaviorable implements ResourceInterface
             'message' => 'A vezetéknév megadása kötelező!'
         )
     );
+    
     /**
      * Mezőkre vonatkozó string hossz validációs szabályok.
      * @var array
@@ -373,6 +365,7 @@ class Client extends Behaviorable implements ResourceInterface
             'too_long' => 'A mobiltelefonszámnak legfeljebb 11 karakter hosszú lehet!'
         )
     );
+    
     /**
      * Mezők által felvehető értékek validációs szabályok.
      * @var array
@@ -389,6 +382,7 @@ class Client extends Behaviorable implements ResourceInterface
             'message' => 'Az aktív értéke csak igen-nem lehet!'
         )
     );
+    
     /**
      * Mezők értékeinek "formájára" vonatkozó validációs szabályok.
      * @var array
@@ -423,6 +417,7 @@ class Client extends Behaviorable implements ResourceInterface
             'timestamp' => new Timestamp('letrehozas_timestamp', 'modositas_timestamp')
         );
     }
+    
     /**
      * Visszatér az ügyfél azonosítóval.
      * @return scalar

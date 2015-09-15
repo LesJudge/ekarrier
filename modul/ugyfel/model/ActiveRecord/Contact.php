@@ -103,12 +103,20 @@ class Contact extends BaseResourcable
      */
     public static $validates_presence_of = array(
         array(
+            'tipus',
+            'message' => 'A típus megadása kötelező!'
+        ),
+        array(
             'nev',
-            'message' => 'Kötelező mező!'
+            'message' => 'A név megadása kötelező!'
+        ),
+        array(
+            'datum',
+            'message' => 'A dátum megadása kötelező!'
         ),
         array(
             'megjegyzes',
-            'message' => 'Kötelező mező!'
+            'message' => 'A megjegyzés megadása kötelező!'
         )
     );
     
@@ -166,11 +174,13 @@ class Contact extends BaseResourcable
         $assignString->assignAttribute('nev', $nev, $this);
     }
     
+    /*
     public function set_datum($datum)
     {
         $assignDateTime = new AssignDateTime('Y-m-d');
         return $assignDateTime->assignAttribute('datum', $datum, $this);
     }
+    */
     
     public function set_megjegyzes($megjegyzes)
     {

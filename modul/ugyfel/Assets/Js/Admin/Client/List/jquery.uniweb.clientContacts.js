@@ -65,7 +65,7 @@
                 datepickerSettings = { // Datepicker alapértelmezett beállítása a formon.
                     yearRange: (currentYear - 100) + ":" + currentYear
                 };
-                $("#contact-datum, #contact-mediation-mikor").datepicker(datepickerSettings);
+                $("#contact-datum, #contact-mikor").datepicker(datepickerSettings);
         },
         
         _create: function() {
@@ -109,18 +109,16 @@
                     },
                     data: {
                         contact: {
-                            isMediation: $("#contact-is-mediation").val(),
-                            nev: $("#contact-nev").val(),
-                            datum: $("#contact-datum").val(),
-                            megjegyzes: $("#contact-megjegyzes").val(),
-                            mediation: {
-                                hova: $("#contact-mediation-hova").val(),
-                                megjelent: $("#contact-mediation-megjelent").val(),
-                                mikor: $("#contact-mediation-mikor").val()
-                            }
+                            tipus: $('#contact-type-select').val(),
+                            nev: $('#contact-nev').val(),
+                            datum: $('#contact-datum').val(),
+                            megjegyzes: $('#contact-megjegyzes').val(),
+                            hova: $('#contact-hova').val(),
+                            megjelent: $('#contact-megjelent').val(),
+                            mikor: $('#contact-mikor').val()
                         }
                     },
-                    type: "POST"
+                    type: 'POST'
                 });
             });
             
@@ -152,7 +150,6 @@
                     beforeSend: function() {
                         $table.hide();
                     },
-                    
                     complete: function() {
                         $('#client-contact-loading').fadeOut(500, function() {
                             $table.fadeIn(1000);

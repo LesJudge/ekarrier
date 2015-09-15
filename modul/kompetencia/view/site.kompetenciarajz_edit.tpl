@@ -154,9 +154,15 @@ jQuery.each($(".tinymce"), function() {
         var doc = ed.getDoc();
 
         tinymce.dom.Event.add(doc, 'focusout', function(e) {
-           $("#questionQuestion").css( { 'top':parseInt($("#"+$(ed).attr('id')).offset().top)+"px","display":"block" } );			
+           $("#questionQuestion").css( { 'top':parseInt($("#"+$(ed).attr('id')+"_parent").offset().top)+"px","display":"block" } );		
+			
+			var scrollTop     = $(window).scrollTop(),
+			elementOffset = $(".compQuestion-cont").offset().top,
+			distance      = (elementOffset - scrollTop);
+			//console.log(distance);			
+		  
 			$("#questionQuestion").animate(
-				{ top:  parseInt($("#"+$(ed).attr('id')).offset().top-50)+"px" }, 
+				{ top: parseInt( distance + 80)+"px" }, 
 				{
 					duration: 500, 
 					easing: 'easeInOutBounce',

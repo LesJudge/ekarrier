@@ -4,7 +4,7 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	$('#hasznosLinkek-content').appendTo('BODY').modal('show');
+	$(".addUsefullLinks").click(function(){ $('#hasznosLinkek-content').appendTo('BODY').modal('show') });
 });
 </script>
 <div class="modal fade" id="hasznosLinkek-content" tabindex="-1" role="dialog" aria-labelledby="popUpLoginForm" aria-hidden="true">

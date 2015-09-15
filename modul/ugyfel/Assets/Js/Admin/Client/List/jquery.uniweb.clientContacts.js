@@ -86,8 +86,7 @@
                         var message = "";
                         switch (xhr.status) {
                             case 400:
-                                message = "Nem megfelelő adatok! Kérem ellenőrizze, hogy megfelelő dátum értékeket " + 
-                                        "adott-e meg, illetve a név hossza 3 és 128 karakter között van!" ;
+                                message = "Nem megfelelő adatok! Kérem ellenőrizze, megadta-e a nevet, a dátumot, valamint írt-e megjegyzést!" ;
                                 break;
                             case 403:
                                 message = "Nincs jogosultsága a bejegyzés mentéséhez!";
@@ -124,11 +123,14 @@
             
             self.element.bind("afterCreate", function(e, data) {
                 if (data.result === true) {
+                    $('#contact-type-select').val('').trigger('change');
                     self._addMessage(self.options.selectors.feedbackSuccess, data.message);
                 } else {
                     self._addMessage(self.options.selectors.feedbackError, data.message);
                 }
+                
                 $(self.options.selectors.dialogCreate).dialog("close");
+                
                 if (data.result === true) {
                     self.element.trigger("refresh");
                 }
@@ -162,13 +164,11 @@
                                 html += '<td>' + contact.tipus + '</td>';
                                 html += '<td>' + contact.nev + '</td>';
                                 html += '<td>' + contact.datum + '</td>';
-                                html += '<td><button type="button"></button></td>';
-                                html += '<td><button type="button"></button></td>';
                                 html += '</tr>';
                                 $(html).appendTo($tbody);
                             });
                         } else {
-                            $tbody.append('<tr><td colspan="5">Nincs megjeleníthető bejegyzés!</td></tr>');
+                            $tbody.append('<tr><td colspan="3">Nincs megjeleníthető bejegyzés!</td></tr>');
                         }
                         
                         if (data.result === true) {
@@ -178,7 +178,7 @@
                                     self._addFile(file);
                                 });
                             } else {
-                                $tbody.append('<tr><td colspan="5">Nincs megjeleníthető bejegyzés!</td></tr>');
+                                $tbody.append('<tr><td colspan="3">Nincs megjeleníthető bejegyzés!</td></tr>');
                             }
                         }
                         //$table.show();

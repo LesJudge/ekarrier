@@ -34,11 +34,17 @@ class ContactController extends SlimBasedController
                 $types = Contact::getTypes();
                 
                 foreach ($contacts as $contact) {
+                    if ($contact->tipus == 1) {
+                        $date = $contact->letrehozas_timestamp;
+                    } else {
+                        $date = $contact->datum;
+                    }
+                    
                     $responseBody[] = array(
                         'id' => $contact->ugyfel_attr_esetnaplo_id,
                         'tipus' => array_key_exists($contact->tipus, $types) ? $types[$contact->tipus] : null,
                         'nev' => $contact->nev,
-                        'datum' => $contact->tipus == 1 ? $contact->letrehozas_timestamp->format('Y.m.d') : $contact->datum
+                        'datum' => is_object($date) && $date instanceof \DateTime ? $date->format('Y.m.d') : 'Ismeretlen'
                     );
                 }
             }

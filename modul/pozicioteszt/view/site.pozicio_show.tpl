@@ -47,6 +47,8 @@ $(function() { {$FormScript}
 {$pozicio.pozicio_leiras}
 
 <br />
+<a href="javascript:;" class="btn btn-primary addUsefullLinks">További hasznos linkek hozzáadása</a>
+<br /><br />
 <div class="folderItem-controls">				
 	 {if not empty($links)}
 		{foreach from=$links item=link}    

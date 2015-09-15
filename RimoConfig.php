@@ -35,8 +35,8 @@ class RimoConfig
         public $MYSQL_DB_PASS="";
         public $MYSQL_DB_CHARSET="utf8";
         public $PAGE_CHARSET="UTF-8";
-        public $DOMAIN_ADMIN="http://localhost/ekarrier/admin/";
-        public $DOMAIN="http://localhost/ekarrier/";
+        public $DOMAIN_ADMIN="http://ekarrier-laci.local/admin/";
+        public $DOMAIN="http://ekarrier-laci.local/"; 
         public $DEFAULT_NYELV_ID=1;
         public $ADMIN_NYELV_ID=1;
         public $ADMIN_NYELV_VAR="hu";

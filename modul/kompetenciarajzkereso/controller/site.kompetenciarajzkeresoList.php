@@ -43,6 +43,10 @@ class KompetenciarajzkeresoList_Site_Controller extends Admin_List
             $this->_view->assign("loggedInAs","company");
         }
         
+        $tartalom = Rimo::__loadPublic('model', 'tartalom_Show', 'tartalom');
+        $obj = $tartalom->getTartalomByID(43);
+        $this->_view->assign("textCompany",$obj[0]["tartalom_tartalom"]);
+        
         //SEO
         $seo = seo_Site_Model::model()->getSeoItemByKey('kompetenciarajzkereso',$lId);
         

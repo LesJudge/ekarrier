@@ -182,6 +182,7 @@ if(UserLoginOut_Site_Controller::$_id > 0){
     
     $value = (int)Rimo::$_config->logoIndacators[$_REQUEST['m']][$_REQUEST['al']] > 0 ? (int)Rimo::$_config->logoIndacators[$_REQUEST['m']][$_REQUEST['al']] : 0;
     Rimo::$_site_frame->assign('logoIndicator', $value);
+    Rimo::$_site_frame->assign('logoIndicatorText', Rimo::$_config->indicatorText[$value]);
     
 //}
 

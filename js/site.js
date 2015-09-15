@@ -364,6 +364,9 @@ $(function() {
 		return false;
 	});
 	
+	
+	$('.compQuestion-cont').css('left', ( $(window).width()-$('.site_center').width())/2-27+'px' );
+	
   
     $("form input").keypress(function (e) {
 		if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
@@ -374,3 +377,7 @@ $(function() {
 		}
 	});
 } );
+
+$(window).resize(function(){
+	$('.compQuestion-cont').css('left', ( $(window).width()-$('.site_center').width())/2-27+'px' );
+});

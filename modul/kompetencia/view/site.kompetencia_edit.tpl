@@ -16,6 +16,22 @@
 <div>{$text}</div>
 <div>{$text2}</div>
 <div>{$text3}</div>
+<br />
+<div class="folderItem-controls">				
+	 {if not empty($links)}
+		{foreach from=$links item=link}    
+			<form name="{$FormName}" method="post" action="">
+				<input type="hidden" id="delLink" name="delLink" value="{$link.link}"/>
+				<a href="{$link.link}" target="_blank" class="btn btn-default btn-md btn-block" style="text-align:left;"><i class="icomoon icomoon-play3"></i> {$link.nev}</a>							
+			</form>
+			<br/>
+		{/foreach}				
+	{else}
+		<div class="well">Nincs még link hozzáadva!</div>
+	{/if}			
+</div>	
+
+
 <div>{include file='modul/kompetencia/view/partial/site.kompetencia_commonbuttons.tpl'}</div>
 <form id="newCompForm" action="" method="post" hidden='hidden'>
 <div class="dialog-form">

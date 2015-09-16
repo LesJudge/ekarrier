@@ -115,7 +115,7 @@ CREATE TABLE `ugyfel_attr_esetnaplo` (
   CONSTRAINT `ugyfel_attr_esetnaplo_letrehozo_id_fk` FOREIGN KEY (`letrehozo_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `ugyfel_attr_esetnaplo_modosito_id_fk` FOREIGN KEY (`modosito_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `ugyfel_attr_esetnaplo_ugyfel_id_fk` FOREIGN KEY (`ugyfel_id`) REFERENCES `ugyfel` (`ugyfel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci COMMENT='Ügyfélhez tartozó kapcsolattartási adatok.';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci COMMENT='Ügyfélhez tartozó kapcsolattartási adatok.';
 
 ------------------------------------------------------------------
 

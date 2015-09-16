@@ -21,7 +21,8 @@ class MunkakorAjax_Site_Controller extends AjaxController
         header_remove('Content-Type');
         try {
             header('Content-Type: application/json');
-            $requestMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+            //$requestMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+            $requestMethod = $_SERVER['REQUEST_METHOD'];
             switch ($requestMethod) {
                 case 'GET':
                     $method = filter_input(INPUT_GET, 'method');

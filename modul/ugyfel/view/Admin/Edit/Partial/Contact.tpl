@@ -14,8 +14,6 @@
                     <th>Típus</th>
                     <th>Megnevezés</th>
                     <th>Dátum</th>
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -29,11 +27,11 @@
             </ul>
             <div class="row-contact-dialog">
                 <label>Típus</label>
-                <select id="contact-type-select" name="contact[type]">
+                <select id="contact-type-select" name="contact[tipus]">
                     <option value="">-- Kérem, válasszon típust! --</option>
-                    <option value="contact">Esetnapló</option>
-                    <option value="mediation">Közvetítés</option>
-                    <option value="other">Egyéb</option>
+                    <option value="1">Esetnapló</option>
+                    <option value="2">Közvetítés</option>
+                    <option value="3">Egyéb</option>
                 </select>
                 <div class="clearfix"></div>
             </div>

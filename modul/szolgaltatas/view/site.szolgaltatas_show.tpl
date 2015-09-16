@@ -71,14 +71,14 @@
 {/if}
 
 {if $textCompany}
-    <div>{$textCompany}</div>
+    <div class="static-content">{$textCompany}</div>
 {elseif $textClient}
-    <div>{$textClient}</div>
+    <div class="static-content">{$textClient}</div>
 {/if}
 
 
 {foreach from=$services item=service}
-    <div onclick="$('#descCont_{$service.ID}').toggle();" class="accordionItem-title accordionItem-title-1">{$service.nev}</div>
+<div onclick="$('#descCont_{$service.ID}').toggle();" class="accordionItem-title accordionItem-title-1">{$service.nev}</div>
     <div style="display:none;" id="descCont_{$service.ID}" class="accordionItem-main">
 		 <div class="accordionItem-lead">{$service.leiras}</div>
 		 

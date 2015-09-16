@@ -47,25 +47,24 @@
                 }
             }));
             
+            var currentYear = new Date().getUTCFullYear(), // Aktuális év.
+                datepickerSettings = { // Datepicker alapértelmezett beállítása a formon.
+                    yearRange: (currentYear - 100) + ":" + currentYear
+                };
+            
             $('#contact-type-select').change(function() {
                 if (this.value != '') {
                     var $form = $('#contact-form-' + this.value);
 
                     if ($form.length > 0) {
                         $formContainer.html($form.html());
-                    } else {
-                        console.log('nincs form!');
+                        
+                        $("#contact-datum, #contact-mikor").datepicker(datepickerSettings);
                     }
                 } else {
                     $formContainer.html('');
                 }
             });
-            
-            var currentYear = new Date().getUTCFullYear(), // Aktuális év.
-                datepickerSettings = { // Datepicker alapértelmezett beállítása a formon.
-                    yearRange: (currentYear - 100) + ":" + currentYear
-                };
-                $("#contact-datum, #contact-mikor").datepicker(datepickerSettings);
         },
         
         _create: function() {

@@ -40,7 +40,7 @@
 			<div class="row">
 				<div class="col-lg-8">
 					{$ErrorMessage}	
-					<div class="search">       
+					<!--div class="search">       
 						 <form action="kereses/" method="get" id="search">
 							<div class="form-row clearfix form-group">
 								<input type="text" class="search_field form-control" id="keresoszo" name="keresoszo" placeholder="Keresés az oldalon" />
@@ -48,7 +48,7 @@
 								<div class="clear"></div>
 							</div>
 						</form>	            
-					</div>								
+					</div-->								
 					<div class="clear"></div>	
 				</div>
 				<div class="col-lg-1">

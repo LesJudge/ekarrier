@@ -258,3 +258,6 @@ function resetGroupOpts(){
 </div>
 
 <a href="{$DOMAIN}szolgaltatasok/" class="accordionItem-title">3. lépés - Kérem a jelöltek elérhetőségét!</a>
+
+<br/><br/>
+<a class="btn btn-sm btn-default" href="{$DOMAIN}nyito-oldal">Vissza a főoldalra</a>

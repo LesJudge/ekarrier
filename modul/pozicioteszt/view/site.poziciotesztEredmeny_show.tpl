@@ -68,7 +68,8 @@
 	</div>	
 </div>
 
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}">Irány a következő lépéshez</a>
+<!--a class="btn btn-sm btn-primary" href="{$DOMAIN}">Irány a következő lépéshez</a-->
+{include file="page/all/view/partial/nextbutton_common.tpl"}
 
 
 

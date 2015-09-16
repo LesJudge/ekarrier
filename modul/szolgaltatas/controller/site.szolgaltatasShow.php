@@ -151,7 +151,7 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
             
             //$this->_model->saveOrder($companyID, $_REQUEST['serviceID'] ,$_REQUEST['folders']);
             $this->_model->saveOrder($companyID, $_REQUEST['serviceID'], $_REQUEST["".$_REQUEST['serviceID']."clients"], $_REQUEST["".$_REQUEST['serviceID']."clientsMarkers"]);
-            throw new Exception_Form_Message('Sikeres megrendelés!');
+            throw new Exception_Form_Message('Köszönjük rendelését! Kollegáink hamarosan felveszik Önnel a kapcsolatot');
         }
         catch(Exception_MYSQL $e){
             throw new Exception_Form_Error("Hiba történt!");
@@ -168,7 +168,7 @@ class SzolgaltatasShow_Site_Controller extends Page_Edit
                 throw new Exception_Form_Message('Megrendelése feldolgozás alatt!');
             }
             $this->_model->saveClientOrder($clientID, $_REQUEST['clientServiceID']);
-            throw new Exception_Form_Message('Sikeres megrendelés!');
+            throw new Exception_Form_Message('Köszönjük rendelését! Kollegáink hamarosan felveszik Önnel a kapcsolatot');
         }
         catch(Exception_MYSQL $e){
             throw new Exception_Form_Error("Hiba történt!");

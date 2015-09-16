@@ -243,8 +243,8 @@ function resetGroupOpts(){
 {*include file='page/all/view/page.paging.tpl'*} 
 <input id="{$FilterLetter.name}" name="{$FilterLetter.name}" type="hidden" value="{$FilterLetter.activ}" />
 <div class="clear"></div>
-
-
+<br />
+<a class="btn btn-sm btn-default" href="{$DOMAIN}fooldal/">Vissza a főoldalra</a>
 
 
 		

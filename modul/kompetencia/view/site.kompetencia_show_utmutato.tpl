@@ -10,3 +10,4 @@
 <div class="row">
 	{$text2}	
 </div>
+{include file="page/all/view/partial/nextbutton_common.tpl"}

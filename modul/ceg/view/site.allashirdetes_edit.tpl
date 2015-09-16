@@ -37,7 +37,7 @@ $(document).ready(function(){
 			</div>	      
 			<div class="contentDataCont">
 				<div class="siteTab-title">Alap adatok</div>					
-				<button class="btn btn-primary siteTab-save" name="{$BtnSave}" id="{$BtnSave}" value="submit" type="submit">Mentés</button>
+				<!--button class="btn btn-primary siteTab-save" name="{$BtnSave}" id="{$BtnSave}" value="submit" type="submit">Mentés</button-->
 				<div class="siteTabNext"><a href="javascript:;" class="btn btn-default">Tovább</a></div><div class="siteTabNext_cover"></div>                   
 				<div class="siteTabBack"><a href="javascript:;" class="btn btn-default">Vissza</a></div><div class="siteTabBack_cover"></div>   
 				<div class="contentData-bg">                                     
@@ -51,7 +51,7 @@ $(document).ready(function(){
 							<div class="siteTab" siteTab-bredcrumb="Amit kínálunk">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_amit_kinalunk.tpl"}</div>
 							<!--div class="siteTab" siteTab-bredcrumb="Ismertető">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_ismerteto.tpl"}</div-->
 							<div class="siteTab" siteTab-bredcrumb="Jelentkezés módja">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_jelentkezes_modja.tpl"}</div>
-							<div class="siteTab" siteTab-bredcrumb="Munkavégzés helye">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_munkavegzes_helye.tpl"}</div>							
+							<div class="siteTab" siteTab-bredcrumb="Munkavégzés helye">{include file="modul/ceg/view/partial/site.ceg_allashirdetes_munkavegzes_helye.tpl"} </div>							
 						</div>
 					</div>
 				</div>	
@@ -61,6 +61,7 @@ $(document).ready(function(){
         {*/if*}
         
 		<br/><br/>
+<a class="btn btn-sm btn-default" href="{$DOMAIN}nyito-oldal">Vissza a főoldalra</a>
     </form>
 </div><!--/.content.clearfix-->
 {if not $FormError}

@@ -11,14 +11,15 @@ $(function() { {$FormScript}
         $(".as-selections").addClass("ui-widget-content");
         $('select[name="{$SelKapcsolodo.name}[]"]').multiselect().multiselectfilter();
         $('select[name="{$SelKategoria.name}[]"]').multiselect().multiselectfilter();
-        
+    /*    
     $("#{$TxtSzinkod.name}").spectrum({
     color: "{$TxtSzinkod.activ}",
     change: function(color) {
         $("#{$TxtSzinkod.name}").attr('value',color.toHexString());
         console.log($("#{$TxtSzinkod.name}").attr('value'));
     }
-});    
+    });    
+    */
 });
 
 /*]]>*/

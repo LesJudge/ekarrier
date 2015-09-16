@@ -22,6 +22,10 @@
 		{if isset($SelVaros.error)}<p class="error small">{$SelVaros.error}</p>{/if}
 	</div>
 	<div class="clear"></div>
+        <div class="form_row">
+		<button class="btn btn-primary" name="{$BtnSave}" id="{$BtnSave}" value="submit" type="submit">Mentés</button>
+	</div>
+	<div class="clear"></div>
 	<!--
 	<div class="form_row">
 		<label for="{$TxtUtca.name}">Utca</label>
@@ -36,6 +40,5 @@
 		{if isset($TxtHazszam.error)}<p class="error small">{$TxtHazszam.error}</p>{/if} 
 	</div>
 	-->
-	
 	<div class="clear"></div>
 </div>	

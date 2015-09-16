@@ -180,7 +180,6 @@
 								</div>
 							</div>
 						</div>                    
-                
              {/if}
              {if $loggedInAs == 'client'}
                 <form name="form_{$service.ID}" action="" method="post">
@@ -191,9 +190,13 @@
                         <button type="submit" name="{$BtnOrderClientService}">Megrendelem a szolgáltatást</button>
                     {/if}
                 </form>
+                
              {/if}
         {else}
                 <a href='{$DOMAIN}{$regLink}' title='Regisztráció szükséges'>Megrendelem a szolgáltatást</a>
         {/if}
     </div>
 {/foreach}
+
+<br/><br/>
+<a class="btn btn-sm btn-default" href="{$DOMAIN}">Vissza a főoldalra</a>

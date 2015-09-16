@@ -186,9 +186,9 @@
 {/foreach}
 
 -->
-<a class="btn btn-sm btn-primary" href="{$DOMAIN}fooldal/">Irány a következő lépéshez</a>
+<!--a class="btn btn-sm btn-primary" href="{$DOMAIN}fooldal/">Irány a következő lépéshez</a-->
 <a class="btn btn-sm btn-primary" href="{$DOMAIN}tevekenysegikor-kereso/">Vissza a keresőhöz</a>
-  
+{include file="page/all/view/partial/nextbutton_common.tpl"}  
   
 <div class="clear"></div>
 

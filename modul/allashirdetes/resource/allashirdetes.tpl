@@ -92,11 +92,11 @@
                 </ul>
                 {/if}
                 <p class="allashirdetes-label">Munkavégzés jellege</p>
-                <p class="allashirdetes-content">{$pj.munkarend_nev}</p>
+                <p class="allashirdetes-content">{$pj.munkavegzes_jellege}</p>
             </div>
             <div class="allashirdetes-col">
                 <p class="allashirdetes-label">Munkavégzés helye:</p>
-                <p class="allashirdetes-content">{$pj.cim_varos_nev}</p>
+                <p class="allashirdetes-content">{$pj.cim_varos_nev}{if $pj.cim_megye_nev}, {$pj.cim_megye_nev}{/if}</p>
                 <p class="allashirdetes-label">Jelentkezés módja:</p>
                 <p class="allashirdetes-content">{strip_tags($pj.jelentkezes_modja)}</p>
             </div>

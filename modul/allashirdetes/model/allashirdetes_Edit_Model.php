@@ -143,7 +143,15 @@ class Allashirdetes_Edit_Model extends \AllashirdetesBaseEditModel
         $feladatok = $self->findFeladatByJobId($jobId);
         $amitKinalunk = $self->findAmitKinalunkByJobId($jobId);
         // Variable assignment.
-        $smarty->assign('pj', $assm->findPostingJobById($jobId));
+        
+        $postingJob = $assm->findPostingJobById($jobId);
+        
+        $postingJob['ceg_nev'] = $postingJob['nev'];
+        
+        //echo '<pre>', print_r($postingJob, true), '</pre>';
+        //exit;
+        
+        $smarty->assign('pj', $postingJob);
         $smarty->assign('elvarasok', $elvarasok);
         $smarty->assign('feladatok', $feladatok);
         $smarty->assign('amitKinalunk', $amitKinalunk);
